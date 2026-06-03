@@ -1,0 +1,57 @@
+{
+  "quarter": "Q4 FY2026 (fiscal quarter and full year ended January 31, 2026)",
+  "reportDate": "2026-03-19",
+  "keyMetrics": {
+    "revenue": "Record Q4 revenue of $86.8M, up ~41% YoY; full-year FY2026 revenue $307.7M, up 26% YoY (per Nasdaq/Investing.com summaries of the release)",
+    "backlog": "Backlog ~$900M, up 79% YoY; remaining performance obligations (RPO) up 106% YoY to ~$852M",
+    "recurringRevenuePct": "~98% of end-of-period annual contract value (ACV) was recurring as of end of FY2026; CFO noted ~85% of end-of-period ACV is annual or multi-year contracts (lower than prior periods due to a higher mix of large, shorter-term government contracts)",
+    "adjEbitda": "Full-year FY2026 adjusted EBITDA of $15.5M - first full year of non-GAAP profitability - vs. an ~$11M adjusted EBITDA loss in FY2025",
+    "cash": "End-of-period cash, cash equivalents and short-term investments up 188% YoY to ~$640M",
+    "guidance": "Q1 FY2027 revenue guided to $87-91M (~34% YoY growth at midpoint); full-year FY2027 revenue guided to $415-440M (~39% growth at midpoint)"
+  },
+  "aiCommentary": "Management positioned Planet as building 'planetary intelligence' - converting its daily global archive into analysis-ready insights with frontier AI. CEO Will Marshall framed the opportunity around real-world data ('While LLMs offer users the incredible ability to have conversations with the text of the Internet, they know very little about the physical world'). Planet announced a GPU-native AI engine with NVIDIA (Blackwell/IGX Thor), citing up to '100x on certain parts of our codebase,' an LLM partnership with Anthropic (Claude), and the Google Project Suncatcher TPU-in-space tech demo ('an early tech demo... putting their TPUs into space'). It was also selected as a prime under the MDA's SHIELD IDIQ for AI-enabled detections/warnings.",
+  "demandCommentary": "Demand is led by government, defense and intelligence as 'security is an urgent mandate for governments worldwide.' Satellite Services (sovereign dedicated-capacity deals) drove the year, with three large deals signed in 12 months - Germany (~EUR 240M), Japan/JSAT, and Sweden. CEO noted the sovereign pipeline 'has grown appreciably in both number of deals and average deal size' since the October Investor Day, and that Planet can 'launch the first satellites within a few months of contract signing... far faster than traditional aerospace.' CFO flagged a higher proportion of large, shorter-term government contracts shifting the contract-duration mix.",
+  "keyQuotes": [
+    {
+      "speaker": "Will Marshall (CEO)",
+      "quote": "Planet had a transformational year driven by strong momentum in satellite services, including most recently with Sweden, as well as launching 40 satellites, and inking an R&D partnership with Google to explore data centers in space.",
+      "source": "Nasdaq (Planet FY2026 results release)",
+      "sourceUrl": "https://www.nasdaq.com/press-release/planet-reports-financial-results-fourth-quarter-and-full-fiscal-year-2026-2026-03-19"
+    },
+    {
+      "speaker": "Will Marshall (CEO)",
+      "quote": "Security is an urgent mandate for governments worldwide, and our customers face mission-critical decisions.",
+      "source": "The Motley Fool (Q4 FY2026 earnings call transcript)",
+      "sourceUrl": "https://www.fool.com/earnings/call-transcripts/2026/03/19/planet-labs-pl-q4-2026-earnings-call-transcript/"
+    },
+    {
+      "speaker": "Will Marshall (CEO)",
+      "quote": "We are able to launch the first satellites within a few months of contract signing, as shown with the partnership funded by Germany, far faster than traditional aerospace.",
+      "source": "The Motley Fool (Q4 FY2026 earnings call transcript)",
+      "sourceUrl": "https://www.fool.com/earnings/call-transcripts/2026/03/19/planet-labs-pl-q4-2026-earnings-call-transcript/"
+    },
+    {
+      "speaker": "Will Marshall (CEO)",
+      "quote": "While LLMs offer users the incredible ability to have conversations with the text of the Internet, they know very little about the physical world.",
+      "source": "The Motley Fool (Q4 FY2026 earnings call transcript)",
+      "sourceUrl": "https://www.fool.com/earnings/call-transcripts/2026/03/19/planet-labs-pl-q4-2026-earnings-call-transcript/"
+    },
+    {
+      "speaker": "Ashley Fieglein Johnson (President & CFO)",
+      "quote": "Fiscal year 2026 marks our first year of delivering adjusted EBITDA profitability on an annual basis, a milestone we are incredibly proud of.",
+      "source": "The Motley Fool (Q4 FY2026 earnings call transcript)",
+      "sourceUrl": "https://www.fool.com/earnings/call-transcripts/2026/03/19/planet-labs-pl-q4-2026-earnings-call-transcript/"
+    },
+    {
+      "speaker": "Ashley Fieglein Johnson (President & CFO)",
+      "quote": "85% of our end-of-period ACV book of business consists of annual or multiyear contracts, lower than prior periods, as we have seen a higher proportion of large, shorter-term government contracts.",
+      "source": "The Motley Fool (Q4 FY2026 earnings call transcript)",
+      "sourceUrl": "https://www.fool.com/earnings/call-transcripts/2026/03/19/planet-labs-pl-q4-2026-earnings-call-transcript/"
+    }
+  ],
+  "sources": [
+    "https://www.nasdaq.com/press-release/planet-reports-financial-results-fourth-quarter-and-full-fiscal-year-2026-2026-03-19",
+    "https://www.fool.com/earnings/call-transcripts/2026/03/19/planet-labs-pl-q4-2026-earnings-call-transcript/",
+    "https://www.businesswire.com/news/home/20260319782110/en/Planet-Reports-Financial-Results-for-Fourth-Quarter-and-Full-Fiscal-Year-2026"
+  ]
+}

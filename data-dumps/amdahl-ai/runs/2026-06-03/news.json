@@ -1,0 +1,26 @@
+{
+  "items": [
+    {
+      "date": "2025",
+      "headline": "Amdahl emerges from stealth as a GTM 'context engine,' citing ~$4M pipeline with Instacart, OpenTable, Airwallex and Stripe",
+      "whyItMatters": "Establishes the company's wedge - a cited, structured context layer for AI/GTM agents - and signals early commercial traction (pipeline, not confirmed paying revenue) plus recognizable design-partner logos. Source is the company's own a16z Speedrun stealth-launch messaging, echoed by a 36Kr cohort analysis; not independently verified.",
+      "source": "a16z Speedrun (company profile); 36Kr",
+      "sourceUrl": "https://speedrun.a16z.com/companies/amdahl"
+    },
+    {
+      "date": "2025",
+      "headline": "Amdahl selected for a16z Speedrun SR006 accelerator cohort",
+      "whyItMatters": "Membership in a16z's Speedrun program (which markets up to $1M per company plus >$7M in credits and distribution access) is the primary funding/credibility signal for Amdahl. Precursor Ventures is also listed as an investor on the company site.",
+      "source": "a16z Speedrun; 36Kr SR006 analysis",
+      "sourceUrl": "https://eu.36kr.com/en/p/3786499459685632"
+    },
+    {
+      "date": "2026-02",
+      "headline": "CEO Annette Sung appears on the GTM Vault podcast (GTM 40) on agentic marketing and GTM execution systems",
+      "whyItMatters": "Most recent public footprint found (approx. Feb 2026); a founder thought-leadership / awareness signal rather than a hard news/funding event. Used as a transcript substitute (see transcript.json).",
+      "source": "GTM Vault (Podscan / gtmvault.co); YouTube",
+      "sourceUrl": "https://www.gtmvault.co/p/gtm-40-agentic-marketing-rewrites"
+    }
+  ],
+  "note": "Very little hard news exists. No Tier-1 publication (TechCrunch, Bloomberg, WSJ, FT, Reuters, Axios, The Information) was found covering Amdahl AI by name. The items above are the only sourced, dated signals located; two carry only a year (2025) because no precise date was published. Funding figures and customer/pipeline claims originate largely from the company's own stealth-launch messaging via a16z Speedrun and are not independently confirmed."
+}
