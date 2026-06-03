@@ -1772,9 +1772,169 @@ def render_pdf(html_path: Path, profile=None):
     return pdf_path
 
 
+# ── Final QA audit ───────────────────────────────────────────────────────────
+# Nothing in the pipeline rendered the finished brief and looked at it, so a CSS
+# overflow (a long value spilling into the next tile) or a thin comp table could
+# ship looking polished-but-broken. These two guards close that gap.
+
+# Flags any element whose content overflows its box — the class of bug that lets a
+# long metric value spill over a neighbouring tile. Returns a JSON array.
+_OVERFLOW_JS = r"""(function(){
+  var tol = 2, out = [];
+  var de = document.documentElement;
+  if (de.scrollWidth > de.clientWidth + tol)
+    out.push({type:'page-overflow-x', sw:de.scrollWidth, cw:de.clientWidth});
+  var sels = ['.metric-value','.metric-card','.hero-value','.hero-card','.comp-note',
+              '.comps-table td','.exec-card','.explain-card','.kpi-value'];
+  var nodes = document.querySelectorAll(sels.join(','));
+  for (var i=0;i<nodes.length;i++){
+    var el = nodes[i];
+    if (el.scrollWidth > el.clientWidth + tol){
+      var cls = (typeof el.className==='string') ? el.className : el.tagName;
+      out.push({type:'overflow-x', cls:cls,
+                text:(el.textContent||'').replace(/\s+/g,' ').trim().slice(0,48),
+                sw:el.scrollWidth, cw:el.clientWidth});
+    }
+  }
+  return JSON.stringify(out.slice(0,50));
+})()"""
+
+
+def _audit_layout(chrome, html_path):
+    """Render the finished HTML in headless Chrome and report any element whose content
+    overflows its box. Returns a list of issue dicts ([] = clean). Best-effort: returns
+    [] if Chrome/DevTools is unavailable, so a flaky browser never blocks a render."""
+    port = _free_port()
+    proc = subprocess.Popen(
+        [chrome, "--headless=new", "--disable-gpu", "--no-first-run",
+         "--no-default-browser-check", f"--remote-debugging-port={port}", "about:blank"],
+        stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
+    )
+    sock = None
+    try:
+        ws_url = None
+        for _ in range(50):
+            try:
+                raw = urllib.request.urlopen(f"http://127.0.0.1:{port}/json", timeout=1).read()
+                for t in json.loads(raw):
+                    if t.get("type") == "page" and t.get("webSocketDebuggerUrl"):
+                        ws_url = t["webSocketDebuggerUrl"]; break
+                if ws_url:
+                    break
+            except Exception:
+                pass
+            time.sleep(0.1)
+        if not ws_url:
+            return []
+        m = re.match(r"ws://([^:/]+):(\d+)(/.*)", ws_url)
+        host, wport, path = m.group(1), int(m.group(2)), m.group(3)
+        sock = socket.create_connection((host, wport), timeout=10); sock.settimeout(30)
+        key = base64.b64encode(os.urandom(16)).decode()
+        sock.sendall((f"GET {path} HTTP/1.1\r\nHost: {host}:{wport}\r\nUpgrade: websocket\r\n"
+                      f"Connection: Upgrade\r\nSec-WebSocket-Key: {key}\r\n"
+                      f"Sec-WebSocket-Version: 13\r\n\r\n").encode())
+        resp = b""
+        while b"\r\n\r\n" not in resp:
+            resp += sock.recv(1024)
+        if b"101" not in resp.split(b"\r\n", 1)[0]:
+            return []
+        _ws_send(sock, {"id": 1, "method": "Page.enable"})
+        _ws_send(sock, {"id": 2, "method": "Page.navigate",
+                        "params": {"url": html_path.resolve().as_uri()}})
+        for _ in range(300):
+            if _ws_recv(sock).get("method") == "Page.loadEventFired":
+                break
+        time.sleep(0.5)                                  # let web fonts settle
+        _ws_send(sock, {"id": 3, "method": "Runtime.evaluate",
+                        "params": {"expression": _OVERFLOW_JS, "returnByValue": True}})
+        for _ in range(300):
+            msg = _ws_recv(sock)
+            if msg.get("id") == 3:
+                if "error" in msg:
+                    return []
+                val = (((msg.get("result") or {}).get("result") or {}).get("value")) or "[]"
+                try:
+                    return json.loads(val)
+                except Exception:
+                    return []
+        return []
+    except Exception:
+        return []
+    finally:
+        try:
+            if sock:
+                sock.close()
+        except Exception:
+            pass
+        proc.terminate()
+        try:
+            proc.wait(timeout=5)
+        except Exception:
+            proc.kill()
+
+
+def _audit_completeness(profile):
+    """Data-quality checks on the assembled brief. Returns a list of (level, message),
+    level in {'error','warn'}. A public name with a thin comp table is the headline case."""
+    issues = []
+    profile = profile or {}
+    brief   = profile.get("brief") or {}
+    ticker  = (profile.get("ticker") or "").strip()
+    is_public = bool(re.fullmatch(r"[A-Za-z][A-Za-z.\-]{0,5}", ticker))
+    comps   = brief.get("comps") or []
+    if is_public:
+        peers = [c for c in comps if (c.get("ticker") or "").strip().upper() != ticker.upper()]
+        if len(comps) < 5:
+            issues.append(("error" if len(comps) <= 3 else "warn",
+                           f"comps table has {len(comps)} rows ({len(peers)} peers) — "
+                           f"a public name should carry >=5 (subject + >=4 peers)"))
+        for c in comps:
+            if not (c.get("ticker") or "").strip() and not c.get("valuation"):
+                issues.append(("warn", f"comp '{c.get('name','?')}' has no ticker or valuation mark"))
+    for n in (brief.get("recentNews") or []):
+        if not (n.get("source") and n.get("sourceUrl")):
+            issues.append(("warn", f"news item missing source/url: {str(n.get('headline',''))[:48]}"))
+    for key in ("businessOverview", "recentNews", "keyRisks", "comps", "slideBullets",
+                "diligenceQuestions"):
+        if not brief.get(key):
+            issues.append(("warn", f"brief is missing section '{key}'"))
+    return issues
+
+
+def audit_brief(html_path, profile, strict=False):
+    """Final QA pass on the rendered brief. Prints a report and returns the number of
+    BLOCKING issues: any layout overflow, any completeness 'error' (e.g. <=3 comps), and
+    — under strict — completeness warnings too. The brief is still written either way, so
+    a non-zero result means 'review before shipping', not 'nothing was produced'."""
+    chrome = _find_chrome()
+    layout = _audit_layout(chrome, html_path) if chrome else []
+    data   = _audit_completeness(profile)
+    errors = [m for (lvl, m) in data if lvl == "error"]
+    warns  = [m for (lvl, m) in data if lvl == "warn"]
+
+    if not layout:
+        print("✅  QA layout: no overflow.")
+    else:
+        print(f"❌  QA layout: {len(layout)} overflow issue(s):")
+        for it in layout[:12]:
+            if it.get("type") == "page-overflow-x":
+                print(f"      • page overflows horizontally ({it.get('sw')} > {it.get('cw')}px)")
+            else:
+                print(f"      • {it.get('cls','?')}: \"{it.get('text','')}\" "
+                      f"overflows its box ({it.get('sw')} > {it.get('cw')}px)")
+    for m in errors:
+        print(f"❌  QA completeness: {m}")
+    for m in warns:
+        print(f"⚠️  QA completeness: {m}")
+    if not layout and not errors and not warns:
+        print("✅  QA completeness: comps depth + sourcing OK.")
+
+    return len(layout) + len(errors) + (len(warns) if strict else 0)
+
+
 # ── Main ─────────────────────────────────────────────────────────────────────
 
-def run(ticker: str, detail: str = "brief"):
+def run(ticker: str, detail: str = "brief", audit: bool = True, strict: bool = False):
     folder_id = ticker.strip()
     profile   = load_profile(folder_id)
     # resolve the actual folder name on disk (may differ in case)
@@ -1798,6 +1958,9 @@ def run(ticker: str, detail: str = "brief"):
     # Render a print-faithful PDF alongside the HTML (the primary deliverable).
     pdf_path = render_pdf(html_path, profile)
 
+    # Final QA pass: catch layout overflow / thin comps before the brief is shipped.
+    run.last_blocking = audit_brief(html_path, profile, strict=strict) if audit else 0
+
     return pdf_path or html_path
 
 
@@ -1808,4 +1971,10 @@ if __name__ == "__main__":
 
     ticker = sys.argv[1]
     detail = "detailed" if "--detailed" in sys.argv else "brief"
-    run(ticker, detail=detail)
+    do_audit = "--no-audit" not in sys.argv      # default: always QA the finished brief
+    strict   = "--strict" in sys.argv            # also block on completeness warnings
+    run(ticker, detail=detail, audit=do_audit, strict=strict)
+    if getattr(run, "last_blocking", 0):
+        print(f"\n⚠️  QA flagged {run.last_blocking} blocking issue(s) above — "
+              f"review before publishing this brief.")
+        sys.exit(2)
