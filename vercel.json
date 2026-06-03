@@ -3,7 +3,6 @@
   "buildCommand": "node site/build.mjs",
   "outputDirectory": "site/dist",
   "framework": null,
-  "trailingSlash": true,
   "github": { "silent": true },
   "headers": [
     {

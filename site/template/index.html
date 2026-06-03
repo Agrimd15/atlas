@@ -208,6 +208,14 @@
   const $ = (s) => document.querySelector(s);
   const grid = $('#grid'), emptyEl = $('#empty'), qEl = $('#q');
   let DATA = { companies: [], count: 0, latestRunDate: '' };
+
+  // Directory this page is mounted at, so links resolve at /, /full, and behind a
+  // proxy like /atlas or /atlas/full. (Treats a slashless dir path like /full as /full/.)
+  const BASE = (() => {
+    let p = location.pathname;
+    if (!/\.[^/]+$/.test(p) && p[p.length - 1] !== '/') p += '/';
+    return p.replace(/[^/]*$/, '');
+  })();
   let filtered = [];
 
   const norm = (s) => (s || '').toLowerCase();
@@ -306,7 +314,7 @@
       grid.style.display = 'none'; emptyEl.style.display = 'block';
       emptyEl.innerHTML = q
         ? '<div class="big">No match in your coverage</div><div>Open Claude Code, run <code>' +
-          q.replace(/</g, '&lt;') + '</code>, and push — it appears here within ~30s.</div>'
+          q.replace(/</g, '&lt;') + '</code>, then push and it appears here within ~30s.</div>'
         : '<div class="big">No briefs yet</div><div>Run a company in Claude Code to populate your coverage.</div>';
     } else {
       grid.style.display = 'grid'; emptyEl.style.display = 'none';
@@ -329,10 +337,10 @@
     c.runs.forEach((r) => { const o = document.createElement('option'); o.value = r.date; o.textContent = 'Run · ' + fmtDate(r.date); runSel.appendChild(o); });
     runSel.value = run.date;
     runSel.style.display = c.runs.length > 1 ? '' : 'none';
-    frame.src = run.href;
-    $('#newtab').href = run.href;
+    frame.src = BASE + run.href;
+    $('#newtab').href = BASE + run.href;
     const pl = $('#pdflink');
-    if (run.pdf) { pl.href = run.pdf; pl.style.display = ''; } else { pl.style.display = 'none'; }
+    if (run.pdf) { pl.href = BASE + run.pdf; pl.style.display = ''; } else { pl.style.display = 'none'; }
     overlay.classList.add('open');
     location.hash = '#/' + id + '/' + run.date;
     document.documentElement.style.overflow = 'hidden';
@@ -363,7 +371,7 @@
   });
 
   // ── Boot ──
-  fetch('index.json', { cache: 'no-cache' })
+  fetch(BASE + 'index.json', { cache: 'no-cache' })
     .then((r) => r.json())
     .then((d) => {
       DATA = d;
