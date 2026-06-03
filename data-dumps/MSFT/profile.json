@@ -71,16 +71,19 @@
       "Valuation: at 10.1x EV/Rev the recovery path is tied to sustained Azure/Copilot acceleration."
     ],
     "comps": [
-      {"name": "Microsoft", "ticker": "MSFT", "type": "Subject", "evRevenue": "10.1x LTM", "revenueGrowth": "18.3% YoY", "grossMargin": "68.3%", "note": "Highest gross margin of the trio; Azure +40% and a >$37B AI run-rate, offset by ~$190B capex"},
-      {"name": "Alphabet", "ticker": "GOOGL", "type": "Cloud/AI peer", "evRevenue": "4.9x LTM", "revenueGrowth": "21.8% YoY", "grossMargin": "60.4%", "note": "The closest cloud+AI comparable; faster growth at roughly half Microsoft's EV/Rev"},
-      {"name": "Apple", "ticker": "AAPL", "type": "Mega-cap peer", "evRevenue": "10.1x LTM", "revenueGrowth": "16.6% YoY", "grossMargin": "47.9%", "note": "Same EV/Rev as Microsoft but slower growth and far lower (hardware-weighted) gross margin"}
+      {"name": "Microsoft", "ticker": "MSFT", "type": "Subject", "evRevenue": "10.1x LTM", "revenueGrowth": "18.3% YoY", "grossMargin": "68.3%", "note": "Azure +40% and a >$37B AI run-rate on premium software margin, offset by the ~$190B capex overhang"},
+      {"name": "Alphabet", "ticker": "GOOGL", "type": "Cloud/AI peer", "evRevenue": "4.9x LTM", "revenueGrowth": "21.8% YoY", "grossMargin": "60.4%", "note": "Closest cloud+AI comparable; faster growth at roughly half Microsoft's EV/Rev"},
+      {"name": "Amazon", "ticker": "AMZN", "type": "Cloud peer", "evRevenue": "3.7x LTM", "revenueGrowth": "16.6% YoY", "grossMargin": "50.6%", "note": "AWS is the cloud share leader Azure is closing on; lowest EV/Rev of the group on retail mix"},
+      {"name": "Oracle", "ticker": "ORCL", "type": "Enterprise software", "evRevenue": "12.3x LTM", "revenueGrowth": "21.7% YoY", "grossMargin": "67.1%", "note": "OCI re-rated Oracle to a premium to Microsoft on its AI-cloud backlog"},
+      {"name": "Salesforce", "ticker": "CRM", "type": "Enterprise SaaS", "evRevenue": "4.4x LTM", "revenueGrowth": "13.3% YoY", "grossMargin": "77.6%", "note": "Apps peer (Agentforce vs Copilot); slowest growth, value multiple"},
+      {"name": "Nvidia", "ticker": "NVDA", "type": "AI compute", "evRevenue": "20.4x LTM", "revenueGrowth": "85.2% YoY", "grossMargin": "74.1%", "note": "The AI-infra supplier behind Microsoft's biggest capex line; ~2x the group's EV/Rev"}
     ],
     "slideBullets": [
       "Microsoft FQ3'26: revenue $82.9B (+18%), EPS $4.27, Microsoft Cloud $54.5B (first quarter >$50B), Azure reaccelerating to +40%.",
       "AI is now a >$37B run-rate business (+~123% YoY); M365 Copilot paid seats topped 20M (+250% YoY adds) — but only ~3.3% penetrated.",
       "The market's worry is spend: ~$190B calendar-2026 capex, ~$35B above consensus, ~$25B of it memory/component inflation — shares fell ~3%.",
       "Strategic pivot to self-sufficiency: OpenAI restructuring drops Azure exclusivity/IP share (licensing to 2032) and seven in-house MAI models debut at Build 2026.",
-      "Trades at 10.1x EV/Rev (2026-06-03 close) with the trio's highest gross margin (68.3%); the re-rate hinges on Azure/Copilot durability."
+      "Trades at 10.1x EV/Rev (2026-06-03 close) — mid-pack among big-tech peers, below ORCL (12.3x) and NVDA (20.4x) — with a 68.3% software gross margin; the re-rate hinges on Azure/Copilot durability."
     ],
     "diligenceQuestions": [
       "How quickly does the ~$190B capex convert to revenue and FCF, and what does the depreciation schedule do to operating margin over FY27-28?",

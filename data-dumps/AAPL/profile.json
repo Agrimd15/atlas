@@ -22,7 +22,7 @@
   "brief": {
     "runDate": "2026-06-03",
     "businessOverview": [
-      "Apple (NASDAQ: AAPL) is the world's largest consumer-devices company by revenue and the largest of the mega-cap trio at ~$4.6T market cap (2026-06-03 close).",
+      "Apple (NASDAQ: AAPL) is the world's largest consumer-devices company by revenue, at ~$4.6T market cap (2026-06-03 close) — among the most valuable of the big-tech mega-caps.",
       "FQ2 2026 (ended Mar 28, 2026) set a record March quarter: revenue $111.2B (+17% YoY), EPS $2.01 (+22%), gross margin 49.3% (up from 47.1%).",
       "All five product categories and all five geographies grew, led by 'off the charts' iPhone 17 demand.",
       "Services hit an all-time record $31.0B (+16.3%), ~28% of revenue and the key gross-margin driver.",
@@ -72,16 +72,19 @@
       "Concentration: iPhone is still ~51% of revenue; the AI super-cycle for hardware is unproven."
     ],
     "comps": [
-      {"name": "Apple", "ticker": "AAPL", "type": "Subject", "evRevenue": "10.1x LTM", "revenueGrowth": "16.6% YoY", "grossMargin": "47.9%", "note": "Largest market cap of the trio; hardware+Services flywheel, slowest top-line growth, lowest gross margin"},
-      {"name": "Microsoft", "ticker": "MSFT", "type": "Mega-cap peer", "evRevenue": "10.1x LTM", "revenueGrowth": "18.3% YoY", "grossMargin": "68.3%", "note": "Same EV/Rev as Apple but faster growth and far higher software gross margin"},
-      {"name": "Alphabet", "ticker": "GOOGL", "type": "Mega-cap peer", "evRevenue": "4.9x LTM", "revenueGrowth": "21.8% YoY", "grossMargin": "60.4%", "note": "Cheapest of the trio on EV/Rev with the fastest growth; supplies Gemini for Apple's next-gen Siri"}
+      {"name": "Apple", "ticker": "AAPL", "type": "Subject", "evRevenue": "10.1x LTM", "revenueGrowth": "16.6% YoY", "grossMargin": "47.9%", "note": "Hardware + Services flywheel; the slowest growth and lowest gross margin of the big-tech group, yet a premium ~10x on Services mix and heavy buybacks"},
+      {"name": "Microsoft", "ticker": "MSFT", "type": "Big-tech peer", "evRevenue": "10.1x LTM", "revenueGrowth": "18.3% YoY", "grossMargin": "68.3%", "note": "Same EV/Rev as Apple but faster growth and far higher software gross margin"},
+      {"name": "Alphabet", "ticker": "GOOGL", "type": "Big-tech peer", "evRevenue": "4.9x LTM", "revenueGrowth": "21.8% YoY", "grossMargin": "60.4%", "note": "Cheapest mega-cap on EV/Rev; supplies Gemini for Apple's next-gen Siri"},
+      {"name": "Amazon", "ticker": "AMZN", "type": "Big-tech peer", "evRevenue": "3.7x LTM", "revenueGrowth": "16.6% YoY", "grossMargin": "50.6%", "note": "Lowest EV/Rev of the group; retail dilutes gross margin while AWS drives the profit"},
+      {"name": "Meta Platforms", "ticker": "META", "type": "Big-tech peer", "evRevenue": "6.4x LTM", "revenueGrowth": "33.1% YoY", "grossMargin": "81.9%", "note": "Highest gross margin and fastest organic growth ex-Nvidia; pure-play advertising"},
+      {"name": "Nvidia", "ticker": "NVDA", "type": "AI bellwether", "evRevenue": "20.4x LTM", "revenueGrowth": "85.2% YoY", "grossMargin": "74.1%", "note": "AI-cycle outlier at ~2x the group's EV/Rev on 85% growth — the valuation anchor for the AI trade"}
     ],
     "slideBullets": [
       "Apple FQ2'26: record March quarter — revenue $111.2B (+17%), EPS $2.01 (+22%), gross margin 49.3%, Services an all-time-record $31B.",
       "iPhone 17 demand 'off the charts'; Greater China rebounded +28%, easing the most-watched bear case — but supply and memory costs capped upside.",
       "Historic succession: Tim Cook to Executive Chair, hardware chief John Ternus to CEO, effective Sept 1, 2026.",
       "AI is outsourced: a ~$1B/year Gemini deal powers the revamped Siri (iOS 26.5 / iOS 27), the clearest sign Apple's own models weren't ready.",
-      "Trades at 10.1x EV/Rev (2026-06-03 close), in line with MSFT and ~2x GOOGL, despite the lowest growth and gross margin of the trio."
+      "Trades at 10.1x EV/Rev (2026-06-03 close) — in line with MSFT, ~2x GOOGL/AMZN, below NVDA — despite the lowest growth and gross margin of the big-tech peer group."
     ],
     "diligenceQuestions": [
       "How much forward gross-margin compression do 'significantly higher' memory costs imply, and can mix shift to Services offset it?",

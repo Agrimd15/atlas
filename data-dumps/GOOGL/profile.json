@@ -70,13 +70,16 @@
       "Valuation: after crossing $4T, the stock prices in continued AI and Cloud execution."
     ],
     "comps": [
-      {"name": "Alphabet", "ticker": "GOOGL", "type": "Subject", "evRevenue": "4.9x LTM", "revenueGrowth": "21.8% YoY", "grossMargin": "60.4%", "note": "Cheapest of the mega-cap trio on EV/Rev; advertising cash core plus 63%-growth Cloud and full-stack AI"},
-      {"name": "Microsoft", "ticker": "MSFT", "type": "Cloud/AI peer", "evRevenue": "10.1x LTM", "revenueGrowth": "18.3% YoY", "grossMargin": "68.3%", "note": "Azure +40%; the closest cloud+AI comparable, at roughly double Alphabet's EV/Rev"},
-      {"name": "Apple", "ticker": "AAPL", "type": "Mega-cap peer", "evRevenue": "10.1x LTM", "revenueGrowth": "16.6% YoY", "grossMargin": "47.9%", "note": "Largest by market cap; hardware+Services and a Gemini customer for next-gen Siri"}
+      {"name": "Alphabet", "ticker": "GOOGL", "type": "Subject", "evRevenue": "4.9x LTM", "revenueGrowth": "21.8% YoY", "grossMargin": "60.4%", "note": "Cheapest mega-cap on EV/Rev despite the fastest growth ex-Nvidia; ads cash core + 63%-growth Cloud + full-stack AI"},
+      {"name": "Microsoft", "ticker": "MSFT", "type": "Cloud/AI peer", "evRevenue": "10.1x LTM", "revenueGrowth": "18.3% YoY", "grossMargin": "68.3%", "note": "Closest cloud+AI comparable; Azure +40%, at roughly 2x Alphabet's EV/Rev"},
+      {"name": "Meta Platforms", "ticker": "META", "type": "Advertising peer", "evRevenue": "6.4x LTM", "revenueGrowth": "33.1% YoY", "grossMargin": "81.9%", "note": "The other half of the ad duopoly; faster growth and richer margin, trades above Alphabet"},
+      {"name": "Amazon", "ticker": "AMZN", "type": "Cloud/ads peer", "evRevenue": "3.7x LTM", "revenueGrowth": "16.6% YoY", "grossMargin": "50.6%", "note": "AWS is the #1 cloud Alphabet is chasing; lowest EV/Rev of the group on retail mix"},
+      {"name": "Apple", "ticker": "AAPL", "type": "Mega-cap peer", "evRevenue": "10.1x LTM", "revenueGrowth": "16.6% YoY", "grossMargin": "47.9%", "note": "Largest by market cap; a Gemini customer for next-gen Siri"},
+      {"name": "Nvidia", "ticker": "NVDA", "type": "AI compute", "evRevenue": "20.4x LTM", "revenueGrowth": "85.2% YoY", "grossMargin": "74.1%", "note": "Alphabet's TPUs are the in-house alternative to Nvidia GPUs; the AI-cycle multiple anchor"}
     ],
     "slideBullets": [
       "Alphabet Q1'26: revenue $109.9B (+22%), Cloud $20.0B (+63%), op margin 36.1%, net income $62.6B — AI spend is converting to revenue.",
-      "Trades at 4.9x EV/Rev (2026-06-03 close), the cheapest of the GOOGL/MSFT/AAPL trio despite the fastest top-line growth.",
+      "Trades at 4.9x EV/Rev (2026-06-03 close), the cheapest of the big-tech mega-caps (MSFT/AAPL ~10x, META 6.4x) despite the fastest growth ex-Nvidia.",
       "Full-stack AI is the differentiator: Gemini 3 leadership, 750M+ Gemini MAUs, and custom TPUs now sold externally (Anthropic ~$40B/5GW, Blackstone JV).",
       "Cloud backlog >$460B and Apple choosing Gemini for Siri validate enterprise/model leadership — but $180-190B capex is the price.",
       "Key debate: do AI Overviews protect Search economics, and do the DOJ Search appeal + adtech remedy stay contained?"
