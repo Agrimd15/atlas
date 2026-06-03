@@ -1,0 +1,15 @@
+.env
+__pycache__/
+*.pyc
+.DS_Store
+
+# Build output + local Vercel state
+site/dist/
+.vercel
+
+# Coverage data: this repo ships only the demo companies. Companies you research
+# are ignored by default, so your private coverage never lands in a public repo.
+data-dumps/*
+!data-dumps/.gitkeep
+!data-dumps/decagon
+!data-dumps/AVGO
