@@ -24,8 +24,7 @@ flowchart LR
   B --> C[Atlas writes the brief]
   C --> D[Brief: web page + PDF]
   C --> E[Your coverage website]
-  E --> F[Public demo page]
-  E --> G[Private full library, password-protected]
+  E --> F[Private full library, password-protected]
 ```
 
 ## Getting started
