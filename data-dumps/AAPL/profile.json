@@ -1,0 +1,92 @@
+{
+  "id": "AAPL",
+  "name": "Apple Inc.",
+  "ticker": "AAPL",
+  "website": "https://www.apple.com",
+  "verticals": ["Consumer Electronics", "Digital Services", "Wearables & Health", "Digital Payments"],
+  "shortDescription": "The world's largest consumer-devices company by revenue: iPhone-led hardware integrated with a high-margin, fast-growing Services business.",
+  "businessModel": "Premium hardware (iPhone ~51% of revenue, plus Mac, iPad, Wearables/Home/Accessories) integrated with an increasingly dominant Services layer (App Store, AppleCare, advertising, cloud, payments, and subscriptions: iCloud+, Apple Music, Apple TV+, Arcade, Fitness+, Apple Card/Pay). Services carry far higher gross margins than hardware and hit an all-time record $31B in FQ2'26 (~28% of revenue). A record active-device installed base drives a recurring-revenue flywheel. Hardware is built by contract partners (Foxconn, Pegatron), with assembly shifting from China toward India and Vietnam; iPhone processors are fabricated exclusively by TSMC.",
+  "marketContext": "Apple faces three pressures in 2026: (1) AI — viewed as a generative-AI laggard, it turned to a multiyear ~$1B/year Google Gemini deal to power a delayed, revamped Siri (Phase 1 in iOS 26.5, fuller version in iOS 27). (2) Regulation — the EU DMA forced repeated App Store fee restructurings (a 5% Core Technology Commission from Jan 2026) plus a EUR500M fine, while US rulings loosened anti-steering. (3) Supply chain & geopolitics — an AI-driven memory shortage and Trump-era tariffs on India (up to 50%) plus a 25% threat on non-US iPhones pressure margins. Greater China rebounded +28% YoY on iPhone 17 demand and subsidies.",
+  "competitors": ["Samsung Electronics (premium Android)", "Alphabet/Google (Android, Pixel, Gemini)", "Microsoft (PCs, productivity, AI)", "Huawei (China smartphones)", "Xiaomi / Vivo / Oppo", "Amazon (devices, services, ads)", "Meta (wearables/AR)", "Spotify / Netflix (Services)"],
+  "customers": ["Global premium consumers (smartphone, PC, tablet, wearables)", "Enterprise and education (Mac/iPad deployments)", "Third-party app developers (App Store)", "Carriers and retail/distribution partners", "Services subscribers (iCloud+, Apple Music, TV+, AppleCare, advertising)"],
+  "leadership": [
+    {"name": "Tim Cook", "title": "CEO (becomes Executive Chair effective Sept 1, 2026)", "since": "2011", "background": "CEO since 2011. On April 20, 2026 Apple announced Cook, 65, will become Executive Chair on Sept 1, 2026, remaining involved in strategy, policy and oversight while John Ternus becomes CEO.", "source": "Apple Newsroom", "sourceUrl": "https://www.apple.com/newsroom/2026/04/tim-cook-to-become-apple-executive-chairman-john-ternus-to-become-apple-ceo/"},
+    {"name": "John Ternus", "title": "Incoming CEO (effective Sept 1, 2026); currently SVP Hardware Engineering", "since": "2026 (CEO); joined Apple 2001", "background": "Joined Apple in 2001; has led Hardware Engineering since 2021 (iPhone, iPad, Mac, Apple silicon). Named CEO and board member effective Sept 1, 2026 after a long-term succession process.", "source": "CNBC", "sourceUrl": "https://www.cnbc.com/2026/04/20/apple-names-john-ternus-ceo-replacing-tim-cook-who-becomes-chairman.html"},
+    {"name": "Kevan Parekh", "title": "SVP & Chief Financial Officer", "since": "2025", "background": "Became CFO Jan 1, 2025, succeeding Luca Maestri. Joined Apple in 2013; led financial planning and business planning. Continues as CFO under the new leadership structure.", "source": "Apple Leadership", "sourceUrl": "https://www.apple.com/leadership/kevan-parekh/"},
+    {"name": "Arthur (Art) Levinson", "title": "Chair of the Board (becomes Lead Independent Director Sept 1, 2026)", "since": "2011 (Chair)", "background": "Chairman of Apple's board; transitions to Lead Independent Director when Cook assumes the Executive Chair role on Sept 1, 2026.", "source": "Apple Newsroom", "sourceUrl": "https://www.apple.com/newsroom/2026/04/tim-cook-to-become-apple-executive-chairman-john-ternus-to-become-apple-ceo/"}
+  ],
+  "revenue": "$451.4B (LTM)",
+  "growth": "+17% YoY (FQ2 2026)",
+  "notes": "Trading multiples pulled live via yfinance as of the 2026-06-03 market close (EV/Rev recomputed from close x shares + net debt). All comps share that single close anchor. Qualitative facts sourced to Apple Newsroom/IR, CNBC, MacRumors, 9to5Mac, and the FQ2 2026 release/transcript. Note: a CEO transition (Cook to Executive Chair, Ternus to CEO) takes effect Sept 1, 2026.",
+  "lastRunDate": "2026-06-03",
+  "brief": {
+    "runDate": "2026-06-03",
+    "businessOverview": [
+      "Apple (NASDAQ: AAPL) is the world's largest consumer-devices company by revenue and the largest of the mega-cap trio at ~$4.6T market cap (2026-06-03 close).",
+      "FQ2 2026 (ended Mar 28, 2026) set a record March quarter: revenue $111.2B (+17% YoY), EPS $2.01 (+22%), gross margin 49.3% (up from 47.1%).",
+      "All five product categories and all five geographies grew, led by 'off the charts' iPhone 17 demand.",
+      "Services hit an all-time record $31.0B (+16.3%), ~28% of revenue and the key gross-margin driver.",
+      "Greater China rebounded sharply to $20.5B (+28%) on iPhone 17 strength and local subsidies.",
+      "Historic leadership transition: Tim Cook becomes Executive Chair and John Ternus becomes CEO effective Sept 1, 2026.",
+      "AI is the catch-up story: a ~$1B/year Google Gemini deal will power a revamped Siri (Phase 1 iOS 26.5, fuller version iOS 27).",
+      "Forward margin watch: management flagged 'significantly higher' memory costs as suppliers redirect capacity to AI chips."
+    ],
+    "productModel": "iPhone (~51% of revenue, $57.0B in FQ2'26, +21.7%) anchors premium hardware alongside Mac, iPad and Wearables/Home/Accessories. The Services layer ($31.0B, +16.3%, all-time record) spans App Store, AppleCare, advertising, cloud, payments and subscriptions, carrying far higher gross margins and driving total company gross margin to 49.3%. A record active-device installed base provides a recurring-revenue flywheel. Hardware is contract-manufactured (Foxconn, Pegatron), with assembly shifting toward India and Vietnam; processors are fabricated exclusively by TSMC.",
+    "recentNews": [
+      {"date": "2026-04-20", "headline": "Apple names John Ternus CEO; Tim Cook to become Executive Chair effective Sept 1, 2026", "whyItMatters": "The most significant leadership transition in Apple's modern history. Hardware chief Ternus succeeds Cook, who stays on as Executive Chair over strategy and policy. Signals continuity in product/operations focus; Art Levinson moves to Lead Independent Director.", "source": "CNBC", "sourceUrl": "https://www.cnbc.com/2026/04/20/apple-names-john-ternus-ceo-replacing-tim-cook-who-becomes-chairman.html"},
+      {"date": "2026-04-30", "headline": "Apple posts record March quarter: $111.2B revenue (+17%), Services all-time record $31B, EPS $2.01", "whyItMatters": "Beat consensus on extraordinary iPhone 17 demand and record Services. Gross margin rose to 49.3% from 47.1%. Guided June-quarter revenue up 14-17% YoY, but flagged 'significantly higher' memory costs ahead.", "source": "CNBC", "sourceUrl": "https://www.cnbc.com/2026/04/30/apple-aapl-q2-2026-earnings-report.html"},
+      {"date": "2026-04-30", "headline": "Cook: iPhone 17 demand 'off the charts' but supply constraints capped sales", "whyItMatters": "An AI-driven memory shortage and tight TSMC advanced-node capacity constrained iPhone 17 supply, leaving demand on the table. Management warned memory costs will rise materially — a key FY26 margin watch item.", "source": "9to5Mac", "sourceUrl": "https://9to5mac.com/2026/04/30/tim-cook-iphone-demand-off-the-charts/"},
+      {"date": "2026-04-22", "headline": "Google confirms Gemini-powered Siri on track for later in 2026", "whyItMatters": "After repeated Siri/Apple Intelligence delays, Apple's ~$1B/year deal to run a revamped Siri on Gemini (via Private Cloud Compute) is its answer to a perceived AI lag. Phase 1 ships in iOS 26.5; fuller Siri targeted for iOS 27.", "source": "MacRumors", "sourceUrl": "https://www.macrumors.com/2026/04/22/google-gemini-powered-siri-2026/"},
+      {"date": "2026-01-12", "headline": "Apple picks Google Gemini to power AI Siri; deal to extend beyond Siri into Apple Intelligence", "whyItMatters": "A strategic admission that Apple's in-house models weren't ready. Outsourcing foundational AI to a rival for ~$1B/year reshapes the competitive landscape and raises questions about Apple's long-term model independence.", "source": "CNBC", "sourceUrl": "https://www.cnbc.com/2026/01/12/apple-google-ai-siri-gemini.html"},
+      {"date": "2026-01-01", "headline": "Apple overhauls EU App Store fees again to comply with DMA: 5% Core Technology Commission", "whyItMatters": "A single EU model with a 5% Core Technology Commission on digital goods and dropped fees for free apps. Developers argue it still flouts the DMA; follows a EUR500M EU fine, keeping App Store economics a regulatory and revenue risk.", "source": "MacRumors", "sourceUrl": "https://www.macrumors.com/2025/06/26/app-store-eu-rule-change-dma/"},
+      {"date": "2026-04-30", "headline": "Greater China revenue +28% YoY to $20.5B on iPhone 17 strength and subsidies", "whyItMatters": "A sharp turnaround in Apple's most-watched geography. iPhone shipments in China rose ~20% in calendar Q1 2026, aided by subsidies and discounting, easing a key bear-case overhang.", "source": "CNBC", "sourceUrl": "https://www.cnbc.com/2026/04/30/apple-aapl-q2-2026-earnings-report.html"},
+      {"date": "2025-08-06", "headline": "Trump tariffs hit Apple's India iPhone plan; India duties raised to 50%, plus 25% threat on non-US iPhones", "whyItMatters": "India is now Apple's #1 iPhone manufacturing country and central to China diversification. A 50% US tariff on Indian goods plus the threatened 25% iPhone tariff directly pressure supply-chain economics.", "source": "AppleInsider", "sourceUrl": "https://appleinsider.com/articles/25/08/06/apples-iphone-manufacturing-plan-hit-by-trump-doubling-tariffs-on-india"}
+    ],
+    "earningsTakeaways": {
+      "quarter": "FQ2 2026 (ended March 28, 2026); most recent reported",
+      "reportDate": "2026-04-30",
+      "keyMetrics": {
+        "revenue": "$111.2B (+17% YoY)",
+        "iPhone": "$57.0B (+21.7% YoY)",
+        "services": "$31.0B (+16.3% YoY, all-time record)",
+        "mac": "$8.4B (+5.7% YoY)",
+        "ipad": "$6.9B (+8.0% YoY)",
+        "wearablesHomeAccessories": "$7.9B (+5.0% YoY)",
+        "grossMargin": "49.3% (vs 47.1% year-ago)",
+        "netIncome": "$29.6B",
+        "dilutedEPS": "$2.01 (+22% YoY)",
+        "greaterChina": "$20.5B (+28% YoY)",
+        "capitalReturn": "Dividend +4% to $0.27; new $100B buyback",
+        "juneQuarterGuidance": "Revenue up 14-17% YoY"
+      },
+      "aiCommentary": "Apple positioned 2026 as its AI catch-up year. Management pointed to the Gemini-powered Siri rolling out in iOS 26.5 with a fuller conversational version targeted for iOS 27, leaning on the multiyear ~$1B/year Google partnership while emphasizing on-device processing and Private Cloud Compute for privacy. The narrative remains fast-follower rather than leader, and investors are watching the delayed Siri timeline closely.",
+      "demandCommentary": "Demand was the standout: Cook called iPhone 17 demand 'off the charts' and the 'most popular lineup in our history,' with iPhone setting a March-quarter record despite supply constraints on advanced TSMC nodes and the memory shortage. All five categories and all five geographies grew, with Greater China up 28%. June-quarter revenue is guided up 14-17%, but memory costs will be 'significantly higher' next quarter — a forward gross-margin headwind."
+    },
+    "keyRisks": [
+      "AI lag: outsourcing core Siri to Google Gemini (~$1B/year) and repeated delays raise questions about Apple's long-term model independence and differentiation.",
+      "Margin headwind: management flagged 'significantly higher' memory costs as makers redirect capacity to AI chips.",
+      "Supply constraints: iPhone 17 demand outran supply on tight TSMC advanced nodes and memory — leaving revenue on the table.",
+      "Geopolitics: 50% US tariffs on India and a threatened 25% tariff on non-US iPhones pressure the China-diversification strategy.",
+      "Regulation: EU DMA App Store fee restructurings (5% Core Technology Commission) plus a EUR500M fine threaten high-margin Services economics.",
+      "Leadership transition risk: a new CEO (Ternus) takes over Sept 1, 2026.",
+      "Concentration: iPhone is still ~51% of revenue; the AI super-cycle for hardware is unproven."
+    ],
+    "comps": [
+      {"name": "Apple", "ticker": "AAPL", "type": "Subject", "evRevenue": "10.1x LTM", "revenueGrowth": "16.6% YoY", "grossMargin": "47.9%", "note": "Largest market cap of the trio; hardware+Services flywheel, slowest top-line growth, lowest gross margin"},
+      {"name": "Microsoft", "ticker": "MSFT", "type": "Mega-cap peer", "evRevenue": "10.1x LTM", "revenueGrowth": "18.3% YoY", "grossMargin": "68.3%", "note": "Same EV/Rev as Apple but faster growth and far higher software gross margin"},
+      {"name": "Alphabet", "ticker": "GOOGL", "type": "Mega-cap peer", "evRevenue": "4.9x LTM", "revenueGrowth": "21.8% YoY", "grossMargin": "60.4%", "note": "Cheapest of the trio on EV/Rev with the fastest growth; supplies Gemini for Apple's next-gen Siri"}
+    ],
+    "slideBullets": [
+      "Apple FQ2'26: record March quarter — revenue $111.2B (+17%), EPS $2.01 (+22%), gross margin 49.3%, Services an all-time-record $31B.",
+      "iPhone 17 demand 'off the charts'; Greater China rebounded +28%, easing the most-watched bear case — but supply and memory costs capped upside.",
+      "Historic succession: Tim Cook to Executive Chair, hardware chief John Ternus to CEO, effective Sept 1, 2026.",
+      "AI is outsourced: a ~$1B/year Gemini deal powers the revamped Siri (iOS 26.5 / iOS 27), the clearest sign Apple's own models weren't ready.",
+      "Trades at 10.1x EV/Rev (2026-06-03 close), in line with MSFT and ~2x GOOGL, despite the lowest growth and gross margin of the trio."
+    ],
+    "diligenceQuestions": [
+      "How much forward gross-margin compression do 'significantly higher' memory costs imply, and can mix shift to Services offset it?",
+      "What is the strategic and financial risk of depending on Google Gemini for Siri — including renewal terms, switching cost, and antitrust optics?",
+      "Under the India/non-US iPhone tariff scenarios, what is the landed-cost and margin impact, and how fast can assembly relocate?"
+    ]
+  }
+}

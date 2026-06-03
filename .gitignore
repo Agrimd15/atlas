@@ -13,3 +13,6 @@ data-dumps/*
 !data-dumps/.gitkeep
 !data-dumps/decagon
 !data-dumps/AVGO
+!data-dumps/GOOGL
+!data-dumps/AAPL
+!data-dumps/MSFT

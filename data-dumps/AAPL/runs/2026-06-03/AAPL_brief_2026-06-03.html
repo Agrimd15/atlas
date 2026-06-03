@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apple Inc. · Atlas Research Brief</title>
+<link href="https://fonts.googleapis.com/css2?family=Alumni+Sans+Pinstripe&family=Albert+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* Institutional (light) design tokens: sell-side research note */
+  :root {
+    --ks-lacquer:      #ffffff;            /* paper */
+    --ks-lacquer-deep: #ffffff;            /* header */
+    --ks-raised:       #f7f9fb;            /* card / band */
+    --ks-graphite:     #f1f4f8;            /* stat strip / toc */
+    --ks-graphite-2:   #eef1f6;            /* module fill */
+    --ks-kinpaku:      #13315c;            /* navy: primary structural accent */
+    --ks-kinpaku-pale: #1f4d86;            /* navy-soft (links / ticker) */
+    --ks-kinpaku-rich: #102a4d;
+    --ks-kinpaku-deep: #0c2140;
+    --ks-accent:       #b3122b;            /* crimson: section eyebrows + wordmark */
+    --ks-patina:       #0a7d4d;            /* positive green */
+    --ks-vermilion:    #b3122b;            /* crimson (draft / risk) */
+    --ks-champagne:    #15181f;            /* headings ink */
+    --ks-body:         #2a2f37;            /* body */
+    --ks-muted:        #3d434f;
+    --ks-faint:        #727a89;
+    --ks-rule:         #dce0e7;            /* hairline */
+    --ks-rule-strong:  #c2c8d2;
+    --ks-serif:        Georgia, "Iowan Old Style", "Times New Roman", serif;
+    --ks-ease:         cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  /* ── Base ── */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Albert Sans", "Avenir Next", "Helvetica Neue", Arial, system-ui, sans-serif;
+         background: var(--ks-lacquer); color: var(--ks-body); font-size: 16.5px; line-height: 1.65; }
+  a { color: inherit; text-decoration: none; }
+  p { color: var(--ks-body); line-height: 1.75; margin-bottom: 6px; }
+  strong { color: var(--ks-champagne); }
+  .mono { font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+  .right { text-align: right; }
+
+  .wrapper { width: 100%; max-width: 1400px; margin: 0 auto; background: var(--ks-lacquer);
+              border: 1px solid var(--ks-rule); }
+
+  /* ── Header ── */
+  .header { background: var(--ks-lacquer-deep); padding: 26px 40px 20px;
+             border-bottom: 2px solid var(--ks-kinpaku); }
+  .header-top { display: flex; align-items: center; gap: 18px; margin-bottom: 10px; }
+  .company-logo { width: 44px; height: 44px; border-radius: 8px; object-fit: contain;
+                   background: var(--ks-raised); padding: 4px;
+                   border: 1px solid var(--ks-rule); flex-shrink: 0; }
+  .header-name { flex: 1; }
+  .company-name { font-family: var(--ks-serif);
+                   font-size: clamp(1.9rem, 3.4vw, 2.5rem); font-weight: 700;
+                   letter-spacing: -0.01em; line-height: 1.04; color: var(--ks-champagne);
+                   display: block; }
+  .header-badges { display: flex; align-items: center; gap: 7px; margin-top: 6px; flex-wrap: wrap; }
+  .ticker-badge { background: transparent; color: var(--ks-kinpaku);
+                   font-family: "SFMono-Regular", "Roboto Mono", monospace;
+                   font-size: 10.5px; font-weight: 700; padding: 0; border-radius: 0;
+                   letter-spacing: 0.16em; text-transform: uppercase; }
+  .stage-badge { background: var(--ks-raised); border: 1px solid var(--ks-rule);
+                  color: var(--ks-muted); font-size: 10px; font-weight: 600; padding: 2px 8px;
+                  border-radius: 2px; letter-spacing: 0.12em;
+                  font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+  .draft-badge { background: var(--ks-kinpaku); border: 1px solid var(--ks-kinpaku);
+                  color: #ffffff; font-size: 10px; font-weight: 700; padding: 2px 9px;
+                  border-radius: 2px; letter-spacing: 0.15em;
+                  font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+  .header-meta { font-size: 11.5px; color: var(--ks-faint); }
+  .header-meta a { color: var(--ks-kinpaku-pale); }
+  .verticals { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 6px; }
+  .vertical-tag { background: var(--ks-graphite); border: 1px solid var(--ks-rule);
+                   color: var(--ks-muted); font-size: 10px; padding: 2px 9px; border-radius: 3px;
+                   font-family: "SFMono-Regular", "Roboto Mono", monospace; letter-spacing: 0.06em; }
+  .trading-bar { background: var(--ks-raised); border: 1px solid var(--ks-rule); border-radius: 3px;
+                  padding: 9px 14px; margin-top: 14px; font-size: 11px; color: var(--ks-faint);
+                  font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+  .trading-bar strong { color: var(--ks-champagne); margin-right: 4px; }
+
+  /* ── Hero stats bar ── */
+  .hero-stats { display: flex; flex-wrap: wrap; background: var(--ks-graphite);
+                 border-bottom: 1px solid var(--ks-rule); }
+  /* fixed 20% basis -> exactly 5 per row; a partial last row stays left-aligned
+     under the columns instead of stretching to fill the width. */
+  .hero-card { flex: 0 0 20%; min-width: 0; padding: 13px 18px;
+                border-right: 1px solid var(--ks-rule); }
+  .hero-card:nth-child(5n) { border-right: none; }
+  .hero-card:last-child { border-right: none; }
+  .hero-label { font-size: 9.5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.13em;
+                 color: var(--ks-faint); margin-bottom: 6px; white-space: nowrap;
+                 font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+  /* big number stays on ONE line; a long head shrinks to fit rather than wrapping */
+  .hero-value { font-family: "SFMono-Regular", "Roboto Mono", monospace; font-size: 1.5rem; font-weight: 700;
+                 line-height: 1.1; color: var(--ks-kinpaku); white-space: nowrap; }
+  .hero-value.long { font-size: 1.1rem; letter-spacing: -0.01em; }
+  .hero-sub { font-family: "SFMono-Regular", "Roboto Mono", monospace; font-size: 10.5px;
+               color: var(--ks-faint); margin-top: 4px; line-height: 1.3; }
+  .hero-sub.pos { color: var(--ks-patina); }
+  /* narrow screens: let the 5-col strip reflow (print/desktop keep 5 across) */
+  @media (max-width: 820px) { .hero-card { flex-basis: 33.333%; } }
+  @media (max-width: 520px) { .hero-card { flex-basis: 50%; } }
+
+  /* ── TOC ── */
+  .toc { background: var(--ks-graphite); border-bottom: 1px solid var(--ks-rule-strong);
+          padding: 9px 40px; display: flex; flex-wrap: wrap; gap: 5px;
+          position: sticky; top: 0; z-index: 10; }
+  .toc-link { font-size: 10px; font-weight: 600; color: var(--ks-faint); padding: 3px 10px;
+               border-radius: 20px; border: 1px solid var(--ks-rule); background: transparent;
+               transition: background 150ms var(--ks-ease), color 150ms var(--ks-ease);
+               white-space: nowrap; font-family: "SFMono-Regular", "Roboto Mono", monospace;
+               letter-spacing: 0.04em; }
+  .toc-link:hover { background: var(--ks-kinpaku); color: var(--ks-lacquer-deep); border-color: var(--ks-kinpaku); }
+
+  /* ── Sections ── */
+  .section { border-bottom: 1px solid var(--ks-rule); padding: 24px 40px; scroll-margin-top: 48px; }
+  .section:last-of-type { border-bottom: none; }
+  .sec-label { font-family: "SFMono-Regular", "Roboto Mono", monospace; font-size: 10px; font-weight: 700;
+                letter-spacing: 0.15em; text-transform: uppercase; color: var(--ks-accent);
+                margin-bottom: 15px; padding-bottom: 7px; border-bottom: 1px solid var(--ks-rule); }
+  /* normal-weight metadata line under a section label (quarter, as-of, captions) —
+     keeps the eyebrow itself short and uncluttered instead of wrapping inline */
+  .sec-meta { font-family: "SFMono-Regular", "Roboto Mono", monospace; font-size: 10.5px;
+               color: var(--ks-faint); margin: -9px 0 14px; letter-spacing: 0.03em; line-height: 1.4; }
+
+  /* ── Two-col layout (overview) ── */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: start; }
+  @media (max-width: 760px) { .two-col { grid-template-columns: 1fr; } }
+  .diagram-caption { font-size: 11px; color: var(--ks-faint); margin-bottom: 10px; line-height: 1.4;
+                      font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+
+  /* ── "Understand the business" explainer (plain / technical / simple) ── */
+  .explain-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 24px; }
+  @media (max-width: 820px) { .explain-grid { grid-template-columns: 1fr; } }
+  .explain-card { background: var(--ks-raised); border: 1px solid var(--ks-rule); border-radius: 5px;
+                   padding: 15px 16px; border-top: 3px solid var(--ks-kinpaku); }
+  .explain-1 { border-top-color: var(--ks-accent); }
+  .explain-2 { border-top-color: var(--ks-patina); }
+  .explain-label { font-size: 10px; font-weight: 700; letter-spacing: 0.13em; text-transform: uppercase;
+                    color: var(--ks-kinpaku); margin-bottom: 9px;
+                    font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+  .explain-1 .explain-label { color: var(--ks-accent); }
+  .explain-2 .explain-label { color: var(--ks-patina); }
+  .explain-text { font-size: 14px; line-height: 1.6; color: var(--ks-body); }
+  .explain-list { list-style: none; padding: 0; margin: 0; }
+  .explain-list li { position: relative; padding: 5px 0 5px 16px; font-size: 14px; line-height: 1.5;
+                      color: var(--ks-body); }
+  .explain-list li:before { content: ""; position: absolute; left: 2px; top: 10px; width: 5px; height: 5px;
+                             border-radius: 50%; background: var(--ks-kinpaku); }
+  .explain-1 .explain-list li:before { background: var(--ks-accent); }
+  .explain-2 .explain-list li:before { background: var(--ks-patina); }
+
+  /* ── Differentiation table ── */
+  .diff-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  .diff-table th { text-align: left; font-size: 9px; font-weight: 700; letter-spacing: 0.1em;
+                    text-transform: uppercase; color: var(--ks-faint); padding: 0 14px 8px 0;
+                    border-bottom: 1.5px solid var(--ks-kinpaku);
+                    font-family: "SFMono-Regular", "Roboto Mono", monospace; vertical-align: bottom; }
+  .diff-table td { padding: 11px 14px 11px 0; border-bottom: 1px solid var(--ks-rule);
+                    vertical-align: top; color: var(--ks-body); line-height: 1.55; }
+  .diff-table tr:last-child td { border-bottom: none; }
+  .diff-table .diff-player { font-weight: 700; color: var(--ks-champagne); width: 17%; white-space: nowrap; }
+  .diff-table .diff-make { color: var(--ks-muted); width: 30%; }
+  .diff-table .diff-edge { color: var(--ks-body); }
+  @media (max-width: 680px) { .diff-table, .diff-table thead, .diff-table tbody, .diff-table tr, .diff-table td { display: block; width: auto; }
+    .diff-table thead { display: none; } .diff-table .diff-player { white-space: normal; padding-top: 12px; } }
+
+  /* ── Body bullet list ── */
+  .body-list { list-style: none; padding: 0; margin: 0; }
+  .body-list li { padding: 9px 0 9px 18px; position: relative; color: var(--ks-body);
+                   font-size: 15.5px; line-height: 1.6; border-bottom: 1px solid var(--ks-rule); }
+  .body-list li:last-child { border-bottom: none; }
+  .body-list li:before { content: ""; position: absolute; left: 2px; top: 14px;
+                          width: 5px; height: 5px; border-radius: 50%; background: var(--ks-kinpaku); }
+
+  /* ── Business flow diagram ── */
+  .biz-flow { display: flex; align-items: stretch; gap: 0; margin: 6px 0; }
+  .biz-col { display: flex; flex-direction: column; gap: 7px; flex: 1; min-width: 0; }
+  .biz-col-mid { flex: 1.05; }
+  .biz-col-label { font-size: 9px; text-transform: uppercase; letter-spacing: 0.14em;
+                    color: var(--ks-faint); margin-bottom: 3px; line-height: 1.3;
+                    font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+  .biz-node { padding: 9px 11px; border-radius: 4px; }
+  .biz-node-name { font-size: 12.5px; font-weight: 600; line-height: 1.25; }
+  .biz-node-sub { font-size: 10.5px; font-weight: 400; line-height: 1.3; margin-top: 2px;
+                   color: var(--ks-muted); }
+  .biz-cust { background: rgba(19,49,92,0.05); border: 1px solid rgba(19,49,92,0.18);
+               color: var(--ks-champagne); }
+  .biz-out  { background: rgba(10,125,77,0.06); border: 1px solid rgba(10,125,77,0.22);
+               color: var(--ks-champagne); }
+  .biz-platform { background: var(--ks-kinpaku); color: var(--ks-lacquer-deep); padding: 11px 12px;
+                   border-radius: 4px; font-size: 13px; font-weight: 700; text-align: center; }
+  .biz-mod { background: var(--ks-graphite-2); border: 1px solid var(--ks-rule); color: var(--ks-body);
+              padding: 8px 10px; border-radius: 4px; font-size: 12px; text-align: center; line-height: 1.3; }
+  .biz-arrow { display: flex; align-items: center; padding: 0 9px; color: var(--ks-kinpaku);
+                font-size: 18px; flex-shrink: 0; align-self: center; }
+  @media (max-width: 720px) { .biz-flow { flex-direction: column; } .biz-arrow { transform: rotate(90deg); margin: 2px auto; } }
+
+  /* ── News ── */
+  .news-item { padding: 11px 0; border-bottom: 1px solid var(--ks-rule); }
+  .news-item:last-child { border-bottom: none; }
+  .news-row { display: flex; gap: 14px; align-items: flex-start; }
+  .news-date { font-size: 10px; color: var(--ks-faint); white-space: nowrap; min-width: 74px;
+                font-family: "SFMono-Regular", "Roboto Mono", monospace; padding-top: 2px; }
+  .news-headline { font-size: 15.5px; font-weight: 600; color: var(--ks-champagne); line-height: 1.4; }
+  .news-why { font-size: 14px; color: var(--ks-muted); margin-top: 6px; margin-left: 88px; line-height: 1.6; }
+
+  /* ── Financials / metrics ── */
+  .fin-meta { font-size: 11px; color: var(--ks-faint); margin-bottom: 14px;
+               font-family: "SFMono-Regular", "Roboto Mono", monospace; letter-spacing: 0.05em; }
+  /* auto-fill (not auto-fit): a partial last row keeps card width + stays left-aligned */
+  .metrics-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                   gap: 10px; margin-bottom: 18px; }
+  .metric-card { background: var(--ks-raised); border: 1px solid var(--ks-rule); border-radius: 4px; padding: 14px 16px;
+                  min-width: 0; }
+  /* label may wrap to 2 lines (never truncate the metric name); min-height keeps
+     cards aligned whether the label is 1 or 2 lines */
+  .metric-label { font-size: 9.5px; font-weight: 500; color: var(--ks-faint); text-transform: uppercase;
+                   letter-spacing: 0.12em; margin-bottom: 6px; line-height: 1.3; min-height: 1.9em;
+                   font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+  /* big number stays on ONE line; a long head shrinks rather than wrapping */
+  .metric-value { font-family: "SFMono-Regular", "Roboto Mono", monospace; font-size: 1.15rem; font-weight: 700;
+                   color: var(--ks-kinpaku); line-height: 1.2; white-space: nowrap; }
+  .metric-value.long { font-size: 0.98rem; letter-spacing: -0.01em; }
+  .metric-value.green { color: var(--ks-patina); }
+  .metric-sub { font-size: 10.5px; color: var(--ks-faint); margin-top: 4px; line-height: 1.35;
+                 font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+  .earn-bullets { list-style: none; padding: 0; margin: 0; }
+  .earn-bullets li { padding: 8px 0 8px 16px; position: relative; font-size: 14.5px;
+                      color: var(--ks-body); border-bottom: 1px solid var(--ks-rule); line-height: 1.65; }
+  .earn-bullets li:before { content: ""; position: absolute; left: 2px; top: 14px;
+                             width: 5px; height: 5px; border-radius: 50%; background: var(--ks-patina); }
+  .earn-bullets li:last-child { border-bottom: none; }
+
+  /* ── ARR chart sources ── */
+  .chart-sources { margin-top: 8px; font-size: 9.5px; color: var(--ks-faint); }
+  .chart-source-label { font-weight: 600; letter-spacing: .06em; text-transform: uppercase; margin-right: 4px; }
+  .chart-source-link { color: var(--ks-kinpaku); text-decoration: none; border-bottom: 1px solid transparent;
+                        transition: border-color .15s; }
+  .chart-source-link:hover { border-bottom-color: var(--ks-kinpaku); }
+  .chart-source-text { color: var(--ks-faint); }
+
+  /* ── ARR chart ── */
+  .chart-row { display: flex; flex-wrap: wrap; gap: 28px 40px; align-items: flex-start; }
+  .chart-row .chart-wrap { flex: 1 1 320px; min-width: 0; }
+  .chart-caption { font-size: 10.5px; color: var(--ks-faint); margin-top: 6px; font-style: italic; }
+  .chart-wrap { margin: 4px 0 8px; }
+  .chart-eyebrow { font-size: 9px; text-transform: uppercase; letter-spacing: 0.18em;
+                    color: var(--ks-faint); margin-bottom: 12px;
+                    font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+
+  /* ── Funding timeline (flex cards) ── */
+  .tl-flex  { display: flex; align-items: center; gap: 0; overflow-x: auto;
+               padding-bottom: 6px; margin: 8px 0; }
+  .tl-card  { background: var(--ks-raised); border: 1px solid var(--ks-rule); border-radius: 3px;
+               padding: 10px 12px; min-width: 88px; text-align: center; flex-shrink: 0; }
+  .tl-arrow { color: var(--ks-kinpaku); font-size: 14px; padding: 0 4px; flex-shrink: 0; }
+  .tl-round { font-size: 8px; text-transform: uppercase; letter-spacing: 0.10em;
+               color: var(--ks-faint); font-family: "SFMono-Regular", "Roboto Mono", monospace;
+               margin-bottom: 3px; }
+  .tl-amt   { font-size: 12px; font-weight: 700; color: var(--ks-kinpaku);
+               font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+  .tl-val   { font-size: 10px; color: var(--ks-patina);
+               font-family: "SFMono-Regular", "Roboto Mono", monospace; margin-top: 2px; }
+  .tl-date  { font-size: 9px; color: var(--ks-faint); margin-top: 1px; }
+  .tl-leads { font-size: 9px; color: var(--ks-muted); margin-top: 3px; line-height: 1.3; }
+
+  /* ── News source tag ── */
+  .news-source-row { margin-left: 88px; margin-top: 4px; margin-bottom: 1px; display: flex; align-items: center; flex-wrap: wrap; gap: 4px; }
+  .news-source-label { font-size: 9px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--ks-faint); margin-right: 2px; }
+  .news-source-sep { color: var(--ks-faint); font-size: 9px; }
+  .news-source-link { font-size: 9.5px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+    color: var(--ks-kinpaku); text-decoration: none; border-bottom: 1px solid transparent;
+    transition: border-color .15s; }
+  .news-source-link:hover { border-bottom-color: var(--ks-kinpaku); }
+  .news-source-nolink { color: var(--ks-faint); }
+  /* legacy: keep so old references do not break */
+  .news-source { font-size: 9.5px; font-weight: 600; color: var(--ks-faint); margin-left: 8px;
+                  font-family: "SFMono-Regular", "Roboto Mono", monospace; letter-spacing: 0.05em;
+                  background: var(--ks-raised); border: 1px solid var(--ks-rule);
+                  padding: 1px 6px; border-radius: 3px; vertical-align: middle; }
+
+  /* ── body-p (single paragraph, no bullets) ── */
+  .body-p { color: var(--ks-body); font-size: 15.5px; line-height: 1.7; }
+
+  /* ── SEC filings ── */
+  .filings-wrap { display: flex; flex-direction: column; }
+  .filing-row { display: flex; align-items: baseline; gap: 14px; padding: 9px 0;
+                 border-bottom: 1px solid var(--ks-rule); }
+  .filing-row:last-child { border-bottom: none; }
+  .filing-row:hover .filing-go { opacity: 1; }
+  .filing-form { font-family: "SFMono-Regular", "Roboto Mono", monospace; font-weight: 700;
+                  font-size: 12.5px; color: var(--ks-kinpaku); min-width: 52px; }
+  .filing-meta { font-family: "SFMono-Regular", "Roboto Mono", monospace; font-size: 11.5px;
+                  color: var(--ks-faint); flex: 1; }
+  .filing-go { font-family: "SFMono-Regular", "Roboto Mono", monospace; font-size: 10.5px;
+                font-weight: 700; letter-spacing: 0.04em; color: var(--ks-kinpaku-pale);
+                opacity: 0.55; transition: opacity .15s; white-space: nowrap; }
+
+  /* ── Slide Kit ── */
+  .kit-grid { display: grid; grid-template-columns: 160px 1fr 1fr; gap: 24px; align-items: start; }
+  @media (max-width: 680px) { .kit-grid { grid-template-columns: 1fr; } }
+  .kit-identity { display: flex; flex-direction: column; gap: 8px; }
+  .kit-logo-lg  { width: 64px; height: 64px; border-radius: 10px; object-fit: contain;
+                   background: var(--ks-raised); padding: 6px; border: 1px solid var(--ks-rule); }
+  .kit-name { font-family: var(--ks-serif); font-size: 1.3rem;
+               font-weight: 400; color: var(--ks-champagne); line-height: 1.1; }
+  .kit-sub  { font-size: 11px; color: var(--ks-muted); }
+  .kit-link { font-size: 11px; color: var(--ks-kinpaku-pale); }
+  .kit-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; }
+  .kit-tag  { font-size: 9px; background: var(--ks-graphite); border: 1px solid var(--ks-rule);
+               color: var(--ks-kinpaku-pale); padding: 2px 7px; border-radius: 3px;
+               font-family: "SFMono-Regular", "Roboto Mono", monospace; letter-spacing: 0.04em; }
+  .kit-copy { display: flex; flex-direction: column; gap: 6px; }
+  .kit-copy-label { font-size: 8.5px; text-transform: uppercase; letter-spacing: 0.18em;
+                     color: var(--ks-faint); font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+  .kit-stat { background: var(--ks-raised); border: 1px solid var(--ks-rule); border-radius: 3px;
+               padding: 8px 12px; font-size: 12.5px; font-weight: 600; color: var(--ks-champagne);
+               font-family: "SFMono-Regular", "Roboto Mono", monospace; cursor: text; }
+  .kit-bullet { background: var(--ks-graphite); border-left: 2px solid var(--ks-kinpaku);
+                 padding: 7px 10px; font-size: 12px; color: var(--ks-body); line-height: 1.5;
+                 margin-top: 2px; }
+  .kit-assets { display: flex; flex-direction: column; gap: 6px; }
+  .kit-url  { background: var(--ks-raised); border: 1px solid var(--ks-rule); border-radius: 3px;
+               padding: 7px 10px; font-size: 10.5px; color: var(--ks-patina); word-break: break-all;
+               font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+  .kit-swatches { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+  .kit-swatch-wrap { display: flex; flex-direction: column; align-items: center; gap: 4px; cursor: default; }
+  .kit-swatch { width: 36px; height: 36px; border-radius: 6px; border: 1px solid rgba(0,0,0,.12);
+                 box-shadow: 0 1px 4px rgba(0,0,0,.4); }
+  .kit-hex { font-size: 9px; font-family: "SFMono-Regular","Roboto Mono",monospace;
+              color: var(--ks-faint); letter-spacing: .03em; text-transform: uppercase; }
+
+  /* ── Leadership ── */
+  .exec-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
+  .exec-card { background: var(--ks-raised); border: 1px solid var(--ks-rule); border-radius: 4px;
+                padding: 14px 16px; }
+  .exec-title { font-size: 9px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
+                 color: var(--ks-faint); margin-bottom: 5px; }
+  .exec-since { font-weight: 400; color: var(--ks-faint); opacity: .7; }
+  .exec-name-row { margin-bottom: 6px; }
+  .exec-name { font-size: 13px; font-weight: 700; color: var(--ks-champagne); }
+  .exec-linkedin { font-size: 13px; font-weight: 700; color: var(--ks-kinpaku);
+                    text-decoration: none; border-bottom: 1px solid transparent;
+                    transition: border-color .15s; }
+  .exec-linkedin:hover { border-bottom-color: var(--ks-kinpaku); }
+  .exec-bg { font-size: 11px; color: var(--ks-muted); line-height: 1.55; }
+
+  /* ── Risk list ── */
+  .risk-list { list-style: none; padding: 0; }
+  .risk-list li { padding: 10px 0 10px 22px; border-bottom: 1px solid var(--ks-rule);
+                   position: relative; font-size: 14.5px; color: var(--ks-body); line-height: 1.65; }
+  .risk-list li:before { content: "!"; position: absolute; left: 3px; top: 10px; width: 13px; height: 13px;
+                          border-radius: 50%; background: rgba(179,18,43,0.1);
+                          color: var(--ks-vermilion); font-size: 9px; font-weight: 900;
+                          text-align: center; line-height: 13px;
+                          font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+  .risk-list li:last-child { border-bottom: none; }
+  .risk-label { font-weight: 600; color: var(--ks-champagne); }
+
+  /* ── Comps table ── */
+  .comps-table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  .comps-table th { text-align: left; font-size: 9px; font-weight: 700; letter-spacing: 0.1em;
+                     text-transform: uppercase; color: var(--ks-faint); padding: 0 12px 8px 0;
+                     border-bottom: 1.5px solid var(--ks-kinpaku); vertical-align: bottom;
+                     font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+  .comps-table th.right { text-align: right; }
+  /* unit (LTM / YoY) parked under the header so each cell value is one clean token */
+  .th-unit { display: block; text-transform: none; font-weight: 400; font-size: 8.5px;
+              letter-spacing: 0.03em; color: var(--ks-faint); opacity: 0.85; margin-top: 2px; }
+  .comps-table td { padding: 8px 12px 8px 0; border-bottom: 1px solid var(--ks-rule);
+                     vertical-align: middle; color: var(--ks-body); }
+  /* numeric cells never wrap — a single clean token per cell */
+  .comps-table td.mono, .comps-table td.right { white-space: nowrap; }
+  .comps-table tr:last-child td { border-bottom: none; }
+  .comps-table tr:hover td { background: var(--ks-raised); }
+  .comps-table tr.subj td { background: #eef3fa; font-weight: 700; color: var(--ks-champagne); }
+  .comp-name { font-weight: 700; color: var(--ks-champagne); font-size: 13px; }
+  .comp-ticker { color: var(--ks-kinpaku-pale); font-size: 11px; font-weight: 700; }
+  .comp-type-cell { font-size: 10px; color: var(--ks-faint); white-space: nowrap; }
+  .comp-ev { vertical-align: middle; }
+  .comp-val { font-size: 13px; font-weight: 700; color: var(--ks-kinpaku); }
+  .comp-val a { color: var(--ks-kinpaku); border-bottom: 1px solid transparent; }
+  .comp-val a:hover { border-bottom-color: var(--ks-kinpaku); }
+  .comp-raise { font-weight: 700; color: var(--ks-champagne); }
+  .comp-sub { display: block; font-size: 9px; font-weight: 400; color: var(--ks-faint);
+               margin-top: 1px; white-space: nowrap; }
+  .comp-source-link { font-size: 9.5px; color: var(--ks-kinpaku); text-decoration: none;
+                       border-bottom: 1px solid transparent; transition: border-color .15s; }
+  .comp-source-link:hover { border-bottom-color: var(--ks-kinpaku); }
+  .comp-source-nolink { font-size: 9.5px; color: var(--ks-faint); }
+  .subject-row td { background: rgba(179,18,43,0.05); font-weight: 700; color: var(--ks-champagne); }
+  .subject-row td:first-child { border-left: 3px solid var(--ks-kinpaku); padding-left: 8px; color: var(--ks-kinpaku); }
+  .note-cell { color: var(--ks-faint); font-size: 11px; }
+
+  /* ── Slide bullets ── */
+  .slide-list { list-style: none; padding: 0; counter-reset: slides; }
+  .slide-list li { padding: 10px 0 10px 42px; border-bottom: 1px solid var(--ks-rule);
+                    position: relative; font-size: 13px; color: var(--ks-body); line-height: 1.7; }
+  .slide-list li:last-child { border-bottom: none; }
+  .slide-list li:before { counter-increment: slides; content: counter(slides);
+                           position: absolute; left: 0; top: 8px; width: 26px; height: 26px;
+                           border-radius: 2px; background: var(--ks-kinpaku); color: var(--ks-lacquer-deep);
+                           font-size: 11px; font-weight: 700; text-align: center; line-height: 26px;
+                           font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+
+  /* ── Diligence ── */
+  .dq-list { list-style: none; padding: 0; counter-reset: dqs; }
+  .dq-list li { padding: 10px 0 10px 42px; border-bottom: 1px solid var(--ks-rule);
+                 position: relative; font-size: 13px; color: var(--ks-body); line-height: 1.7; }
+  .dq-list li:last-child { border-bottom: none; }
+  .dq-list li:before { counter-increment: dqs; content: "Q" counter(dqs);
+                        position: absolute; left: 0; top: 8px; width: 26px; height: 26px;
+                        border-radius: 2px; background: var(--ks-raised); color: var(--ks-kinpaku);
+                        border: 1px solid var(--ks-rule); font-size: 9.5px; font-weight: 700;
+                        text-align: center; line-height: 26px;
+                        font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+
+  /* ── Chips ── */
+  .chip-list { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip { background: var(--ks-raised); border: 1px solid var(--ks-rule); color: var(--ks-muted);
+           font-size: 11.5px; padding: 3px 11px; border-radius: 20px; font-weight: 500; }
+
+  /* ── Footer ── */
+  .footer { background: var(--ks-raised); border-top: 1px solid var(--ks-rule-strong);
+             padding: 14px 40px; display: flex; justify-content: space-between; align-items: center; }
+  .footer-left { font-size: 10.5px; color: var(--ks-faint); line-height: 1.7; }
+  .footer-right { font-size: 10.5px; font-weight: 700; color: var(--ks-kinpaku);
+                   letter-spacing: 0.22em; font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+  .meta-note { font-size: 12px; color: var(--ks-muted); margin-top: 8px; }
+  .meta-note strong { color: var(--ks-champagne); }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+
+  /* ── Print / PDF (the deliverable) ──────────────────────────────────────────
+     The PDF is just this HTML printed, so all pagination lives here. Goals:
+     consistent page geometry, no block ever sliced by a page edge, no orphaned
+     headings, running context on every page, and tighter density.            */
+  @media print {
+    @page { size: Letter; margin: 16mm 12mm; }
+    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    body { background: #fff; font-size: 10.5pt; line-height: 1.45; }
+    a { color: inherit; }
+    .toc { display: none; }                              /* interactive nav only */
+    .wrapper { max-width: none; border: none; }
+
+    /* edge-to-edge: the page margin (set by the DevTools render / @page) provides
+       the side gutters, so sections sit flush to the printable area */
+    .header, .toc, .section, .footer { padding-left: 0; padding-right: 0; }
+
+    /* Keep atomic blocks whole — never sliced by a page break */
+    .hero-card, .metric-card, .explain-card, .exec-card, .tl-card, .news-item,
+    .biz-flow, .chart-wrap, .kit-grid, .filing-row,
+    .body-list li, .earn-bullets li, .risk-list li, .explain-list li,
+    .slide-list li, .dq-list li, .comps-table tr, .diff-table tr,
+    img, svg { break-inside: avoid; }
+
+    /* Never strand a heading at the foot of a page */
+    .sec-label, .sec-meta, .chart-eyebrow, .biz-col-label, .kit-copy-label,
+    .explain-label, .diagram-caption { break-after: avoid; }
+    .section { break-inside: auto; }                     /* long sections break BETWEEN items */
+    thead { display: table-header-group; }               /* repeat table headers on continued pages */
+
+    /* Print is always desktop-width, so keep the designed horizontal value chain
+       (override the narrow-screen column fallback that the print viewport triggers) */
+    .biz-flow { flex-direction: row; }
+    .biz-arrow { transform: none; align-self: center; margin: 0 4px; }
+
+    /* Density — same content, tighter so it reads in fewer pages */
+    .header { padding-top: 0; padding-bottom: 12px; }
+    .section { padding-top: 12px; padding-bottom: 12px; }
+    .footer { padding-top: 12px; padding-bottom: 0; }
+    .hero-card { padding: 9px 14px; }
+    .hero-value { font-size: 1.2rem; }
+    .hero-value.long { font-size: 0.95rem; }
+    .metric-card { padding: 10px 13px; }
+    .metrics-grid { gap: 7px; margin-bottom: 12px; }
+    .metric-value { font-size: 1.05rem; }
+    .exec-card { padding: 11px 13px; }
+    .explain-card { padding: 10px 13px; }
+    .explain-grid { gap: 9px; margin-bottom: 14px; }
+    .explain-list li { padding: 3px 0 3px 16px; font-size: 12.5px; line-height: 1.45; }
+    .body-list li { padding: 6px 0 6px 18px; font-size: 13px; line-height: 1.5; }
+    .earn-bullets li, .risk-list li { padding-top: 6px; padding-bottom: 6px; }
+    .news-item { padding: 8px 0; }
+    .news-why { margin-top: 4px; }
+    .chart-wrap { margin: 2px 0 4px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- ① HEADER: Logo + Name + Badges -->
+  <div class="header">
+    <div class="header-top">
+      <img class="company-logo" src="https://logo.clearbit.com/www.apple.com" alt="Apple Inc. logo" onerror="this.style.display='none'">
+      <div class="header-name">
+        <span class="company-name">Apple Inc.</span>
+        <div class="header-badges">
+          <span class="ticker-badge">AAPL</span>
+          
+          <span class="draft-badge">DRAFT</span>
+        </div>
+      </div>
+      <div class="header-meta" style="text-align:right">
+        <a href="https://www.apple.com" target="_blank">www.apple.com</a><br>
+        Atlas &nbsp;·&nbsp; June 03, 2026
+      </div>
+    </div>
+    <div class="verticals"><span class="vertical-tag">Consumer Electronics</span><span class="vertical-tag">Digital Services</span><span class="vertical-tag">Wearables & Health</span><span class="vertical-tag">Digital Payments</span></div>
+    
+  </div>
+
+  <!-- ② HERO STATS: 5 KPIs at a glance -->
+  <div class="hero-stats"><div class="hero-card"><div class="hero-label">Market Cap</div><div class="hero-value" style="color:var(--ks-kinpaku)">$4.6T</div><div class="hero-sub">2026-06-03 close</div></div><div class="hero-card"><div class="hero-label">EV / Revenue</div><div class="hero-value" style="color:var(--ks-kinpaku)">10.1x</div><div class="hero-sub">LTM · 2026-06-03 close</div></div><div class="hero-card"><div class="hero-label">Share Price</div><div class="hero-value" style="color:var(--ks-kinpaku)">$310.26</div><div class="hero-sub">2026-06-03 close</div></div><div class="hero-card"><div class="hero-label">Revenue</div><div class="hero-value" style="color:var(--ks-kinpaku)">$111.2B</div><div class="hero-sub pos">+17% YoY</div></div><div class="hero-card"><div class="hero-label">Gross Margin</div><div class="hero-value" style="color:var(--ks-kinpaku)">49.3%</div><div class="hero-sub">vs 47.1% year-ago</div></div></div>
+
+  <!-- ③ TOC -->
+  <div class="toc"><a href="#overview" class="toc-link">Overview</a> <a href="#leadership" class="toc-link">Leadership</a> <a href="#product" class="toc-link">Revenue Model</a> <a href="#news" class="toc-link">News</a> <a href="#earnings" class="toc-link">Financials</a> <a href="#risks" class="toc-link">Risks</a> <a href="#comps" class="toc-link">Comps</a> <a href="#filings" class="toc-link">Filings</a> <a href="#bullets" class="toc-link">Bullets</a> <a href="#diligence" class="toc-link">Diligence</a> <a href="#slidekit" class="toc-link">Slide Kit</a></div>
+
+  <!-- ④ BUSINESS OVERVIEW: explainer (3 levels) + bullets + value-chain diagram -->
+  <div class="section" id="overview"><div class="sec-label">Business Overview</div><div class="two-col"><div><ul class='body-list'><li>Apple (NASDAQ: AAPL) is the world's largest consumer-devices company by revenue and the largest of the mega-cap trio at ~$4.6T market cap (2026-06-03 close).</li><li>FQ2 2026 (ended Mar 28, 2026) set a record March quarter: revenue $111.2B (+17% YoY), EPS $2.01 (+22%), gross margin 49.3% (up from 47.1%).</li><li>All five product categories and all five geographies grew, led by 'off the charts' iPhone 17 demand.</li><li>Services hit an all-time record $31.0B (+16.3%), ~28% of revenue and the key gross-margin driver.</li><li>Greater China rebounded sharply to $20.5B (+28%) on iPhone 17 strength and local subsidies.</li><li>Historic leadership transition: Tim Cook becomes Executive Chair and John Ternus becomes CEO effective Sept 1, 2026.</li><li>AI is the catch-up story: a ~$1B/year Google Gemini deal will power a revamped Siri (Phase 1 iOS 26.5, fuller version iOS 27).</li><li>Forward margin watch: management flagged 'significantly higher' memory costs as suppliers redirect capacity to AI chips.</li></ul></div><div><div class="diagram-caption">How the business works, left to right: who buys, what the platform provides, and the payoff.</div>
+    <div class="biz-flow">
+      <div class="biz-col">
+        <div class="biz-col-label">CUSTOMERS &middot; WHAT THEY NEED</div>
+        <div class="biz-node biz-cust"><div class="biz-node-name">Global premium consumers (smartphone, PC, tablet, wearables)</div></div><div class="biz-node biz-cust"><div class="biz-node-name">Enterprise and education (Mac/iPad deployments)</div></div><div class="biz-node biz-cust"><div class="biz-node-name">Third-party app developers (App Store)</div></div><div class="biz-node biz-cust"><div class="biz-node-name">Carriers and retail/distribution partners</div></div>
+      </div>
+      <div class="biz-arrow">&#8594;</div>
+      <div class="biz-col biz-col-mid">
+        <div class="biz-col-label">PLATFORM</div>
+        <div class="biz-platform">Apple Inc.</div>
+        <div class="biz-mod">Consumer Electronics</div><div class="biz-mod">Digital Services</div><div class="biz-mod">Wearables & Health</div>
+      </div>
+      <div class="biz-arrow">&#8594;</div>
+      <div class="biz-col">
+        <div class="biz-col-label">VALUE DELIVERED</div>
+        <div class="biz-node biz-out"><div class="biz-node-name">Cloud Infrastructure</div></div>
+      </div>
+    </div></div></div></div>
+
+  <!-- ④a HOW BROADCOM IS DIFFERENT (vs peers) -->
+  
+
+  <!-- ④b EXECUTIVE LEADERSHIP -->
+  <div class="section" id="leadership"><div class="sec-label">Executive Leadership</div><div class="exec-grid"><div class="exec-card"><div class="exec-title">CEO (becomes Executive Chair effective Sept 1, 2026) <span class="exec-since">since 2011</span></div><div class="exec-name-row"><span class="exec-name">Tim Cook</span></div><div class="exec-bg">CEO since 2011. On April 20, 2026 Apple announced Cook, 65, will become Executive Chair on Sept 1, 2026, remaining involved in strategy, policy and oversight while John Ternus becomes CEO.</div></div><div class="exec-card"><div class="exec-title">Incoming CEO (effective Sept 1, 2026); currently SVP Hardware Engineering <span class="exec-since">since 2026 (CEO); joined Apple 2001</span></div><div class="exec-name-row"><span class="exec-name">John Ternus</span></div><div class="exec-bg">Joined Apple in 2001; has led Hardware Engineering since 2021 (iPhone, iPad, Mac, Apple silicon). Named CEO and board member effective Sept 1, 2026 after a long-term succession process.</div></div><div class="exec-card"><div class="exec-title">SVP & Chief Financial Officer <span class="exec-since">since 2025</span></div><div class="exec-name-row"><span class="exec-name">Kevan Parekh</span></div><div class="exec-bg">Became CFO Jan 1, 2025, succeeding Luca Maestri. Joined Apple in 2013; led financial planning and business planning. Continues as CFO under the new leadership structure.</div></div><div class="exec-card"><div class="exec-title">Chair of the Board (becomes Lead Independent Director Sept 1, 2026) <span class="exec-since">since 2011 (Chair)</span></div><div class="exec-name-row"><span class="exec-name">Arthur (Art) Levinson</span></div><div class="exec-bg">Chairman of Apple's board; transitions to Lead Independent Director when Cook assumes the Executive Chair role on Sept 1, 2026.</div></div></div></div>
+
+  <!-- ⑤ PRODUCT & REVENUE MODEL -->
+  <div class="section" id="product"><div class="sec-label">Product &amp; Revenue Model</div><ul class='body-list'><li>iPhone (~51% of revenue, $57.0B in FQ2'26, +21.7%) anchors premium hardware alongside Mac, iPad and Wearables/Home/Accessories.</li><li>The Services layer ($31.0B, +16.3%, all-time record) spans App Store, AppleCare, advertising, cloud, payments and subscriptions, carrying far higher gross margins and driving total company gross margin to 49.3%. A record active-device installed base provides a recurring-revenue flywheel.</li><li>Hardware is contract-manufactured (Foxconn, Pegatron), with assembly shifting toward India and Vietnam; processors are fabricated exclusively by TSMC.</li></ul></div>
+
+  <!-- ⑥ RECENT NEWS -->
+  <div class="section" id="news"><div class="sec-label">Recent News</div><div class="news-item"><div class="news-row"><span class="news-date">2026-04-20</span><span class="news-headline">Apple names John Ternus CEO; Tim Cook to become Executive Chair effective Sept 1, 2026</span></div><div class="news-source-row"><span class="news-source-label">Source:</span> <a class="news-source-link" href="https://www.cnbc.com/2026/04/20/apple-names-john-ternus-ceo-replacing-tim-cook-who-becomes-chairman.html" target="_blank" rel="noopener">CNBC</a></div><div class="news-why">The most significant leadership transition in Apple's modern history. Hardware chief Ternus succeeds Cook, who stays on as Executive Chair over strategy and policy. Signals continuity in product/operations focus; Art Levinson moves to Lead Independent Director.</div></div><div class="news-item"><div class="news-row"><span class="news-date">2026-04-30</span><span class="news-headline">Apple posts record March quarter: $111.2B revenue (+17%), Services all-time record $31B, EPS $2.01</span></div><div class="news-source-row"><span class="news-source-label">Source:</span> <a class="news-source-link" href="https://www.cnbc.com/2026/04/30/apple-aapl-q2-2026-earnings-report.html" target="_blank" rel="noopener">CNBC</a></div><div class="news-why">Beat consensus on extraordinary iPhone 17 demand and record Services. Gross margin rose to 49.3% from 47.1%. Guided June-quarter revenue up 14-17% YoY, but flagged 'significantly higher' memory costs ahead.</div></div><div class="news-item"><div class="news-row"><span class="news-date">2026-04-30</span><span class="news-headline">Cook: iPhone 17 demand 'off the charts' but supply constraints capped sales</span></div><div class="news-source-row"><span class="news-source-label">Source:</span> <a class="news-source-link" href="https://9to5mac.com/2026/04/30/tim-cook-iphone-demand-off-the-charts/" target="_blank" rel="noopener">9to5Mac</a></div><div class="news-why">An AI-driven memory shortage and tight TSMC advanced-node capacity constrained iPhone 17 supply, leaving demand on the table. Management warned memory costs will rise materially, a key FY26 margin watch item.</div></div><div class="news-item"><div class="news-row"><span class="news-date">2026-04-22</span><span class="news-headline">Google confirms Gemini-powered Siri on track for later in 2026</span></div><div class="news-source-row"><span class="news-source-label">Source:</span> <a class="news-source-link" href="https://www.macrumors.com/2026/04/22/google-gemini-powered-siri-2026/" target="_blank" rel="noopener">MacRumors</a></div><div class="news-why">After repeated Siri/Apple Intelligence delays, Apple's ~$1B/year deal to run a revamped Siri on Gemini (via Private Cloud Compute) is its answer to a perceived AI lag. Phase 1 ships in iOS 26.5; fuller Siri targeted for iOS 27.</div></div><div class="news-item"><div class="news-row"><span class="news-date">2026-01-12</span><span class="news-headline">Apple picks Google Gemini to power AI Siri; deal to extend beyond Siri into Apple Intelligence</span></div><div class="news-source-row"><span class="news-source-label">Source:</span> <a class="news-source-link" href="https://www.cnbc.com/2026/01/12/apple-google-ai-siri-gemini.html" target="_blank" rel="noopener">CNBC</a></div><div class="news-why">A strategic admission that Apple's in-house models weren't ready. Outsourcing foundational AI to a rival for ~$1B/year reshapes the competitive landscape and raises questions about Apple's long-term model independence.</div></div><div class="news-item"><div class="news-row"><span class="news-date">2026-01-01</span><span class="news-headline">Apple overhauls EU App Store fees again to comply with DMA: 5% Core Technology Commission</span></div><div class="news-source-row"><span class="news-source-label">Source:</span> <a class="news-source-link" href="https://www.macrumors.com/2025/06/26/app-store-eu-rule-change-dma/" target="_blank" rel="noopener">MacRumors</a></div><div class="news-why">A single EU model with a 5% Core Technology Commission on digital goods and dropped fees for free apps. Developers argue it still flouts the DMA; follows a EUR500M EU fine, keeping App Store economics a regulatory and revenue risk.</div></div><div class="news-item"><div class="news-row"><span class="news-date">2026-04-30</span><span class="news-headline">Greater China revenue +28% YoY to $20.5B on iPhone 17 strength and subsidies</span></div><div class="news-source-row"><span class="news-source-label">Source:</span> <a class="news-source-link" href="https://www.cnbc.com/2026/04/30/apple-aapl-q2-2026-earnings-report.html" target="_blank" rel="noopener">CNBC</a></div><div class="news-why">A sharp turnaround in Apple's most-watched geography. iPhone shipments in China rose ~20% in calendar Q1 2026, aided by subsidies and discounting, easing a key bear-case overhang.</div></div><div class="news-item"><div class="news-row"><span class="news-date">2025-08-06</span><span class="news-headline">Trump tariffs hit Apple's India iPhone plan; India duties raised to 50%, plus 25% threat on non-US iPhones</span></div><div class="news-source-row"><span class="news-source-label">Source:</span> <a class="news-source-link" href="https://appleinsider.com/articles/25/08/06/apples-iphone-manufacturing-plan-hit-by-trump-doubling-tariffs-on-india" target="_blank" rel="noopener">AppleInsider</a></div><div class="news-why">India is now Apple's #1 iPhone manufacturing country and central to China diversification. A 50% US tariff on Indian goods plus the threatened 25% iPhone tariff directly pressure supply-chain economics.</div></div></div>
+
+  <!-- ⑦ FINANCIALS / EARNINGS -->
+  <div class="section" id="earnings"><div class="sec-label">Financials &amp; Key Metrics</div><div class="sec-meta">FQ2 2026 (ended March 28, 2026); most recent reported &middot; 2026-04-30</div><div class="metrics-grid"><div class="metric-card"><div class="metric-label">Revenue</div><div class="metric-value">$111.2B</div><div class="metric-sub">+17% YoY</div></div><div class="metric-card"><div class="metric-label">I Phone</div><div class="metric-value">$57.0B</div><div class="metric-sub">+21.7% YoY</div></div><div class="metric-card"><div class="metric-label">Services</div><div class="metric-value">$31.0B</div><div class="metric-sub">+16.3% YoY</div></div><div class="metric-card"><div class="metric-label">Mac</div><div class="metric-value">$8.4B</div><div class="metric-sub">+5.7% YoY</div></div><div class="metric-card"><div class="metric-label">Ipad</div><div class="metric-value">$6.9B</div><div class="metric-sub">+8.0% YoY</div></div><div class="metric-card"><div class="metric-label">Wearables Home Accessories</div><div class="metric-value">$7.9B</div><div class="metric-sub">+5.0% YoY</div></div><div class="metric-card"><div class="metric-label">Gross Margin</div><div class="metric-value green">49.3%</div><div class="metric-sub">vs 47.1% year-ago</div></div><div class="metric-card"><div class="metric-label">Net Income</div><div class="metric-value">$29.6B</div></div><div class="metric-card"><div class="metric-label">Diluted Eps</div><div class="metric-value">$2.01</div><div class="metric-sub">+22% YoY</div></div><div class="metric-card"><div class="metric-label">Greater China</div><div class="metric-value">$20.5B</div><div class="metric-sub">+28% YoY</div></div><div class="metric-card"><div class="metric-label">Capital Return</div><div class="metric-value long">Dividend +4% to $0.27; new $100B buyback</div></div><div class="metric-card"><div class="metric-label">June Quarter Guidance</div><div class="metric-value long">Revenue up 14-17% YoY</div></div></div><ul class="earn-bullets"><li><strong>AI / Product:</strong> Apple positioned 2026 as its AI catch-up year. Management pointed to the Gemini-powered Siri rolling out in iOS 26.5 with a fuller conversational version targeted for iOS 27, leaning on the multiyear ~$1B/year Google partnership while emphasizing on-device processing and Private Cloud Compute for privacy.</li><li><strong>Demand:</strong> Demand was the standout: Cook called iPhone 17 demand 'off the charts' and the 'most popular lineup in our history,' with iPhone setting a March-quarter record despite supply constraints on advanced TSMC nodes and the memory shortage. All five categories and all five geographies grew, with Greater China up 28%. June-quarter revenue is guided up 14-17%, but memory costs will be 'significantly higher' next quarter, a forward gross-margin headwind.</li></ul></div>
+
+  <!-- ⑧ ARR GROWTH CHART -->
+  
+
+  <!-- ⑨ KEY RISKS -->
+  <div class="section" id="risks"><div class="sec-label">Key Risks &amp; Debates</div><ul class="risk-list"><li><span class='risk-label'>AI lag:</span> outsourcing core Siri to Google Gemini (~$1B/year) and repeated delays raise questions about Apple's long-term model independence and differentiation.</li><li><span class='risk-label'>Margin headwind:</span> management flagged 'significantly higher' memory costs as makers redirect capacity to AI chips.</li><li><span class='risk-label'>Supply constraints:</span> iPhone 17 demand outran supply on tight TSMC advanced nodes and memory, leaving revenue on the table.</li><li><span class='risk-label'>Geopolitics:</span> 50% US tariffs on India and a threatened 25% tariff on non-US iPhones pressure the China-diversification strategy.</li><li><span class='risk-label'>Regulation:</span> EU DMA App Store fee restructurings (5% Core Technology Commission) plus a EUR500M fine threaten high-margin Services economics.</li><li><span class='risk-label'>Leadership transition risk:</span> a new CEO (Ternus) takes over Sept 1, 2026.</li><li><span class='risk-label'>Concentration:</span> iPhone is still ~51% of revenue; the AI super-cycle for hardware is unproven.</li></ul></div>
+
+  <!-- ⑩ COMPARABLE COMPANIES -->
+  <div class="section" id="comps"><div class="sec-label">Comparable Companies</div>
+    <table class="comps-table">
+      <thead><tr><th class="comp-name-col">Company</th><th>Ticker</th><th>Type</th><th class="right">EV / Rev<span class="th-unit">LTM</span></th><th class="right">Rev Growth<span class="th-unit">YoY</span></th><th class="right">Gross Margin</th><th>Note</th></tr></thead>
+      <tbody><tr class="subj"><td class="comp-name">Apple</td><td class="mono comp-ticker"><a class="comp-source-link" href="https://finance.yahoo.com/quote/AAPL" target="_blank" rel="noopener">AAPL</a></td><td class="comp-type-cell">Subject</td><td class="mono right comp-ev">10.1x</td><td class="mono right">16.6%</td><td class="mono right">47.9%</td><td class="note-cell">Largest market cap of the trio; hardware+Services flywheel, slowest top-line growth, lowest gross margin</td></tr><tr><td class="comp-name">Microsoft</td><td class="mono comp-ticker"><a class="comp-source-link" href="https://finance.yahoo.com/quote/MSFT" target="_blank" rel="noopener">MSFT</a></td><td class="comp-type-cell">Mega-cap peer</td><td class="mono right comp-ev">10.1x</td><td class="mono right">18.3%</td><td class="mono right">68.3%</td><td class="note-cell">Same EV/Rev as Apple but faster growth and far higher software gross margin</td></tr><tr><td class="comp-name">Alphabet</td><td class="mono comp-ticker"><a class="comp-source-link" href="https://finance.yahoo.com/quote/GOOGL" target="_blank" rel="noopener">GOOGL</a></td><td class="comp-type-cell">Mega-cap peer</td><td class="mono right comp-ev">4.9x</td><td class="mono right">21.8%</td><td class="mono right">60.4%</td><td class="note-cell">Cheapest of the trio on EV/Rev with the fastest growth; supplies Gemini for Apple's next-gen Siri</td></tr></tbody>
+    </table><div class="chart-sources"><span class="chart-source-label">Sources:</span> Public-ticker multiples pulled live from <a class="chart-source-link" href="https://finance.yahoo.com" target="_blank" rel="noopener">yfinance / Yahoo Finance</a>, as of the 2026-06-03 market close; EV/Rev recomputed from last close × shares + net debt.</div></div>
+
+  <!-- ⑩b COMPETITORS (if no comps table) -->
+  
+
+  <!-- ⑩c PRIMARY FILINGS (SEC EDGAR) -->
+  <div class="section" id="filings"><div class="sec-label">Primary Filings (SEC EDGAR)</div><div class="filings-wrap"><a class="filing-row" href="https://www.sec.gov/Archives/edgar/data/320193/000032019326000013/aapl-20260328.htm" target="_blank" rel="noopener"><span class="filing-form">10-Q</span><span class="filing-meta">filed 2026-05-01 &nbsp;·&nbsp; period 2026-03-28</span><span class="filing-go">View on EDGAR &rsaquo;</span></a><a class="filing-row" href="https://www.sec.gov/Archives/edgar/data/320193/000032019326000011/aapl-20260430.htm" target="_blank" rel="noopener"><span class="filing-form">8-K</span><span class="filing-meta">filed 2026-04-30 &nbsp;·&nbsp; period 2026-04-30</span><span class="filing-go">View on EDGAR &rsaquo;</span></a><a class="filing-row" href="https://www.sec.gov/Archives/edgar/data/320193/000114036126015711/ef20071035_8k.htm" target="_blank" rel="noopener"><span class="filing-form">8-K</span><span class="filing-meta">filed 2026-04-20 &nbsp;·&nbsp; period 2026-04-17</span><span class="filing-go">View on EDGAR &rsaquo;</span></a><a class="filing-row" href="https://www.sec.gov/Archives/edgar/data/320193/000032019326000006/aapl-20251227.htm" target="_blank" rel="noopener"><span class="filing-form">10-Q</span><span class="filing-meta">filed 2026-01-30 &nbsp;·&nbsp; period 2025-12-27</span><span class="filing-go">View on EDGAR &rsaquo;</span></a><a class="filing-row" href="https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/aapl-20250927.htm" target="_blank" rel="noopener"><span class="filing-form">10-K</span><span class="filing-meta">filed 2025-10-31 &nbsp;·&nbsp; period 2025-09-27</span><span class="filing-go">View on EDGAR &rsaquo;</span></a><a class="filing-row" href="https://www.sec.gov/Archives/edgar/data/320193/000032019324000123/aapl-20240928.htm" target="_blank" rel="noopener"><span class="filing-form">10-K</span><span class="filing-meta">filed 2024-11-01 &nbsp;·&nbsp; period 2024-09-28</span><span class="filing-go">View on EDGAR &rsaquo;</span></a></div><div class="chart-sources"><span class="chart-source-label">Source:</span> <a class="chart-source-link" href="https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000320193&type=&dateb=&owner=include&count=40" target="_blank" rel="noopener">SEC EDGAR</a> &nbsp;·&nbsp; CIK 0000320193 &nbsp;·&nbsp; primary filings of record.</div></div>
+
+  <!-- ⑪ FUNDING TIMELINE -->
+  
+
+  <!-- ⑫ INVESTORS -->
+  
+
+  <!-- ⑬ IPO READINESS -->
+  
+
+  <!-- ⑭ SLIDE-READY BULLETS -->
+  <div class="section" id="bullets"><div class="sec-label">Slide-Ready Bullets</div><ol class="slide-list"><li>Apple FQ2'26: record March quarter, revenue $111.2B (+17%), EPS $2.01 (+22%), gross margin 49.3%, Services an all-time-record $31B.</li><li>iPhone 17 demand 'off the charts'; Greater China rebounded +28%, easing the most-watched bear case, but supply and memory costs capped upside.</li><li>Historic succession: Tim Cook to Executive Chair, hardware chief John Ternus to CEO, effective Sept 1, 2026.</li><li>AI is outsourced: a ~$1B/year Gemini deal powers the revamped Siri (iOS 26.5 / iOS 27), the clearest sign Apple's own models weren't ready.</li><li>Trades at 10.1x EV/Rev (2026-06-03 close), in line with MSFT and ~2x GOOGL, despite the lowest growth and gross margin of the trio.</li></ol></div>
+
+  <!-- ⑮ DILIGENCE QUESTIONS -->
+  <div class="section" id="diligence"><div class="sec-label">Smart Diligence Questions</div><ol class="dq-list"><li>How much forward gross-margin compression do 'significantly higher' memory costs imply, and can mix shift to Services offset it?</li><li>What is the strategic and financial risk of depending on Google Gemini for Siri, including renewal terms, switching cost, and antitrust optics?</li><li>Under the India/non-US iPhone tariff scenarios, what is the landed-cost and margin impact, and how fast can assembly relocate?</li></ol></div>
+
+  <!-- ⑯ SLIDE KIT -->
+  <div class="section" id="slidekit">
+    <div class="sec-label">Slide Kit</div>
+    <div class="sec-meta">Logo, stats, and copy-paste artifacts</div>
+    
+    <div class="kit-grid">
+      <div class="kit-identity">
+        <img src="https://logo.clearbit.com/www.apple.com" class="kit-logo-lg" alt="Apple Inc. logo" onerror="this.style.display='none'">
+        <div class="kit-name">Apple Inc.</div>
+        <div class="kit-sub"></div>
+        <a href="https://www.apple.com" class="kit-link" target="_blank">www.apple.com</a>
+        <div class="kit-tags"><span class="kit-tag">Consumer Electronics</span><span class="kit-tag">Digital Services</span><span class="kit-tag">Wearables & Health</span></div>
+      </div>
+      <div class="kit-copy">
+        <div class="kit-copy-label">COPY-PASTE STATS</div>
+        <div class="kit-stat">$111.2B (+17% YoY)</div>
+        <div class="kit-copy-label" style="margin-top:14px">TOP 3 SLIDE BULLETS</div>
+        <div class="kit-bullet">Apple FQ2'26: record March quarter, revenue $111.2B (+17%), EPS $2.01 (+22%), gross margin 49.3%, Services an all-time-record $31B.</div><div class="kit-bullet">iPhone 17 demand 'off the charts'; Greater China rebounded +28%, easing the most-watched bear case, but supply and memory costs capped upside.</div><div class="kit-bullet">Historic succession: Tim Cook to Executive Chair, hardware chief John Ternus to CEO, effective Sept 1, 2026.</div>
+      </div>
+      <div class="kit-assets">
+        <div class="kit-copy-label">BRAND COLORS</div>
+        <div class="kit-swatches"><div class="kit-swatch-wrap" title="#0071E3"><div class="kit-swatch" style="background:#0071E3"></div><div class="kit-hex">#0071E3</div></div><div class="kit-swatch-wrap" title="#2997FF"><div class="kit-swatch" style="background:#2997FF"></div><div class="kit-hex">#2997FF</div></div><div class="kit-swatch-wrap" title="#EA33C0"><div class="kit-swatch" style="background:#EA33C0"></div><div class="kit-hex">#EA33C0</div></div><div class="kit-swatch-wrap" title="#DE9444"><div class="kit-swatch" style="background:#DE9444"></div><div class="kit-hex">#DE9444</div></div><div class="kit-swatch-wrap" title="#9FC6F4"><div class="kit-swatch" style="background:#9FC6F4"></div><div class="kit-hex">#9FC6F4</div></div></div>
+        <div class="kit-copy-label" style="margin-top:14px">BRAND TAGS</div>
+        <div class="kit-tags"><span class="kit-tag">Consumer Electronics</span><span class="kit-tag">Digital Services</span><span class="kit-tag">Wearables & Health</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-left">
+      Sources: Company IR, earnings transcripts, Bloomberg, SEC filings, Sacra, Crunchbase, yfinance<br>
+      DRAFT for internal use only. Human review required before distribution.
+    </div>
+    <div class="footer-right">ATLAS</div>
+  </div>
+
+</div>
+</body>
+</html>

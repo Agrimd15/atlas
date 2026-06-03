@@ -24,7 +24,7 @@ const TEMPLATE = path.join(__dirname, 'template', 'index.html');
 
 // Companies shown on the PUBLIC demo at the site root. Everything else is reachable
 // only via the gated /full view. Add more demo ids over time. (Folder ids: Broadcom = "AVGO".)
-const DEMO_IDS = ['decagon', 'AVGO'];
+const DEMO_IDS = ['decagon', 'AVGO', 'GOOGL', 'AAPL', 'MSFT'];
 
 // Linked from the demo banner's "Get Atlas" CTA so visitors can deploy their own.
 const REPO_URL = 'https://github.com/Agrimd15/atlas';
