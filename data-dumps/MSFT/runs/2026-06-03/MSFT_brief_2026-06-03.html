@@ -213,16 +213,18 @@
   .metrics-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
                    gap: 10px; margin-bottom: 18px; }
   .metric-card { background: var(--ks-raised); border: 1px solid var(--ks-rule); border-radius: 4px; padding: 14px 16px;
-                  min-width: 0; }
+                  min-width: 0; overflow: hidden; }
   /* label may wrap to 2 lines (never truncate the metric name); min-height keeps
      cards aligned whether the label is 1 or 2 lines */
   .metric-label { font-size: 9.5px; font-weight: 500; color: var(--ks-faint); text-transform: uppercase;
                    letter-spacing: 0.12em; margin-bottom: 6px; line-height: 1.3; min-height: 1.9em;
                    font-family: "SFMono-Regular", "Roboto Mono", monospace; }
-  /* big number stays on ONE line; a long head shrinks rather than wrapping */
+  /* big number stays on ONE line; a long/sentence-like head shrinks AND wraps inside the
+     card instead of overflowing into the neighbouring tile */
   .metric-value { font-family: "SFMono-Regular", "Roboto Mono", monospace; font-size: 1.15rem; font-weight: 700;
                    color: var(--ks-kinpaku); line-height: 1.2; white-space: nowrap; }
-  .metric-value.long { font-size: 0.98rem; letter-spacing: -0.01em; }
+  .metric-value.long { font-size: 0.95rem; letter-spacing: -0.01em; white-space: normal;
+                        overflow-wrap: anywhere; line-height: 1.3; }
   .metric-value.green { color: var(--ks-patina); }
   .metric-sub { font-size: 10.5px; color: var(--ks-faint); margin-top: 4px; line-height: 1.35;
                  font-family: "SFMono-Regular", "Roboto Mono", monospace; }
