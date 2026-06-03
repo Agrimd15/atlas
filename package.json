@@ -1,0 +1,9 @@
+{
+  "private": true,
+  "name": "alfred-coverage-site",
+  "description": "Static viewer for Alfred coverage briefs (build only — no runtime deps).",
+  "type": "module",
+  "scripts": {
+    "build": "node site/build.mjs"
+  }
+}

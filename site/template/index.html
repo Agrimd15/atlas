@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Atlas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Alumni+Sans+Pinstripe&family=Albert+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2313315c'/%3E%3Ctext x='16' y='22' font-family='Georgia,serif' font-size='19' font-weight='700' fill='white' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
+<style>
+  /* ── Institutional navy palette (matches the briefs) ── */
+  :root {
+    --lacquer:      #f3f6fa;   /* page canvas */
+    --lacquer-deep: #ffffff;   /* header / bar / text-on-navy */
+    --raised:       #ffffff;   /* cards, inputs */
+    --graphite:     #eef2f7;   /* subtle band (kbd, logo bg, badges) */
+    --gold:         #13315c;   /* NAVY — primary structural accent */
+    --gold-pale:    #1f4d86;   /* navy-soft (links, vtags) */
+    --gold-rich:    #1a3f6e;   /* navy mid (focus / hover border) */
+    --crimson:      #b3122b;   /* eyebrow + accent */
+    --patina:       #0a7d4d;   /* positive green */
+    --champagne:    #15181f;   /* ink — headings */
+    --body:         #2a2f37;   /* body text */
+    --muted:        #3d434f;
+    --faint:        #727a89;
+    --rule:         #dce0e7;   /* hairline */
+    --rule-strong:  #c2c8d2;
+    --ease:         cubic-bezier(0.2, 0.8, 0.2, 1);
+    --mono: "SFMono-Regular", "Roboto Mono", ui-monospace, monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body {
+    font-family: "Albert Sans", "Avenir Next", "Helvetica Neue", Arial, system-ui, sans-serif;
+    background:
+      radial-gradient(1100px 520px at 50% -8%, #ffffff, transparent 62%),
+      var(--lacquer);
+    color: var(--body); font-size: 14px; line-height: 1.7; -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+  .mono { font-family: var(--mono); }
+
+  /* ── Landing ── */
+  .stage { min-height: 100%; display: flex; flex-direction: column; align-items: center;
+           padding: 0 20px 80px; }
+  .hero { width: 100%; max-width: 760px; text-align: center;
+          padding-top: clamp(56px, 12vh, 140px); transition: padding-top 300ms var(--ease); }
+  body.searching .hero { padding-top: clamp(32px, 6vh, 64px); }
+
+  .wordmark { font-family: "Alumni Sans Pinstripe", "Albert Sans", sans-serif; font-weight: 300;
+              font-size: clamp(3rem, 9vw, 5.5rem); line-height: 0.9; letter-spacing: 0.02em;
+              color: var(--champagne); }
+  .wordmark .dot { color: var(--crimson); }
+  .tagline { font-family: var(--mono); font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase;
+             color: var(--crimson); margin-top: 14px; }
+
+  /* ── Search ── */
+  .search-wrap { position: relative; margin: 38px auto 0; max-width: 560px; }
+  .search-wrap svg { position: absolute; left: 18px; top: 50%; transform: translateY(-50%);
+                     width: 18px; height: 18px; stroke: var(--faint); pointer-events: none; }
+  #q {
+    width: 100%; padding: 16px 18px 16px 48px; font-size: 16px; font-family: inherit;
+    color: var(--champagne); background: var(--raised);
+    border: 1px solid var(--rule); border-radius: 12px; outline: none;
+    transition: border-color 160ms var(--ease), box-shadow 160ms var(--ease), background 160ms var(--ease);
+  }
+  #q::placeholder { color: var(--faint); }
+  #q:focus { border-color: var(--gold-rich); background: #ffffff;
+             box-shadow: 0 0 0 4px rgba(19, 49, 92, 0.12); }
+
+  /* ── Demo banner (public sample view only) ── */
+  .demo-banner { display: none; width: 100%; max-width: 940px; margin: 30px auto 0;
+                 align-items: center; gap: 13px; flex-wrap: wrap;
+                 background: var(--raised); border: 1px solid var(--rule);
+                 border-left: 3px solid var(--crimson); border-radius: 10px;
+                 padding: 12px 16px; box-shadow: 0 1px 2px rgba(16, 42, 77, 0.04); }
+  .demo-banner.show { display: flex; }
+  .demo-tag { font-family: var(--mono); font-size: 9.5px; font-weight: 700; letter-spacing: 0.16em;
+              text-transform: uppercase; color: #fff; background: var(--crimson);
+              padding: 3px 9px; border-radius: 3px; flex-shrink: 0; }
+  .demo-text { flex: 1; min-width: 220px; font-size: 12.5px; color: var(--muted); line-height: 1.5; }
+  .demo-text b { color: var(--champagne); font-weight: 600; }
+  .demo-cta { font-family: var(--mono); font-size: 11px; font-weight: 600; letter-spacing: 0.04em;
+              color: var(--gold); border: 1px solid var(--gold-rich); border-radius: 30px;
+              padding: 7px 14px; white-space: nowrap; flex-shrink: 0;
+              transition: background 140ms var(--ease), color 140ms var(--ease); }
+  .demo-cta:hover { background: var(--gold); color: #fff; }
+
+  /* ── Results ── */
+  .results { width: 100%; max-width: 940px; margin: 40px auto 0; }
+  .results-head { display: flex; align-items: baseline; justify-content: space-between;
+                  font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+                  color: var(--faint); padding: 0 4px 12px; border-bottom: 1px solid var(--rule); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+          gap: 12px; margin-top: 16px; }
+
+  .card { text-align: left; background: var(--raised); border: 1px solid var(--rule);
+          border-radius: 10px; padding: 16px 17px; cursor: pointer; position: relative;
+          box-shadow: 0 1px 2px rgba(16, 42, 77, 0.04);
+          transition: border-color 140ms var(--ease), box-shadow 140ms var(--ease), transform 140ms var(--ease); }
+  .card:hover, .card.active { border-color: var(--gold-rich); box-shadow: 0 6px 18px rgba(16, 42, 77, 0.10);
+                              transform: translateY(-1px); }
+  .card:focus-visible { outline: 2px solid var(--gold-rich); outline-offset: 2px; }
+  .card.nobrief { opacity: 0.6; box-shadow: none; cursor: default; }
+  .card.nobrief:hover { transform: none; border-color: var(--rule); box-shadow: none; }
+  .card-top { display: flex; align-items: center; gap: 11px; margin-bottom: 10px; }
+  .logo { width: 36px; height: 36px; border-radius: 8px; object-fit: contain; background: #ffffff;
+          padding: 5px; border: 1px solid var(--rule); flex-shrink: 0;
+          box-shadow: 0 1px 2px rgba(16, 42, 77, 0.06); }
+  .logo-fallback { width: 36px; height: 36px; border-radius: 8px; flex-shrink: 0; display: grid;
+                   place-items: center; background: var(--graphite); border: 1px solid var(--rule);
+                   font-family: var(--mono); font-weight: 700; color: var(--gold); font-size: 13px; }
+  .name { font-size: 15px; font-weight: 600; color: var(--champagne); line-height: 1.15; }
+  .badges { display: flex; gap: 6px; margin-top: 3px; flex-wrap: wrap; }
+  .ticker { font-family: var(--mono); font-size: 9px; font-weight: 700; letter-spacing: 0.12em;
+            background: var(--gold); color: var(--lacquer-deep); padding: 2px 7px; border-radius: 2px; }
+  .pvt { font-family: var(--mono); font-size: 9px; font-weight: 600; letter-spacing: 0.12em;
+         background: var(--graphite); color: var(--muted); padding: 2px 7px; border-radius: 2px;
+         border: 1px solid var(--rule); }
+  .desc { font-size: 12.5px; color: var(--muted); line-height: 1.55;
+          display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .card-foot { display: flex; align-items: center; justify-content: space-between; margin-top: 12px;
+               font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.06em; color: var(--faint); }
+  .verticals { display: flex; gap: 5px; flex-wrap: wrap; overflow: hidden; max-height: 17px; }
+  .vtag { font-family: var(--mono); font-size: 9px; color: var(--gold-pale);
+          background: #edf2f9; border: 1px solid #d7e1ee;
+          padding: 1px 6px; border-radius: 3px; white-space: nowrap; }
+
+  /* ── Empty / no-match ── */
+  .empty { text-align: center; color: var(--faint); padding: 64px 20px; max-width: 460px; margin: 0 auto; }
+  .empty .big { font-family: var(--mono); font-size: 12px; letter-spacing: 0.1em; color: var(--muted);
+                margin-bottom: 10px; }
+  .empty code { background: var(--graphite); border: 1px solid var(--rule); border-radius: 4px;
+                padding: 1px 6px; color: var(--gold-pale); }
+
+  /* ── Brief overlay ── */
+  .overlay { position: fixed; inset: 0; background: var(--lacquer); z-index: 100; display: none;
+             flex-direction: column; }
+  .overlay.open { display: flex; }
+  .bar { display: flex; align-items: center; gap: 14px; padding: 11px 16px;
+         background: var(--lacquer-deep); border-bottom: 1px solid var(--rule-strong); flex-shrink: 0; }
+  .back { display: inline-flex; align-items: center; gap: 7px; cursor: pointer; border: 1px solid var(--rule);
+          background: var(--raised); color: var(--muted); border-radius: 7px; padding: 7px 12px;
+          font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em;
+          transition: border-color 140ms, color 140ms; }
+  .back:hover { border-color: var(--gold-rich); color: var(--champagne); }
+  .bar .logo, .bar .logo-fallback { width: 28px; height: 28px; }
+  .bar .logo-fallback { font-size: 11px; }
+  #bar-logo-slot { display: inline-flex; flex-shrink: 0; }
+  .bar-name { font-size: 14px; font-weight: 600; color: var(--champagne); }
+  .bar-spacer { flex: 1; }
+  select.run { font-family: var(--mono); font-size: 11px; color: var(--body); background: var(--raised);
+               border: 1px solid var(--rule); border-radius: 7px; padding: 7px 10px; cursor: pointer; outline: none; }
+  select.run:focus { border-color: var(--gold-rich); }
+  .newtab { display: inline-flex; align-items: center; gap: 6px; color: var(--faint);
+            font-family: var(--mono); font-size: 11px; padding: 7px 10px; border: 1px solid var(--rule);
+            border-radius: 7px; transition: color 140ms, border-color 140ms; }
+  .newtab:hover { color: var(--gold-pale); border-color: var(--gold-rich); }
+  #frame { flex: 1; width: 100%; border: 0; background: #ffffff; }
+
+  .foot { font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; color: #9aa3b2;
+          text-align: center; padding: 36px 0 0; }
+  @media (max-width: 600px) { .bar-name { display: none; } .newtab span { display: none; } }
+</style>
+</head>
+<body>
+  <div class="stage">
+    <header class="hero">
+      <div class="wordmark">ATLAS<span class="dot">.</span></div>
+      <div class="tagline">Tech IB · Coverage Briefs</div>
+      <div class="search-wrap">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+        <input id="q" type="text" autocomplete="off" spellcheck="false"
+               placeholder="Search your coverage" />
+      </div>
+    </header>
+
+    <div class="demo-banner" id="demo-banner">
+      <span class="demo-tag">Demo</span>
+      <span class="demo-text"><b>This is a public demo</b> — a small sample of coverage. Atlas turns any company into a banker-grade brief; deploy your own to build a private coverage database.</span>
+      <a class="demo-cta" id="demo-cta" target="_blank" rel="noopener">Get Atlas →</a>
+    </div>
+
+    <main class="results">
+      <div class="results-head"><span id="rh-label">Coverage</span><span id="rh-count"></span></div>
+      <div id="grid" class="grid"></div>
+      <div id="empty" class="empty" style="display:none"></div>
+      <div class="foot" id="foot"></div>
+    </main>
+  </div>
+
+  <!-- Brief viewer -->
+  <div class="overlay" id="overlay">
+    <div class="bar">
+      <div class="back" id="back">← Coverage</div>
+      <span id="bar-logo-slot"></span>
+      <div class="bar-name" id="bar-name"></div>
+      <div class="bar-spacer"></div>
+      <select class="run" id="run-select"></select>
+      <a class="newtab" id="pdflink" target="_blank" rel="noopener" style="display:none">↓ <span>PDF</span></a>
+      <a class="newtab" id="newtab" target="_blank" rel="noopener">↗ <span>Full page</span></a>
+    </div>
+    <iframe id="frame" title="Brief"></iframe>
+  </div>
+
+<script>
+(() => {
+  const $ = (s) => document.querySelector(s);
+  const grid = $('#grid'), emptyEl = $('#empty'), qEl = $('#q');
+  let DATA = { companies: [], count: 0, latestRunDate: '' };
+  let filtered = [];
+
+  const norm = (s) => (s || '').toLowerCase();
+  const fmtDate = (d) => d ? new Date(d + 'T00:00:00').toLocaleDateString('en-US',
+      { month: 'short', day: 'numeric', year: 'numeric' }) : '—';
+  const initials = (name) => (name || '?').replace(/[^A-Za-z0-9 ]/g, '').split(/\s+/)
+      .slice(0, 2).map((w) => w[0]).join('').toUpperCase() || '?';
+
+  function score(c, q) {
+    const hay = [c.name, c.ticker, c.id, ...(c.verticals || [])].map(norm);
+    if (!q) return 1;
+    if (norm(c.ticker) === q || norm(c.name) === q) return 100;
+    if (hay.some((h) => h.startsWith(q))) return 60;
+    if (hay.some((h) => h.includes(q))) return 30;
+    return 0;
+  }
+
+  // Logo sources, best-effort and key-free: explicit override → Google favicon
+  // (reliable, returns the brand mark for most company sites) → DuckDuckGo → initials.
+  function logoSources(c) {
+    const out = [];
+    if (c.faviconUrl) out.push(c.faviconUrl);
+    if (c.domain) {
+      out.push('https://www.google.com/s2/favicons?domain=' + encodeURIComponent(c.domain) + '&sz=128');
+      out.push('https://icons.duckduckgo.com/ip3/' + encodeURIComponent(c.domain) + '.ico');
+    }
+    return out;
+  }
+  function logoImg(c) {
+    const sources = logoSources(c);
+    if (!sources.length) return fallback(c);
+    const img = document.createElement('img');
+    img.className = 'logo'; img.alt = (c.name || '') + ' logo'; img.loading = 'lazy';
+    let i = 0;
+    img.onerror = () => { if (++i < sources.length) img.src = sources[i]; else img.replaceWith(fallback(c)); };
+    img.src = sources[0];
+    return img;
+  }
+  function fallback(c) {
+    const d = document.createElement('div');
+    d.className = 'logo-fallback'; d.textContent = initials(c.name);
+    return d;
+  }
+
+  function card(c) {
+    const el = document.createElement('div');
+    const hasBrief = c.runs.length > 0;
+    el.className = 'card' + (hasBrief ? '' : ' nobrief');
+    if (hasBrief) el.tabIndex = 0;
+    el.dataset.id = c.id;
+    const top = document.createElement('div'); top.className = 'card-top';
+    top.appendChild(logoImg(c));
+    const nameWrap = document.createElement('div');
+    const name = document.createElement('div'); name.className = 'name'; name.textContent = c.name;
+    const badges = document.createElement('div'); badges.className = 'badges';
+    if (c.ticker && c.isPublic) { const b = document.createElement('span'); b.className = 'ticker'; b.textContent = c.ticker; badges.appendChild(b); }
+    else { const b = document.createElement('span'); b.className = 'pvt'; b.textContent = 'PRIVATE'; badges.appendChild(b); }
+    nameWrap.appendChild(name); nameWrap.appendChild(badges); top.appendChild(nameWrap);
+    el.appendChild(top);
+
+    const desc = document.createElement('div'); desc.className = 'desc';
+    desc.textContent = c.shortDescription || 'No description yet.';
+    el.appendChild(desc);
+
+    const foot = document.createElement('div'); foot.className = 'card-foot';
+    const vts = document.createElement('div'); vts.className = 'verticals';
+    (c.verticals || []).slice(0, 2).forEach((v) => { const t = document.createElement('span'); t.className = 'vtag'; t.textContent = v; vts.appendChild(t); });
+    const meta = document.createElement('div');
+    meta.textContent = hasBrief ? fmtDate(c.latestRunDate) : 'brief pending';
+    foot.appendChild(vts); foot.appendChild(meta);
+    el.appendChild(foot);
+
+    if (hasBrief) {
+      el.addEventListener('click', () => open(c.id));
+      el.addEventListener('keydown', (e) => { if (e.key === 'Enter') open(c.id); });
+    }
+    return el;
+  }
+
+  function render() {
+    const q = norm(qEl.value).trim();
+    document.body.classList.toggle('searching', !!q);
+    filtered = DATA.companies
+      .map((c) => ({ c, s: score(c, q) }))
+      .filter((x) => x.s > 0)
+      .sort((a, b) => b.s - a.s || String(b.c.latestRunDate||'').localeCompare(String(a.c.latestRunDate||'')))
+      .map((x) => x.c);
+
+    $('#rh-label').textContent = q ? 'Matches' : 'Coverage';
+    $('#rh-count').textContent = q
+      ? filtered.length + ' / ' + DATA.count
+      : DATA.count + ' compan' + (DATA.count === 1 ? 'y' : 'ies');
+
+    grid.innerHTML = '';
+    if (!filtered.length) {
+      grid.style.display = 'none'; emptyEl.style.display = 'block';
+      emptyEl.innerHTML = q
+        ? '<div class="big">No match in your coverage</div><div>Open Claude Code, run <code>' +
+          q.replace(/</g, '&lt;') + '</code>, and push — it appears here within ~30s.</div>'
+        : '<div class="big">No briefs yet</div><div>Run a company in Claude Code to populate your coverage.</div>';
+    } else {
+      grid.style.display = 'grid'; emptyEl.style.display = 'none';
+      filtered.forEach((c) => grid.appendChild(card(c)));
+    }
+  }
+
+  // ── Brief overlay + run switching ──
+  const overlay = $('#overlay'), frame = $('#frame'), runSel = $('#run-select');
+  let current = null;
+
+  function open(id, date) {
+    const c = DATA.companies.find((x) => x.id === id);
+    if (!c || !c.runs.length) return;
+    current = c;
+    const run = c.runs.find((r) => r.date === date) || c.runs[0];
+    $('#bar-name').textContent = c.name;
+    const slot = $('#bar-logo-slot'); slot.innerHTML = ''; slot.appendChild(logoImg(c));
+    runSel.innerHTML = '';
+    c.runs.forEach((r) => { const o = document.createElement('option'); o.value = r.date; o.textContent = 'Run · ' + fmtDate(r.date); runSel.appendChild(o); });
+    runSel.value = run.date;
+    runSel.style.display = c.runs.length > 1 ? '' : 'none';
+    frame.src = run.href;
+    $('#newtab').href = run.href;
+    const pl = $('#pdflink');
+    if (run.pdf) { pl.href = run.pdf; pl.style.display = ''; } else { pl.style.display = 'none'; }
+    overlay.classList.add('open');
+    location.hash = '#/' + id + '/' + run.date;
+    document.documentElement.style.overflow = 'hidden';
+  }
+  function close() {
+    overlay.classList.remove('open'); frame.src = 'about:blank'; current = null;
+    document.documentElement.style.overflow = '';
+    if (location.hash) history.pushState('', '', location.pathname + location.search);
+    qEl.focus({ preventScroll: true });
+  }
+  runSel.addEventListener('change', () => current && open(current.id, runSel.value));
+  $('#back').addEventListener('click', close);
+
+  function fromHash() {
+    const m = decodeURIComponent(location.hash).match(/^#\/([^/]+)(?:\/(.+))?$/);
+    if (m) open(m[1], m[2]); else if (overlay.classList.contains('open')) close();
+  }
+  window.addEventListener('hashchange', fromHash);
+
+  // ── Keyboard ──
+  qEl.addEventListener('input', render);
+  qEl.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && filtered.length) open(filtered[0].id);
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') { if (overlay.classList.contains('open')) close(); else { qEl.value = ''; render(); qEl.blur(); } }
+    else if (e.key === '/' && document.activeElement !== qEl && !overlay.classList.contains('open')) { e.preventDefault(); qEl.focus(); }
+  });
+
+  // ── Boot ──
+  fetch('index.json', { cache: 'no-cache' })
+    .then((r) => r.json())
+    .then((d) => {
+      DATA = d;
+      if (d.demo) {
+        document.title = 'Atlas — Demo';
+        const cta = $('#demo-cta');
+        if (d.repoUrl) cta.href = d.repoUrl; else cta.style.display = 'none';
+        $('#demo-banner').classList.add('show');
+      }
+      $('#foot').textContent = (d.demo ? 'Demo · ' : '') + 'Generated by Atlas · ' + d.count
+        + ' compan' + (d.count === 1 ? 'y' : 'ies') + ' · data through ' + fmtDate(d.latestRunDate);
+      render();
+      if (location.hash) fromHash();
+      qEl.focus({ preventScroll: true });
+    })
+    .catch(() => {
+      emptyEl.style.display = 'block'; grid.style.display = 'none';
+      emptyEl.innerHTML = '<div class="big">Could not load index.json</div><div>Run <code>node site/build.mjs</code> first.</div>';
+    });
+})();
+</script>
+</body>
+</html>
