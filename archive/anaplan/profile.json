@@ -1,0 +1,341 @@
+{
+  "name": "Anaplan",
+  "ticker": null,
+  "stage": "Private (Thoma Bravo)",
+  "website": "https://www.anaplan.com",
+  "founded": "2006",
+  "hq": "Miami, FL",
+  "employeeCount": "~2,500",
+  "lastKnownValuation": "$10.7B (Thoma Bravo take-private, June 2022)",
+  "totalRaised": null,
+  "verticals": [
+    "Enterprise EPM",
+    "Connected Planning",
+    "FP&A",
+    "Supply Chain"
+  ],
+  "growth": "~13-15% CAGR since go-private (est.)",
+  "leadership": [
+    {
+      "name": "Charlie Gottdiener",
+      "title": "Chief Executive Officer",
+      "since": "December 2022",
+      "background": "Previously President and CEO of Neustar for four years. Earlier held strategy roles at Providence Equity, D&B, BCG, and Cap Gemini Ernst & Young. Architect of the 'decision excellence' strategy and $500M R&D roadmap.",
+      "linkedin": "",
+      "source": "Anaplan press release",
+      "sourceUrl": "https://www.anaplan.com/news/anaplan-appoints-charles-gottdiener-as-ceo-and-member-of-the-board-of-directors-to-drive-next-phase-of-growth/"
+    },
+    {
+      "name": "Hemant Kapadia",
+      "title": "Chief Financial Officer",
+      "since": "December 2022",
+      "background": "30+ years in finance. Prior CFO roles at Sirius Computer Solutions, Mark Andy Inc., and SunEdison Semiconductor. Senior finance roles at United Technologies and GE.",
+      "linkedin": "",
+      "source": "Anaplan press release",
+      "sourceUrl": "https://www.anaplan.com/news/anaplan-enhances-executive-leadership-team/"
+    },
+    {
+      "name": "Greg Randolph",
+      "title": "President and Chief Revenue Officer",
+      "since": "September 2025",
+      "background": "25+ years leading go-to-market at public and PE-owned software companies. Most recently Chief Commercial Officer at e2open (supply chain SaaS). Replaced prior CRO in September 2025.",
+      "linkedin": "",
+      "source": "Anaplan press release",
+      "sourceUrl": "https://www.anaplan.com/news/anaplan-names-greg-randolph-president-and-chief-revenue-officer/"
+    },
+    {
+      "name": "Adam Thier",
+      "title": "Chief Product and Technology Officer",
+      "since": "April 2023",
+      "background": "20+ years in enterprise software and FP&A. Previously held product and technology roles at SAP, Hyperion, Vianai, and Adaytum. Was a Thoma Bravo Operating Advisor before joining.",
+      "linkedin": "",
+      "source": "Anaplan press release",
+      "sourceUrl": "https://www.anaplan.com/news/anaplan-welcomes-new-chief-product-officer-to-drive-platform-transformation/"
+    },
+    {
+      "name": "Hyune Hand",
+      "title": "Chief Customer Officer",
+      "since": "2024",
+      "background": "Previously President of Sales & Marketing at Park Place Technologies and SVP Customer Engagement at Neustar (TransUnion), where she drove retention into the mid-90% range.",
+      "linkedin": "https://www.linkedin.com/posts/hyunehand_anaplan-names-hyune-hand-as-chief-customer-activity-7195871834041384960-ejxI",
+      "source": "Anaplan press release",
+      "sourceUrl": "https://www.anaplan.com/news/new-chief-customer-officer-to-deliver-outsized-value-to-global-customer-base/"
+    },
+    {
+      "name": "Jim Freeze",
+      "title": "Chief Marketing Officer",
+      "since": "January 2024",
+      "background": "25+ years in revenue-focused leadership across SaaS, AI, security, and telecom. Previously CMO at Interactions, Aspect Software, and Chief Commercial Officer at VETRO.",
+      "linkedin": "",
+      "source": "Anaplan press release",
+      "sourceUrl": "https://www.anaplan.com/news/new-chief-marketing-officer-to-propel-brand-recognition/"
+    }
+  ],
+  "ipoReadiness": "High — confidential S-1 filing underway as of January 2026 per The Information. Thoma Bravo ~3.5yr hold. Rule of 55 achieved.",
+  "revenueHistory": [
+    {
+      "year": 2021,
+      "value": 440,
+      "label": "$440M",
+      "source": "Anaplan 10-K (FY2021)",
+      "sourceUrl": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=PLAN&type=10-K"
+    },
+    {
+      "year": 2022,
+      "value": 592,
+      "label": "$592M",
+      "source": "Anaplan 10-K (FY2022)",
+      "sourceUrl": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=PLAN&type=10-K"
+    },
+    {
+      "year": 2025,
+      "value": 1000,
+      "label": "$1B+ ARR",
+      "source": "The Information (Jan 2026)",
+      "sourceUrl": "https://finance.yahoo.com/news/thoma-bravo-backed-anaplan-prepares-014313535.html"
+    }
+  ],
+  "fundingRounds": [
+    {
+      "date": "2022-06",
+      "round": "Take-Private",
+      "amount": 10700,
+      "valuation": 10700,
+      "investors": [
+        "Thoma Bravo"
+      ],
+      "note": "$66/share all-cash; ~14x ARR at close",
+      "source": "Thoma Bravo",
+      "sourceUrl": "https://www.thomabravo.com/press-releases/thoma-bravo-completes-acquisition-of-anaplan"
+    }
+  ],
+  "investors": [
+    "Thoma Bravo"
+  ],
+  "brief": {
+    "runDate": "2026-06-01",
+    "businessOverview": [
+      "Anaplan is a cloud-native connected planning platform for enterprise finance, sales, supply chain, and HR — the largest independent pure-play EPM vendor by ARR.",
+      "Founded 2006, taken private by Thoma Bravo in June 2022 at $10.7B EV (~14x ARR). ARR crossed $1B as of early 2025, up from ~$700M at go-private.",
+      "Platform is powered by the proprietary Hyperblock multidimensional calculation engine — deeply embedded in enterprise workflows with high switching costs.",
+      "Three BUs: Finance (>$600M ARR, core; 9x Gartner Magic Quadrant Leader), Sales & Marketing (>$200M ARR), Supply Chain (~$200M ARR, fastest-growing).",
+      "200+ customers with >$1M ACV, representing more than half of aggregate ARR. Customers include ~half of the Fortune 50.",
+      "Preparing confidential IPO filing as of January 2026 per The Information — likely 2026 public market re-entry if market conditions cooperate."
+    ],
+    "productModel": "Annual SaaS subscription (ARR-based). Land-and-expand motion: Finance BU is the primary land (CFO buyer), followed by cross-sell into Sales/Supply Chain. Recently added Anaplan Data Orchestrator (enterprise data integration) and acquired Fluence Technologies (financial close/consolidation) in April 2024 to extend the EPM suite. $500M multi-year R&D roadmap underway including role-based AI agents launched December 2025.",
+    "recentNews": [
+      {
+        "date": "2026-01-28",
+        "headline": "Thoma Bravo-Backed Anaplan Prepares Confidential IPO Filing",
+        "whyItMatters": "Anaplan filing confidentially signals Thoma Bravo is positioning for a public exit roughly four years post take-private, validating the operational transformation thesis. Valuation and timing will be a key read-through for the broader enterprise software IPO pipeline.",
+        "sources": [
+          {
+            "name": "The Information",
+            "url": "https://www.theinformation.com/articles/thoma-bravo-backed-anaplan-prepares-confidential-ipo-filing"
+          },
+          {
+            "name": "Reuters via Yahoo Finance",
+            "url": "https://finance.yahoo.com/news/thoma-bravo-backed-anaplan-prepares-014313535.html"
+          }
+        ]
+      },
+      {
+        "date": "2025-12-09",
+        "headline": "Anaplan Introduces Role-Based AI Agents for Enterprise Planning",
+        "whyItMatters": "Launch of agentic AI (Finance Analyst, Custom Agent) embeds AI into Anaplan's core platform, competing with Workday, SAP, and Oracle on the AI-native EPM narrative directly ahead of a likely IPO.",
+        "source": "GlobeNewswire",
+        "sourceUrl": "https://www.globenewswire.com/news-release/2025/12/09/3202449/0/en/Anaplan-Introduces-Role-Based-AI-Agents-to-Advance-Industry-Leading-Enterprise-Scenario-Planning-and-Analysis-Platform.html"
+      },
+      {
+        "date": "2025-05-01",
+        "headline": "Anaplan Reveals Extended AI Portfolio Roadmap and Launches Four New Applications",
+        "whyItMatters": "Four simultaneous AI app launches anchored to a $500M R&D commitment is the most significant product expansion since the take-private, setting up the AI growth narrative for public market investors.",
+        "source": "Anaplan Newsroom",
+        "sourceUrl": "https://www.anaplan.com/news/anaplan-reveals-extended-ai-portfolio-roadmap-launches-four-new-apps/"
+      },
+      {
+        "date": "2025-02-20",
+        "headline": "Anaplan Achieves $1B+ ARR and Rule of 55 Profitability in Business Transformation Milestone",
+        "whyItMatters": "First substantive financial disclosure since going private — $1B ARR, Rule of 55 profitability, 300 new logos, 200+ $1M+ ACV customers. Classic pre-IPO market conditioning playbook.",
+        "source": "GlobeNewswire",
+        "sourceUrl": "https://www.globenewswire.com/news-release/2025/02/20/3029576/0/en/Anaplan-achieves-significant-milestones-in-its-multiyear-business-transformation.html"
+      },
+      {
+        "date": "2024-06-01",
+        "headline": "Anaplan Lays Off Hundreds Across U.S. and U.K.",
+        "whyItMatters": "Post-acquisition workforce reduction reflects the standard Thoma Bravo playbook of cost rationalization to build EBITDA and reach Rule of 40+ efficiency profile required for a re-listing.",
+        "source": "The Information",
+        "sourceUrl": "https://www.theinformation.com/briefings/anaplan-laying-off-hundreds-of-workers"
+      },
+      {
+        "date": "2024-04-01",
+        "headline": "Anaplan Acquires Fluence Technologies to Expand Financial Close Capabilities",
+        "whyItMatters": "Bolt-on into financial close and consolidation extends the EPM suite beyond planning into the full CFO workflow, directly competing with OneStream and Oracle EPM on completeness of offering.",
+        "source": "Thoma Bravo",
+        "sourceUrl": "https://www.thomabravo.com/press-releases/anaplan-announces-agreement-to-acquire-fluence-technologies"
+      }
+    ],
+    "earningsTakeaways": {
+      "quarter": "FY2025 Transformation Update",
+      "reportDate": "2025-02-20",
+      "keyMetrics": {
+        "revenue": "Not disclosed (private)",
+        "revenueGrowth": "~13-15% CAGR since go-private (est.)",
+        "arr": ">$1B total ARR",
+        "nrr": "Not disclosed (was ~120%+ as public company)",
+        "grossMargin": "Not disclosed (was ~70-73% as public company)",
+        "operatingMargin": "Rule of 55 (positive EBITDA, transformed from negative at go-private)",
+        "customers": "200+ with >$1M ACV; ~300 new logos added past year; ~half of Fortune 50"
+      },
+      "aiCommentary": "CEO Gottdiener positioning Anaplan around 'decision excellence' and AI. $500M R&D roadmap. 40% increase in software engineering headcount. McKinsey interview thesis: companies with tighter decision cycles outperform peers by ~14pp TSR. Supply Chain cited as fastest-growing BU.",
+      "demandCommentary": "No direct macro commentary (private). ~300 new logos and 200+ $1M ACV crossings imply healthy enterprise demand. Asian market expansion cited as incremental growth driver. IPO preparation signals sponsor confidence in demand trajectory."
+    },
+    "keyRisks": [
+      "Growth deceleration under Thoma Bravo: ARR CAGR of ~13-15% since go-private vs. 24%+ public-era growth — re-IPO story depends on showing re-acceleration",
+      "Competitive displacement by Pigment (fast-growing AI-native challenger) eating into Anaplan's mid-market and emerging enterprise accounts",
+      "OneStream (now Hg-backed) dominant in financial close/consolidation after Fluence acquisition — direct overlap with Anaplan's expanded suite",
+      "PE ownership debt load: Thoma Bravo typically leverages buyouts; high-interest debt servicing could constrain R&D investment relative to better-capitalized public peers",
+      "NRR unknown: public-era NRR was ~120%+ but post-go-private efficiency initiatives (headcount reductions, S&M cuts) may have pressured net retention in the near-term",
+      "Workday Adaptive Planning bundled into HCM suite creates price-compression risk in competitive deals where Workday is already the HCM vendor"
+    ],
+    "comps": [
+      {
+        "name": "Workday",
+        "ticker": "WDAY",
+        "type": "Public",
+        "evRevenue": "2.9x LTM",
+        "asOf": "2026-06-03",
+        "revenueGrowth": "13.5% YoY",
+        "grossMargin": "75.8%",
+        "note": "Closest public HCM/ERP SaaS comp; Adaptive Planning is Anaplan's direct FP&A competitor. $32B market cap. Multiple compressed vs. prior years on decelerating growth.",
+        "source": "yfinance, close of 2026-06-03 (recomputed: last close × shares + net debt)",
+        "sourceUrl": "https://finance.yahoo.com/quote/WDAY",
+        "marketCap": "$29.5B"
+      },
+      {
+        "name": "SAP SE",
+        "ticker": "SAP",
+        "type": "Public",
+        "evRevenue": "5.6x LTM",
+        "asOf": "2026-06-03",
+        "revenueGrowth": "6.0% YoY",
+        "grossMargin": "73.7%",
+        "note": "ERP incumbent; SAP Analytics Cloud competes directly with Anaplan. Premium multiple reflects $77B cloud backlog and AI narrative.",
+        "source": "yfinance, close of 2026-06-03 (recomputed: last close × shares + net debt)",
+        "sourceUrl": "https://finance.yahoo.com/quote/SAP",
+        "marketCap": "$210.9B"
+      },
+      {
+        "name": "Salesforce",
+        "ticker": "CRM",
+        "type": "Public",
+        "evRevenue": "4.4x LTM",
+        "asOf": "2026-06-03",
+        "revenueGrowth": "13.3% YoY",
+        "grossMargin": "77.6%",
+        "note": "Large-cap SaaS floor multiple. $153B market cap. Competes via Tableau and budgeting add-ons.",
+        "source": "yfinance, close of 2026-06-03 (recomputed: last close × shares + net debt)",
+        "sourceUrl": "https://finance.yahoo.com/quote/CRM",
+        "marketCap": "$156.1B"
+      },
+      {
+        "name": "Veeva Systems",
+        "ticker": "VEEV",
+        "type": "Public",
+        "evRevenue": "7.1x LTM",
+        "asOf": "2026-06-03",
+        "revenueGrowth": "16.0% YoY",
+        "grossMargin": "75.5%",
+        "note": "Vertical SaaS premium comp. $3.2B revenue, $21.9B EV. High switching costs — upside scenario for Anaplan IPO multiple if planning platform narrative holds.",
+        "source": "yfinance, close of 2026-06-03 (recomputed: last close × shares + net debt)",
+        "sourceUrl": "https://finance.yahoo.com/quote/VEEV",
+        "marketCap": "$29.2B"
+      },
+      {
+        "name": "Oracle",
+        "ticker": "ORCL",
+        "type": "Public",
+        "evRevenue": "12.3x LTM",
+        "asOf": "2026-06-03",
+        "revenueGrowth": "21.7% YoY",
+        "grossMargin": "67.1%",
+        "note": "Multiple distorted by OCI cloud infra hypergrowth. $64B LTM revenue, ~$630B EV. Less relevant as pure EPM comp — treat as ceiling only.",
+        "source": "yfinance, close of 2026-06-03 (recomputed: last close × shares + net debt)",
+        "sourceUrl": "https://finance.yahoo.com/quote/ORCL",
+        "marketCap": "$662.4B"
+      },
+      {
+        "name": "OneStream (Hg)",
+        "ticker": "OS — delisted Apr 2026",
+        "type": "Precedent Transaction",
+        "evRevenue": "~10.6x LTM",
+        "asOf": "April 2026 (Hg acquisition close)",
+        "revenueGrowth": "~23% YoY (FY2025)",
+        "grossMargin": "N/A",
+        "note": "MOST RELEVANT COMP. Direct EPM pure-play, $602M ARR, $6.4B Hg take-private at ~10.6x revenue (Apr 2026). Same category, similar scale. Key anchor for Anaplan re-IPO valuation at $1B ARR.",
+        "source": "PRNewswire",
+        "sourceUrl": "https://www.prnewswire.com/news-releases/onestream-announces-completion-of-acquisition-by-hg-for-6-4-billion-302731460.html"
+      },
+      {
+        "name": "Pigment",
+        "ticker": "Private",
+        "type": "Private",
+        "evRevenue": "~10x ARR (implied)",
+        "asOf": "April 2024 (Series D)",
+        "revenueGrowth": "~100% YoY",
+        "grossMargin": "N/A",
+        "note": "$1B valuation / ~$100M ARR at Series D (ICONIQ, Apr 2024). $397M total raised. Fast-growing AI-native challenger eating into Anaplan enterprise accounts.",
+        "source": "TechCrunch",
+        "sourceUrl": "https://techcrunch.com/2024/04/04/business-planning-startup-pigment-raises-145-million-round-in-rare-french-tech-megaround/"
+      },
+      {
+        "name": "Vena Solutions",
+        "ticker": "Private",
+        "type": "Private",
+        "evRevenue": "N/A",
+        "asOf": "2024",
+        "revenueGrowth": "~25% YoY",
+        "grossMargin": "N/A",
+        "note": "~$116M ARR (Sacra 2024). Excel-native FP&A. Vista Equity-backed ($476M raised). Mid-market focus.",
+        "source": "Sacra",
+        "sourceUrl": "https://sacra.com/research/vena-at-116m-arr/"
+      },
+      {
+        "name": "Planful",
+        "ticker": "Private",
+        "type": "Private",
+        "evRevenue": "N/A",
+        "asOf": "2025 (est.)",
+        "revenueGrowth": "N/A",
+        "grossMargin": "N/A",
+        "note": "~$144M ARR (est.). Vector Capital-backed. 1,500+ customers. AI Predict suite launched 2024. Subscale vs. Anaplan; mid-market competitive reference.",
+        "source": "Crunchbase",
+        "sourceUrl": "https://www.crunchbase.com/organization/planful"
+      },
+      {
+        "name": "Mosaic (acq. by HiBob)",
+        "ticker": "Acquired",
+        "type": "Acquisition",
+        "evRevenue": "$35M exit",
+        "asOf": "Feb 2025",
+        "revenueGrowth": "N/A",
+        "grossMargin": "N/A",
+        "note": "$35M acquisition (Feb 2025). Signals the floor for subscale FP&A exits. NOT a relevant multiple comp for Anaplan — included for competitive landscape completeness only.",
+        "source": "PRNewswire",
+        "sourceUrl": "https://www.prnewswire.com/news-releases/hibob-acquires-mosaic-to-expand-fpa-capabilities-for-people-first-cfos-302375224.html"
+      }
+    ],
+    "slideBullets": [
+      "Anaplan crossed $1B ARR as of early 2025 under Thoma Bravo ownership — up from ~$700M at go-private in June 2022, implying ~13-15% CAGR with Rule of 55 profitability",
+      "Connected planning platform addresses the full enterprise planning stack: Finance (>$600M ARR), Sales & Marketing (>$200M ARR), and Supply Chain (~$200M ARR, fastest-growing BU)",
+      "Preparing confidential IPO filing as of January 2026 — Thoma Bravo signaling a public exit at ~3.5yr hold; OneStream's $6.4B Hg buyout at ~13x revenue is the key comp for valuation framing",
+      "AI agentic roadmap launched December 2025 (role-based Finance Analyst and Custom Agents) plus $500M R&D commitment positions Anaplan on the AI-native EPM narrative ahead of the re-listing",
+      "200+ customers with >$1M ACV; ~half of Fortune 50 on platform; Fluence Technologies acquisition (April 2024) extends suite into financial close, expanding the CFO wallet share opportunity"
+    ],
+    "diligenceQuestions": [
+      "What is the current NRR and how has it trended since the go-private? The PE efficiency playbook (S&M cuts, headcount reductions) often pressures net retention in the near-term — this is the single most important metric for the re-IPO story.",
+      "How is Anaplan structurally defending against Pigment at the enterprise level? Pigment is doubling ARR annually and winning 57% of its new revenue from enterprise — what is Anaplan's win rate in competitive bake-offs post-2023?",
+      "What is the debt load from the Thoma Bravo leveraged buyout and how does it compare to estimated FCF generation? Rule of 55 is a broad metric — understanding the FCF yield and debt service requirements is critical for valuation and IPO capital structure."
+    ]
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "name": "Broadcom Inc.",
+  "ticker": "AVGO",
+  "website": "https://www.broadcom.com",
+  "founded": "1991",
+  "headquarters": "Palo Alto, CA",
+  "employeeCount": "~33,000 worldwide as of Nov 2, 2025, ~57% in R&D (FY2025 10-K)",
+  "verticals": ["Semiconductors", "Infrastructure Software"],
+  "shortDescription": "Designs custom AI/networking silicon and runs infrastructure software including VMware for hyperscalers and enterprises.",
+  "businessModel": "Broadcom operates two segments: Semiconductor Solutions (58% of FY2025 revenue, $36.9B) spanning AI accelerators/networking, broadband, wireless, server storage, and industrial; and Infrastructure Software (42%, $27.0B) led by VMware plus mainframe, security, and Agile/DevOps tools. It monetizes silicon via custom ASIC/XPU design wins and merchant networking chips, and software via subscription/license conversion after shifting VMware to a subscription model.",
+  "marketPositioning": "Broadcom is the leading merchant supplier of custom AI accelerators (XPUs) and AI networking silicon, positioned as the primary alternative to Nvidia's GPUs for hyperscalers building in-house chips. It competes with Marvell in custom ASICs/optical and networking, and historically with Qualcomm in wireless/connectivity; it leads Ethernet-based AI fabric switching (Tomahawk/Jericho) against Nvidia's InfiniBand/Spectrum.",
+  "endMarkets": ["Hyperscale/Cloud", "Enterprise IT/Data Center", "Telecom/Service Providers", "Broadband/Consumer", "Industrial"],
+  "growthDrivers": [
+    "AI semiconductor revenue scaling rapidly - Q4 FY2025 AI revenue up 74% YoY, with Q1'26 guided to ~$8.2B (roughly doubling YoY)",
+    "Custom XPU/ASIC design wins with hyperscalers (Google, Meta, ByteDance) plus new OpenAI (10 GW) and Anthropic engagements expanding the customer roster",
+    "AI networking via Ethernet switching/optics (Tomahawk, Jericho) as the connectivity layer for large AI clusters",
+    "VMware monetization - conversion to subscription bundling (VCF) driving Infrastructure Software to $27.0B in FY2025"
+  ],
+  "techDifferentiation": "Broadcom pairs deep custom-silicon IP (SerDes, packaging, networking) with the engineering scale to co-design hyperscaler-specific XPUs that are smaller, cheaper, and more power-efficient than merchant GPUs. Its dominance in high-radix Ethernet switching gives it control of the AI cluster fabric, creating a hardware moat that is difficult and capital-intensive to replicate.",
+  "competitors": ["Nvidia", "Marvell", "Qualcomm", "AMD", "Astera Labs", "Cisco/Arista (networking)"],
+  "segmentRevenueMix": [
+    {"segment": "Semiconductor Solutions", "note": "FY2025 $36,858M, ~58% of total revenue; includes AI accelerators, networking, broadband, wireless, storage", "source": "Broadcom IR (Q4 & FY2025 results)", "sourceUrl": "https://investors.broadcom.com/news-releases/news-release-details/broadcom-inc-announces-fourth-quarter-and-fiscal-year-2025"},
+    {"segment": "Infrastructure Software (incl. VMware)", "note": "FY2025 $27,029M, ~42% of total revenue; Q4 FY2025 $6,943M up 26% YoY", "source": "Broadcom IR (Q4 & FY2025 results)", "sourceUrl": "https://investors.broadcom.com/news-releases/news-release-details/broadcom-inc-announces-fourth-quarter-and-fiscal-year-2025"},
+    {"segment": "AI semiconductors (within Semiconductor Solutions)", "note": "~$19.9B in FY2025 (approx., sum of quarterly disclosures); Q4 up 74% YoY; Q1'26 guided ~$8.2B doubling YoY", "source": "CNBC (Broadcom Q4 FY2025 earnings)", "sourceUrl": "https://www.cnbc.com/2025/12/11/broadcom-avgo-q4-earnings-2025.html"}
+  ],
+  "leadership": [
+    {"name": "Hock E. Tan", "title": "President and Chief Executive Officer", "since": "2006", "background": "President, CEO and director since March 2006; previously CEO of Integrated Circuit Systems and held senior finance roles at Commodore, PepsiCo, and GM.", "linkedin": "", "source": "Broadcom Investor Relations", "sourceUrl": "https://investors.broadcom.com/board-member/hock-e-tan"},
+    {"name": "Kirsten M. Spears", "title": "Chief Financial Officer and Chief Accounting Officer", "since": "2021", "background": "Sitting CFO and CAO; announced retirement effective June 12, 2026, after which she serves as a consultant. As of June 1, 2026 she remains CFO.", "linkedin": "", "source": "Broadcom 8-K / IR - Planned CFO Transition (Apr 2, 2026)", "sourceUrl": "https://investors.broadcom.com"},
+    {"name": "Amie Thuener", "title": "Chief Financial Officer (incoming, effective June 12, 2026)", "since": "2026", "background": "Named to succeed Spears as CFO effective June 12, 2026; joined Broadcom May 4, 2026. Previously VP, Corporate Controller and Chief Accounting Officer at Alphabet since 2018.", "linkedin": "", "source": "Broadcom 8-K / IR - Planned CFO Transition (Apr 2, 2026)", "sourceUrl": "https://investors.broadcom.com"}
+  ],
+  "sources": [
+    {"name": "Broadcom IR - Q4 & FY2025 Results", "url": "https://investors.broadcom.com/news-releases/news-release-details/broadcom-inc-announces-fourth-quarter-and-fiscal-year-2025"},
+    {"name": "CNBC - Broadcom Q4 FY2025 earnings (AI chip sales to double)", "url": "https://www.cnbc.com/2025/12/11/broadcom-avgo-q4-earnings-2025.html"},
+    {"name": "CNBC - OpenAI partners with Broadcom on custom AI chips", "url": "https://www.cnbc.com/2025/10/13/openai-partners-with-broadcom-custom-ai-chips-alongside-nvidia-amd.html"},
+    {"name": "Bloomberg - Meta, Broadcom deepen ties; Tan departs Meta board", "url": "https://www.bloomberg.com/news/articles/2026-04-14/meta-broadcom-deepen-ties-on-chips-tan-departs-meta-s-board"},
+    {"name": "Broadcom FY2025 Form 10-K (employee count, HQ)", "url": "https://investors.broadcom.com"}
+  ],
+  "dataConfidence": "high - FY2025 segment revenue ($63.9B total; Semis $36.9B/58%; Software $27.0B/42%), Q4 figures, employee count (~33,000), HQ (Palo Alto), and CEO (Hock Tan, since 2006) confirmed from Broadcom official IR releases and FY2025 10-K. CFO transition (Spears retiring, Thuener succeeding effective June 12, 2026) confirmed from Broadcom 8-K/IR; Spears still sitting CFO as of June 1, 2026. XPU customers (Google, Meta, ByteDance, OpenAI, Anthropic) confirmed via CNBC/Bloomberg. Medium confidence on the ~$19.9B FY2025 AI-revenue total (summed from quarterly disclosures)."
+}

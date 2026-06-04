@@ -1,0 +1,9 @@
+{
+  "name": "atlas-research",
+  "version": "1.0.0",
+  "description": "Banker-grade company research briefs with live, sourced data — the first tool in the Alfred analyst toolkit.",
+  "author": { "name": "Agrim Dhingra" },
+  "homepage": "https://github.com/Agrimd15/alfred-tools",
+  "license": "MIT",
+  "keywords": ["research", "finance", "equity-research", "comps", "company-briefs"]
+}

@@ -1,0 +1,60 @@
+{
+  "recentNews": [
+    {
+      "date": "2026-04-29",
+      "headline": "Microsoft FQ3 2026 beats as Azure reaccelerates to 40%; AI run-rate tops $37B",
+      "whyItMatters": "Azure growth of 40% (39% constant currency) beat the company's own 37-38% guidance and reversed several quarters of deceleration, with AI annual revenue run-rate surpassing $37B (up ~123% YoY) and Microsoft Cloud crossing $50B in a quarter for the first time at $54.5B. The print reframed the AI demand debate in Microsoft's favor.",
+      "source": "CNBC",
+      "sourceUrl": "https://www.cnbc.com/2026/04/29/microsoft-msft-q3-earnings-report-2026.html"
+    },
+    {
+      "date": "2026-04-29",
+      "headline": "Microsoft guides to ~$190B calendar-2026 capex; stock falls on spending shock",
+      "whyItMatters": "The capex outlook of roughly $190B for calendar 2026 came in ~$35B above the ~$155B consensus, with management attributing ~$25B to memory/component price inflation rather than added capacity. Shares fell ~3% after hours on fears that depreciation could outrun AI revenue, crystallizing the capital-intensity bear case.",
+      "source": "Yahoo Finance",
+      "sourceUrl": "https://finance.yahoo.com/markets/stocks/articles/microsoft-spending-billions-ai-investors-153500229.html"
+    },
+    {
+      "date": "2026-04-29",
+      "headline": "Microsoft 365 Copilot paid seats surpass 20 million",
+      "whyItMatters": "M365 Copilot paid seats reached 20M+, a ~33% sequential jump from ~15M in January 2026, with seat additions up 250% YoY. It confirms accelerating enterprise AI adoption, though ~3.3% penetration of the commercial base shows substantial runway and an unproven full monetization curve.",
+      "source": "GeekWire",
+      "sourceUrl": "https://www.geekwire.com/2026/microsoft-tops-wall-street-expectations-reports-accelerating-azure-growth-and-37b-ai-run-rate/"
+    },
+    {
+      "date": "2026-04-27",
+      "headline": "Microsoft and OpenAI restructure their agreement",
+      "whyItMatters": "The restructured deal removes Azure exclusivity and IP revenue-share payments while extending Microsoft's IP licensing through 2032; OpenAI's 20% revenue share to Microsoft continues through 2030 but is now capped. It improves Microsoft's long-term margin profile and frees Microsoft to build its own frontier models.",
+      "source": "GeekWire",
+      "sourceUrl": "https://www.geekwire.com/2026/microsoft-tops-wall-street-expectations-reports-accelerating-azure-growth-and-37b-ai-run-rate/"
+    },
+    {
+      "date": "2026-03-15",
+      "headline": "Microsoft reorganizes Copilot and consumer-AI org under Mustafa Suleyman",
+      "whyItMatters": "The March 2026 reorg consolidated Copilot and consumer-AI efforts to accelerate product velocity and prepare for in-house model integration, signaling Microsoft's intent to own more of the AI stack rather than rely solely on OpenAI.",
+      "source": "TradingKey",
+      "sourceUrl": "https://www.tradingkey.com/analysis/stocks/us-stocks/261829603-msft-q3-earnings-preview-azure-copilot-capex-tradingkey"
+    },
+    {
+      "date": "2026-05",
+      "headline": "At Build 2026, Microsoft unveils seven in-house MAI models, led by MAI-Thinking-1",
+      "whyItMatters": "The MAI Superintelligence Team (formed Nov 2025 under Suleyman) launched seven models trained from scratch on licensed data with no distillation, including Microsoft's first reasoning model (MAI-Thinking-1), a 5B-parameter MAI-Code-1-Flash for VS Code/GitHub Copilot, and MAI-Image-2.5. It marks a strategic push toward AI self-sufficiency and lower long-term inference costs versus OpenAI dependence.",
+      "source": "GeekWire",
+      "sourceUrl": "https://www.geekwire.com/2026/microsoft-unveils-seven-homegrown-ai-models-in-bid-for-long-term-self-sufficiency/"
+    },
+    {
+      "date": "2026-05",
+      "headline": "Microsoft signals shift toward consumption-based pricing for AI products",
+      "whyItMatters": "Post-earnings analysis flagged management commentary that consumption-based (usage) pricing for Copilot and AI services is coming sooner than expected, a model shift that could expand the monetizable surface beyond fixed per-seat SKUs but adds revenue-timing variability.",
+      "source": "Directions on Microsoft",
+      "sourceUrl": "https://www.directionsonmicrosoft.com/microsofts-q3-fy26-take-aways-consumption-pricing-is-coming-sooner-rather-than-later/"
+    },
+    {
+      "date": "2026-04-30",
+      "headline": "Investors question whether AI spend will pay off despite the beat",
+      "whyItMatters": "Even after a strong quarter, the market debate centers on whether near-doubling capex within two years will generate sufficient returns before depreciation pressures margins, keeping MSFT's valuation-recovery path tied to sustained Azure/Copilot acceleration.",
+      "source": "Yahoo Finance",
+      "sourceUrl": "https://finance.yahoo.com/markets/stocks/articles/microsoft-spending-billions-ai-investors-153500229.html"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "note": "Private company: no public stock, so no market multiples. Funding, valuation and traction below are dated and sourced; run-rate figures are estimates/projections, not recognized revenue.",
+  "totalRaised": 138,
+  "lastKnownValuation": "$1.3B as of 2026-01 (Accel-led Series A extension)",
+  "stage": "Series A (extended)",
+  "fundingRounds": [
+    {"round": "Seed", "date": "2024-04", "amount": 8, "amountFormatted": "$8M", "postMoneyValuationFormatted": null, "leadInvestors": ["Menlo Ventures"], "allInvestors": ["Menlo Ventures"], "source": "Sacra", "sourceUrl": "https://sacra.com/c/higgsfield/"},
+    {"round": "Series A", "date": "2025-09", "amount": 50, "amountFormatted": "$50M", "postMoneyValuationFormatted": "$1.0B", "leadInvestors": ["GFT Ventures"], "allInvestors": ["GFT Ventures", "Menlo Ventures", "AI Capital Partners", "NextEquity"], "source": "PR Newswire", "sourceUrl": "https://www.prnewswire.com/news-releases/higgsfield-announces-50m-series-a-to-propel-click-to-video-ai-for-social-media-302550070.html"},
+    {"round": "Series A Extension", "date": "2026-01", "amount": 80, "amountFormatted": "$80M", "postMoneyValuationFormatted": "$1.3B", "leadInvestors": ["Accel"], "allInvestors": ["Accel", "AI Capital Partners", "Menlo Ventures", "GFT Ventures"], "source": "TechCrunch", "sourceUrl": "https://techcrunch.com/2026/01/15/ai-video-startup-higgsfield-founded-by-ex-snap-exec-lands-1-3b-valuation/"}
+  ],
+  "tractionMetrics": [
+    {"metric": "registered users", "value": "15M+", "asOf": "2026-01", "source": "TechCrunch", "sourceUrl": "https://techcrunch.com/2026/01/15/ai-video-startup-higgsfield-founded-by-ex-snap-exec-lands-1-3b-valuation/"},
+    {"metric": "paying subscribers", "value": "~300,000", "asOf": "2026-01", "source": "Sacra", "sourceUrl": "https://sacra.com/c/higgsfield/"},
+    {"metric": "video generations per day", "value": "4.5M", "asOf": "2026-01", "source": "Sacra", "sourceUrl": "https://sacra.com/c/higgsfield/"},
+    {"metric": "cumulative social impressions", "value": "4.5B+", "asOf": "2026-01", "source": "Sacra", "sourceUrl": "https://sacra.com/c/higgsfield/"}
+  ],
+  "revenueEstimate": {"value": "~$300M annualized run-rate (estimate/projection, not recognized revenue)", "asOf": "2026-02", "source": "Sacra; Axios Pro flags as projection", "sourceUrl": "https://sacra.com/c/higgsfield/"},
+  "peers": [
+    {"name": "Runway", "lastValuation": "$5.3B", "asOf": "2026-02", "lastRaise": "$315M Series E", "source": "TechCrunch", "sourceUrl": "https://techcrunch.com/2026/02/10/ai-video-startup-runway-raises-315m-at-5-3b-valuation-eyes-more-capable-world-models/"},
+    {"name": "Synthesia", "lastValuation": "$4B", "asOf": "2026-01", "lastRaise": "$200M Series E", "source": "TechCrunch", "sourceUrl": "https://techcrunch.com/2026/01/26/synthesia-hits-4b-valuation-lets-employees-cash-in/"},
+    {"name": "Luma AI", "lastValuation": "$4B", "asOf": "2025-11", "lastRaise": "$900M Series C", "source": "CNBC", "sourceUrl": "https://www.cnbc.com/2025/11/19/luma-ai-raises-900-million-in-funding-led-by-saudi-ai-firm-humain.html"},
+    {"name": "Pika Labs", "lastValuation": "$700M", "asOf": "2024-06", "lastRaise": "$80M Series B", "source": "Maginative", "sourceUrl": "https://www.maginative.com/article/pika-labs-secures-80m-in-series-b-funding/"},
+    {"name": "HeyGen", "lastValuation": "$500M", "asOf": "2024-06", "lastRaise": "$60M (Benchmark-led)", "source": "Bloomberg", "sourceUrl": "https://www.bloomberg.com/news/articles/2024-06-20/ai-video-startup-heygen-valued-at-500-million-in-funding-round"}
+  ],
+  "ipoReadiness": "Early-stage, not near-term. Positives: explosive growth (0 to ~$300M annualized run-rate in ~11 months per Sacra), strong syndicate (Accel, Menlo, GFT), 15M+ users, $1B run-rate target for end-2026. Cautions: only Series A, $138M raised, run-rate is projection not recognized revenue, and far-better-capitalized peers (Runway $5.3B, Luma $4B, Synthesia $4B). IPO window is multiple years out.",
+  "dataConfidence": "high; funding/valuations corroborated across TechCrunch, Bloomberg, CNBC, Axios Pro, Sacra. Revenue is estimate/projection. HeyGen's rumored later ~$2B round could not be confirmed in a Tier 1/2 source and is omitted."
+}

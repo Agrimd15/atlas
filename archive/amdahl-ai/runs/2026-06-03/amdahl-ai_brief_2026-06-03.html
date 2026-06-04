@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amdahl AI · Atlas Research Brief</title>
+<link href="https://fonts.googleapis.com/css2?family=Alumni+Sans+Pinstripe&family=Albert+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* Institutional (light) design tokens: sell-side research note */
+  :root {
+    --ks-lacquer:      #ffffff;            /* paper */
+    --ks-lacquer-deep: #ffffff;            /* header */
+    --ks-raised:       #f7f9fb;            /* card / band */
+    --ks-graphite:     #f1f4f8;            /* stat strip / toc */
+    --ks-graphite-2:   #eef1f6;            /* module fill */
+    --ks-kinpaku:      #13315c;            /* navy: primary structural accent */
+    --ks-kinpaku-pale: #1f4d86;            /* navy-soft (links / ticker) */
+    --ks-kinpaku-rich: #102a4d;
+    --ks-kinpaku-deep: #0c2140;
+    --ks-accent:       #b3122b;            /* crimson: section eyebrows + wordmark */
+    --ks-patina:       #0a7d4d;            /* positive green */
+    --ks-vermilion:    #b3122b;            /* crimson (draft / risk) */
+    --ks-champagne:    #15181f;            /* headings ink */
+    --ks-body:         #2a2f37;            /* body */
+    --ks-muted:        #3d434f;
+    --ks-faint:        #727a89;
+    --ks-rule:         #dce0e7;            /* hairline */
+    --ks-rule-strong:  #c2c8d2;
+    --ks-serif:        Georgia, "Iowan Old Style", "Times New Roman", serif;
+    --ks-ease:         cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  /* ── Base ── */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Albert Sans", "Avenir Next", "Helvetica Neue", Arial, system-ui, sans-serif;
+         background: var(--ks-lacquer); color: var(--ks-body); font-size: 16.5px; line-height: 1.65; }
+  a { color: inherit; text-decoration: none; }
+  p { color: var(--ks-body); line-height: 1.75; margin-bottom: 6px; }
+  strong { color: var(--ks-champagne); }
+  .mono { font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+  .right { text-align: right; }
+
+  .wrapper { width: 100%; max-width: 1400px; margin: 0 auto; background: var(--ks-lacquer);
+              border: 1px solid var(--ks-rule); }
+
+  /* ── Header ── */
+  .header { background: var(--ks-lacquer-deep); padding: 26px 40px 20px;
+             border-bottom: 2px solid var(--ks-kinpaku); }
+  .header-top { display: flex; align-items: center; gap: 18px; margin-bottom: 10px; }
+  .company-logo { width: 44px; height: 44px; border-radius: 8px; object-fit: contain;
+                   background: var(--ks-raised); padding: 4px;
+                   border: 1px solid var(--ks-rule); flex-shrink: 0; }
+  .header-name { flex: 1; }
+  .company-name { font-family: var(--ks-serif);
+                   font-size: clamp(1.9rem, 3.4vw, 2.5rem); font-weight: 700;
+                   letter-spacing: -0.01em; line-height: 1.04; color: var(--ks-champagne);
+                   display: block; }
+  .header-badges { display: flex; align-items: center; gap: 7px; margin-top: 6px; flex-wrap: wrap; }
+  .ticker-badge { background: transparent; color: var(--ks-kinpaku);
+                   font-family: "SFMono-Regular", "Roboto Mono", monospace;
+                   font-size: 10.5px; font-weight: 700; padding: 0; border-radius: 0;
+                   letter-spacing: 0.16em; text-transform: uppercase; }
+  .stage-badge { background: var(--ks-raised); border: 1px solid var(--ks-rule);
+                  color: var(--ks-muted); font-size: 10px; font-weight: 600; padding: 2px 8px;
+                  border-radius: 2px; letter-spacing: 0.12em;
+                  font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+  .draft-badge { background: var(--ks-kinpaku); border: 1px solid var(--ks-kinpaku);
+                  color: #ffffff; font-size: 10px; font-weight: 700; padding: 2px 9px;
+                  border-radius: 2px; letter-spacing: 0.15em;
+                  font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+  .header-meta { font-size: 11.5px; color: var(--ks-faint); }
+  .header-meta a { color: var(--ks-kinpaku-pale); }
+  .verticals { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 6px; }
+  .vertical-tag { background: var(--ks-graphite); border: 1px solid var(--ks-rule);
+                   color: var(--ks-muted); font-size: 10px; padding: 2px 9px; border-radius: 3px;
+                   font-family: "SFMono-Regular", "Roboto Mono", monospace; letter-spacing: 0.06em; }
+  .trading-bar { background: var(--ks-raised); border: 1px solid var(--ks-rule); border-radius: 3px;
+                  padding: 9px 14px; margin-top: 14px; font-size: 11px; color: var(--ks-faint);
+                  font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+  .trading-bar strong { color: var(--ks-champagne); margin-right: 4px; }
+
+  /* ── Hero stats bar ── */
+  .hero-stats { display: flex; flex-wrap: wrap; background: var(--ks-graphite);
+                 border-bottom: 1px solid var(--ks-rule); }
+  /* fixed 20% basis -> exactly 5 per row; a partial last row stays left-aligned
+     under the columns instead of stretching to fill the width. */
+  .hero-card { flex: 0 0 20%; min-width: 0; padding: 13px 18px;
+                border-right: 1px solid var(--ks-rule); }
+  .hero-card:nth-child(5n) { border-right: none; }
+  .hero-card:last-child { border-right: none; }
+  .hero-label { font-size: 9.5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.13em;
+                 color: var(--ks-faint); margin-bottom: 6px; white-space: nowrap;
+                 font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+  /* big number stays on ONE line; a long head shrinks to fit rather than wrapping */
+  .hero-value { font-family: "SFMono-Regular", "Roboto Mono", monospace; font-size: 1.5rem; font-weight: 700;
+                 line-height: 1.1; color: var(--ks-kinpaku); white-space: nowrap; }
+  .hero-value.long { font-size: 1.1rem; letter-spacing: -0.01em; }
+  .hero-sub { font-family: "SFMono-Regular", "Roboto Mono", monospace; font-size: 10.5px;
+               color: var(--ks-faint); margin-top: 4px; line-height: 1.3; }
+  .hero-sub.pos { color: var(--ks-patina); }
+  /* narrow screens: let the 5-col strip reflow (print/desktop keep 5 across) */
+  @media (max-width: 820px) { .hero-card { flex-basis: 33.333%; } }
+  @media (max-width: 520px) { .hero-card { flex-basis: 50%; } }
+
+  /* ── TOC ── */
+  .toc { background: var(--ks-graphite); border-bottom: 1px solid var(--ks-rule-strong);
+          padding: 9px 40px; display: flex; flex-wrap: wrap; gap: 5px;
+          position: sticky; top: 0; z-index: 10; }
+  .toc-link { font-size: 10px; font-weight: 600; color: var(--ks-faint); padding: 3px 10px;
+               border-radius: 20px; border: 1px solid var(--ks-rule); background: transparent;
+               transition: background 150ms var(--ks-ease), color 150ms var(--ks-ease);
+               white-space: nowrap; font-family: "SFMono-Regular", "Roboto Mono", monospace;
+               letter-spacing: 0.04em; }
+  .toc-link:hover { background: var(--ks-kinpaku); color: var(--ks-lacquer-deep); border-color: var(--ks-kinpaku); }
+
+  /* ── Sections ── */
+  .section { border-bottom: 1px solid var(--ks-rule); padding: 24px 40px; scroll-margin-top: 48px; }
+  .section:last-of-type { border-bottom: none; }
+  .sec-label { font-family: "SFMono-Regular", "Roboto Mono", monospace; font-size: 10px; font-weight: 700;
+                letter-spacing: 0.15em; text-transform: uppercase; color: var(--ks-accent);
+                margin-bottom: 15px; padding-bottom: 7px; border-bottom: 1px solid var(--ks-rule); }
+  /* normal-weight metadata line under a section label (quarter, as-of, captions) —
+     keeps the eyebrow itself short and uncluttered instead of wrapping inline */
+  .sec-meta { font-family: "SFMono-Regular", "Roboto Mono", monospace; font-size: 10.5px;
+               color: var(--ks-faint); margin: -9px 0 14px; letter-spacing: 0.03em; line-height: 1.4; }
+
+  /* ── Two-col layout (overview) ── */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: start; }
+  @media (max-width: 760px) { .two-col { grid-template-columns: 1fr; } }
+  .diagram-caption { font-size: 11px; color: var(--ks-faint); margin-bottom: 10px; line-height: 1.4;
+                      font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+
+  /* ── "Understand the business" explainer (plain / technical / simple) ── */
+  .explain-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 24px; }
+  @media (max-width: 820px) { .explain-grid { grid-template-columns: 1fr; } }
+  .explain-card { background: var(--ks-raised); border: 1px solid var(--ks-rule); border-radius: 5px;
+                   padding: 15px 16px; border-top: 3px solid var(--ks-kinpaku); }
+  .explain-1 { border-top-color: var(--ks-accent); }
+  .explain-2 { border-top-color: var(--ks-patina); }
+  .explain-label { font-size: 10px; font-weight: 700; letter-spacing: 0.13em; text-transform: uppercase;
+                    color: var(--ks-kinpaku); margin-bottom: 9px;
+                    font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+  .explain-1 .explain-label { color: var(--ks-accent); }
+  .explain-2 .explain-label { color: var(--ks-patina); }
+  .explain-text { font-size: 14px; line-height: 1.6; color: var(--ks-body); }
+  .explain-list { list-style: none; padding: 0; margin: 0; }
+  .explain-list li { position: relative; padding: 5px 0 5px 16px; font-size: 14px; line-height: 1.5;
+                      color: var(--ks-body); }
+  .explain-list li:before { content: ""; position: absolute; left: 2px; top: 10px; width: 5px; height: 5px;
+                             border-radius: 50%; background: var(--ks-kinpaku); }
+  .explain-1 .explain-list li:before { background: var(--ks-accent); }
+  .explain-2 .explain-list li:before { background: var(--ks-patina); }
+
+  /* ── Differentiation table ── */
+  .diff-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  .diff-table th { text-align: left; font-size: 9px; font-weight: 700; letter-spacing: 0.1em;
+                    text-transform: uppercase; color: var(--ks-faint); padding: 0 14px 8px 0;
+                    border-bottom: 1.5px solid var(--ks-kinpaku);
+                    font-family: "SFMono-Regular", "Roboto Mono", monospace; vertical-align: bottom; }
+  .diff-table td { padding: 11px 14px 11px 0; border-bottom: 1px solid var(--ks-rule);
+                    vertical-align: top; color: var(--ks-body); line-height: 1.55; }
+  .diff-table tr:last-child td { border-bottom: none; }
+  .diff-table .diff-player { font-weight: 700; color: var(--ks-champagne); width: 17%; white-space: nowrap; }
+  .diff-table .diff-make { color: var(--ks-muted); width: 30%; }
+  .diff-table .diff-edge { color: var(--ks-body); }
+  @media (max-width: 680px) { .diff-table, .diff-table thead, .diff-table tbody, .diff-table tr, .diff-table td { display: block; width: auto; }
+    .diff-table thead { display: none; } .diff-table .diff-player { white-space: normal; padding-top: 12px; } }
+
+  /* ── Body bullet list ── */
+  .body-list { list-style: none; padding: 0; margin: 0; }
+  .body-list li { padding: 9px 0 9px 18px; position: relative; color: var(--ks-body);
+                   font-size: 15.5px; line-height: 1.6; border-bottom: 1px solid var(--ks-rule); }
+  .body-list li:last-child { border-bottom: none; }
+  .body-list li:before { content: ""; position: absolute; left: 2px; top: 14px;
+                          width: 5px; height: 5px; border-radius: 50%; background: var(--ks-kinpaku); }
+
+  /* ── Business flow diagram ── */
+  .biz-flow { display: flex; align-items: stretch; gap: 0; margin: 6px 0; }
+  .biz-col { display: flex; flex-direction: column; gap: 7px; flex: 1; min-width: 0; }
+  .biz-col-mid { flex: 1.05; }
+  .biz-col-label { font-size: 9px; text-transform: uppercase; letter-spacing: 0.14em;
+                    color: var(--ks-faint); margin-bottom: 3px; line-height: 1.3;
+                    font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+  .biz-node { padding: 9px 11px; border-radius: 4px; }
+  .biz-node-name { font-size: 12.5px; font-weight: 600; line-height: 1.25; }
+  .biz-node-sub { font-size: 10.5px; font-weight: 400; line-height: 1.3; margin-top: 2px;
+                   color: var(--ks-muted); }
+  .biz-cust { background: rgba(19,49,92,0.05); border: 1px solid rgba(19,49,92,0.18);
+               color: var(--ks-champagne); }
+  .biz-out  { background: rgba(10,125,77,0.06); border: 1px solid rgba(10,125,77,0.22);
+               color: var(--ks-champagne); }
+  .biz-platform { background: var(--ks-kinpaku); color: var(--ks-lacquer-deep); padding: 11px 12px;
+                   border-radius: 4px; font-size: 13px; font-weight: 700; text-align: center; }
+  .biz-mod { background: var(--ks-graphite-2); border: 1px solid var(--ks-rule); color: var(--ks-body);
+              padding: 8px 10px; border-radius: 4px; font-size: 12px; text-align: center; line-height: 1.3; }
+  .biz-arrow { display: flex; align-items: center; padding: 0 9px; color: var(--ks-kinpaku);
+                font-size: 18px; flex-shrink: 0; align-self: center; }
+  @media (max-width: 720px) { .biz-flow { flex-direction: column; } .biz-arrow { transform: rotate(90deg); margin: 2px auto; } }
+
+  /* ── News ── */
+  .news-item { padding: 11px 0; border-bottom: 1px solid var(--ks-rule); }
+  .news-item:last-child { border-bottom: none; }
+  .news-row { display: flex; gap: 14px; align-items: flex-start; }
+  .news-date { font-size: 10px; color: var(--ks-faint); white-space: nowrap; min-width: 74px;
+                font-family: "SFMono-Regular", "Roboto Mono", monospace; padding-top: 2px; }
+  .news-headline { font-size: 15.5px; font-weight: 600; color: var(--ks-champagne); line-height: 1.4; }
+  .news-why { font-size: 14px; color: var(--ks-muted); margin-top: 6px; margin-left: 88px; line-height: 1.6; }
+
+  /* ── Financials / metrics ── */
+  .fin-meta { font-size: 11px; color: var(--ks-faint); margin-bottom: 14px;
+               font-family: "SFMono-Regular", "Roboto Mono", monospace; letter-spacing: 0.05em; }
+  /* auto-fill (not auto-fit): a partial last row keeps card width + stays left-aligned */
+  .metrics-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                   gap: 10px; margin-bottom: 18px; }
+  .metric-card { background: var(--ks-raised); border: 1px solid var(--ks-rule); border-radius: 4px; padding: 14px 16px;
+                  min-width: 0; overflow: hidden; }
+  /* label may wrap to 2 lines (never truncate the metric name); min-height keeps
+     cards aligned whether the label is 1 or 2 lines */
+  .metric-label { font-size: 9.5px; font-weight: 500; color: var(--ks-faint); text-transform: uppercase;
+                   letter-spacing: 0.12em; margin-bottom: 6px; line-height: 1.3; min-height: 1.9em;
+                   font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+  /* big number stays on ONE line; a long/sentence-like head shrinks AND wraps inside the
+     card instead of overflowing into the neighbouring tile */
+  .metric-value { font-family: "SFMono-Regular", "Roboto Mono", monospace; font-size: 1.15rem; font-weight: 700;
+                   color: var(--ks-kinpaku); line-height: 1.2; white-space: nowrap; }
+  .metric-value.long { font-size: 0.95rem; letter-spacing: -0.01em; white-space: normal;
+                        overflow-wrap: anywhere; line-height: 1.3; }
+  .metric-value.green { color: var(--ks-patina); }
+  .metric-sub { font-size: 10.5px; color: var(--ks-faint); margin-top: 4px; line-height: 1.35;
+                 font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+  .earn-bullets { list-style: none; padding: 0; margin: 0; }
+  .earn-bullets li { padding: 8px 0 8px 16px; position: relative; font-size: 14.5px;
+                      color: var(--ks-body); border-bottom: 1px solid var(--ks-rule); line-height: 1.65; }
+  .earn-bullets li:before { content: ""; position: absolute; left: 2px; top: 14px;
+                             width: 5px; height: 5px; border-radius: 50%; background: var(--ks-patina); }
+  .earn-bullets li:last-child { border-bottom: none; }
+
+  /* ── ARR chart sources ── */
+  .chart-sources { margin-top: 8px; font-size: 9.5px; color: var(--ks-faint); }
+  .chart-source-label { font-weight: 600; letter-spacing: .06em; text-transform: uppercase; margin-right: 4px; }
+  .chart-source-link { color: var(--ks-kinpaku); text-decoration: none; border-bottom: 1px solid transparent;
+                        transition: border-color .15s; }
+  .chart-source-link:hover { border-bottom-color: var(--ks-kinpaku); }
+  .chart-source-text { color: var(--ks-faint); }
+
+  /* ── ARR chart ── */
+  .chart-row { display: flex; flex-wrap: wrap; gap: 28px 40px; align-items: flex-start; }
+  .chart-row .chart-wrap { flex: 1 1 320px; min-width: 0; }
+  .chart-caption { font-size: 10.5px; color: var(--ks-faint); margin-top: 6px; font-style: italic; }
+  .chart-wrap { margin: 4px 0 8px; }
+  .chart-eyebrow { font-size: 9px; text-transform: uppercase; letter-spacing: 0.18em;
+                    color: var(--ks-faint); margin-bottom: 12px;
+                    font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+
+  /* ── Funding timeline (flex cards) ── */
+  .tl-flex  { display: flex; align-items: center; gap: 0; overflow-x: auto;
+               padding-bottom: 6px; margin: 8px 0; }
+  .tl-card  { background: var(--ks-raised); border: 1px solid var(--ks-rule); border-radius: 3px;
+               padding: 10px 12px; min-width: 88px; text-align: center; flex-shrink: 0; }
+  .tl-arrow { color: var(--ks-kinpaku); font-size: 14px; padding: 0 4px; flex-shrink: 0; }
+  .tl-round { font-size: 8px; text-transform: uppercase; letter-spacing: 0.10em;
+               color: var(--ks-faint); font-family: "SFMono-Regular", "Roboto Mono", monospace;
+               margin-bottom: 3px; }
+  .tl-amt   { font-size: 12px; font-weight: 700; color: var(--ks-kinpaku);
+               font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+  .tl-val   { font-size: 10px; color: var(--ks-patina);
+               font-family: "SFMono-Regular", "Roboto Mono", monospace; margin-top: 2px; }
+  .tl-date  { font-size: 9px; color: var(--ks-faint); margin-top: 1px; }
+  .tl-leads { font-size: 9px; color: var(--ks-muted); margin-top: 3px; line-height: 1.3; }
+
+  /* ── News source tag ── */
+  .news-source-row { margin-left: 88px; margin-top: 4px; margin-bottom: 1px; display: flex; align-items: center; flex-wrap: wrap; gap: 4px; }
+  .news-source-label { font-size: 9px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--ks-faint); margin-right: 2px; }
+  .news-source-sep { color: var(--ks-faint); font-size: 9px; }
+  .news-source-link { font-size: 9.5px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+    color: var(--ks-kinpaku); text-decoration: none; border-bottom: 1px solid transparent;
+    transition: border-color .15s; }
+  .news-source-link:hover { border-bottom-color: var(--ks-kinpaku); }
+  .news-source-nolink { color: var(--ks-faint); }
+  /* legacy: keep so old references do not break */
+  .news-source { font-size: 9.5px; font-weight: 600; color: var(--ks-faint); margin-left: 8px;
+                  font-family: "SFMono-Regular", "Roboto Mono", monospace; letter-spacing: 0.05em;
+                  background: var(--ks-raised); border: 1px solid var(--ks-rule);
+                  padding: 1px 6px; border-radius: 3px; vertical-align: middle; }
+
+  /* ── body-p (single paragraph, no bullets) ── */
+  .body-p { color: var(--ks-body); font-size: 15.5px; line-height: 1.7; }
+
+  /* ── SEC filings ── */
+  .filings-wrap { display: flex; flex-direction: column; }
+  .filing-row { display: flex; align-items: baseline; gap: 14px; padding: 9px 0;
+                 border-bottom: 1px solid var(--ks-rule); }
+  .filing-row:last-child { border-bottom: none; }
+  .filing-row:hover .filing-go { opacity: 1; }
+  .filing-form { font-family: "SFMono-Regular", "Roboto Mono", monospace; font-weight: 700;
+                  font-size: 12.5px; color: var(--ks-kinpaku); min-width: 52px; }
+  .filing-meta { font-family: "SFMono-Regular", "Roboto Mono", monospace; font-size: 11.5px;
+                  color: var(--ks-faint); flex: 1; }
+  .filing-go { font-family: "SFMono-Regular", "Roboto Mono", monospace; font-size: 10.5px;
+                font-weight: 700; letter-spacing: 0.04em; color: var(--ks-kinpaku-pale);
+                opacity: 0.55; transition: opacity .15s; white-space: nowrap; }
+
+  /* ── Slide Kit ── */
+  .kit-grid { display: grid; grid-template-columns: 160px 1fr 1fr; gap: 24px; align-items: start; }
+  @media (max-width: 680px) { .kit-grid { grid-template-columns: 1fr; } }
+  .kit-identity { display: flex; flex-direction: column; gap: 8px; }
+  .kit-logo-lg  { width: 64px; height: 64px; border-radius: 10px; object-fit: contain;
+                   background: var(--ks-raised); padding: 6px; border: 1px solid var(--ks-rule); }
+  .kit-name { font-family: var(--ks-serif); font-size: 1.3rem;
+               font-weight: 400; color: var(--ks-champagne); line-height: 1.1; }
+  .kit-sub  { font-size: 11px; color: var(--ks-muted); }
+  .kit-link { font-size: 11px; color: var(--ks-kinpaku-pale); }
+  .kit-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; }
+  .kit-tag  { font-size: 9px; background: var(--ks-graphite); border: 1px solid var(--ks-rule);
+               color: var(--ks-kinpaku-pale); padding: 2px 7px; border-radius: 3px;
+               font-family: "SFMono-Regular", "Roboto Mono", monospace; letter-spacing: 0.04em; }
+  .kit-copy { display: flex; flex-direction: column; gap: 6px; }
+  .kit-copy-label { font-size: 8.5px; text-transform: uppercase; letter-spacing: 0.18em;
+                     color: var(--ks-faint); font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+  .kit-stat { background: var(--ks-raised); border: 1px solid var(--ks-rule); border-radius: 3px;
+               padding: 8px 12px; font-size: 12.5px; font-weight: 600; color: var(--ks-champagne);
+               font-family: "SFMono-Regular", "Roboto Mono", monospace; cursor: text; }
+  .kit-bullet { background: var(--ks-graphite); border-left: 2px solid var(--ks-kinpaku);
+                 padding: 7px 10px; font-size: 12px; color: var(--ks-body); line-height: 1.5;
+                 margin-top: 2px; }
+  .kit-assets { display: flex; flex-direction: column; gap: 6px; }
+  .kit-url  { background: var(--ks-raised); border: 1px solid var(--ks-rule); border-radius: 3px;
+               padding: 7px 10px; font-size: 10.5px; color: var(--ks-patina); word-break: break-all;
+               font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+  .kit-swatches { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+  .kit-swatch-wrap { display: flex; flex-direction: column; align-items: center; gap: 4px; cursor: default; }
+  .kit-swatch { width: 36px; height: 36px; border-radius: 6px; border: 1px solid rgba(0,0,0,.12);
+                 box-shadow: 0 1px 4px rgba(0,0,0,.4); }
+  .kit-hex { font-size: 9px; font-family: "SFMono-Regular","Roboto Mono",monospace;
+              color: var(--ks-faint); letter-spacing: .03em; text-transform: uppercase; }
+
+  /* ── Leadership ── */
+  .exec-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
+  .exec-card { background: var(--ks-raised); border: 1px solid var(--ks-rule); border-radius: 4px;
+                padding: 14px 16px; }
+  .exec-title { font-size: 9px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
+                 color: var(--ks-faint); margin-bottom: 5px; }
+  .exec-since { font-weight: 400; color: var(--ks-faint); opacity: .7; }
+  .exec-name-row { margin-bottom: 6px; }
+  .exec-name { font-size: 13px; font-weight: 700; color: var(--ks-champagne); }
+  .exec-linkedin { font-size: 13px; font-weight: 700; color: var(--ks-kinpaku);
+                    text-decoration: none; border-bottom: 1px solid transparent;
+                    transition: border-color .15s; }
+  .exec-linkedin:hover { border-bottom-color: var(--ks-kinpaku); }
+  .exec-bg { font-size: 11px; color: var(--ks-muted); line-height: 1.55; }
+
+  /* ── Risk list ── */
+  .risk-list { list-style: none; padding: 0; }
+  .risk-list li { padding: 10px 0 10px 22px; border-bottom: 1px solid var(--ks-rule);
+                   position: relative; font-size: 14.5px; color: var(--ks-body); line-height: 1.65; }
+  .risk-list li:before { content: "!"; position: absolute; left: 3px; top: 10px; width: 13px; height: 13px;
+                          border-radius: 50%; background: rgba(179,18,43,0.1);
+                          color: var(--ks-vermilion); font-size: 9px; font-weight: 900;
+                          text-align: center; line-height: 13px;
+                          font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+  .risk-list li:last-child { border-bottom: none; }
+  .risk-label { font-weight: 600; color: var(--ks-champagne); }
+
+  /* ── Comps table ── */
+  .comps-table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  .comps-table th { text-align: left; font-size: 9px; font-weight: 700; letter-spacing: 0.1em;
+                     text-transform: uppercase; color: var(--ks-faint); padding: 0 12px 8px 0;
+                     border-bottom: 1.5px solid var(--ks-kinpaku); vertical-align: bottom;
+                     font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+  .comps-table th.right { text-align: right; }
+  /* unit (LTM / YoY) parked under the header so each cell value is one clean token */
+  .th-unit { display: block; text-transform: none; font-weight: 400; font-size: 8.5px;
+              letter-spacing: 0.03em; color: var(--ks-faint); opacity: 0.85; margin-top: 2px; }
+  .comps-table td { padding: 8px 12px 8px 0; border-bottom: 1px solid var(--ks-rule);
+                     vertical-align: middle; color: var(--ks-body); }
+  /* numeric cells never wrap — a single clean token per cell */
+  .comps-table td.mono, .comps-table td.right { white-space: nowrap; }
+  .comps-table tr:last-child td { border-bottom: none; }
+  .comps-table tr:hover td { background: var(--ks-raised); }
+  .comps-table tr.subj td { background: #eef3fa; font-weight: 700; color: var(--ks-champagne); }
+  .comp-name { font-weight: 700; color: var(--ks-champagne); font-size: 13px; }
+  .comp-ticker { color: var(--ks-kinpaku-pale); font-size: 11px; font-weight: 700; }
+  .comp-type-cell { font-size: 10px; color: var(--ks-faint); white-space: nowrap; }
+  .comp-ev { vertical-align: middle; }
+  .comp-val { font-size: 13px; font-weight: 700; color: var(--ks-kinpaku); }
+  .comp-val a { color: var(--ks-kinpaku); border-bottom: 1px solid transparent; }
+  .comp-val a:hover { border-bottom-color: var(--ks-kinpaku); }
+  .comp-raise { font-weight: 700; color: var(--ks-champagne); }
+  .comp-sub { display: block; font-size: 9px; font-weight: 400; color: var(--ks-faint);
+               margin-top: 1px; white-space: nowrap; }
+  .comp-source-link { font-size: 9.5px; color: var(--ks-kinpaku); text-decoration: none;
+                       border-bottom: 1px solid transparent; transition: border-color .15s; }
+  .comp-source-link:hover { border-bottom-color: var(--ks-kinpaku); }
+  .comp-source-nolink { font-size: 9.5px; color: var(--ks-faint); }
+  .subject-row td { background: rgba(179,18,43,0.05); font-weight: 700; color: var(--ks-champagne); }
+  .subject-row td:first-child { border-left: 3px solid var(--ks-kinpaku); padding-left: 8px; color: var(--ks-kinpaku); }
+  .note-cell { color: var(--ks-faint); font-size: 11px; }
+
+  /* ── Slide bullets ── */
+  .slide-list { list-style: none; padding: 0; counter-reset: slides; }
+  .slide-list li { padding: 10px 0 10px 42px; border-bottom: 1px solid var(--ks-rule);
+                    position: relative; font-size: 13px; color: var(--ks-body); line-height: 1.7; }
+  .slide-list li:last-child { border-bottom: none; }
+  .slide-list li:before { counter-increment: slides; content: counter(slides);
+                           position: absolute; left: 0; top: 8px; width: 26px; height: 26px;
+                           border-radius: 2px; background: var(--ks-kinpaku); color: var(--ks-lacquer-deep);
+                           font-size: 11px; font-weight: 700; text-align: center; line-height: 26px;
+                           font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+
+  /* ── Diligence ── */
+  .dq-list { list-style: none; padding: 0; counter-reset: dqs; }
+  .dq-list li { padding: 10px 0 10px 42px; border-bottom: 1px solid var(--ks-rule);
+                 position: relative; font-size: 13px; color: var(--ks-body); line-height: 1.7; }
+  .dq-list li:last-child { border-bottom: none; }
+  .dq-list li:before { counter-increment: dqs; content: "Q" counter(dqs);
+                        position: absolute; left: 0; top: 8px; width: 26px; height: 26px;
+                        border-radius: 2px; background: var(--ks-raised); color: var(--ks-kinpaku);
+                        border: 1px solid var(--ks-rule); font-size: 9.5px; font-weight: 700;
+                        text-align: center; line-height: 26px;
+                        font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+
+  /* ── Chips ── */
+  .chip-list { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip { background: var(--ks-raised); border: 1px solid var(--ks-rule); color: var(--ks-muted);
+           font-size: 11.5px; padding: 3px 11px; border-radius: 20px; font-weight: 500; }
+
+  /* ── Footer ── */
+  .footer { background: var(--ks-raised); border-top: 1px solid var(--ks-rule-strong);
+             padding: 14px 40px; display: flex; justify-content: space-between; align-items: center; }
+  .footer-left { font-size: 10.5px; color: var(--ks-faint); line-height: 1.7; }
+  .footer-right { font-size: 10.5px; font-weight: 700; color: var(--ks-kinpaku);
+                   letter-spacing: 0.22em; font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+  .meta-note { font-size: 12px; color: var(--ks-muted); margin-top: 8px; }
+  .meta-note strong { color: var(--ks-champagne); }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+
+  /* ── Print / PDF (the deliverable) ──────────────────────────────────────────
+     The PDF is just this HTML printed, so all pagination lives here. Goals:
+     consistent page geometry, no block ever sliced by a page edge, no orphaned
+     headings, running context on every page, and tighter density.            */
+  @media print {
+    @page { size: Letter; margin: 16mm 12mm; }
+    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    body { background: #fff; font-size: 10.5pt; line-height: 1.45; }
+    a { color: inherit; }
+    .toc { display: none; }                              /* interactive nav only */
+    .wrapper { max-width: none; border: none; }
+
+    /* edge-to-edge: the page margin (set by the DevTools render / @page) provides
+       the side gutters, so sections sit flush to the printable area */
+    .header, .toc, .section, .footer { padding-left: 0; padding-right: 0; }
+
+    /* Keep atomic blocks whole — never sliced by a page break */
+    .hero-card, .metric-card, .explain-card, .exec-card, .tl-card, .news-item,
+    .biz-flow, .chart-wrap, .kit-grid, .filing-row,
+    .body-list li, .earn-bullets li, .risk-list li, .explain-list li,
+    .slide-list li, .dq-list li, .comps-table tr, .diff-table tr,
+    img, svg { break-inside: avoid; }
+
+    /* Never strand a heading at the foot of a page */
+    .sec-label, .sec-meta, .chart-eyebrow, .biz-col-label, .kit-copy-label,
+    .explain-label, .diagram-caption { break-after: avoid; }
+    .section { break-inside: auto; }                     /* long sections break BETWEEN items */
+    thead { display: table-header-group; }               /* repeat table headers on continued pages */
+
+    /* Print is always desktop-width, so keep the designed horizontal value chain
+       (override the narrow-screen column fallback that the print viewport triggers) */
+    .biz-flow { flex-direction: row; }
+    .biz-arrow { transform: none; align-self: center; margin: 0 4px; }
+
+    /* Density — same content, tighter so it reads in fewer pages */
+    .header { padding-top: 0; padding-bottom: 12px; }
+    .section { padding-top: 12px; padding-bottom: 12px; }
+    .footer { padding-top: 12px; padding-bottom: 0; }
+    .hero-card { padding: 9px 14px; }
+    .hero-value { font-size: 1.2rem; }
+    .hero-value.long { font-size: 0.95rem; }
+    .metric-card { padding: 10px 13px; }
+    .metrics-grid { gap: 7px; margin-bottom: 12px; }
+    .metric-value { font-size: 1.05rem; }
+    .exec-card { padding: 11px 13px; }
+    .explain-card { padding: 10px 13px; }
+    .explain-grid { gap: 9px; margin-bottom: 14px; }
+    .explain-list li { padding: 3px 0 3px 16px; font-size: 12.5px; line-height: 1.45; }
+    .body-list li { padding: 6px 0 6px 18px; font-size: 13px; line-height: 1.5; }
+    .earn-bullets li, .risk-list li { padding-top: 6px; padding-bottom: 6px; }
+    .news-item { padding: 8px 0; }
+    .news-why { margin-top: 4px; }
+    .chart-wrap { margin: 2px 0 4px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- ① HEADER: Logo + Name + Badges -->
+  <div class="header">
+    <div class="header-top">
+      <img class="company-logo" src="https://logo.clearbit.com/www.amdahl.co" alt="Amdahl AI logo" onerror="this.style.display='none'">
+      <div class="header-name">
+        <span class="company-name">Amdahl AI</span>
+        <div class="header-badges">
+          <span class="ticker-badge">Private</span>
+          <span class="stage-badge">SEED (A16Z SPEEDRUN SR006)</span>
+          <span class="draft-badge">DRAFT</span>
+        </div>
+      </div>
+      <div class="header-meta" style="text-align:right">
+        <a href="https://www.amdahl.co" target="_blank">www.amdahl.co</a><br>
+        Atlas &nbsp;·&nbsp; June 03, 2026
+      </div>
+    </div>
+    <div class="verticals"><span class="vertical-tag">B2B SaaS</span><span class="vertical-tag">AI / Agentic GTM</span><span class="vertical-tag">Data Context Layer</span><span class="vertical-tag">Revenue Intelligence</span></div>
+    
+  </div>
+
+  <!-- ② HERO STATS: 5 KPIs at a glance -->
+  <div class="hero-stats"><div class="hero-card"><div class="hero-label">Employees</div><div class="hero-value" style="color:var(--ks-faint)">~5</div><div class="hero-sub">per a16z Speedrun; unverified</div></div></div>
+
+  <!-- ③ TOC -->
+  <div class="toc"><a href="#overview" class="toc-link">Overview</a> <a href="#diff" class="toc-link">Differs</a> <a href="#leadership" class="toc-link">Leadership</a> <a href="#product" class="toc-link">Revenue Model</a> <a href="#news" class="toc-link">News</a> <a href="#risks" class="toc-link">Risks</a> <a href="#comps" class="toc-link">Comps</a> <a href="#funding" class="toc-link">Funding</a> <a href="#investors" class="toc-link">Investors</a> <a href="#bullets" class="toc-link">Bullets</a> <a href="#diligence" class="toc-link">Diligence</a> <a href="#slidekit" class="toc-link">Slide Kit</a></div>
+
+  <!-- ④ BUSINESS OVERVIEW: explainer (3 levels) + bullets + value-chain diagram -->
+  <div class="section" id="overview"><div class="sec-label">Business Overview</div><div class="explain-grid"><div class="explain-card explain-0"><div class="explain-label">Plain English</div><ul class='explain-list'><li>Amdahl AI is a very young startup (founded 2025, around five people, backed by Andreessen Horowitz's Speedrun program).</li><li>It builds software that gathers all the messy data a sales-and-marketing team generates, call recordings, CRM records, support tickets, notes, and organizes it into a clean, trustworthy 'context layer.' The pitch is that AI sales agents only work well if they're fed good, structured data with sources attached, and Amdahl provides exactly that layer so the AI's answers can be traced back to where they came from.</li></ul></div><div class="explain-card explain-1"><div class="explain-label">The technical version</div><ul class='explain-list'><li>Amdahl AI offers a customer-intelligence context engine that unifies structured (CRM, analytics) and unstructured (calls, support docs, notes) GTM data into a queryable, source-attributed context layer.</li><li>It exposes that layer to AI agents via an MCP (Model Context Protocol) server and a REST API, and ships use-case workflows for Sales, Sales Enablement, Product Marketing and Content Marketing.</li><li>The company reports SOC 2 Type II, zero data retention with Anthropic, and no training on customer data.</li><li>Self-reported (unverified) benchmarks claim it beats standard connectors 8 of 10 questions (4.1/5 vs 2.4/5) with ~400x lower token usage while improving accuracy.</li></ul></div><div class="explain-card explain-2"><div class="explain-label">Explained simply</div><ul class='explain-list'><li>Think of an AI sales assistant as a new hire who's only as good as the briefing you give it.</li><li>Most companies' briefings are a mess, scattered across call recordings, spreadsheets, support tickets and Slack.</li><li>Amdahl AI is the team member who reads all of that and turns it into one clean, organized, footnoted briefing, so the AI assistant gives answers you can actually trust and trace.</li><li>It's a tiny, brand-new company (founded 2025, ~5 people, backed by a16z's startup program), so almost everything known about it comes from the company itself rather than independent reporting.</li></ul></div></div><div class="two-col"><div><ul class='body-list'><li>Amdahl AI (amdahl.co / amdahl.ai) is a seed-stage startup building a 'customer-intelligence context engine' for AI go-to-market teams.</li><li>It unifies structured (CRM, analytics) and unstructured (calls, support, docs) GTM data into a cited, source-attributed context layer for AI agents.</li><li>Founded in 2025; ~5 employees; HQ San Francisco; a member of a16z Speedrun's SR006 cohort, with Precursor Ventures also listed as an investor.</li><li>Founders: Annette Sung (CEO), Robert Khoury (CTO), Arya Soltanieh (lead engineer); the name is an homage to Gene Amdahl, NOT the historical Amdahl Corp.</li><li>It is delivered via GTM-stack integrations plus an MCP server and REST API; compliance posture cited as SOC 2 Type II and zero data retention with Anthropic.</li><li>Company-reported traction: ~20 signed design partners and a ~$4M sales pipeline naming prospects like Instacart, OpenTable, Airwallex and Stripe (prospects, not paying customers).</li><li>CONFIDENCE CAVEAT: there is no Tier-1 press coverage and no confirmed funding amount, valuation, or revenue, most facts here are self-reported and unverified.</li><li>It is a private company with no stock ticker and no live market data; figures should be treated as directional pending diligence.</li></ul></div><div><div class="diagram-caption">How the business works, left to right: who buys, what the platform provides, and the payoff.</div>
+    <div class="biz-flow">
+      <div class="biz-col">
+        <div class="biz-col-label">CUSTOMERS &middot; WHAT THEY NEED</div>
+        <div class="biz-node biz-cust"><div class="biz-node-name">~20 signed design partners (count company-reported; names undisclosed)</div></div><div class="biz-node biz-cust"><div class="biz-node-name">Pipeline names cited by company: Instacart, OpenTable, Airwallex, Stripe (prospects, NOT confirmed paying customers)</div></div>
+      </div>
+      <div class="biz-arrow">&#8594;</div>
+      <div class="biz-col biz-col-mid">
+        <div class="biz-col-label">PLATFORM</div>
+        <div class="biz-platform">Amdahl AI</div>
+        <div class="biz-mod">B2B SaaS</div><div class="biz-mod">AI / Agentic GTM</div><div class="biz-mod">Data Context Layer</div>
+      </div>
+      <div class="biz-arrow">&#8594;</div>
+      <div class="biz-col">
+        <div class="biz-col-label">VALUE DELIVERED</div>
+        <div class="biz-node biz-out"><div class="biz-node-name">Data & Analytics Platform</div></div><div class="biz-node biz-out"><div class="biz-node-name">Go-To-Market Acceleration</div></div>
+      </div>
+    </div></div></div></div>
+
+  <!-- ④a HOW BROADCOM IS DIFFERENT (vs peers) -->
+  <div class="section" id="diff"><div class="sec-label">How Amdahl Is Different</div><table class="diff-table"><thead><tr><th class="diff-player">Player</th><th class="diff-make">What they make</th><th class="diff-edge">How Amdahl differs</th></tr></thead><tbody><tr><td class="diff-player">Standard CRM / RAG connectors</td><td class="diff-make">Generic pipes that dump raw records into an LLM</td><td class="diff-edge"></td></tr><tr><td class="diff-player">Gong / revenue intelligence</td><td class="diff-make">Conversation analytics on sales calls</td><td class="diff-edge"></td></tr><tr><td class="diff-player">Clay</td><td class="diff-make">GTM data enrichment / outbound lists</td><td class="diff-edge"></td></tr><tr><td class="diff-player">Glean / enterprise-context startups</td><td class="diff-make">Company-wide enterprise search/assistant context</td><td class="diff-edge"></td></tr></tbody></table></div>
+
+  <!-- ④b EXECUTIVE LEADERSHIP -->
+  <div class="section" id="leadership"><div class="sec-label">Executive Leadership</div><div class="exec-grid"><div class="exec-card"><div class="exec-title">Co-Founder & CEO</div><div class="exec-name-row"><span class="exec-name">Annette Sung</span></div><div class="exec-bg">Self-described 10+ years building product and content-marketing engines for venture-backed startups (seed to Series C); frequent speaker on 'agentic marketing' / GTM-as-execution-system.</div></div><div class="exec-card"><div class="exec-title">Co-Founder & CTO</div><div class="exec-name-row"><span class="exec-name">Robert Khoury</span></div><div class="exec-bg">Listed as co-founder/CTO on the a16z Speedrun profile and company site; team described collectively as ex-Databricks/Coinbase/GTM operators (individual history unconfirmed).</div></div><div class="exec-card"><div class="exec-title">Co-Founder & Lead Engineer</div><div class="exec-name-row"><span class="exec-name">Arya Soltanieh</span></div><div class="exec-bg">Listed as co-founder/lead engineer on the a16z Speedrun profile and company site; specific prior background not individually attributed.</div></div></div></div>
+
+  <!-- ⑤ PRODUCT & REVENUE MODEL -->
+  <div class="section" id="product"><div class="sec-label">Product &amp; Revenue Model</div><ul class='body-list'><li>A customer-intelligence context engine: ingest GTM data from across the stack (Salesforce, HubSpot, Gong, Slack, Apollo, 6sense, Clay and others), structure and enrich it with ML, and expose a queryable, source-attributed 'context layer' to AI agents via an MCP server and REST API. Use-case workflows target Sales, Sales Enablement, Product Marketing and Content Marketing.</li><li>Pricing is undisclosed; the apparent model is a subscription/contract sold to GTM teams, currently via design partners.</li><li>Self-reported benchmarks (unverified) claim large accuracy and token-efficiency gains versus standard connectors.</li></ul></div>
+
+  <!-- ⑥ RECENT NEWS -->
+  <div class="section" id="news"><div class="sec-label">Recent News</div><div class="news-item"><div class="news-row"><span class="news-date">2025-01-01</span><span class="news-headline">Amdahl AI emerges from a16z Speedrun (SR006); self-reports ~20 design partners and ~$4M pipeline</span></div><div class="news-source-row"><span class="news-source-label">Source:</span> <a class="news-source-link" href="https://speedrun.a16z.com/companies/amdahl" target="_blank" rel="noopener">a16z Speedrun</a></div><div class="news-why">The company's launch/positioning is the primary public signal of existence and early traction, but the figures are self-reported via its a16z Speedrun listing and site, with no independent Tier-1 confirmation, so they should be treated as directional marketing claims, not verified metrics.</div></div></div>
+
+  <!-- ⑦ FINANCIALS / EARNINGS -->
+  
+
+  <!-- ⑧ ARR GROWTH CHART -->
+  
+
+  <!-- ⑨ KEY RISKS -->
+  <div class="section" id="risks"><div class="sec-label">Key Risks &amp; Debates</div><ul class="risk-list"><li><span class='risk-label'>Information risk:</span> no Tier-1 press coverage; nearly all data is self-reported, so the entire profile carries high uncertainty.</li><li><span class='risk-label'>Stage risk:</span> seed-stage, ~5 people, founded 2025, high failure base rate; no confirmed priced round, revenue, or valuation.</li><li><span class='risk-label'>Traction quality:</span> the ~$4M 'pipeline' and named logos (Instacart, OpenTable, Airwallex, Stripe) are prospects, not paying customers; design-partner-to-paid conversion is unproven.</li><li><span class='risk-label'>Crowded, fast-moving category:</span> the 'context layer for AI agents' space is filling quickly (RAG connectors, revenue-intelligence incumbents like Gong, enterprise-context players like Glean), with low switching costs.</li><li><span class='risk-label'>Platform dependence:</span> relies on third-party GTM tools (CRM, Gong, Slack) and on LLM providers (Anthropic) for the underlying intelligence.</li><li><span class='risk-label'>Defensibility:</span> an MCP/connector-plus-structuring layer may be commoditized by platform vendors or model providers shipping native context tooling.</li><li><span class='risk-label'>Key-person concentration:</span> a three-founder, ~5-person team; execution hinges on a tiny group.</li></ul></div>
+
+  <!-- ⑩ COMPARABLE COMPANIES -->
+  <div class="section" id="comps"><div class="sec-label">Comparable Companies</div>
+    <table class="comps-table comps-private">
+      <thead><tr><th class="comp-name-col">Company</th><th>Category</th><th class="right">Last Valuation</th><th class="right">Last Raise</th><th>Note</th></tr></thead>
+      <tbody><tr class="subj"><td class="comp-name">Amdahl AI</td><td class="comp-type-cell">Subject</td><td class="mono right comp-val"></td><td class="mono right comp-raise">a16z Speedrun (2025)</td><td class="note-cell"></td></tr><tr><td class="comp-name">Clay</td><td class="comp-type-cell">GTM data enrichment</td><td class="mono right comp-val"><a class="comp-source-link" href="https://techcrunch.com/2025/08/05/clay-confirms-it-closed-100m-round-at-3-1b-valuation/" target="_blank" rel="noopener">$3.1B</a></td><td class="mono right comp-raise">$100M<div class="comp-sub">Series C (Aug 2025</div></td><td class="note-cell">GTM data enrichment platform; adjacent Amdahl integration partner; ~$100M ARR run-rate</td></tr><tr><td class="comp-name">Gong</td><td class="comp-type-cell">Revenue intelligence</td><td class="mono right comp-val"><a class="comp-source-link" href="https://techcrunch.com/2025/03/05/revenue-prediction-startup-gong-surpasses-300m-arr-indicating-potential-ipo-path/" target="_blank" rel="noopener">$7.25B</a></td><td class="mono right comp-raise">$250M<div class="comp-sub">Series E (Jun 2021</div></td><td class="note-cell">Incumbent conversation-analytics platform; ~$500M ARR run-rate; single-modality but a natural GTM-context data source</td></tr><tr><td class="comp-name">Glean</td><td class="comp-type-cell">Enterprise context / search</td><td class="mono right comp-val"><a class="comp-source-link" href="https://techcrunch.com/2025/06/10/enterprise-ai-startup-glean-lands-a-7-2b-valuation/" target="_blank" rel="noopener">$7.2B</a></td><td class="mono right comp-raise">$150M<div class="comp-sub">Series F (Jun 2025</div></td><td class="note-cell">Enterprise-wide context assistant; $100M ARR; broader scope than Amdahl but validates the GTM context-layer thesis</td></tr><tr><td class="comp-name">Generic RAG connectors</td><td class="comp-type-cell">Baseline</td><td class="mono right comp-val"></td><td class="mono right comp-raise"></td><td class="note-cell">Commodity do-nothing alternative; low cost, low structure, no GTM specificity</td></tr></tbody>
+    </table><div class="chart-sources"><span class="chart-source-label">Sources:</span> Private valuations and rounds from the cited reporting (TechCrunch, Bloomberg, CNBC, Sacra, PitchBook). These are last-round marks, not market prices, and the dates differ by company.</div></div>
+
+  <!-- ⑩b COMPETITORS (if no comps table) -->
+  
+
+  <!-- ⑩c PRIMARY FILINGS (SEC EDGAR) -->
+  
+
+  <!-- ⑪ FUNDING TIMELINE -->
+  <div class="section" id="funding"><div class="sec-label">Funding History</div><div class="tl-scroll"><div class="tl-flex">
+        <div class="tl-card">
+          <div class="tl-round">a16z Speedrun (SR006)</div>
+          <div class="tl-amt">Undisclosed</div>
+          
+          <div class="tl-date">2025</div>
+          <div class="tl-leads">a16z Speedrun, Precursor Ventures</div>
+        </div>
+        </div></div></div>
+
+  <!-- ⑫ INVESTORS -->
+  <div class="section" id="investors"><div class="sec-label">Notable Investors</div><div class='chip-list'><span class='chip'>a16z Speedrun</span><span class='chip'>Precursor Ventures</span></div></div>
+
+  <!-- ⑬ IPO READINESS -->
+  <div class="section"><div class="sec-label">IPO Readiness</div><ul class='body-list'><li>Not applicable near-term.</li><li>Amdahl AI is a seed-stage company (founded 2025, ~5 employees) backed by a16z Speedrun (program checks up to $1M) with Precursor Ventures also listed.</li><li>No priced round, revenue, or valuation has been confirmed by any reputable source, and reported customer names (Instacart, OpenTable, Airwallex, Stripe) are pipeline/prospects, not paying customers.</li><li>An IPO is many years and several orders of magnitude of scale away; the near-term question is product-market fit and converting design partners to paid.</li></ul></div>
+
+  <!-- ⑭ SLIDE-READY BULLETS -->
+  <div class="section" id="bullets"><div class="sec-label">Slide-Ready Bullets</div><ol class="slide-list"><li>Seed-stage (2025) a16z Speedrun startup building a cited 'context layer' that feeds clean, source-attributed GTM data to AI agents.</li><li>Founders Annette Sung (CEO), Robert Khoury (CTO), Arya Soltanieh; ~5 people; named after Gene Amdahl (not the historical Amdahl Corp).</li><li>Delivered via GTM integrations + MCP server + REST API; cites SOC 2 Type II and zero data retention with Anthropic.</li><li>Company-reported ~20 design partners and ~$4M pipeline (Instacart, OpenTable, Airwallex, Stripe), prospects, not paying customers.</li><li>CONFIDENCE CAVEAT: no Tier-1 coverage, no confirmed funding/valuation/revenue; private, no ticker, verify everything in diligence.</li></ol></div>
+
+  <!-- ⑮ DILIGENCE QUESTIONS -->
+  <div class="section" id="diligence"><div class="sec-label">Smart Diligence Questions</div><ol class="dq-list"><li>What is the actual funding to date, is there a priced seed round beyond the a16z Speedrun check, at what amount and valuation, and who are the confirmed investors on the cap table?</li><li>Of the ~20 'design partners' and the named pipeline (Instacart, OpenTable, Airwallex, Stripe), how many are paying, at what ACV, and what is retention/usage so far?</li><li>What is the moat against platform/model vendors (Salesforce, Gong, Anthropic/OpenAI) shipping native context tooling, is the defensibility in data structuring, integrations, or workflow, and can the self-reported accuracy/token benchmarks be independently reproduced?</li></ol></div>
+
+  <!-- ⑯ SLIDE KIT -->
+  <div class="section" id="slidekit">
+    <div class="sec-label">Slide Kit</div>
+    <div class="sec-meta">Logo, stats, and copy-paste artifacts</div>
+    
+    <div class="kit-grid">
+      <div class="kit-identity">
+        <img src="https://logo.clearbit.com/www.amdahl.co" class="kit-logo-lg" alt="Amdahl AI logo" onerror="this.style.display='none'">
+        <div class="kit-name">Amdahl AI</div>
+        <div class="kit-sub">SEED (A16Z SPEEDRUN SR006) · Not disclosed — no reputable source</div>
+        <a href="https://www.amdahl.co" class="kit-link" target="_blank">www.amdahl.co</a>
+        <div class="kit-tags"><span class="kit-tag">B2B SaaS</span><span class="kit-tag">AI / Agentic GTM</span><span class="kit-tag">Data Context Layer</span></div>
+      </div>
+      <div class="kit-copy">
+        <div class="kit-copy-label">COPY-PASTE STATS</div>
+        <div class="kit-stat">Valued at Not disclosed — no reputable source</div>
+        <div class="kit-copy-label" style="margin-top:14px">TOP 3 SLIDE BULLETS</div>
+        <div class="kit-bullet">Seed-stage (2025) a16z Speedrun startup building a cited 'context layer' that feeds clean, source-attributed GTM data to AI agents.</div><div class="kit-bullet">Founders Annette Sung (CEO), Robert Khoury (CTO), Arya Soltanieh; ~5 people; named after Gene Amdahl (not the historical Amdahl Corp).</div><div class="kit-bullet">Delivered via GTM integrations + MCP server + REST API; cites SOC 2 Type II and zero data retention with Anthropic.</div>
+      </div>
+      <div class="kit-assets">
+        <div class="kit-copy-label">BRAND COLORS</div>
+        <div class="kit-swatches"><div class="kit-swatch-wrap" title="#5B5BD6"><div class="kit-swatch" style="background:#5B5BD6"></div><div class="kit-hex">#5B5BD6</div></div><div class="kit-swatch-wrap" title="#14142B"><div class="kit-swatch" style="background:#14142B"></div><div class="kit-hex">#14142B</div></div><div class="kit-swatch-wrap" title="#6B7280"><div class="kit-swatch" style="background:#6B7280"></div><div class="kit-hex">#6B7280</div></div></div>
+        <div class="kit-copy-label" style="margin-top:14px">BRAND TAGS</div>
+        <div class="kit-tags"><span class="kit-tag">B2B SaaS</span><span class="kit-tag">AI / Agentic GTM</span><span class="kit-tag">Data Context Layer</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-left">
+      Sources: Company IR, earnings transcripts, Bloomberg, SEC filings, Sacra, Crunchbase, yfinance<br>
+      DRAFT for internal use only. Human review required before distribution.
+    </div>
+    <div class="footer-right">ATLAS</div>
+  </div>
+
+</div>
+</body>
+</html>

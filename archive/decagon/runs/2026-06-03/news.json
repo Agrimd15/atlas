@@ -1,0 +1,95 @@
+{
+  "recentNews": [
+    {
+      "date": "2026-05-19",
+      "headline": "Decagon ranks No. 38 on CNBC's 2026 Disruptor 50 list",
+      "whyItMatters": "Third-party validation from a brand-name list signals Decagon has crossed from hot startup to category bellwether. CNBC pegs cumulative funding at ~$481M and reiterates 100+ enterprise logos including Avis Budget Group, Block, Deutsche Telekom, Affirm and Chime, useful corroboration of scale for diligence.",
+      "sources": [
+        {"name": "CNBC", "url": "https://www.cnbc.com/2026/05/19/decagon-cnbc-disruptor-50-ranking.html"},
+        {"name": "CNBC", "url": "https://www.cnbc.com/2026/05/19/2026-cnbc-disruptor-50-rankings-full-list-companies.html"}
+      ]
+    },
+    {
+      "date": "2026-03-07",
+      "headline": "Decagon launches Proactive Agents: outbound voice and cross-channel user memory",
+      "whyItMatters": "Moves Decagon from reactive deflection (answering inbound tickets) to proactive, revenue-adjacent outreach (outbound calls, callbacks, campaigns) plus persistent customer memory across channels. This expands the TAM beyond cost-center support toward 'agentic commerce' and retention, a deliberate land-and-expand wedge against incumbents.",
+      "sources": [
+        {"name": "Business Wire", "url": "https://www.businesswire.com/news/home/20260307486723/en/Decagon-Unveils-Proactive-Agents-The-AI-Concierge-for-Every-Customer-In-The-Agentic-Commerce-Era"},
+        {"name": "Decagon", "url": "https://decagon.ai/blog/spring26-product-launch"}
+      ]
+    },
+    {
+      "date": "2026-03-04",
+      "headline": "Decagon completes first employee tender offer at $4.5B valuation",
+      "whyItMatters": "A tender so soon after the Series D lets 300+ employees take liquidity at the latest mark, a retention lever in a fierce AI talent market and a signal of demand-side investor appetite for secondary exposure. Confirms named logos Avis Budget Group, 1-800-Flowers, Quince, Oura Health and Away, and 100+ enterprise customers.",
+      "sources": [
+        {"name": "TechCrunch", "url": "https://techcrunch.com/2026/03/04/decagon-completes-first-tender-offer-at-4-5b-valuation/"}
+      ]
+    },
+    {
+      "date": "2026-01-28",
+      "headline": "Decagon raises $250M Series D at $4.5B valuation, led by Coatue and Index Ventures",
+      "whyItMatters": "Valuation tripled from $1.5B to $4.5B in roughly seven months, one of the steepest mark-ups in 2025-26 AI application software. Crossover-investor lead (Coatue, Index) with a16z, Forerunner and Ribbit following suggests positioning for a late-stage/pre-IPO trajectory and intensifying competition for the customer-experience AI category.",
+      "sources": [
+        {"name": "Bloomberg", "url": "https://www.bloomberg.com/news/articles/2026-01-28/ai-customer-support-startup-decagon-valued-at-4-5-billion"},
+        {"name": "Business Wire", "url": "https://www.businesswire.com/news/home/20260128580542/en/Decagons-Valuation-Triples-to-$4.5-Billion-as-it-Ushers-in-the-Age-of-AI-Concierge"},
+        {"name": "Decagon", "url": "https://decagon.ai/blog/series-d-announcement"}
+      ]
+    },
+    {
+      "date": "2025-06-23",
+      "headline": "Decagon raises $131M Series C at $1.5B valuation, co-led by Accel and a16z growth",
+      "whyItMatters": "The round that minted Decagon's unicorn status and reportedly drew ~5x oversubscription, evidence the AI-concierge thesis was already a competitive funding contest a year before the Series D. Anchors the comp set for valuing AI-native CX vendors against legacy support software.",
+      "sources": [
+        {"name": "Business Wire", "url": "https://www.businesswire.com/news/home/20250623894798/en/Decagon-Raises-$131M-at-$1.5B-Valuation-to-Deliver-Concierge-Customer-Experience-with-AI-Agents"},
+        {"name": "FinSMEs", "url": "https://www.finsmes.com/2025/06/decagon-raises-131m-in-series-c-funding-at-1-5b-valuation.html"},
+        {"name": "Decagon", "url": "https://decagon.ai/resources/series-c-announcement"}
+      ]
+    },
+    {
+      "date": "2025-02-24",
+      "headline": "Decagon launches Voice agents via partnership with ElevenLabs",
+      "whyItMatters": "Adds the phone channel, the largest and stickiest segment of enterprise support, on top of chat/email, materially expanding addressable spend per customer. Outsourcing the voice model layer to ElevenLabs lets Decagon move fast while keeping its differentiation in the agentic orchestration 'brain', a buy-vs-build choice worth probing on margin and dependency risk.",
+      "sources": [
+        {"name": "ElevenLabs", "url": "https://elevenlabs.io/blog/decagon"},
+        {"name": "Decagon", "url": "https://decagon.ai/blog/decagon-voice"}
+      ]
+    },
+    {
+      "date": "2024-10-15",
+      "headline": "Decagon raises $65M Series B led by Bain Capital Ventures ($100M total to date)",
+      "whyItMatters": "A ~4x valuation step-up within months of Series A showed early traction was real, not just AI-hype froth. Establishes the rapid round-stacking cadence (A to B to C to D in under two years) that defines Decagon's funding story and stress-tests how durable the underlying ARR growth is.",
+      "sources": [
+        {"name": "Business Wire", "url": "https://www.businesswire.com/news/home/20241015912157/en/Decagon-Raises-$100M-To-date-to-Build-AI-Agents-That-Change-How-Work-Is-Done"},
+        {"name": "Bain Capital Ventures", "url": "https://baincapitalventures.com/insight/why-we-backed-decagon-ai/"},
+        {"name": "Decagon", "url": "https://decagon.ai/blog/series-b"}
+      ]
+    },
+    {
+      "date": "2024-06-18",
+      "headline": "Decagon emerges from stealth with $35M ($5M seed + $30M Series A) from a16z and Accel",
+      "whyItMatters": "The origin datapoint and the start of the comp ladder; debut logos (Eventbrite, Bilt, Webflow, Substack, Rippling) plus a deep angel roster (Box, Airtable, Okta, Klaviyo founders) gave early credibility that helped compound subsequent rounds. Founding team (Jesse Zhang CEO, Ashwin Sreenivas CTO) confirmed here.",
+      "sources": [
+        {"name": "TechCrunch", "url": "https://techcrunch.com/2024/06/18/decagon-claims-its-customers-service-bots-are-smarter-than-average/"},
+        {"name": "VentureBeat", "url": "https://venturebeat.com/ai/decagon-emerges-from-stealth-to-provide-human-like-ai-agents-transforming-customer-support-for-enterprises"},
+        {"name": "Decagon", "url": "https://decagon.ai/blog/series-a"}
+      ]
+    }
+  ],
+  "sources": [
+    {"name": "Bloomberg", "url": "https://www.bloomberg.com/news/articles/2026-01-28/ai-customer-support-startup-decagon-valued-at-4-5-billion"},
+    {"name": "TechCrunch", "url": "https://techcrunch.com/2026/03/04/decagon-completes-first-tender-offer-at-4-5b-valuation/"},
+    {"name": "TechCrunch", "url": "https://techcrunch.com/2024/06/18/decagon-claims-its-customers-service-bots-are-smarter-than-average/"},
+    {"name": "CNBC", "url": "https://www.cnbc.com/2026/05/19/decagon-cnbc-disruptor-50-ranking.html"},
+    {"name": "The Information", "url": "https://www.theinformation.com/articles/customer-support-ai-startup-decagon-talks-raise-4-billion-valuation"},
+    {"name": "Sacra", "url": "https://sacra.com/c/decagon/"},
+    {"name": "Business Wire", "url": "https://www.businesswire.com/news/home/20260128580542/en/Decagons-Valuation-Triples-to-$4.5-Billion-as-it-Ushers-in-the-Age-of-AI-Concierge"},
+    {"name": "Business Wire", "url": "https://www.businesswire.com/news/home/20260307486723/en/Decagon-Unveils-Proactive-Agents-The-AI-Concierge-for-Every-Customer-In-The-Agentic-Commerce-Era"},
+    {"name": "Business Wire", "url": "https://www.businesswire.com/news/home/20250623894798/en/Decagon-Raises-$131M-at-$1.5B-Valuation-to-Deliver-Concierge-Customer-Experience-with-AI-Agents"},
+    {"name": "Business Wire", "url": "https://www.businesswire.com/news/home/20241015912157/en/Decagon-Raises-$100M-To-date-to-Build-AI-Agents-That-Change-How-Work-Is-Done"},
+    {"name": "ElevenLabs", "url": "https://elevenlabs.io/blog/decagon"},
+    {"name": "OpenAI", "url": "https://openai.com/index/decagon/"},
+    {"name": "Bain Capital Ventures", "url": "https://baincapitalventures.com/insight/why-we-backed-decagon-ai/"},
+    {"name": "Decagon", "url": "https://decagon.ai/blog/series-d-announcement"}
+  ]
+}

@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Snowflake - Alfred Research Brief</title>
+<link href="https://fonts.googleapis.com/css2?family=Alumni+Sans+Pinstripe&family=Albert+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ── Neo Kinpaku design tokens ── */
+  :root {
+    --ks-lacquer:      oklch(7%  0.006 95);
+    --ks-lacquer-deep: oklch(4%  0.004 95);
+    --ks-raised:       oklch(11% 0.006 95);
+    --ks-graphite:     oklch(15% 0.008 95);
+    --ks-graphite-2:   oklch(19% 0.008 95);
+    --ks-kinpaku:      oklch(84% 0.19  80);
+    --ks-kinpaku-pale: oklch(86% 0.07  84);
+    --ks-kinpaku-rich: oklch(77% 0.13  82);
+    --ks-kinpaku-deep: oklch(61% 0.085 78);
+    --ks-patina:       oklch(70% 0.12 188);
+    --ks-vermilion:    oklch(58% 0.15  35);
+    --ks-champagne:    oklch(91% 0 0);
+    --ks-body:         oklch(88% 0 0);
+    --ks-muted:        oklch(72% 0 0);
+    --ks-faint:        oklch(62% 0 0);
+    --ks-rule:         oklch(78% 0 0 / 0.16);
+    --ks-rule-strong:  oklch(74% 0.09 82 / 0.6);
+    --ks-ease:         cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  /* ── Base ── */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Albert Sans", "Avenir Next", "Helvetica Neue", Arial, system-ui, sans-serif;
+         background: var(--ks-lacquer); color: var(--ks-body); font-size: 14px; line-height: 1.75; }
+  a { color: inherit; text-decoration: none; }
+  p { color: var(--ks-body); line-height: 1.75; margin-bottom: 6px; }
+  strong { color: var(--ks-champagne); }
+  .mono { font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+  .right { text-align: right; }
+
+  .wrapper { max-width: 920px; margin: 0 auto; background: var(--ks-lacquer);
+              border: 1px solid var(--ks-rule); }
+
+  /* ── Header ── */
+  .header { background: var(--ks-lacquer-deep); padding: 28px 40px 22px;
+             border-bottom: 1px solid var(--ks-rule-strong); }
+  .header-top { display: flex; align-items: center; gap: 18px; margin-bottom: 10px; }
+  .company-logo { width: 44px; height: 44px; border-radius: 8px; object-fit: contain;
+                   background: var(--ks-raised); padding: 4px;
+                   border: 1px solid var(--ks-rule); flex-shrink: 0; }
+  .header-name { flex: 1; }
+  .company-name { font-family: "Alumni Sans Pinstripe", "Albert Sans", Arial, sans-serif;
+                   font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 300;
+                   letter-spacing: -0.01em; line-height: 1.0; color: var(--ks-champagne);
+                   display: block; }
+  .header-badges { display: flex; align-items: center; gap: 7px; margin-top: 6px; flex-wrap: wrap; }
+  .ticker-badge { background: var(--ks-kinpaku); color: var(--ks-lacquer-deep);
+                   font-family: "SFMono-Regular", "Roboto Mono", monospace;
+                   font-size: 10px; font-weight: 700; padding: 3px 9px; border-radius: 2px;
+                   letter-spacing: 0.15em; }
+  .stage-badge { background: var(--ks-raised); border: 1px solid var(--ks-rule);
+                  color: var(--ks-muted); font-size: 10px; font-weight: 600; padding: 2px 8px;
+                  border-radius: 2px; letter-spacing: 0.12em;
+                  font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+  .draft-badge { background: oklch(58% 0.15 35 / 0.12); border: 1px solid oklch(58% 0.15 35 / 0.4);
+                  color: var(--ks-vermilion); font-size: 10px; font-weight: 700; padding: 2px 8px;
+                  border-radius: 2px; letter-spacing: 0.15em;
+                  font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+  .header-meta { font-size: 11.5px; color: var(--ks-faint); }
+  .header-meta a { color: var(--ks-kinpaku-pale); }
+  .verticals { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 6px; }
+  .vertical-tag { background: oklch(84% 0.19 80 / 0.08); border: 1px solid oklch(84% 0.19 80 / 0.2);
+                   color: var(--ks-kinpaku-pale); font-size: 10px; padding: 2px 9px; border-radius: 3px;
+                   font-family: "SFMono-Regular", "Roboto Mono", monospace; letter-spacing: 0.04em; }
+  .trading-bar { background: var(--ks-raised); border: 1px solid var(--ks-rule); border-radius: 3px;
+                  padding: 9px 14px; margin-top: 14px; font-size: 11px; color: var(--ks-faint);
+                  font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+  .trading-bar strong { color: var(--ks-champagne); margin-right: 4px; }
+
+  /* ── Hero stats bar ── */
+  .hero-stats { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+                 border-bottom: 1px solid var(--ks-rule-strong); }
+  .hero-card { background: var(--ks-raised); padding: 18px 22px;
+                border-right: 1px solid var(--ks-rule); }
+  .hero-card:last-child { border-right: none; }
+  .hero-label { font-size: 9px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.18em;
+                 color: var(--ks-faint); margin-bottom: 6px;
+                 font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+  .hero-value { font-size: 0.9rem; font-weight: 700; line-height: 1.3; color: var(--ks-champagne); }
+  .hero-sub { font-size: 10.5px; color: var(--ks-patina); margin-top: 3px;
+               font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+
+  /* ── TOC ── */
+  .toc { background: var(--ks-graphite); border-bottom: 1px solid var(--ks-rule-strong);
+          padding: 9px 40px; display: flex; flex-wrap: wrap; gap: 5px;
+          position: sticky; top: 0; z-index: 10; }
+  .toc-link { font-size: 10px; font-weight: 600; color: var(--ks-faint); padding: 3px 10px;
+               border-radius: 20px; border: 1px solid var(--ks-rule); background: transparent;
+               transition: background 150ms var(--ks-ease), color 150ms var(--ks-ease);
+               white-space: nowrap; font-family: "SFMono-Regular", "Roboto Mono", monospace;
+               letter-spacing: 0.04em; }
+  .toc-link:hover { background: var(--ks-kinpaku); color: var(--ks-lacquer-deep); border-color: var(--ks-kinpaku); }
+
+  /* ── Sections ── */
+  .section { border-bottom: 1px solid var(--ks-rule); padding: 24px 40px; scroll-margin-top: 48px; }
+  .section:last-of-type { border-bottom: none; }
+  .sec-label { font-size: 9.5px; font-weight: 500; letter-spacing: 0.20em; text-transform: uppercase;
+                color: var(--ks-kinpaku); font-family: "SFMono-Regular", "Roboto Mono", monospace;
+                margin-bottom: 16px; }
+
+  /* ── Two-col layout (overview) ── */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
+  @media (max-width: 680px) { .two-col { grid-template-columns: 1fr; } }
+
+  /* ── Body bullet list ── */
+  .body-list { list-style: none; padding: 0; margin: 0; }
+  .body-list li { padding: 6px 0 6px 16px; position: relative; color: var(--ks-body);
+                   font-size: 13px; line-height: 1.7; border-bottom: 1px solid var(--ks-rule); }
+  .body-list li:last-child { border-bottom: none; }
+  .body-list li:before { content: ""; position: absolute; left: 2px; top: 14px;
+                          width: 5px; height: 5px; border-radius: 50%; background: var(--ks-kinpaku); }
+
+  /* ── Business flow diagram ── */
+  .biz-flow { display: flex; align-items: stretch; gap: 0; margin: 4px 0; }
+  .biz-col { display: flex; flex-direction: column; gap: 6px; flex: 1; }
+  .biz-col-mid { flex: 1.1; }
+  .biz-col-label { font-size: 8.5px; text-transform: uppercase; letter-spacing: 0.18em;
+                    color: var(--ks-faint); margin-bottom: 2px;
+                    font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+  .biz-node { padding: 8px 10px; border-radius: 3px; font-size: 11px; font-weight: 500; line-height: 1.3; }
+  .biz-cust { background: oklch(84% 0.19 80 / 0.07); border: 1px solid oklch(84% 0.19 80 / 0.2);
+               color: var(--ks-kinpaku-pale); }
+  .biz-out  { background: oklch(70% 0.12 188 / 0.07); border: 1px solid oklch(70% 0.12 188 / 0.2);
+               color: var(--ks-patina); }
+  .biz-platform { background: var(--ks-kinpaku); color: var(--ks-lacquer-deep); padding: 10px 12px;
+                   border-radius: 3px; font-size: 12px; font-weight: 700; text-align: center; }
+  .biz-mod { background: var(--ks-graphite-2); border: 1px solid var(--ks-rule); color: var(--ks-body);
+              padding: 6px 10px; border-radius: 3px; font-size: 11px; text-align: center; }
+  .biz-arrow { display: flex; align-items: center; padding: 0 8px; color: var(--ks-kinpaku);
+                font-size: 16px; flex-shrink: 0; margin-top: 20px; }
+
+  /* ── News ── */
+  .news-item { padding: 11px 0; border-bottom: 1px solid var(--ks-rule); }
+  .news-item:last-child { border-bottom: none; }
+  .news-row { display: flex; gap: 14px; align-items: flex-start; }
+  .news-date { font-size: 10px; color: var(--ks-faint); white-space: nowrap; min-width: 74px;
+                font-family: "SFMono-Regular", "Roboto Mono", monospace; padding-top: 2px; }
+  .news-headline { font-size: 13px; font-weight: 600; color: var(--ks-champagne); line-height: 1.4; }
+  .news-why { font-size: 12px; color: var(--ks-muted); margin-top: 5px; margin-left: 88px; line-height: 1.6; }
+
+  /* ── Financials / metrics ── */
+  .fin-meta { font-size: 11px; color: var(--ks-faint); margin-bottom: 14px;
+               font-family: "SFMono-Regular", "Roboto Mono", monospace; letter-spacing: 0.05em; }
+  .metrics-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+                   gap: 8px; margin-bottom: 18px; }
+  .metric-card { background: var(--ks-raised); border: 1px solid var(--ks-rule); border-radius: 3px; padding: 12px 14px;
+                  min-width: 0; }
+  .metric-label { font-size: 9px; font-weight: 500; color: var(--ks-faint); text-transform: uppercase;
+                   letter-spacing: 0.15em; margin-bottom: 5px;
+                   font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+  .metric-value { font-size: 0.92rem; font-weight: 700; color: var(--ks-champagne); line-height: 1.3; }
+  .metric-value.green { color: var(--ks-patina); }
+  .earn-bullets { list-style: none; padding: 0; margin: 0; }
+  .earn-bullets li { padding: 7px 0 7px 16px; position: relative; font-size: 13px;
+                      color: var(--ks-body); border-bottom: 1px solid var(--ks-rule); line-height: 1.7; }
+  .earn-bullets li:before { content: ""; position: absolute; left: 2px; top: 14px;
+                             width: 5px; height: 5px; border-radius: 50%; background: var(--ks-patina); }
+  .earn-bullets li:last-child { border-bottom: none; }
+
+  /* ── ARR chart sources ── */
+  .chart-sources { margin-top: 8px; font-size: 9.5px; color: var(--ks-faint); }
+  .chart-source-label { font-weight: 600; letter-spacing: .06em; text-transform: uppercase; margin-right: 4px; }
+  .chart-source-link { color: var(--ks-kinpaku); text-decoration: none; border-bottom: 1px solid transparent;
+                        transition: border-color .15s; }
+  .chart-source-link:hover { border-bottom-color: var(--ks-kinpaku); }
+  .chart-source-text { color: var(--ks-faint); }
+
+  /* ── ARR chart ── */
+  .chart-wrap { margin: 4px 0 8px; }
+  .chart-eyebrow { font-size: 9px; text-transform: uppercase; letter-spacing: 0.18em;
+                    color: var(--ks-faint); margin-bottom: 12px;
+                    font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+
+  /* ── Funding timeline (flex cards) ── */
+  .tl-flex  { display: flex; align-items: center; gap: 0; overflow-x: auto;
+               padding-bottom: 6px; margin: 8px 0; }
+  .tl-card  { background: var(--ks-raised); border: 1px solid var(--ks-rule); border-radius: 3px;
+               padding: 10px 12px; min-width: 88px; text-align: center; flex-shrink: 0; }
+  .tl-arrow { color: var(--ks-kinpaku); font-size: 14px; padding: 0 4px; flex-shrink: 0; }
+  .tl-round { font-size: 8px; text-transform: uppercase; letter-spacing: 0.10em;
+               color: var(--ks-faint); font-family: "SFMono-Regular", "Roboto Mono", monospace;
+               margin-bottom: 3px; }
+  .tl-amt   { font-size: 12px; font-weight: 700; color: var(--ks-kinpaku);
+               font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+  .tl-val   { font-size: 10px; color: var(--ks-patina);
+               font-family: "SFMono-Regular", "Roboto Mono", monospace; margin-top: 2px; }
+  .tl-date  { font-size: 9px; color: var(--ks-faint); margin-top: 1px; }
+  .tl-leads { font-size: 9px; color: var(--ks-muted); margin-top: 3px; line-height: 1.3; }
+
+  /* ── News source tag ── */
+  .news-source-row { margin-left: 88px; margin-top: 4px; margin-bottom: 1px; display: flex; align-items: center; flex-wrap: wrap; gap: 4px; }
+  .news-source-label { font-size: 9px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--ks-faint); margin-right: 2px; }
+  .news-source-sep { color: var(--ks-faint); font-size: 9px; }
+  .news-source-link { font-size: 9.5px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+    color: var(--ks-gold); text-decoration: none; border-bottom: 1px solid transparent;
+    transition: border-color .15s; }
+  .news-source-link:hover { border-bottom-color: var(--ks-gold); }
+  .news-source-nolink { color: var(--ks-faint); }
+  /* legacy — keep so old references don't break */
+  .news-source { font-size: 9.5px; font-weight: 600; color: var(--ks-faint); margin-left: 8px;
+                  font-family: "SFMono-Regular", "Roboto Mono", monospace; letter-spacing: 0.05em;
+                  background: var(--ks-raised); border: 1px solid var(--ks-rule);
+                  padding: 1px 6px; border-radius: 3px; vertical-align: middle; }
+
+  /* ── body-p (single paragraph, no bullets) ── */
+  .body-p { color: var(--ks-body); font-size: 13px; line-height: 1.75; }
+
+  /* ── Slide Kit ── */
+  .kit-grid { display: grid; grid-template-columns: 160px 1fr 1fr; gap: 24px; align-items: start; }
+  @media (max-width: 680px) { .kit-grid { grid-template-columns: 1fr; } }
+  .kit-identity { display: flex; flex-direction: column; gap: 8px; }
+  .kit-logo-lg  { width: 64px; height: 64px; border-radius: 10px; object-fit: contain;
+                   background: var(--ks-raised); padding: 6px; border: 1px solid var(--ks-rule); }
+  .kit-name { font-family: "Alumni Sans Pinstripe", Arial, sans-serif; font-size: 1.3rem;
+               font-weight: 300; color: var(--ks-champagne); line-height: 1.1; }
+  .kit-sub  { font-size: 11px; color: var(--ks-muted); }
+  .kit-link { font-size: 11px; color: var(--ks-kinpaku-pale); }
+  .kit-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; }
+  .kit-tag  { font-size: 9px; background: oklch(84% 0.19 80 / 0.08); border: 1px solid oklch(84% 0.19 80 / 0.2);
+               color: var(--ks-kinpaku-pale); padding: 2px 7px; border-radius: 3px;
+               font-family: "SFMono-Regular", "Roboto Mono", monospace; letter-spacing: 0.04em; }
+  .kit-copy { display: flex; flex-direction: column; gap: 6px; }
+  .kit-copy-label { font-size: 8.5px; text-transform: uppercase; letter-spacing: 0.18em;
+                     color: var(--ks-faint); font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+  .kit-stat { background: var(--ks-raised); border: 1px solid var(--ks-rule); border-radius: 3px;
+               padding: 8px 12px; font-size: 12.5px; font-weight: 600; color: var(--ks-champagne);
+               font-family: "SFMono-Regular", "Roboto Mono", monospace; cursor: text; }
+  .kit-bullet { background: var(--ks-graphite); border-left: 2px solid var(--ks-kinpaku);
+                 padding: 7px 10px; font-size: 12px; color: var(--ks-body); line-height: 1.5;
+                 margin-top: 2px; }
+  .kit-assets { display: flex; flex-direction: column; gap: 6px; }
+  .kit-url  { background: var(--ks-raised); border: 1px solid var(--ks-rule); border-radius: 3px;
+               padding: 7px 10px; font-size: 10.5px; color: var(--ks-patina); word-break: break-all;
+               font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+  .kit-swatches { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+  .kit-swatch-wrap { display: flex; flex-direction: column; align-items: center; gap: 4px; cursor: default; }
+  .kit-swatch { width: 36px; height: 36px; border-radius: 6px; border: 1px solid rgba(255,255,255,.08);
+                 box-shadow: 0 1px 4px rgba(0,0,0,.4); }
+  .kit-hex { font-size: 9px; font-family: "SFMono-Regular","Roboto Mono",monospace;
+              color: var(--ks-faint); letter-spacing: .03em; text-transform: uppercase; }
+
+  /* ── Leadership ── */
+  .exec-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
+  .exec-card { background: var(--ks-raised); border: 1px solid var(--ks-rule); border-radius: 4px;
+                padding: 14px 16px; }
+  .exec-title { font-size: 9px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
+                 color: var(--ks-faint); margin-bottom: 5px; }
+  .exec-since { font-weight: 400; color: var(--ks-faint); opacity: .7; }
+  .exec-name-row { margin-bottom: 6px; }
+  .exec-name { font-size: 13px; font-weight: 700; color: var(--ks-champagne); }
+  .exec-linkedin { font-size: 13px; font-weight: 700; color: var(--ks-kinpaku);
+                    text-decoration: none; border-bottom: 1px solid transparent;
+                    transition: border-color .15s; }
+  .exec-linkedin:hover { border-bottom-color: var(--ks-kinpaku); }
+  .exec-bg { font-size: 11px; color: var(--ks-muted); line-height: 1.55; }
+
+  /* ── Risk list ── */
+  .risk-list { list-style: none; padding: 0; }
+  .risk-list li { padding: 9px 0 9px 22px; border-bottom: 1px solid var(--ks-rule);
+                   position: relative; font-size: 13px; color: var(--ks-body); line-height: 1.7; }
+  .risk-list li:before { content: "!"; position: absolute; left: 3px; top: 10px; width: 13px; height: 13px;
+                          border-radius: 50%; background: oklch(58% 0.15 35 / 0.15);
+                          color: var(--ks-vermilion); font-size: 9px; font-weight: 900;
+                          text-align: center; line-height: 13px;
+                          font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+  .risk-list li:last-child { border-bottom: none; }
+  .risk-label { font-weight: 600; color: var(--ks-champagne); }
+
+  /* ── Comps table ── */
+  .comps-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  .comps-table th { text-align: left; font-size: 9px; font-weight: 500; letter-spacing: 0.12em;
+                     text-transform: uppercase; color: var(--ks-faint); padding: 0 12px 9px 0;
+                     border-bottom: 1px solid var(--ks-rule-strong);
+                     font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+  .comps-table td { padding: 8px 12px 8px 0; border-bottom: 1px solid var(--ks-rule);
+                     vertical-align: middle; color: var(--ks-body); }
+  .comps-table tr:last-child td { border-bottom: none; }
+  .comps-table tr:hover td { background: var(--ks-raised); }
+  .comp-name { font-weight: 600; color: var(--ks-champagne); font-size: 12.5px; }
+  .comp-ticker { color: var(--ks-faint); font-size: 11px; }
+  .comp-type-cell { font-size: 10px; color: var(--ks-faint); white-space: nowrap; }
+  .comp-ev { vertical-align: top; }
+  .comp-asof { font-size: 9px; color: var(--ks-faint); font-weight: 400; margin-top: 2px; }
+  .comp-source-link { font-size: 9.5px; color: var(--ks-kinpaku); text-decoration: none;
+                       border-bottom: 1px solid transparent; transition: border-color .15s; }
+  .comp-source-link:hover { border-bottom-color: var(--ks-kinpaku); }
+  .comp-source-nolink { font-size: 9.5px; color: var(--ks-faint); }
+  .subject-row td { background: oklch(84% 0.19 80 / 0.06); font-weight: 700; color: var(--ks-champagne); }
+  .subject-row td:first-child { border-left: 3px solid var(--ks-kinpaku); padding-left: 8px; color: var(--ks-kinpaku); }
+  .note-cell { color: var(--ks-faint); font-size: 11px; }
+
+  /* ── Slide bullets ── */
+  .slide-list { list-style: none; padding: 0; counter-reset: slides; }
+  .slide-list li { padding: 10px 0 10px 42px; border-bottom: 1px solid var(--ks-rule);
+                    position: relative; font-size: 13px; color: var(--ks-body); line-height: 1.7; }
+  .slide-list li:last-child { border-bottom: none; }
+  .slide-list li:before { counter-increment: slides; content: counter(slides);
+                           position: absolute; left: 0; top: 8px; width: 26px; height: 26px;
+                           border-radius: 2px; background: var(--ks-kinpaku); color: var(--ks-lacquer-deep);
+                           font-size: 11px; font-weight: 700; text-align: center; line-height: 26px;
+                           font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+
+  /* ── Diligence ── */
+  .dq-list { list-style: none; padding: 0; counter-reset: dqs; }
+  .dq-list li { padding: 10px 0 10px 42px; border-bottom: 1px solid var(--ks-rule);
+                 position: relative; font-size: 13px; color: var(--ks-body); line-height: 1.7; }
+  .dq-list li:last-child { border-bottom: none; }
+  .dq-list li:before { counter-increment: dqs; content: "Q" counter(dqs);
+                        position: absolute; left: 0; top: 8px; width: 26px; height: 26px;
+                        border-radius: 2px; background: var(--ks-raised); color: var(--ks-kinpaku);
+                        border: 1px solid var(--ks-rule); font-size: 9.5px; font-weight: 700;
+                        text-align: center; line-height: 26px;
+                        font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+
+  /* ── Chips ── */
+  .chip-list { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip { background: var(--ks-raised); border: 1px solid var(--ks-rule); color: var(--ks-muted);
+           font-size: 11.5px; padding: 3px 11px; border-radius: 20px; font-weight: 500; }
+
+  /* ── Footer ── */
+  .footer { background: var(--ks-raised); border-top: 1px solid var(--ks-rule-strong);
+             padding: 14px 40px; display: flex; justify-content: space-between; align-items: center; }
+  .footer-left { font-size: 10.5px; color: var(--ks-faint); line-height: 1.7; }
+  .footer-right { font-size: 10.5px; font-weight: 700; color: var(--ks-kinpaku);
+                   letter-spacing: 0.22em; font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+  .meta-note { font-size: 12px; color: var(--ks-muted); margin-top: 8px; }
+  .meta-note strong { color: var(--ks-champagne); }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+  @media print {
+    .toc { display: none; }
+    body { background: #fff; color: #111; }
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- ① HEADER: Logo + Name + Badges -->
+  <div class="header">
+    <div class="header-top">
+      <img class="company-logo" src="https://logo.clearbit.com/www.snowflake.com" alt="Snowflake logo" onerror="this.style.display='none'">
+      <div class="header-name">
+        <span class="company-name">Snowflake</span>
+        <div class="header-badges">
+          <span class="ticker-badge">SNOW</span>
+          
+          <span class="draft-badge">DRAFT</span>
+        </div>
+      </div>
+      <div class="header-meta" style="text-align:right">
+        <a href="https://www.snowflake.com" target="_blank">www.snowflake.com</a><br>
+        Alfred Research &nbsp;·&nbsp; May 31, 2026
+      </div>
+    </div>
+    <div class="verticals"><span class="vertical-tag">Cloud & Infrastructure</span><span class="vertical-tag">Data & Analytics</span><span class="vertical-tag">AI / ML</span></div>
+    <div class="trading-bar"><strong>Trading</strong>$255.55 &nbsp;|&nbsp; Mkt Cap $88.2B &nbsp;|&nbsp; EV $86.9B &nbsp;|&nbsp; 14.9x EV/FY27E rev &nbsp;|&nbsp; 48 analysts, strong_buy</div>
+  </div>
+
+  <!-- ② HERO STATS: 5 KPIs at a glance -->
+  <div class="hero-stats"><div class="hero-card"><div class="hero-label">ARR / Revenue</div><div class="hero-value" style="color:var(--ks-kinpaku)">$1.39B</div><div class="hero-sub">33% YoY</div></div><div class="hero-card"><div class="hero-label">NRR</div><div class="hero-value" style="color:var(--ks-kinpaku)">126%</div></div><div class="hero-card"><div class="hero-label">Op Margin</div><div class="hero-value" style="color:var(--ks-champagne)">11.9%</div></div></div>
+
+  <!-- ③ TOC -->
+  <div class="toc"><a href="#overview" class="toc-link">Overview</a> <a href="#product" class="toc-link">Revenue Model</a> <a href="#news" class="toc-link">News</a> <a href="#earnings" class="toc-link">Financials</a> <a href="#risks" class="toc-link">Risks</a> <a href="#comps" class="toc-link">Comps</a> <a href="#bullets" class="toc-link">Bullets</a> <a href="#diligence" class="toc-link">Diligence</a> <a href="#slidekit" class="toc-link">Slide Kit</a></div>
+
+  <!-- ④ BUSINESS OVERVIEW + VALUE CHAIN DIAGRAM (2-col) -->
+  <div class="section" id="overview"><div class="sec-label">Business Overview</div><div class="two-col"><div><ul class='body-list'><li>Snowflake operates the AI Data Cloud - a fully managed, multi-cloud platform that unifies data warehousing, data lakes, data engineering, and AI workloads across AWS, Azure, and Google Cloud.</li><li>Founded in 2012, headquartered in Bozeman, MT, ~11,100 employees.</li><li>Core value proposition is cloud neutrality: it sits above all three hyperscalers, allowing enterprises to store, share, and query data across clouds without copying it - something AWS, Azure, and GCP structurally cannot offer without undermining their own lock-in strategies.</li></ul></div><div>
+    <div class="biz-flow">
+      <div class="biz-col">
+        <div class="biz-col-label">CUSTOMERS</div>
+        <div class="biz-node biz-cust">Enterprise Customers</div>
+      </div>
+      <div class="biz-arrow">&#8594;</div>
+      <div class="biz-col biz-col-mid">
+        <div class="biz-col-label">PLATFORM</div>
+        <div class="biz-platform">Snowflake</div>
+        <div class="biz-mod">Cloud & Infrastructure</div><div class="biz-mod">Data & Analytics</div><div class="biz-mod">AI / ML</div>
+      </div>
+      <div class="biz-arrow">&#8594;</div>
+      <div class="biz-col">
+        <div class="biz-col-label">VALUE DELIVERED</div>
+        <div class="biz-node biz-out">Cloud Infrastructure</div><div class="biz-node biz-out">Data & Analytics Platform</div>
+      </div>
+    </div></div></div></div>
+
+  <!-- ④b EXECUTIVE LEADERSHIP -->
+  
+
+  <!-- ⑤ PRODUCT & REVENUE MODEL -->
+  <div class="section" id="product"><div class="sec-label">Product &amp; Revenue Model</div><ul class='body-list'><li>Snowflake runs an almost entirely consumption-based model - customers pay for compute credits and storage used, not fixed seats.</li><li>This creates a natural land-and-expand motion.</li><li>FY2026 product revenue was $4.72B (+29% YoY). Key products: Data Cloud (core warehousing), Cortex AI (LLM inference), Snowflake Intelligence (agentic AI for business users), Snowpark (data engineering + ML), Snowflake Native Apps, Streamlit. 779 customers generate >$1M in trailing product revenue.</li></ul></div>
+
+  <!-- ⑥ RECENT NEWS -->
+  <div class="section" id="news"><div class="sec-label">Recent News</div><div class="news-item"><div class="news-row"><span class="news-date">2026-05-27</span><span class="news-headline">Q1 FY2027: Product revenue +34% YoY to $1.33B, EPS $0.39 vs. $0.14 estimate (+179%)</span></div><div class="news-why">Accelerating growth and massive EPS beat signal AI monetization is inflecting - removes the key bear thesis around decelerating consumption.</div></div><div class="news-item"><div class="news-row"><span class="news-date">2026-05-27</span><span class="news-headline">$6B multi-year strategic collaboration agreement with AWS signed</span></div><div class="news-why">Deepens hyperscaler alignment and signals long-term revenue visibility while reducing competitive risk from AWS's own data products.</div></div><div class="news-item"><div class="news-row"><span class="news-date">2026-05-27</span><span class="news-headline">Full-year product revenue guidance raised to $5.84B (31% growth)</span></div><div class="news-why">Guidance raise following accelerating growth reduces near-term execution risk and provides a positive catalyst for multiple expansion.</div></div><div class="news-item"><div class="news-row"><span class="news-date">2026-05-28</span><span class="news-headline">Natoma acquisition - enterprise Model Context Protocol platform for AI agents</span></div><div class="news-why">Bolsters agentic AI governance capabilities, addressing enterprise concerns about rogue AI agents.</div></div><div class="news-item"><div class="news-row"><span class="news-date">2026-05-28</span><span class="news-headline">HSBC upgrades to Buy; Citi, Piper Sandler, Raymond James, Truist raise price targets</span></div><div class="news-why">Broad post-earnings upgrades reflect renewed institutional conviction.</div></div><div class="news-item"><div class="news-row"><span class="news-date">2026-03-31</span><span class="news-headline">Jonathan Beaulier appointed CRO, replacing Mike Gannon</span></div><div class="news-why">CRO transition during AI ramp introduces near-term GTM execution risk - watch over next 2 quarters.</div></div><div class="news-item"><div class="news-row"><span class="news-date">2026-02-02</span><span class="news-headline">$200M multi-year OpenAI partnership for native model access within Cortex AI</span></div><div class="news-why">Reinforces Snowflake as neutral, model-agnostic enterprise AI data platform vs. Databricks and Microsoft Fabric.</div></div></div>
+
+  <!-- ⑦ FINANCIALS / EARNINGS -->
+  <div class="section" id="earnings"><div class="sec-label">Financials &amp; Key Metrics<span style="font-weight:400;color:var(--ks-faint);margin-left:8px">Q1 FY2027 &middot; 2026-05-27</span></div><div class="metrics-grid"><div class="metric-card"><div class="metric-label">Revenue</div><div class="metric-value">$1.39B</div></div><div class="metric-card"><div class="metric-label">Rev Growth</div><div class="metric-value green">33% YoY</div></div><div class="metric-card"><div class="metric-label">Product Rev</div><div class="metric-value">$1.33B (+34%)</div></div><div class="metric-card"><div class="metric-label">NRR</div><div class="metric-value green">126%</div></div><div class="metric-card"><div class="metric-label">RPO</div><div class="metric-value">$9.21B</div></div><div class="metric-card"><div class="metric-label">Op Margin</div><div class="metric-value green">11.9%</div></div><div class="metric-card"><div class="metric-label">FCF Margin</div><div class="metric-value green">19.1%</div></div></div><ul class="earn-bullets"><li><strong>AI / Product:</strong> Management positioned Snowflake as the 'agentic control plane for the enterprise.' Snowflake Intelligence scaled to 2,500 active accounts in 3 months; 9,100+ accounts use AI products. CEO Ramaswamy: AI is driving direct consumption and second-order effects - faster migrations, easier pipelines, simpler agent deployment.</li><li><strong>Demand:</strong> Product revenue re-accelerated from 30% in Q4 FY2026 to 34% in Q1 FY2027 - strongest sequential dollar growth in company history. 13,912 total customers, 616 net new in quarter (+38% YoY). NRR expanded to 126%.</li></ul></div>
+
+  <!-- ⑧ ARR GROWTH CHART -->
+  
+
+  <!-- ⑨ KEY RISKS -->
+  <div class="section" id="risks"><div class="sec-label">Key Risks &amp; Debates</div><ul class="risk-list"><li><span class='risk-label'>Valuation:</span> ~120x non-GAAP P/E keeps buy-side cautious even at 34% growth; 6 of 51 analysts still at Hold/Sell</li><li><span class='risk-label'>New CRO risk:</span> Jonathan Beaulier appointed March 2026 during critical AI ramp - watch GTM execution and rep retention over next 2 quarters</li><li><span class='risk-label'>Databricks competition:</span> growing at 65% vs. SNOW's 34%, pushing into core SQL/warehouse territory; harder to track as a private company</li><li><span class='risk-label'>Consumption model volatility:</span> revenue can decelerate rapidly if enterprises optimize workloads or reduce cloud spend</li><li><span class='risk-label'>Margin expansion pace:</span> some investors focused on whether margin expansion keeps pace with the raised revenue outlook</li></ul></div>
+
+  <!-- ⑩ COMPARABLE COMPANIES -->
+  <div class="section" id="comps"><div class="sec-label">Comparable Companies</div>
+    <table class="comps-table">
+      <thead><tr>
+        <th>Company</th><th>Ticker</th><th>Type</th>
+        <th class="right">EV/Rev</th><th class="right">Rev Growth</th>
+        <th class="right">Gross Margin</th><th>Note</th>
+      </tr></thead>
+      <tbody>
+        <tr>
+          <td class="comp-name">Snowflake</td>
+          <td class="mono comp-ticker"><a class="comp-source-link" href="https://finance.yahoo.com/quote/SNOW" target="_blank" rel="noopener">SNOW</a></td>
+          <td class="comp-type-cell"></td>
+          <td class="mono right comp-ev">19.5x LTM<div class="comp-asof">2026-06-01</div></td>
+          <td class="mono right">33.5% YoY</td>
+          <td class="mono right">67.1%</td>
+          <td class="note-cell">subject company</td>
+        </tr>
+        <tr>
+          <td class="comp-name">Databricks</td>
+          <td class="mono comp-ticker">-</td>
+          <td class="comp-type-cell"></td>
+          <td class="mono right comp-ev">~25x</td>
+          <td class="mono right">65%</td>
+          <td class="mono right">-</td>
+          <td class="note-cell">private, $134B val</td>
+        </tr>
+        <tr>
+          <td class="comp-name">Palantir</td>
+          <td class="mono comp-ticker"><a class="comp-source-link" href="https://finance.yahoo.com/quote/PLTR" target="_blank" rel="noopener">PLTR</a></td>
+          <td class="comp-type-cell"></td>
+          <td class="mono right comp-ev">69.7x LTM<div class="comp-asof">2026-06-01</div></td>
+          <td class="mono right">84.7% YoY</td>
+          <td class="mono right">84.1%</td>
+          <td class="note-cell">AI/gov angle</td>
+        </tr>
+        <tr>
+          <td class="comp-name">Datadog</td>
+          <td class="mono comp-ticker"><a class="comp-source-link" href="https://finance.yahoo.com/quote/DDOG" target="_blank" rel="noopener">DDOG</a></td>
+          <td class="comp-type-cell"></td>
+          <td class="mono right comp-ev">23.9x LTM<div class="comp-asof">2026-06-01</div></td>
+          <td class="mono right">32.2% YoY</td>
+          <td class="mono right">79.9%</td>
+          <td class="note-cell">observability</td>
+        </tr>
+        <tr>
+          <td class="comp-name">Elastic</td>
+          <td class="mono comp-ticker"><a class="comp-source-link" href="https://finance.yahoo.com/quote/ESTC" target="_blank" rel="noopener">ESTC</a></td>
+          <td class="comp-type-cell"></td>
+          <td class="mono right comp-ev">3.6x LTM<div class="comp-asof">2026-06-01</div></td>
+          <td class="mono right">16.0% YoY</td>
+          <td class="mono right">76.1%</td>
+          <td class="note-cell">search/analytics</td>
+        </tr>
+        <tr>
+          <td class="comp-name">MongoDB</td>
+          <td class="mono comp-ticker"><a class="comp-source-link" href="https://finance.yahoo.com/quote/MDB" target="_blank" rel="noopener">MDB</a></td>
+          <td class="comp-type-cell"></td>
+          <td class="mono right comp-ev">11.6x LTM<div class="comp-asof">2026-06-01</div></td>
+          <td class="mono right">25.2% YoY</td>
+          <td class="mono right">72.0%</td>
+          <td class="note-cell">operational DB</td>
+        </tr></tbody>
+    </table><div class="chart-sources"><span class="chart-source-label">Sources:</span> Public-ticker multiples pulled live from <a class="chart-source-link" href="https://finance.yahoo.com" target="_blank" rel="noopener">yfinance / Yahoo Finance</a>, as of the 2026-06-01 market close; EV/Rev recomputed from last close × shares + net debt.</div></div>
+
+  <!-- ⑩b COMPETITORS (if no comps table) -->
+  
+
+  <!-- ⑪ FUNDING TIMELINE -->
+  
+
+  <!-- ⑫ INVESTORS -->
+  
+
+  <!-- ⑬ IPO READINESS -->
+  
+
+  <!-- ⑭ SLIDE-READY BULLETS -->
+  <div class="section" id="bullets"><div class="sec-label">Slide-Ready Bullets</div><ol class="slide-list"><li>Snowflake's consumption-based AI Data Cloud accelerated to 34% product revenue growth in Q1 FY2027 - the company's strongest sequential dollar growth in history - driven by rapid adoption of Cortex AI and Snowflake Intelligence across 9,100+ enterprise accounts</li><li>A $6B multi-year AWS partnership and $200M OpenAI deal cement Snowflake's position as the neutral, model-agnostic enterprise AI data platform, structurally differentiating it from hyperscaler-native alternatives</li><li>NRR of 126% and RPO of $9.2B reflect durable land-and-expand economics, with 779 customers generating >$1M in annual product revenue - a cohort expanding rapidly as AI workloads consume more compute</li><li>Management raised full-year product revenue guidance to $5.84B (31% growth) and targets 13.5% non-GAAP operating margin, signaling confidence in both demand pipeline and path to profitability</li><li>At 14.9x EV/FY2027E revenue, Snowflake trades at a significant discount to high-growth AI peers like Databricks (~25x) and Palantir (41x), despite re-accelerating growth and a broadening AI product portfolio</li></ol></div>
+
+  <!-- ⑮ DILIGENCE QUESTIONS -->
+  <div class="section" id="diligence"><div class="sec-label">Smart Diligence Questions</div><ol class="dq-list"><li>Databricks displacement risk: In deals where both are evaluated, what is Snowflake's current win rate and how has it trended over the last 4 quarters? What workloads are they losing most frequently?</li><li>AI consumption durability: Of the 9,100+ accounts using AI products, what percentage have moved beyond pilot to production workloads generating meaningful consumption revenue - and what does the ramp curve look like from activation to $100K+ spend?</li><li>CRO transition impact: What is the pipeline coverage ratio and average sales cycle for $1M+ deals heading into Q2, given the CRO change? Has there been any rep attrition in enterprise accounts?</li></ol></div>
+
+  <!-- ⑯ SLIDE KIT -->
+  <div class="section" id="slidekit">
+    <div class="sec-label">Slide Kit &nbsp;&middot;&nbsp; <span style="font-weight:400;color:var(--ks-faint)">logo, stats, and copy-paste artifacts</span></div>
+    
+    <div class="kit-grid">
+      <div class="kit-identity">
+        <img src="https://logo.clearbit.com/www.snowflake.com" class="kit-logo-lg" alt="Snowflake logo" onerror="this.style.display='none'">
+        <div class="kit-name">Snowflake</div>
+        <div class="kit-sub"></div>
+        <a href="https://www.snowflake.com" class="kit-link" target="_blank">www.snowflake.com</a>
+        <div class="kit-tags"><span class="kit-tag">Cloud & Infrastructure</span><span class="kit-tag">Data & Analytics</span><span class="kit-tag">AI / ML</span></div>
+      </div>
+      <div class="kit-copy">
+        <div class="kit-copy-label">COPY-PASTE STATS</div>
+        <div class="kit-stat">$1.39B growing 33% YoY</div>
+        <div class="kit-copy-label" style="margin-top:14px">TOP 3 SLIDE BULLETS</div>
+        <div class="kit-bullet">Snowflake's consumption-based AI Data Cloud accelerated to 34% product revenue growth in Q1 FY2027 - the company's strongest sequential dollar growth in history - driven by rapid adoption of Cortex AI and Snowflake Intelligence across 9,100+ enterprise accounts</div><div class="kit-bullet">A $6B multi-year AWS partnership and $200M OpenAI deal cement Snowflake's position as the neutral, model-agnostic enterprise AI data platform, structurally differentiating it from hyperscaler-native alternatives</div><div class="kit-bullet">NRR of 126% and RPO of $9.2B reflect durable land-and-expand economics, with 779 customers generating >$1M in annual product revenue - a cohort expanding rapidly as AI workloads consume more compute</div>
+      </div>
+      <div class="kit-assets">
+        <div class="kit-copy-label">BRAND COLORS</div>
+        <div class="kit-url" style="color:var(--ks-faint);font-size:10px">fetching colors failed — check website URL in profile</div>
+        <div class="kit-copy-label" style="margin-top:14px">BRAND TAGS</div>
+        <div class="kit-tags"><span class="kit-tag">Cloud & Infrastructure</span><span class="kit-tag">Data & Analytics</span><span class="kit-tag">AI / ML</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-left">
+      Sources: Company IR, earnings transcripts, Bloomberg, SEC filings, Sacra, Crunchbase, yfinance<br>
+      DRAFT - internal use only. Human review required before distribution.
+    </div>
+    <div class="footer-right">ALFRED</div>
+  </div>
+
+</div>
+</body>
+</html>

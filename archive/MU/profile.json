@@ -1,0 +1,252 @@
+{
+  "name": "Micron Technology",
+  "ticker": "MU",
+  "stage": "Public (NASDAQ: MU)",
+  "website": "https://www.micron.com",
+  "founded": "1978",
+  "hq": "Boise, ID",
+  "employeeCount": "~49,000",
+  "lastKnownValuation": "~$1.09T market cap / ~$1.09T EV (May 2026)",
+  "totalRaised": null,
+  "verticals": [
+    "Memory Semiconductors",
+    "HBM / AI Memory",
+    "DRAM",
+    "NAND Storage"
+  ],
+  "growth": "+49% YoY (FY2025); FY2026 tracking ~$76B (+103%)",
+  "ipoReadiness": "N/A — public since 1984 (NASDAQ: MU)",
+  "revenueHistory": [
+    {
+      "year": 2023,
+      "value": 15540,
+      "label": "$15.5B",
+      "source": "Micron 10-K FY2023",
+      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/0000723125/000072312523000051/a2023q4ex991-pressrelease.htm"
+    },
+    {
+      "year": 2024,
+      "value": 25110,
+      "label": "$25.1B",
+      "source": "Micron 10-K FY2024",
+      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/0000723125/000072312524000023/a2024q4ex991-pressrelease.htm"
+    },
+    {
+      "year": 2025,
+      "value": 37380,
+      "label": "$37.4B",
+      "source": "Micron 8-K FY2025 Q4",
+      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/0000723125/000072312525000024/a2025q4ex991-pressrelease.htm"
+    }
+  ],
+  "leadership": [
+    {
+      "name": "Sanjay Mehrotra",
+      "title": "Chairman, President & CEO",
+      "since": "2017",
+      "background": "Joined Micron May 2017. Previously President & CEO of SanDisk (2011-2016), which he co-founded in 1988 and sold to Western Digital for $19B. Deep NAND/storage background. Leading Micron through the AI memory supercycle with $200B domestic investment commitment.",
+      "linkedin": "https://www.linkedin.com/in/sanjay-mehrotra-micron/",
+      "source": "Micron Leadership Page",
+      "sourceUrl": "https://in.micron.com/about/company/leadership/sanjay-mehrotra"
+    }
+  ],
+  "brief": {
+    "runDate": "2026-06-01",
+    "businessOverview": [
+      "Micron Technology is the only U.S.-based manufacturer of memory and storage semiconductors, producing DRAM, NAND, and High Bandwidth Memory (HBM) solutions for AI infrastructure, data centers, mobile, and automotive markets.",
+      "FY2025 was a record year: $37.4B revenue (+49% YoY), $8.5B GAAP net income — a historic recovery from the FY2023 trough ($15.5B, -49% YoY) driven almost entirely by AI server DRAM and HBM demand.",
+      "HBM is the pivotal product: HBM revenue grew ~50% sequentially in Q3 FY2025; entire CY2026 HBM supply is sold out under multi-customer price/volume agreements. In March 2026, Micron entered high-volume production of HBM4 for NVIDIA's Vera Rubin platform.",
+      "Micron holds ~21% global HBM market share (2025), up from near-zero in 2023. SK Hynix leads (~52%), Samsung trails. NVIDIA CEO Jensen Huang publicly endorsed the Micron partnership — signaling graduation from secondary to strategic supplier.",
+      "Only U.S.-based volume memory producer: uniquely positioned to benefit from CHIPS Act funding, customer supply chain diversification, and federal procurement preferences. Announced $200B in domestic capex across Idaho, Virginia, and New York fabs."
+    ],
+    "productModel": "Product sales of DRAM (76.4% of FY2025 revenue), NAND (22.7%), and other (0.9%). Revenue organized across Cloud Memory BU ($13.5B FY2025, +257% YoY), Mobile & Client BU ($11.9B, +2% YoY), and Consumer & Device BU ($7.2B, +45% YoY). Pricing driven by supply/demand dynamics. HBM commands significant ASP premium over standard DRAM — key margin driver. Data center share of global DRAM consumption grew from 32% (5 years ago) to ~50% (2025).",
+    "recentNews": [
+      {
+        "date": "2026-03-18",
+        "headline": "Micron Reports Record Q2 FY2026 Revenue of $23.9B; Guides Q3 to $33.5B at ~81% Gross Margin",
+        "whyItMatters": "Revenue nearly tripled YoY — a step-change inflection that validates Micron's HBM positioning. Q3 guidance of $33.5B at 81% gross margin implies FY2026 is tracking to ~$90B+ in revenue, fundamentally re-rating the company's earnings power.",
+        "sources": [
+          {
+            "name": "CNBC",
+            "url": "https://www.cnbc.com/2026/03/18/micron-mu-q2-earnings-report-2026.html"
+          },
+          {
+            "name": "Micron IR / Yahoo Finance",
+            "url": "https://finance.yahoo.com/news/micron-technology-inc-reports-results-200100050.html"
+          }
+        ]
+      },
+      {
+        "date": "2026-03-18",
+        "headline": "Micron First to High-Volume Production of HBM4 for NVIDIA Vera Rubin at GTC 2026",
+        "whyItMatters": "HBM4 delivers 2.8 TB/s bandwidth (2.3x over HBM3E). Being first to high-volume production for NVIDIA's next-gen AI accelerator reduces SK Hynix's near-monopoly risk and cements Micron as a Tier-1 NVIDIA supply chain partner.",
+        "sources": [
+          {
+            "name": "Micron IR",
+            "url": "https://investors.micron.com/news-releases/news-release-details/micron-high-volume-production-hbm4-designed-nvidia-vera-rubin"
+          },
+          {
+            "name": "Tom's Hardware",
+            "url": "https://www.tomshardware.com/pc-components/dram/micron-enters-high-volume-production-of-hbm4-for-nvidia-vera-rubin"
+          }
+        ]
+      },
+      {
+        "date": "2025-12-30",
+        "headline": "Micron's Entire CY2026 HBM Capacity Sold Out; Can Only Fulfill ~50-67% of Largest Customer Demand",
+        "whyItMatters": "Demand far outstripping supply through 2026 creates pricing power and revenue visibility typically unseen in commodity memory markets — this structural imbalance is the core bull thesis for sustained margin expansion.",
+        "sources": [
+          {
+            "name": "Financial Content / Market Minute",
+            "url": "https://markets.financialcontent.com/wral/article/tokenring-2025-12-30-the-ai-memory-supercycle-micron-shatters-records-as-hbm-capacity-sells-out-through-2026"
+          }
+        ]
+      },
+      {
+        "date": "2025-12-25",
+        "headline": "Micron Captures ~21% Global HBM Market Share in 2025; Jensen Huang Publicly Endorses Partnership",
+        "whyItMatters": "Public validation from NVIDIA's CEO signals Micron has graduated from a secondary supplier to a strategic partner — crucial competitive moat as HBM becomes the dominant bottleneck in AI compute.",
+        "sources": [
+          {
+            "name": "Financial Content / Market Minute",
+            "url": "https://markets.financialcontent.com/wral/article/marketminute-2025-12-25-the-memory-wall-crumbles-how-microns-hbm-boom-redefined-the-ai-landscape-in-2025"
+          }
+        ]
+      },
+      {
+        "date": "2025-09-24",
+        "headline": "Micron Posts Record FY2025 Full-Year Revenue of $37.4B, Up 49% YoY; GAAP Net Income $8.5B",
+        "whyItMatters": "FY2025 marked a historic earnings recovery from the memory downcycle. $8.5B GAAP net income vs. deep losses in FY2023 — HBM and data center DRAM have structurally shifted Micron's margin profile permanently.",
+        "sources": [
+          {
+            "name": "Micron SEC 8-K",
+            "url": "https://www.sec.gov/Archives/edgar/data/0000723125/000072312525000024/a2025q4ex991-pressrelease.htm"
+          }
+        ]
+      },
+      {
+        "date": "2025-06-12",
+        "headline": "U.S.-China Trade Truce Reduces Near-Term Export Control Overhang for Micron's China Revenue",
+        "whyItMatters": "China historically represented meaningful Micron DRAM/NAND revenue. White House concession on export control expansion eases a key investor overhang — though SEC filings still flag tariffs and export restrictions as material operating risks.",
+        "sources": [
+          {
+            "name": "Axios Pro Tech Policy",
+            "url": "https://www.axios.com/pro/tech-policy/newsletters/2025/06/12/tech-export-controls-cash"
+          }
+        ]
+      }
+    ],
+    "earningsTakeaways": {
+      "quarter": "FQ3 FY2025 (ended May 29, 2025) — most recently reported",
+      "reportDate": "2025-06-25",
+      "keyMetrics": {
+        "revenue": "$9.30B (FQ3 FY2025); Q4 FY2025 guide: $10.7B; Q2 FY2026 record: $23.9B",
+        "revenueGrowth": "+37% YoY / +16% QoQ (FQ3 FY2025); Q2 FY2026 +~196% YoY",
+        "arr": null,
+        "grossMargin": "37.7% GAAP (FQ3 FY2025); guided ~42% in FQ4 FY2025; ~81% guided Q3 FY2026",
+        "operatingMargin": "26.8% GAAP (FQ3 FY2025); ~+1,300bps YoY",
+        "customers": "N/A — semiconductor component supplier"
+      },
+      "aiCommentary": "CEO Mehrotra: HBM revenue grew nearly 50% sequentially in FQ3 FY2025. Data center revenue more than doubled YoY to a quarterly record. Mass production of 1-gamma DRAM using EUV lithography began ahead of schedule. Micron forecasts HBM TAM growing at ~40% CAGR from ~$35B (2025) to ~$100B (2028). CY2026 HBM supply fully sold out.",
+      "demandCommentary": "AI training and inference are the dominant demand vectors. Supply tightness expected through and beyond CY2026 due to HBM's conversion-heavy manufacturing process. NAND pricing more volatile than DRAM. Accelerated customer qualification cycles and strong pull-in demand from hyperscalers (Microsoft, Google, Amazon, Meta)."
+    },
+    "keyRisks": [
+      "Memory cyclicality: semiconductor memory is notoriously cyclical — FY2023 ($15.5B) vs. FY2025 ($37.4B) illustrates the magnitude of swings. If AI capex decelerates or HBM oversupply emerges post-2026, Micron's revenue and margins could compress significantly",
+      "SK Hynix HBM leadership: SK Hynix holds ~52% global HBM market share vs. Micron's ~21% — NVIDIA's longstanding primary HBM supplier relationship with SK Hynix creates concentration risk for Micron's share gain thesis",
+      "China export controls: U.S.-China trade tensions and evolving export control regime create binary revenue risk for China-related sales and ongoing uncertainty for capex planning in domestic fabs",
+      "Capex intensity: $200B+ domestic investment commitment is massive — if the AI memory cycle turns, Micron could find itself with significant stranded capacity and high fixed costs, as it did in 2023",
+      "Samsung competitive response: Samsung is investing heavily in HBM ramp and process node catch-up — a successful Samsung HBM3E/HBM4 recovery could compress Micron's pricing power and market share gains",
+      "Customer concentration: NVIDIA and hyperscalers (Microsoft, Google, Amazon) likely represent a significant portion of HBM revenue — loss of a single large HBM customer would be disproportionately impactful"
+    ],
+    "comps": [
+      {
+        "name": "SK Hynix",
+        "ticker": "000660.KS",
+        "type": "Public",
+        "evRevenue": "~2.0-2.5x",
+        "asOf": "Jun 2026",
+        "revenueGrowth": "~50% YoY (FY2025, $68B)",
+        "grossMargin": "N/A",
+        "note": "#1 HBM market share (~52%). First time exceeded Samsung in operating profit in 2025. Most direct memory comp.",
+        "source": "yfinance, close of 2026-06-03 (Yahoo-reported (close × shares unavailable))",
+        "sourceUrl": "https://finance.yahoo.com/quote/KS"
+      },
+      {
+        "name": "Samsung Electronics",
+        "ticker": "005930.KS",
+        "type": "Public",
+        "evRevenue": "~0.4-0.5x",
+        "asOf": "Jun 2026",
+        "revenueGrowth": "~11% YoY (FY2025)",
+        "grossMargin": "N/A",
+        "note": "Global #1 in memory; conglomerate discount compresses multiple. HBM revenue tripled 2025. $233B total revenue.",
+        "source": "yfinance, close of 2026-06-03 (Yahoo-reported (close × shares unavailable))",
+        "sourceUrl": "https://finance.yahoo.com/quote/KS"
+      },
+      {
+        "name": "Western Digital",
+        "ticker": "WDC",
+        "type": "Public",
+        "evRevenue": "17.3x LTM",
+        "asOf": "2026-06-03",
+        "revenueGrowth": "45.5% YoY",
+        "grossMargin": "45.4%",
+        "note": "NAND/flash storage peer. $9.5B FY2025 revenue. Strong AI data center SSD tailwind.",
+        "source": "yfinance, close of 2026-06-03 (recomputed: last close × shares + net debt)",
+        "sourceUrl": "https://finance.yahoo.com/quote/WDC",
+        "marketCap": "$204.8B"
+      },
+      {
+        "name": "Seagate",
+        "ticker": "STX",
+        "type": "Public",
+        "evRevenue": "19.4x LTM",
+        "asOf": "2026-06-03",
+        "revenueGrowth": "44.1% YoY",
+        "grossMargin": "41.6%",
+        "note": "$9.1B revenue. HDD storage; AI nearline demand driving growth. $56.7B market cap.",
+        "source": "yfinance, close of 2026-06-03 (recomputed: last close × shares + net debt)",
+        "sourceUrl": "https://finance.yahoo.com/quote/STX",
+        "marketCap": "$210.9B"
+      },
+      {
+        "name": "NVIDIA",
+        "ticker": "NVDA",
+        "type": "Public",
+        "evRevenue": "20.4x LTM",
+        "asOf": "2026-06-03",
+        "revenueGrowth": "85.2% YoY",
+        "grossMargin": "74.1%",
+        "note": "AI infra premium comp. ~$5.3T EV. Primary driver of HBM demand via GPU shipments — upstream demand signal for Micron.",
+        "source": "yfinance, close of 2026-06-03 (recomputed: last close × shares + net debt)",
+        "sourceUrl": "https://finance.yahoo.com/quote/NVDA",
+        "marketCap": "$5.2T"
+      },
+      {
+        "name": "Intel",
+        "ticker": "INTC",
+        "type": "Public",
+        "evRevenue": "10.8x LTM",
+        "asOf": "2026-06-03",
+        "revenueGrowth": "7.2% YoY",
+        "grossMargin": "37.2%",
+        "note": "Legacy x86 + foundry turnaround. $52.9B FY2025 revenue. Distressed multiple — contrast to Micron's re-rating illustrates cyclical vs. structural memory bull case.",
+        "source": "yfinance, close of 2026-06-03 (recomputed: last close × shares + net debt)",
+        "sourceUrl": "https://finance.yahoo.com/quote/INTC",
+        "marketCap": "$566.5B"
+      }
+    ],
+    "slideBullets": [
+      "Micron is the only U.S.-based volume memory manufacturer — uniquely positioned at the intersection of the AI compute buildout (HBM demand) and domestic supply chain policy (CHIPS Act, $200B capex commitment across Idaho, Virginia, and New York)",
+      "FY2025 revenue of $37.4B (+49% YoY) was a record; FY2026 is tracking to ~$90B+ as Q2 FY2026 alone hit $23.9B with Q3 guided to $33.5B at ~81% gross margin — the AI memory supercycle is accelerating, not plateauing",
+      "HBM4 in high-volume production for NVIDIA Vera Rubin (March 2026) — Micron was first to ship, reducing SK Hynix's near-monopoly risk and cementing a Tier-1 NVIDIA partnership. Entire CY2026 HBM supply is sold out.",
+      "HBM TAM projected to grow at ~40% CAGR from ~$35B (2025) to ~$100B (2028) — Micron's ~21% share gain from near-zero in 2023 is the most significant competitive market share story in semiconductors today",
+      "Key risk: memory is highly cyclical (FY2023 revenue of $15.5B, -49% YoY, illustrates the downside). The bull case depends on sustained AI capex from hyperscalers and Micron maintaining HBM market share gains vs. SK Hynix and Samsung"
+    ],
+    "diligenceQuestions": [
+      "What is Micron's actual HBM revenue as a percentage of total revenue and what are the contractual terms of the CY2026 sold-out supply agreements — specifically, are these fixed-price contracts or does pricing reset, and what is the take-or-pay structure?",
+      "How does Micron's HBM yield and cost structure compare to SK Hynix's at the HBM3E and HBM4 nodes? SK Hynix has a multi-year head start — if Micron's yield ramp lags, the gross margin expansion thesis could disappoint even with supply sold out.",
+      "What is Micron's exposure to a potential HBM oversupply scenario in 2027-2028 as Samsung recovers and new entrants emerge — and how does the $200B domestic capex commitment constrain Micron's ability to reduce supply if the cycle turns?"
+    ]
+  }
+}

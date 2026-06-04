@@ -1,0 +1,15 @@
+{
+  "name": "alfred-tools",
+  "owner": { "name": "Agrim Dhingra" },
+  "metadata": {
+    "description": "The Alfred analyst toolkit. Atlas — banker-grade company research — is the first tool.",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "atlas-research",
+      "source": "./plugins/atlas-research",
+      "description": "Turn a company name or ticker into a banker-grade, live-sourced research brief (HTML + PDF)."
+    }
+  ]
+}

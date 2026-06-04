@@ -1,0 +1,24 @@
+{
+  "quarter": "Q4 FY2026 (fiscal year ended ~early February 2026; reported March 5, 2026)",
+  "reportDate": "2026-03-05",
+  "keyMetrics": {
+    "revenue": "$2.219B for Q4 FY2026 (+22% YoY), a record; full-year FY2026 revenue $8.195B (+42% YoY)",
+    "dataCenterRevenue": "FY2026 data center revenue ~$6.1B (~74% of total, up ~46% YoY); Q2 FY2026 data center was $1.49B (+69% YoY)",
+    "grossMarginNonGAAP": "59.0% non-GAAP in Q4 FY2026 (51.7% GAAP)",
+    "epsNonGAAP": "$0.80 non-GAAP diluted EPS in Q4 FY2026 ($0.46 GAAP); full-year FY2026 non-GAAP EPS $2.84, up 81% YoY",
+    "guidanceNextQ": "Management guided FY2027 revenue toward ~$11.5B with YoY growth expected to accelerate each quarter, driven by data center; Q4 revenue exceeded the December 2, 2025 guidance. Marvell subsequently reported record Q1 FY2027 revenue of ~$2.418B (+27% YoY)."
+  },
+  "aiCommentary": "Management said robust AI demand drove record FY2026 results, with custom silicon scaling from effectively zero to roughly a quarter of data-center revenue across 18+ cloud design wins and 50+ active custom-AI opportunities with 10+ customers. CEO Matt Murphy highlighted that fiscal 2026 design wins hit an all-time record and bookings were growing at a record pace heading into FY2027. Marvell reiterated multi-year targets of FY2027 revenue ~$11.5B, FY2028 ~$16.5B, and a goal of >$10B in custom-business revenue by fiscal 2029, with custom programs (e.g., AWS Trainium, Microsoft Maia) ramping in volume.",
+  "demandCommentary": "Demand was led overwhelmingly by the AI data center segment (~74% of FY2026 revenue), with management expecting data-center-driven YoY growth to accelerate each quarter in FY2027. Outside data center, enterprise networking and carrier infrastructure were recovering off cyclical troughs (Q2 FY2026: enterprise networking +28% YoY, carrier +71% YoY off low bases), consumer was lumpy (+30% YoY in Q2), and automotive/industrial was roughly flat and reduced after the Infineon automotive-Ethernet divestiture.",
+  "keyQuotes": [
+    {"speaker": "Matt Murphy (CEO)", "quote": "Marvell delivered record fiscal 2026 revenue of $8.195 billion, growing 42% year-over-year, driven by robust AI demand.", "source": "Seeking Alpha (Q4 FY2026 earnings call transcript)", "sourceUrl": "https://seekingalpha.com/article/4879274-marvell-technology-inc-mrvl-q4-2026-earnings-call-transcript"},
+    {"speaker": "Matt Murphy (CEO)", "quote": "Do you see me blinking?", "source": "CNBC", "sourceUrl": "https://www.cnbc.com/2026/03/06/marvell-shares-surge-18percent-as-ceo-points-to-continuing-ai-demand.html"},
+    {"speaker": "Matt Murphy (CEO)", "quote": "We expect year-over-year revenue growth to accelerate each quarter in fiscal 2027, driven by continued strength in our data center business, with bookings continuing to grow at a record pace.", "source": "Seeking Alpha (Q4 FY2026 earnings call transcript)", "sourceUrl": "https://seekingalpha.com/article/4879274-marvell-technology-inc-mrvl-q4-2026-earnings-call-transcript"}
+  ],
+  "sources": [
+    "https://seekingalpha.com/article/4879274-marvell-technology-inc-mrvl-q4-2026-earnings-call-transcript",
+    "https://www.cnbc.com/2026/03/06/marvell-shares-surge-18percent-as-ceo-points-to-continuing-ai-demand.html",
+    "https://futurumgroup.com/insights/marvell-q2-fy-2026-earnings-data-center-growth-healthy-but-overshadowed-by-rising-competition/",
+    "https://seekingalpha.com/news/4561695-marvell-expects-revenue-to-approach-11b-in-fy27-with-data-center-growth-accelerating"
+  ]
+}

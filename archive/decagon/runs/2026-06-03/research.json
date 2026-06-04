@@ -1,0 +1,104 @@
+{
+  "name": "Decagon",
+  "website": "https://decagon.ai",
+  "foundedYear": 2023,
+  "hq": "San Francisco, CA",
+  "stage": "Series D (private); $4.5B post-money valuation as of January 2026",
+  "employeeCount": "300+ (as of March 2026)",
+  "shortDescription": "Decagon builds enterprise-grade AI agents (\"AI concierges\") that autonomously resolve customer-support conversations end-to-end across chat, email, voice, and SMS, taking real actions in a company's systems rather than just answering questions.",
+  "businessModel": "B2B enterprise SaaS sold to large support/CX organizations, predominantly via a forward-deployed engineering model in which Decagon builds custom integrations and Agent Operating Procedures (AOPs) for each customer. Revenue is consumption/outcome-based rather than per-seat: two primary models are (1) per-conversation, a fixed rate per incoming customer conversation with volume discounts, and (2) per-resolution (higher-priced), charging only when the AI fully resolves an issue without human handoff, with no charge on escalation and lower per-resolution rates at larger committed volumes. Reported pricing is roughly $1.50 per resolution, ~10% of the cost of a human agent. ARR reached ~$35M by October 2025, up from ~$10M at end-2024 (>3x YoY).",
+  "productModel": "An AI agent platform for building, optimizing, and scaling customer-facing agents. Agents are configured via natural-language Agent Operating Procedures (AOPs), integrate with ticketing systems, knowledge bases, and operational backends, and can execute actions (process refunds, cancel subscriptions, dispute transactions, reschedule shipments) autonomously — handling roughly 70-75% of support conversations without human intervention. Deployed omnichannel across voice (Decagon Voice / Voice 2.0, launched Sept 2025), chat, email, and SMS, with cross-channel memory. Underlying stack mixes frontier models (OpenAI, Anthropic, Cohere) with proprietary fine-tuned models. Tooling includes Watchtower/Insights & Reporting, Experiments, Testing & QA, and Proactive Agents for outbound engagement.",
+  "verticals": ["AI Customer Service", "Agentic AI", "Enterprise SaaS", "CX Automation", "Contact-Center Automation"],
+  "marketContext": "Decagon sits in AI customer support / contact-center automation, reframing legacy 'deflection' chatbots into autonomous resolution. The thesis: frontier LLMs make it possible for AI to resolve the majority of support tickets fully autonomously and take backend actions, attacking the large labor cost of human support (Decagon prices resolutions at ~10% of a human agent and one customer cut its support team ~80%). Tailwinds: LLM capability gains enabling action-taking agents, enterprise pressure to cut support opex, and a shift from per-seat to outcome/per-resolution pricing. The narrow customer-support automation market is projected to grow from ~$308M (2022) to ~$2.89B by 2032 (per Sacra); the broader prize is automation of overall contact-center labor spend. The category is hot and richly funded — direct rival Sierra was valued near $10B (Oct 2025) on ~$100M ARR.",
+  "competitors": ["Sierra", "Intercom (Fin)", "Salesforce (Agentforce / Einstein)", "Ada", "Forethought", "Cresta", "Zendesk", "Gorgias", "14.ai"],
+  "customers": ["Notion", "Duolingo", "Rippling", "Affirm", "Chime", "Eventbrite", "Oura (Oura Health)", "Substack", "Bilt", "Avis Budget Group", "Deutsche Telekom", "Block", "Mercado Libre", "Hertz", "Quince", "1-800-Flowers", "Away Travel", "Gopuff", "Riot Games", "ClassPass", "Figma", "Noom", "Dropbox", "Samsara", "Fanatics", "Hunter Douglas", "Spring Health"],
+  "leadership": [
+    {
+      "name": "Jesse Zhang",
+      "title": "Co-founder & CEO",
+      "background": "Former Google software engineer and Citadel Securities trader who founded social-gaming startup Lowkey (acquired by Niantic in 2021); co-founded Decagon after meeting Sreenivas at an Andreessen Horowitz retreat in Utah.",
+      "since": "2023",
+      "linkedin": null
+    },
+    {
+      "name": "Ashwin Sreenivas",
+      "title": "Co-founder & President",
+      "background": "Former Palantir deployment strategist who co-founded computer-vision startup Helia (acquired by Scale AI in 2020); earlier sources list his title as CTO, but Decagon's current site lists him as President.",
+      "since": "2023",
+      "linkedin": null
+    }
+  ],
+  "differentiation": [
+    {
+      "player": "Sierra",
+      "theyMake": "AI customer-experience agents (chat + voice) for large consumer brands (e.g., WeightWatchers, SiriusXM, ADP, Redfin), founded by Bret Taylor; the category's valuation leader (~$10B on ~$100M ARR, Oct 2025).",
+      "howDiffers": "Closest head-to-head rival with nearly identical outcome/per-resolution pricing (~$1.50/resolution) and forward-deployed model. Decagon's customer base skews more tech-native (Notion, Rippling, Duolingo) versus Sierra's traditional enterprise/consumer brands, and Decagon pushes beyond support into full-lifecycle use (onboarding, feature pitching, lead qualification) via Agent Operating Procedures."
+    },
+    {
+      "player": "Intercom (Fin)",
+      "theyMake": "Incumbent customer-messaging/support platform whose 'Fin' AI agent resolves tickets on top of Intercom's own helpdesk; ~$343M revenue in 2024.",
+      "howDiffers": "Intercom is a full support suite where Fin is an add-on tied to its own platform and data; Decagon is a platform-agnostic, integration-led agent layer that sits on top of a customer's existing stack and can even run cooperatively above Intercom as the underlying infrastructure, focused purely on autonomous resolution rather than agent-assist tooling."
+    },
+    {
+      "player": "Salesforce (Agentforce / Einstein)",
+      "theyMake": "Agentforce/Einstein autonomous and assistive AI agents bundled into the Salesforce Service Cloud and CRM platform.",
+      "howDiffers": "Salesforce sells agents as an attach to its CRM/Service Cloud install base with platform lock-in; Decagon is a best-of-breed standalone with a heavy forward-deployed implementation model, deeper autonomous-action focus (~70-75% full resolution), and pure outcome-based pricing rather than seat/platform licensing."
+    },
+    {
+      "player": "Ada",
+      "theyMake": "AI-powered customer-service automation platform ('AI Agent') focused on multilingual, no-code resolution across chat and messaging channels.",
+      "howDiffers": "Ada leans self-serve/no-code, broad-channel deflection; Decagon differentiates on enterprise forward-deployed engineering, action-taking against backend systems, and per-resolution economics, targeting complex F100 and high-growth-tech workflows rather than configurable bot deflection."
+    },
+    {
+      "player": "Forethought",
+      "theyMake": "Generative-AI customer-support automation (e.g., 'Autoflows' / SupportGPT) for ticket resolution and agent assistance.",
+      "howDiffers": "Forethought concentrates on ticket triage, routing, and assist on top of helpdesks; Decagon positions as a fuller autonomous concierge that resolves and acts end-to-end across voice/chat/email/SMS with cross-channel memory, sold on resolutions delivered."
+    },
+    {
+      "player": "Cresta",
+      "theyMake": "AI for contact centers focused on real-time agent assistance, coaching, and conversation intelligence for human reps (and emerging virtual agents).",
+      "howDiffers": "Cresta's core is augmenting and coaching human agents in the contact center; Decagon's core is replacing the front-line interaction with an autonomous AI agent that resolves the conversation outright, monetized per resolution rather than per seat/agent."
+    }
+  ],
+  "bizFlow": {
+    "customers": [
+      {"name": "Notion", "need": "Scale support for a fast-growing global product user base without linearly adding headcount"},
+      {"name": "Affirm", "need": "Handle regulated fintech support (payments, disputes, transactions) with accurate, action-taking automation"},
+      {"name": "Duolingo", "need": "Resolve very high volumes of consumer support tickets across languages while protecting CSAT"},
+      {"name": "Hertz", "need": "Automate travel/mobility support (bookings, changes, billing) across phone and chat for a large consumer base"},
+      {"name": "Deutsche Telekom", "need": "F100 telecom-scale, multi-region customer support automation with enterprise security and integration depth"}
+    ],
+    "platform": {
+      "name": "Decagon",
+      "modules": [
+        "Agent Operating Procedures (AOPs) — natural-language definition of agent behavior and workflows",
+        "Omnichannel agents — Voice, Chat, Email, SMS with cross-channel memory and backend integrations",
+        "Watchtower + Insights & Reporting — monitoring, QA/testing, and performance debugging of agents",
+        "Proactive Agents — outbound engagement and full-lifecycle use (onboarding, feature pitch, lead qualification)"
+      ]
+    },
+    "valueDelivered": [
+      {"label": "Autonomous resolution", "detail": "Fully resolves roughly 70-75% of support conversations end-to-end without human intervention, taking real actions (refunds, cancellations, disputes), not just answering"},
+      {"label": "Step-function cost reduction", "detail": "Per-resolution pricing at ~$1.50 is ~10% of a human agent's cost; one customer reportedly cut its support team by ~80%"},
+      {"label": "Outcome-aligned economics", "detail": "Per-resolution model charges only on successful autonomous resolution (no charge on escalation), aligning vendor cost to value delivered"},
+      {"label": "Omnichannel + lifecycle reach", "detail": "One agent layer spans voice, chat, email, and SMS and extends beyond support into proactive engagement and revenue-adjacent workflows"}
+    ]
+  },
+  "explainer": {
+    "plain": "Decagon makes AI 'agents' that talk to a company's customers and actually solve their problems. Instead of a dumb chatbot that only answers FAQs, Decagon's AI can do real tasks like issue a refund, cancel a subscription, or reschedule a delivery. It works over chat, email, phone, and text, and companies pay mostly only when the AI fully fixes the customer's issue on its own.",
+    "technical": "Decagon is an enterprise agent platform that orchestrates frontier LLMs (OpenAI, Anthropic, Cohere) plus proprietary fine-tuned models behind natural-language Agent Operating Procedures (AOPs). Agents are wired into a customer's ticketing systems, knowledge bases, and operational APIs so they can both reason over context and execute state-changing actions, achieving ~70-75% fully autonomous resolution across voice, chat, email, and SMS. Decagon deploys via a forward-deployed engineering model and monetizes on a per-conversation or higher-value per-resolution (outcome) basis rather than per-seat.",
+    "simple": "Think of Decagon as hiring a tireless, all-knowing front-desk concierge for a company's customer service — except it's software. Like a great concierge, it doesn't just point you to a help page; it picks up the phone or chat, figures out what you need, and handles it (the refund, the cancellation, the rebooking) on the spot, 24/7. And the company is billed a bit like tipping the concierge only when the job actually gets done."
+  },
+  "sources": [
+    {"name": "Sacra", "url": "https://sacra.com/c/decagon/", "note": "Deep company profile: founding (Aug 2023, SF), founders + backgrounds, ARR ($35M Oct 2025 vs $10M EOY 2024), full funding history (Series A $35M Jul 2024; Series B $65M/$650M Oct 2024 led by Bain Capital Ventures; Series C $131M/$1.5B Jun 2025 led by Accel + a16z; Series D $250M/$4.5B Jan 2026 led by Coatue + Index), pricing models, product modules, customers, competitors, TAM."},
+    {"name": "Sacra (Decagon vs Sierra)", "url": "https://sacra.com/research/decagon-vs-sierra/", "note": "Differentiation, ~70-75% autonomous resolution, ~$1.50/resolution (~10% of human agent cost), tech-centric customer base, Agent Operating Procedures, competitor framing vs Sierra/Intercom/Gorgias/Zendesk."},
+    {"name": "Sacra (Sierra vs Decagon)", "url": "https://sacra.com/research/sierra-vs-decagon/", "note": "Sierra detail (~$100M ARR Oct 2025, ~$10B valuation, WeightWatchers/SiriusXM/ADP/Redfin) and forward-deployed/outcome-pricing comparison."},
+    {"name": "Bloomberg", "url": "https://www.bloomberg.com/news/articles/2026-01-28/ai-customer-support-startup-decagon-valued-at-4-5-billion", "note": "Decagon valued at $4.5B (Jan 28, 2026); founders met at an a16z retreat in Utah; AI customer support positioning."},
+    {"name": "The Information", "url": "https://www.theinformation.com/articles/customer-support-ai-startup-decagon-talks-raise-4-billion-valuation", "note": "Reporting on Decagon raising at a multibillion-dollar valuation; customer-support AI category."},
+    {"name": "TechCrunch", "url": "https://techcrunch.com/2026/03/04/decagon-completes-first-tender-offer-at-4-5b-valuation/", "note": "$4.5B valuation; first employee tender (300+ employees) led by Coatue, Index, a16z, Definition, Forerunner, Ribbit; Series D $250M; 100+ enterprise customers incl. Avis Budget Group, 1-800-Flowers, Quince, Oura, Away Travel; AI concierge agents across chat/email/voice; Jesse Zhang CEO."},
+    {"name": "TechCrunch", "url": "https://techcrunch.com/2024/06/18/decagon-claims-its-customers-service-bots-are-smarter-than-average/", "note": "Founder backgrounds: Zhang (Google, Citadel, Lowkey→Niantic 2021); Sreenivas (Palantir deployment strategist, Helia→Scale AI 2020); Sreenivas listed as CTO/co-founder; product overview."},
+    {"name": "CNBC (Disruptor 50, #38)", "url": "https://www.cnbc.com/2026/05/19/decagon-cnbc-disruptor-50-ranking.html", "note": "CNBC Disruptor 50 listing (#38) for Decagon; corroborates valuation/funding/customer scale (page paywalled to fetch; surfaced via search)."},
+    {"name": "Decagon (company site)", "url": "https://decagon.ai", "note": "Tagline 'The AI concierge for every customer'; product modules (Agent Operating Procedures, Voice, Chat, Email, Integrations, Experiments, Testing & QA, Insights & Reporting, Watchtower, Suggestions); customer logos (Hertz, Oura, Quince, Duolingo, Gopuff, Affirm, Chime, Riot Games, ClassPass, Figma, Noom, Dropbox, Mercado Libre, Samsara, Fanatics, Eventbrite, Rippling, Hunter Douglas, Notion, Spring Health, Arrive)."},
+    {"name": "Decagon (about page)", "url": "https://decagon.ai/about", "note": "Live leadership confirmation: Jesse Zhang (Co-founder & CEO), Ashwin Sreenivas (Co-founder & President); mission 'Empower every brand to deliver concierge customer experiences'; investors a16z, Accel, Bain Capital Ventures, Coatue, Index Ventures."}
+  ]
+}

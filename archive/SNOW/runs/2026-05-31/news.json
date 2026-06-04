@@ -1,0 +1,72 @@
+{
+  "asOf": "2026-05-31",
+  "headlines": [
+    {
+      "date": "2026-05-27",
+      "headline": "Snowflake Reports Q1 FY2027 Results: Product Revenue +34% YoY to $1.33B, EPS of $0.39 Beats $0.14 Estimate by 179%",
+      "source": "BusinessWire / Yahoo Finance",
+      "whyItMatters": "Accelerating revenue growth and massive EPS beat signal that Snowflake's AI monetization is inflecting, removing the key bear thesis around decelerating consumption."
+    },
+    {
+      "date": "2026-05-27",
+      "headline": "Snowflake Signs $6 Billion Multi-Year Strategic Collaboration Agreement with AWS to Accelerate Enterprise Agentic AI",
+      "source": "Snowflake Press Release / Seeking Alpha",
+      "whyItMatters": "A $6B infrastructure commitment deepens hyperscaler alignment and signals long-term revenue visibility while reducing competitive risk from AWS's own data products."
+    },
+    {
+      "date": "2026-05-27",
+      "headline": "Snowflake Raises Full-Year Product Revenue Guidance to $5.84B, Implying 31% Growth",
+      "source": "Yahoo Finance / Motley Fool",
+      "whyItMatters": "A guidance raise following accelerating growth reduces near-term execution risk and provides a positive catalyst for multiple expansion."
+    },
+    {
+      "date": "2026-05-28",
+      "headline": "Snowflake Acquires Natoma, an Enterprise Model Context Protocol Platform for AI Agents",
+      "source": "The Register / Seeking Alpha",
+      "whyItMatters": "Natoma bolsters Snowflake's agentic AI governance capabilities, directly addressing enterprise concerns about rogue AI agents and strengthening the Snowflake Intelligence platform."
+    },
+    {
+      "date": "2026-05-28",
+      "headline": "HSBC Upgrades Snowflake to Buy; Citi, Piper Sandler, Raymond James, Truist, Argus, Oppenheimer Raise Price Targets Post-Earnings",
+      "source": "Benzinga / MarketBeat",
+      "whyItMatters": "Broad post-earnings PT upgrades from multiple tier-1 banks reflect renewed institutional conviction and could attract incremental buy-side demand."
+    },
+    {
+      "date": "2026-05-15",
+      "headline": "Seeking Alpha Analyst Downgrades Snowflake to Hold, Citing Non-GAAP P/E of ~121x vs. Sector Median",
+      "source": "Seeking Alpha",
+      "whyItMatters": "Valuation-driven caution ahead of earnings highlights that a meaningful portion of buy-side remains skeptical of Snowflake's premium relative to growth peers."
+    },
+    {
+      "date": "2026-03-31",
+      "headline": "Snowflake Appoints Jonathan Beaulier as Chief Revenue Officer, Replacing Mike Gannon",
+      "source": "SEC Form 8-K",
+      "whyItMatters": "A CRO transition during a critical AI ramp phase introduces near-term go-to-market execution risk that investors should monitor over the next two quarters."
+    },
+    {
+      "date": "2026-03-18",
+      "headline": "Snowflake Launches Project SnowWork, an Autonomous Enterprise AI Platform for Business Users",
+      "source": "Snowflake Press Release",
+      "whyItMatters": "SnowWork targets non-technical business users, broadening the addressable user base within existing accounts and supporting net revenue retention expansion."
+    },
+    {
+      "date": "2026-02-02",
+      "headline": "Snowflake and OpenAI Forge $200 Million Multi-Year Partnership for Enterprise-Ready AI",
+      "source": "Snowflake Press Release",
+      "whyItMatters": "Native OpenAI model access within Cortex AI reinforces Snowflake as the neutral, model-agnostic enterprise data platform, a key competitive differentiator against Databricks and Microsoft Fabric."
+    },
+    {
+      "date": "2026-01-08",
+      "headline": "Snowflake Enables Google Gemini 3 Natively Within Snowflake Cortex AI",
+      "source": "Snowflake Press Release",
+      "whyItMatters": "Adding Gemini 3 alongside OpenAI and other models reinforces Snowflake's multi-model strategy, reducing customer lock-in risk and differentiating from single-vendor AI platforms."
+    }
+  ],
+  "keyThemes": [
+    "Agentic AI monetization accelerating: Snowflake Intelligence scaled to 2,500 active accounts in three months and 9,100+ accounts use AI products",
+    "Hyperscaler and foundation model partnerships de-risking competitive landscape: $6B AWS commitment and $200M OpenAI deal cement Snowflake as neutral enterprise AI data platform",
+    "Aggressive M&A to build out AI governance stack: Natoma acquisition signals Snowflake building full-stack enterprise AI platform beyond core data warehousing",
+    "Revenue re-acceleration and guidance raise resetting growth narrative: product revenue growth inflected from 30% to 34% YoY",
+    "Valuation debate persists: ~120x non-GAAP P/E keeps some investors cautious even as 45 of 51 covering analysts rate it Buy"
+  ]
+}

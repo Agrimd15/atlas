@@ -1,0 +1,63 @@
+{
+  "businessModel": "Marvell Technology (NASDAQ: MRVL) is a fabless semiconductor company that designs data-infrastructure silicon and sells it primarily to hyperscale cloud providers, OEMs, and carriers, outsourcing wafer fabrication to foundries such as TSMC. Its strategy has pivoted decisively toward the AI data center, which reached roughly 74% of revenue in fiscal 2026 ($6.1B of $8.195B total). Marvell monetizes two complementary engines: (1) merchant connectivity and compute silicon - electro-optics (PAM4/coherent DSPs), Ethernet switching (Teralynx), and Arm-based infrastructure CPUs sold across many customers; and (2) custom silicon, where Marvell co-designs bespoke XPUs/ASICs and HBM-attach/interconnect IP for individual hyperscalers, scaling from effectively zero a few years ago to roughly a quarter of data-center revenue. Management has set multi-year targets implying data-center-led growth, guiding FY2027 revenue toward ~$11.5B and FY2028 toward ~$16.5B, with a goal of more than $10B in custom-business revenue by fiscal 2029. In March 2026 NVIDIA took a ~$2B (~2.5%) strategic stake and entered an NVLink Fusion / silicon-photonics / AI-RAN partnership, embedding Marvell's custom XPUs and scale-up networking into NVIDIA's semi-custom AI factory ecosystem.",
+  "segments": [
+    {"name": "Data Center", "detail": "Largest segment at ~74% of FY2026 revenue (~$6.1B, up ~46% YoY). Includes custom AI silicon (XPUs/ASICs), electro-optics (PAM4/coherent DSPs), Ethernet switching, and Arm-based CPUs. Q2 FY2026 data center revenue was $1.49B, up 69% YoY.", "source": "Futurum Group", "sourceUrl": "https://futurumgroup.com/insights/marvell-q2-fy-2026-earnings-data-center-growth-healthy-but-overshadowed-by-rising-competition/"},
+    {"name": "Enterprise Networking", "detail": "Networking silicon for enterprise/campus infrastructure; Q2 FY2026 revenue $193.6M, up ~28% YoY as the segment recovered off a cyclical trough.", "source": "Futurum Group", "sourceUrl": "https://futurumgroup.com/insights/marvell-q2-fy-2026-earnings-data-center-growth-healthy-but-overshadowed-by-rising-competition/"},
+    {"name": "Carrier Infrastructure", "detail": "Silicon for wireline/wireless carrier networks; Q2 FY2026 revenue $130.1M, up ~71% YoY off a depressed base.", "source": "Futurum Group", "sourceUrl": "https://futurumgroup.com/insights/marvell-q2-fy-2026-earnings-data-center-growth-healthy-but-overshadowed-by-rising-competition/"},
+    {"name": "Consumer", "detail": "Storage and connectivity silicon for gaming/consumer; Q2 FY2026 revenue $115.9M, up ~30% YoY (lumpy, program-driven).", "source": "Futurum Group", "sourceUrl": "https://futurumgroup.com/insights/marvell-q2-fy-2026-earnings-data-center-growth-healthy-but-overshadowed-by-rising-competition/"},
+    {"name": "Automotive/Industrial", "detail": "Roughly flat YoY at ~$76M in Q2 FY2026. Marvell exited the bulk of its automotive Ethernet exposure by selling its Brightlane Automotive Ethernet business to Infineon for $2.5B (closed Aug 14, 2025).", "source": "Infineon Technologies", "sourceUrl": "https://www.infineon.com/press-release/2025/INFXX202508-133"}
+  ],
+  "products": [
+    "Custom AI silicon / XPUs and ASICs co-designed for hyperscalers",
+    "PAM4 optical DSPs (Spica, Nova, Ara 3nm 1.6T) for optical interconnects",
+    "Coherent DSPs and datacenter-interconnect (DCI) modules",
+    "Teralynx Ethernet switch silicon (e.g., Teralynx 10, 51.2 Tbps)",
+    "Arm-based infrastructure / server CPUs",
+    "Silicon photonics (bolstered by Polariton acquisition)",
+    "Storage controllers and HDD/SSD silicon",
+    "Carrier/5G and enterprise networking silicon"
+  ],
+  "marketPositioning": "Marvell is positioned as the leading merchant alternative and the #2 player in custom AI silicon (XPUs) behind Broadcom, while holding a leadership position in high-speed electro-optics (PAM4 DSPs) that power AI data-center interconnects. It markets an end-to-end AI-infrastructure connectivity portfolio (optics + switching + custom compute). The March 2026 NVIDIA partnership/investment further entrenched Marvell inside the dominant AI-systems ecosystem via NVLink Fusion and silicon photonics. Management frames a TAM expanding toward ~$94B across custom compute, interconnect, and switching.",
+  "competitors": [
+    "Broadcom (AVGO) - closest peer in custom ASIC/XPU and networking",
+    "Alchip - Taiwanese custom-silicon ASIC design competitor",
+    "Global Unichip (GUC) - Taiwanese ASIC design competitor",
+    "Astera Labs - AI connectivity silicon",
+    "NVIDIA - merchant GPU/networking (also now a partner/investor)",
+    "Cisco/Arista-adjacent switch silicon and other optical DSP suppliers"
+  ],
+  "endMarkets": [
+    "Hyperscale cloud / AI data center",
+    "Enterprise networking",
+    "Carrier / 5G infrastructure",
+    "Consumer (storage, gaming)",
+    "Automotive / industrial (reduced after Infineon divestiture)"
+  ],
+  "growthDrivers": [
+    "Custom AI silicon (XPU/ASIC) ramps with multiple hyperscalers; target >$10B custom revenue by FY2029",
+    "AI optical interconnect demand (1.6T PAM4 DSPs, silicon photonics)",
+    "NVIDIA NVLink Fusion partnership opening semi-custom AI-factory designs",
+    "Ethernet switching (Teralynx) for AI back-end/front-end networks",
+    "Record design wins and accelerating bookings entering FY2027",
+    "Recovery in cyclical enterprise networking and carrier segments"
+  ],
+  "customers": [
+    "Amazon Web Services (Trainium custom AI silicon co-design)",
+    "Microsoft (Maia accelerator silicon IP / back-end design)",
+    "Google (custom programs / Axion-adjacent, in discussion per press)",
+    "Other hyperscalers across 18+ cloud design wins / 50+ custom opportunities",
+    "NVIDIA (NVLink Fusion ecosystem partner and ~2.5% shareholder)"
+  ],
+  "leadership": [
+    {"name": "Matt Murphy", "title": "Chairman, President & Chief Executive Officer", "background": "Joined Marvell as CEO in July 2016 and led its transformation into a data-infrastructure and AI-silicon company; previously a longtime executive at Maxim Integrated. Named All-America Executive Team Best CEO (semiconductors) by Institutional Investor in 2018.", "source": "Marvell Investor Relations / Company Leadership", "sourceUrl": "https://www.marvell.com/company/leadership/matt-murphy.html"},
+    {"name": "Willem Meintjes", "title": "Chief Financial Officer", "background": "Appointed CFO effective January 20, 2023; previously Marvell's Chief Accounting Officer and Treasurer since 2018. Joined Marvell in 2016 at the start of its transformation; responsible for financial planning, accounting, treasury, tax, and investor relations.", "source": "Marvell Investor Relations / Company Leadership", "sourceUrl": "https://www.marvell.com/company/leadership/willem-meintjes.html"}
+  ],
+  "sources": [
+    "https://www.marvell.com/company/leadership/matt-murphy.html",
+    "https://www.marvell.com/company/leadership/willem-meintjes.html",
+    "https://futurumgroup.com/insights/marvell-q2-fy-2026-earnings-data-center-growth-healthy-but-overshadowed-by-rising-competition/",
+    "https://www.infineon.com/press-release/2025/INFXX202508-133",
+    "https://www.cnbc.com/2026/03/31/here-is-why-nvidias-partnership-and-investment-in-marvell-is-such-a-big-deal.html",
+    "https://www.marvell.com/products/pam-dsp.html"
+  ]
+}

@@ -1,0 +1,368 @@
+{
+  "id": "PL",
+  "name": "Planet Labs PBC",
+  "ticker": "PL",
+  "website": "https://www.planet.com",
+  "verticals": [
+    "Earth Observation",
+    "Geospatial Analytics",
+    "Defense & Intelligence",
+    "AI / Planetary Intelligence"
+  ],
+  "shortDescription": "Operator of the world's largest Earth-observation satellite fleet, monetizing daily global imagery via recurring data subscriptions and fast-growing sovereign 'satellite services' deals, with an emerging AI-analytics layer.",
+  "brandColors": [
+    "#1FB6C1",
+    "#0B1F2A",
+    "#5A6B73"
+  ],
+  "businessModel": "Planet Labs operates the largest fleet of Earth-observation satellites and monetizes imagery and analytics through recurring data subscriptions plus a fast-growing 'Satellite Services' model in which sovereign governments fund dedicated capacity on Planet's next-gen Pelican fleet. ~98% of end-of-FY2026 annual contract value (ACV) is recurring. Revenue mix is increasingly weighted to government (defense and intelligence), complemented by commercial verticals (agriculture, mapping, forestry, energy) and an emerging AI/analytics layer ('planetary intelligence') that turns raw imagery into analysis-ready insight. FY2026 (ended Jan 31, 2026) was Planet's first full year of adjusted-EBITDA profitability.",
+  "marketContext": "Planet is the leading commercial daily-imaging Earth-observation provider and an emerging AI-analytics company. It has become a key dual-use partner for NATO and allied nations seeking sovereign space capability without building constellations from scratch, differentiated by speed (first satellites within months of contract signing vs. traditional aerospace timelines), an operational fleet, a deep daily global archive, vertical integration, and onboard/edge AI. It competes with Maxar, BlackSky, Airbus, ICEYE, Capella, Satellogic and Umbra across optical and SAR imagery.",
+  "competitors": [
+    "Maxar Intelligence",
+    "BlackSky",
+    "Airbus Defence and Space",
+    "ICEYE",
+    "Capella Space",
+    "Satellogic"
+  ],
+  "explainer": {
+    "plain": "Planet runs the largest fleet of imaging satellites on orbit. Its 'Dove' satellites photograph the entire land surface of Earth nearly every day, and its higher-resolution SkySat and new Pelican satellites zoom in on specific targets. It sells this imagery as a subscription, mostly to governments (defense and intelligence) and to industries like agriculture and mapping. Increasingly it also sells analytics — using AI to turn the pictures into answers — and signs large multi-year deals where a government funds dedicated satellites Planet builds and operates for it.",
+    "technical": "Planet operates PlanetScope (near-daily ~3m global coverage from the Dove/SuperDove fleet), SkySat (sub-meter tasking imagery/video), the next-gen Pelican high-resolution constellation (with onboard NVIDIA Jetson for edge AI), and Tanager hyperspectral satellites (VSWIR spectrometer with Carbon Mapper for methane/CO2 detection). Monetization is ~98% recurring ACV across data subscriptions and a growing 'Satellite Services' model where sovereigns fund dedicated Pelican capacity and direct downlink. An analytics layer ('planetary intelligence') is being built on a GPU-native AI engine with NVIDIA (Blackwell/IGX Thor) and an Anthropic (Claude) partnership; Planet is a prime on the U.S. MDA SHIELD IDIQ. FY2026 revenue $307.7M (+26%), first full year of adjusted-EBITDA profitability ($15.5M), backlog ~$900M (+79%).",
+    "simple": "Imagine a camera in space that takes a fresh photo of the whole planet every single day, and a set of sharper cameras you can point at any spot on demand. Planet owns the biggest such fleet. Governments and companies pay a subscription to see how the world is changing — troop movements, crops, ships, methane leaks. Lately Planet does two new things: it signs big multi-year deals where a country (Germany, Japan, Sweden) pays Planet to build and fly satellites dedicated to it; and it uses AI (with Nvidia and Anthropic) to turn the flood of images into plain answers. In its latest year it turned its first annual profit and its backlog of signed future business jumped almost 80%."
+  },
+  "differentiation": [
+    {
+      "player": "Maxar Intelligence",
+      "theyMake": "Very-high-resolution optical imagery (now private, Advent-owned)",
+      "plEdge": "Planet's edge is daily global coverage and a deep change-detection archive plus a fast, capital-light sovereign model; Maxar leads on raw resolution but lacks Planet's daily cadence and scale."
+    },
+    {
+      "player": "BlackSky (BKSY)",
+      "theyMake": "High-revisit high-res tasking imagery + analytics",
+      "plEdge": "Planet is larger, profitable on an adjusted-EBITDA basis, and offers daily global PlanetScope plus hyperspectral; BlackSky is a smaller, faster-revisit tasking specialist."
+    },
+    {
+      "player": "ICEYE / Capella / Umbra",
+      "theyMake": "Synthetic-aperture radar (SAR), all-weather day/night",
+      "plEdge": "Different sensing modality — Planet leads optical/hyperspectral and increasingly partners with SAR players (co-awarded with ICEYE in Sweden) rather than competing head-on."
+    },
+    {
+      "player": "Airbus Defence and Space",
+      "theyMake": "Optical + SAR imagery within a defense-prime",
+      "plEdge": "Planet sells speed and a commercial operating model — first satellites within months of signing — versus traditional-aerospace timelines and cost."
+    },
+    {
+      "player": "Satellogic (SATL)",
+      "theyMake": "Sub-meter optical imagery at low cost",
+      "plEdge": "Planet's installed fleet, archive depth, government relationships and analytics layer are far more established; Satellogic is sub-scale by comparison."
+    },
+    {
+      "player": "Traditional aerospace primes",
+      "theyMake": "Bespoke sovereign constellations over multi-year programs",
+      "plEdge": "Planet offers a customer-funded 'Satellite Services' model that delivers dedicated capacity in months, not years, lowering capex risk for both sides."
+    }
+  ],
+  "customers": [
+    "German government (~EUR 240M)",
+    "SKY Perfect JSAT — Japan ($230M, 10 Pelicans)",
+    "Swedish Armed Forces / FMV",
+    "U.S. Missile Defense Agency (SHIELD prime)",
+    "Google (Project Suncatcher R&D)"
+  ],
+  "employeeCount": "~1,000 (company disclosures)",
+  "revenue": "$307.7M (FY2026)",
+  "growth": "+26% YoY (FY2026); +41% YoY (Q4 FY2026)",
+  "revenueHistory": [
+    {
+      "year": "FY24",
+      "label": "$220.7M",
+      "value": 220.7,
+      "source": "Planet FY results",
+      "sourceUrl": "https://investors.planet.com"
+    },
+    {
+      "year": "FY25",
+      "label": "$244.4M",
+      "value": 244.4,
+      "source": "Planet FY results",
+      "sourceUrl": "https://investors.planet.com"
+    },
+    {
+      "year": "FY26",
+      "label": "$307.7M",
+      "value": 307.7,
+      "source": "Planet FY2026 results (Nasdaq)",
+      "sourceUrl": "https://www.nasdaq.com/press-release/planet-reports-financial-results-fourth-quarter-and-full-fiscal-year-2026-2026-03-19"
+    }
+  ],
+  "bizFlow": {
+    "customers": [
+      {
+        "name": "Allied governments",
+        "need": "Sovereign dedicated capacity (Satellite Services)"
+      },
+      {
+        "name": "Defense / intel",
+        "need": "Daily imagery + AI detections (SHIELD)"
+      },
+      {
+        "name": "Agriculture",
+        "need": "Planetary Variables / crop monitoring"
+      },
+      {
+        "name": "Climate / energy",
+        "need": "Tanager hyperspectral methane detection"
+      },
+      {
+        "name": "Commercial / AI",
+        "need": "Analysis-ready geospatial data"
+      }
+    ],
+    "platform": {
+      "name": "Planet",
+      "modules": [
+        "PlanetScope (daily global)",
+        "SkySat / Pelican (high-res tasking)",
+        "Tanager (hyperspectral)",
+        "Planetary Intelligence (AI analytics)"
+      ]
+    },
+    "valueDelivered": [
+      {
+        "label": "Daily global coverage",
+        "detail": "Near-daily imaging of Earth's landmass from the Dove/SuperDove fleet"
+      },
+      {
+        "label": "Sovereign capacity, fast",
+        "detail": "Customer-funded dedicated Pelican constellations live within months of signing"
+      },
+      {
+        "label": "AI-ready insight",
+        "detail": "GPU-native engine (NVIDIA) + Anthropic Claude turn imagery into decisions"
+      },
+      {
+        "label": "Recurring backlog",
+        "detail": "~98% recurring ACV; backlog ~$900M (+79% YoY) underpins forward growth"
+      }
+    ]
+  },
+  "leadership": [
+    {
+      "name": "Will Marshall",
+      "title": "Co-Founder, CEO & Chairperson",
+      "since": "2010",
+      "background": "Co-founded Planet; former NASA scientist. Leads strategy around daily global imaging and the pivot to AI-driven 'planetary intelligence' and sovereign satellite services.",
+      "source": "Planet Investor Relations / Business Wire",
+      "sourceUrl": "https://www.businesswire.com/news/home/20260319782110/en/Planet-Reports-Financial-Results-for-Fourth-Quarter-and-Full-Fiscal-Year-2026"
+    },
+    {
+      "name": "Ashley Fieglein Johnson",
+      "title": "President & CFO",
+      "since": "2020",
+      "background": "Joined as CFO Feb 2020, added COO Mar 2021, assumed President title Mar 2024. Previously CFO/COO at Wealthfront; CFO/Chief Customer Officer/Interim CEO at ServiceSource.",
+      "source": "Planet Investor Relations",
+      "sourceUrl": "https://investors.planet.com/governance/board-of-directors/person-details/default.aspx?ItemId=dbaff927-8e83-473b-a90a-3151c1c00888"
+    }
+  ],
+  "notes": "Trading multiples pulled live from yfinance as of the last COMPLETED market close (2026-06-03); EV/Rev recomputed from close x shares + net debt. PL is small-cap and pre-GAAP-profit, so EV/Rev is the primary multiple. Qualitative facts sourced to Planet IR/Business Wire, Nasdaq, SpaceNews, The Motley Fool (earnings transcript), SatNews and Fortune. Headline FY2026 figures (revenue/backlog/adj. EBITDA/cash) come from Nasdaq + transcript summaries of the official release; a banker should reconcile against the primary 8-K. FY ends Jan 31.",
+  "lastRunDate": "2026-06-03",
+  "brief": {
+    "runDate": "2026-06-03",
+    "businessOverview": [
+      "Planet Labs (NYSE: PL) operates the world's largest Earth-observation satellite fleet, imaging Earth's landmass near-daily.",
+      "FY2026 (ended Jan 31, 2026) revenue was $307.7M (+26% YoY); Q4 was a record $86.8M (+~41% YoY).",
+      "FY2026 was its first full year of adjusted-EBITDA profitability ($15.5M vs an ~$11M loss the prior year).",
+      "Backlog reached ~$900M (+79% YoY) and cash/short-term investments rose to ~$640M, materially de-risking the story.",
+      "Growth is led by a 'Satellite Services' model: sovereigns fund dedicated Pelican capacity — Germany (~EUR 240M), Japan/JSAT ($230M, 10 satellites), Sweden (low nine-figure).",
+      "It is layering on AI 'planetary intelligence' via a GPU-native engine with NVIDIA and an Anthropic (Claude) partnership.",
+      "It was named a prime under the U.S. Missile Defense Agency's SHIELD IDIQ for AI-enabled detection/warning.",
+      "Products span PlanetScope (daily global), SkySat/Pelican (high-res tasking), and Tanager hyperspectral (with Carbon Mapper).",
+      "FY2027 revenue is guided to $415–440M (~39% growth at midpoint), signaling durable acceleration as sovereign backlog converts."
+    ],
+    "productModel": "Recurring data subscriptions to PlanetScope (near-daily ~3m global) and SkySat (sub-meter tasking), plus a fast-growing 'Satellite Services' model where sovereign governments fund dedicated next-gen Pelican capacity and direct downlink. A hyperspectral line (Tanager, with Carbon Mapper) detects methane/CO2. An emerging analytics layer — 'planetary intelligence' — is built on a GPU-native AI engine (NVIDIA Blackwell/IGX Thor) and an Anthropic Claude partnership, moving Planet up the value chain from raw imagery to decisions. ~98% of ACV is recurring.",
+    "recentNews": [
+      {
+        "date": "2026-04-30",
+        "headline": "Planet and Carbon Mapper sign agreement for new Tanager hyperspectral spacecraft",
+        "whyItMatters": "Extends the hyperspectral franchise (methane/CO2 and materials detection) beyond Tanager-1, supporting a recurring sustainability/government data motion and a second differentiated data product alongside optical imagery.",
+        "source": "Business Wire",
+        "sourceUrl": "https://www.businesswire.com/news/home/20260430512259/en/Planet-and-Carbon-Mapper-Sign-Agreement-for-New-Tanager-Spacecraft"
+      },
+      {
+        "date": "2026-03-19",
+        "headline": "Q4/FY2026: record $86.8M Q4 revenue (+~41%), first full year of adjusted-EBITDA profit, backlog +79% to ~$900M",
+        "whyItMatters": "Inflection quarter: first annual non-GAAP profit ($15.5M adj. EBITDA), record backlog and ~$640M cash de-risk the story; the FY2027 guide of $415–440M (~39% growth) signals durable acceleration.",
+        "source": "Nasdaq",
+        "sourceUrl": "https://www.nasdaq.com/press-release/planet-reports-financial-results-fourth-quarter-and-full-fiscal-year-2026-2026-03-19"
+      },
+      {
+        "date": "2026-03-16",
+        "headline": "Planet to build 'world's first GPU-native AI engine for planetary intelligence' with NVIDIA",
+        "whyItMatters": "Anchors the analytics/AI thesis to NVIDIA Blackwell/IGX Thor compute (mgmt cited up to 100x speedups on parts of the codebase) and a higher-margin software layer on top of imagery.",
+        "source": "Business Wire",
+        "sourceUrl": "https://www.businesswire.com/news/home/20260316377872/en/Planet-to-Build-Worlds-First-GPU-Native-AI-Engine-for-Planetary-Intelligence-with-NVIDIA"
+      },
+      {
+        "date": "2026-03-03",
+        "headline": "Planet selected as a prime under the Missile Defense Agency's $151B SHIELD IDIQ",
+        "whyItMatters": "Establishes Planet as a prime (not just a data sub) on a marquee U.S. missile-defense vehicle for AI-enabled detections/warnings, expanding addressable defense budget and validating the analytics pivot for national-security buyers.",
+        "source": "Business Wire",
+        "sourceUrl": "https://www.businesswire.com/news/home/20260303301536/en/Planet-Selected-as-a-Prime-Under-$151B-SHIELD-IDIQ"
+      },
+      {
+        "date": "2026-01-12",
+        "headline": "Low nine-figure multi-year satellite-services deal with the Swedish Armed Forces (alongside ICEYE)",
+        "whyItMatters": "Third sovereign satellite-services win in ~12 months (after Germany and Japan/JSAT), reinforcing the dedicated-capacity model for allied governments and adding multi-year backlog; the co-award with SAR provider ICEYE shows optical+SAR allied procurement.",
+        "source": "Business Wire",
+        "sourceUrl": "https://www.businesswire.com/news/home/20260112080353/en/Planet-Signs-9-Figure-Deal-with-Sweden"
+      },
+      {
+        "date": "2025-11-28",
+        "headline": "Planet launches high-resolution Pelican-5 and Pelican-6 plus 36 SuperDoves",
+        "whyItMatters": "Demonstrates fleet-refresh execution and capacity growth: scaling the higher-value Pelican high-res constellation while sustaining daily PlanetScope coverage — the supply side needed to convert sovereign backlog.",
+        "source": "Business Wire",
+        "sourceUrl": "https://www.businesswire.com/news/home/20251128430245/en/Planet-Launches-High-Resolution-Pelican-5-Pelican-6-Satellites-and-36-SuperDoves"
+      },
+      {
+        "date": "2025-07-01",
+        "headline": "~EUR 240M ($280M) multi-year German government satellite-services agreement",
+        "whyItMatters": "Largest contract in Planet's history at signing; dedicated Pelican capacity plus PlanetScope/SkySat data and AI for European security, with revenue recognition starting ~Jan 2026 — a template for the sovereign model.",
+        "source": "SpaceNews",
+        "sourceUrl": "https://spacenews.com/planet-pushes-into-european-market-announces-new-agreement-with-germany/"
+      },
+      {
+        "date": "2025-03-06",
+        "headline": "Planet and Anthropic partner to use Claude to turn satellite imagery into actionable insights",
+        "whyItMatters": "Signals the LLM/analytics direction: pairing Planet's daily global archive with frontier AI for pattern/anomaly detection, supporting a shift up the value chain from raw data to decisions.",
+        "source": "Business Wire",
+        "sourceUrl": "https://www.businesswire.com/news/home/20250306606139/en/Planet-and-Anthropic-Partner-to-Use-Claudes-Advanced-AI-Capabilities-to-Turn-Geospatial-Satellite-Imagery-into-Actionable-Insights"
+      },
+      {
+        "date": "2025-01-29",
+        "headline": "$230M agreement with SKY Perfect JSAT to build and operate 10 Pelican satellites",
+        "whyItMatters": "Capital-light fleet expansion in APAC: a customer-funded constellation (revenue over ~7 years) that grows capacity and recurring services revenue without Planet bearing all the capex.",
+        "source": "SatNews",
+        "sourceUrl": "https://news.satnews.com/2025/01/29/planets-230-million-commercial-agreement-for-pelican-satellites/"
+      }
+    ],
+    "earningsTakeaways": {
+      "quarter": "Q4 FY2026 (quarter and full year ended Jan 31, 2026); most recent reported.",
+      "reportDate": "2026-03-19",
+      "keyMetrics": {
+        "revenueQ4": "$86.8M (+~41% YoY, record)",
+        "revenueFY26": "$307.7M (+26% YoY)",
+        "adjEbitdaFY26": "$15.5M (first full year of profitability; vs ~$11M loss FY25)",
+        "backlog": "~$900M (+79% YoY); RPO ~$852M (+106%)",
+        "recurringACV": "~98% of end-of-period ACV recurring; ~85% annual/multi-year",
+        "cash": "~$640M (+188% YoY)",
+        "guidanceQ1FY27": "$87–91M (~34% YoY at midpoint)",
+        "guidanceFY27": "$415–440M (~39% growth at midpoint)"
+      },
+      "aiCommentary": "Management positioned Planet as building 'planetary intelligence' — converting its daily global archive into analysis-ready insight with frontier AI. CEO Will Marshall: 'While LLMs offer users the incredible ability to have conversations with the text of the Internet, they know very little about the physical world.' Planet announced a GPU-native AI engine with NVIDIA (Blackwell/IGX Thor) citing up to '100x on certain parts of our codebase,' an Anthropic (Claude) partnership, and Google's Project Suncatcher TPU-in-space tech demo. It was selected as a prime under the MDA's SHIELD IDIQ for AI-enabled detection/warning.",
+      "demandCommentary": "Demand is led by government, defense and intelligence — 'security is an urgent mandate for governments worldwide.' Satellite Services (sovereign dedicated-capacity deals) drove the year, with three large deals signed in 12 months (Germany ~EUR 240M, Japan/JSAT, Sweden). CEO noted the sovereign pipeline has 'grown appreciably in both number of deals and average deal size' and that Planet can launch first satellites 'within a few months of contract signing… far faster than traditional aerospace.' CFO flagged a higher proportion of large, shorter-term government contracts shifting the contract-duration mix.",
+      "analystTake": "The print reframed PL from a cash-burning imagery vendor to a profitable, backlog-rich defense/AI platform. The bull case rests on sovereign-services momentum and the AI-analytics layer converting backlog to high-margin recurring revenue; the debate is the rich EV/Rev multiple (see live comps) against still-modest absolute revenue and government-contract lumpiness.",
+      "sources": [
+        {"name": "Planet Q4/FY2026 results release", "url": "https://www.businesswire.com/news/home/20260319782110/en/Planet-Reports-Financial-Results-for-Fourth-Quarter-and-Full-Fiscal-Year-2026"},
+        {"name": "Planet FY2026 10-K (SEC)", "url": "https://www.sec.gov/Archives/edgar/data/1836833/000119312526127750/pl-20260327.htm"}
+      ]
+    },
+    "keyRisks": [
+      "Valuation: trades at a steep EV/Rev multiple (see live comps) on a small (~$308M) revenue base; the re-rating leaves little room for execution slips.",
+      "Customer concentration / lumpiness: a handful of large sovereign deals (Germany, Japan, Sweden) drive growth and revenue timing; one slip or delayed recognition is material.",
+      "Government dependence: revenue is increasingly tied to defense budgets and procurement cycles, exposing Planet to political and budget risk.",
+      "Contract-duration mix: management flagged more large, shorter-term government contracts, lowering the annual/multi-year ACV share to ~85%.",
+      "Capex / fleet execution: Pelican and Tanager ramps require continued launches and on-orbit performance; capital-light sovereign deals mitigate but do not remove capex.",
+      "AI monetization is early: the NVIDIA/Anthropic 'planetary intelligence' layer is promising but not yet a proven, sized revenue line.",
+      "Competitive intensity: Maxar, BlackSky, Airbus, and SAR players compete for the same defense/intel budgets."
+    ],
+    "businessOverviewSources": [
+      {"name": "Planet FY2026 10-K (SEC)", "url": "https://www.sec.gov/Archives/edgar/data/1836833/000119312526127750/pl-20260327.htm"},
+      {"name": "Planet Q4/FY2026 results", "url": "https://www.businesswire.com/news/home/20260319782110/en/Planet-Reports-Financial-Results-for-Fourth-Quarter-and-Full-Fiscal-Year-2026"}
+    ],
+    "productModelSources": [
+      {"name": "Planet FY2026 10-K (SEC)", "url": "https://www.sec.gov/Archives/edgar/data/1836833/000119312526127750/pl-20260327.htm"}
+    ],
+    "keyRisksSources": [
+      {"name": "Planet FY2026 10-K — Risk Factors (SEC)", "url": "https://www.sec.gov/Archives/edgar/data/1836833/000119312526127750/pl-20260327.htm"}
+    ],
+    "comps": [
+      {
+        "name": "Planet Labs",
+        "ticker": "PL",
+        "type": "Subject",
+        "evRevenue": "46.1x LTM",
+        "revenueGrowth": "41.1% YoY",
+        "grossMargin": "56.2%",
+        "note": "Largest daily-imaging EO fleet; first year of adj-EBITDA profit; backlog +79%",
+        "asOf": "2026-06-03",
+        "marketCap": "$14.4B",
+        "source": "yfinance, close of 2026-06-03 (recomputed: last close × shares + net debt)",
+        "sourceUrl": "https://finance.yahoo.com/quote/PL"
+      },
+      {
+        "name": "BlackSky",
+        "ticker": "BKSY",
+        "type": "EO / tasking",
+        "evRevenue": "15.2x LTM",
+        "revenueGrowth": "-29.7% YoY",
+        "grossMargin": "69.3%",
+        "note": "Smaller high-revisit tasking + analytics peer; revenue declined on contract timing",
+        "asOf": "2026-06-03",
+        "marketCap": "$1.4B",
+        "source": "yfinance, close of 2026-06-03 (recomputed: last close × shares + net debt)",
+        "sourceUrl": "https://finance.yahoo.com/quote/BKSY"
+      },
+      {
+        "name": "Spire Global",
+        "ticker": "SPIR",
+        "type": "Space data",
+        "evRevenue": "11.0x LTM",
+        "revenueGrowth": "-33.7% YoY",
+        "grossMargin": "42.3%",
+        "note": "RF/weather/maritime space-data peer; post-divestiture revenue reset",
+        "asOf": "2026-06-03",
+        "marketCap": "$737M",
+        "source": "yfinance, close of 2026-06-03 (recomputed: last close × shares + net debt)",
+        "sourceUrl": "https://finance.yahoo.com/quote/SPIR"
+      },
+      {
+        "name": "Rocket Lab",
+        "ticker": "RKLB",
+        "type": "Launch + space systems",
+        "evRevenue": "95.9x LTM",
+        "revenueGrowth": "63.5% YoY",
+        "grossMargin": "36.6%",
+        "note": "Launch/space-systems adjacency; richest multiple on hypergrowth, different model",
+        "asOf": "2026-06-03",
+        "marketCap": "$66.4B",
+        "source": "yfinance, close of 2026-06-03 (recomputed: last close × shares + net debt)",
+        "sourceUrl": "https://finance.yahoo.com/quote/RKLB"
+      },
+      {
+        "name": "Iridium",
+        "ticker": "IRDM",
+        "type": "Satellite comms",
+        "evRevenue": "7.8x LTM",
+        "revenueGrowth": "1.9% YoY",
+        "grossMargin": "71.6%",
+        "note": "Mature satellite-connectivity operator; profitable, low-growth value anchor",
+        "asOf": "2026-06-03",
+        "marketCap": "$5.2B",
+        "source": "yfinance, close of 2026-06-03 (recomputed: last close × shares + net debt)",
+        "sourceUrl": "https://finance.yahoo.com/quote/IRDM"
+      }
+    ],
+    "slideBullets": [
+      "FY2026 revenue $307.7M (+26%); record Q4 $86.8M (+41%); first full year of adjusted-EBITDA profit ($15.5M).",
+      "Backlog ~$900M (+79% YoY), ~$640M cash, ~98% recurring ACV; FY2027 guide $415–440M (~39% growth).",
+      "Sovereign 'Satellite Services' is the engine: Germany (~EUR 240M), Japan/JSAT ($230M), Sweden — >$500M combined.",
+      "AI 'planetary intelligence' via NVIDIA GPU-native engine + Anthropic Claude; named a prime on MDA's SHIELD IDIQ.",
+      "Largest daily-imaging EO fleet; trades at a premium EV/Rev to most space peers (see live comps)."
+    ],
+    "diligenceQuestions": [
+      "How much of the ~$900M backlog is contracted/funded versus optional, and what is the revenue-recognition schedule across the German, JSAT and Swedish deals (and the German Jan-2026 start)?",
+      "What is the true unit economics and margin profile of 'Satellite Services' versus core data subscriptions, and how does the shift to large, shorter-term government contracts affect durability of the ~98% recurring ACV?",
+      "How will the NVIDIA/Anthropic 'planetary intelligence' layer be monetized and sized — is it a distinct revenue line with pricing, or an enabler that lifts attach/retention on existing imagery?"
+    ]
+  }
+}

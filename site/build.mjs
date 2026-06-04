@@ -24,10 +24,9 @@ const TEMPLATE = path.join(__dirname, 'template', 'index.html');
 
 // Companies shown on the PUBLIC demo at the site root. Everything else is reachable
 // only via the gated /full view. Add more demo ids over time. (Folder ids: Broadcom = "AVGO".)
-const DEMO_IDS = ['decagon', 'AVGO', 'GOOGL', 'AAPL', 'MSFT'];
-
-// Linked from the demo banner's "Get Atlas" CTA so visitors can deploy their own.
-const REPO_URL = 'https://github.com/Agrimd15/atlas';
+// Fresh restart: prior coverage was moved to archive/ (preserved in git, off the live
+// site). Add demo ids back here as new companies are researched into data-dumps/.
+const DEMO_IDS = [];
 
 const readJSON = (p) => { try { return JSON.parse(fs.readFileSync(p, 'utf8')); } catch { return null; } };
 const ensureDir = (p) => fs.mkdirSync(p, { recursive: true });
@@ -150,7 +149,6 @@ function emitView(outDir, list, opts = {}) {
   const manifest = {
     generatedAt: new Date().toISOString(),
     demo: !!opts.demo,
-    repoUrl: opts.demo ? REPO_URL : undefined,
     count: clean.length,
     latestRunDate: clean.reduce((m, c) => (c.latestRunDate && c.latestRunDate > m ? c.latestRunDate : m), ''),
     companies: clean,

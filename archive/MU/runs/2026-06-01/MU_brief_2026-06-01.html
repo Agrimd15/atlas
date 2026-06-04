@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Micron Technology - Alfred Research Brief</title>
+<link href="https://fonts.googleapis.com/css2?family=Alumni+Sans+Pinstripe&family=Albert+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ── Neo Kinpaku design tokens ── */
+  :root {
+    --ks-lacquer:      oklch(7%  0.006 95);
+    --ks-lacquer-deep: oklch(4%  0.004 95);
+    --ks-raised:       oklch(11% 0.006 95);
+    --ks-graphite:     oklch(15% 0.008 95);
+    --ks-graphite-2:   oklch(19% 0.008 95);
+    --ks-kinpaku:      oklch(84% 0.19  80);
+    --ks-kinpaku-pale: oklch(86% 0.07  84);
+    --ks-kinpaku-rich: oklch(77% 0.13  82);
+    --ks-kinpaku-deep: oklch(61% 0.085 78);
+    --ks-patina:       oklch(70% 0.12 188);
+    --ks-vermilion:    oklch(58% 0.15  35);
+    --ks-champagne:    oklch(91% 0 0);
+    --ks-body:         oklch(88% 0 0);
+    --ks-muted:        oklch(72% 0 0);
+    --ks-faint:        oklch(62% 0 0);
+    --ks-rule:         oklch(78% 0 0 / 0.16);
+    --ks-rule-strong:  oklch(74% 0.09 82 / 0.6);
+    --ks-ease:         cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  /* ── Base ── */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Albert Sans", "Avenir Next", "Helvetica Neue", Arial, system-ui, sans-serif;
+         background: var(--ks-lacquer); color: var(--ks-body); font-size: 14px; line-height: 1.75; }
+  a { color: inherit; text-decoration: none; }
+  p { color: var(--ks-body); line-height: 1.75; margin-bottom: 6px; }
+  strong { color: var(--ks-champagne); }
+  .mono { font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+  .right { text-align: right; }
+
+  .wrapper { max-width: 920px; margin: 0 auto; background: var(--ks-lacquer);
+              border: 1px solid var(--ks-rule); }
+
+  /* ── Header ── */
+  .header { background: var(--ks-lacquer-deep); padding: 28px 40px 22px;
+             border-bottom: 1px solid var(--ks-rule-strong); }
+  .header-top { display: flex; align-items: center; gap: 18px; margin-bottom: 10px; }
+  .company-logo { width: 44px; height: 44px; border-radius: 8px; object-fit: contain;
+                   background: var(--ks-raised); padding: 4px;
+                   border: 1px solid var(--ks-rule); flex-shrink: 0; }
+  .header-name { flex: 1; }
+  .company-name { font-family: "Alumni Sans Pinstripe", "Albert Sans", Arial, sans-serif;
+                   font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 300;
+                   letter-spacing: -0.01em; line-height: 1.0; color: var(--ks-champagne);
+                   display: block; }
+  .header-badges { display: flex; align-items: center; gap: 7px; margin-top: 6px; flex-wrap: wrap; }
+  .ticker-badge { background: var(--ks-kinpaku); color: var(--ks-lacquer-deep);
+                   font-family: "SFMono-Regular", "Roboto Mono", monospace;
+                   font-size: 10px; font-weight: 700; padding: 3px 9px; border-radius: 2px;
+                   letter-spacing: 0.15em; }
+  .stage-badge { background: var(--ks-raised); border: 1px solid var(--ks-rule);
+                  color: var(--ks-muted); font-size: 10px; font-weight: 600; padding: 2px 8px;
+                  border-radius: 2px; letter-spacing: 0.12em;
+                  font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+  .draft-badge { background: oklch(58% 0.15 35 / 0.12); border: 1px solid oklch(58% 0.15 35 / 0.4);
+                  color: var(--ks-vermilion); font-size: 10px; font-weight: 700; padding: 2px 8px;
+                  border-radius: 2px; letter-spacing: 0.15em;
+                  font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+  .header-meta { font-size: 11.5px; color: var(--ks-faint); }
+  .header-meta a { color: var(--ks-kinpaku-pale); }
+  .verticals { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 6px; }
+  .vertical-tag { background: oklch(84% 0.19 80 / 0.08); border: 1px solid oklch(84% 0.19 80 / 0.2);
+                   color: var(--ks-kinpaku-pale); font-size: 10px; padding: 2px 9px; border-radius: 3px;
+                   font-family: "SFMono-Regular", "Roboto Mono", monospace; letter-spacing: 0.04em; }
+  .trading-bar { background: var(--ks-raised); border: 1px solid var(--ks-rule); border-radius: 3px;
+                  padding: 9px 14px; margin-top: 14px; font-size: 11px; color: var(--ks-faint);
+                  font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+  .trading-bar strong { color: var(--ks-champagne); margin-right: 4px; }
+
+  /* ── Hero stats bar ── */
+  .hero-stats { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+                 border-bottom: 1px solid var(--ks-rule-strong); }
+  .hero-card { background: var(--ks-raised); padding: 18px 22px;
+                border-right: 1px solid var(--ks-rule); }
+  .hero-card:last-child { border-right: none; }
+  .hero-label { font-size: 9px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.18em;
+                 color: var(--ks-faint); margin-bottom: 6px;
+                 font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+  .hero-value { font-size: 0.9rem; font-weight: 700; line-height: 1.3; color: var(--ks-champagne); }
+  .hero-sub { font-size: 10.5px; color: var(--ks-patina); margin-top: 3px;
+               font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+
+  /* ── TOC ── */
+  .toc { background: var(--ks-graphite); border-bottom: 1px solid var(--ks-rule-strong);
+          padding: 9px 40px; display: flex; flex-wrap: wrap; gap: 5px;
+          position: sticky; top: 0; z-index: 10; }
+  .toc-link { font-size: 10px; font-weight: 600; color: var(--ks-faint); padding: 3px 10px;
+               border-radius: 20px; border: 1px solid var(--ks-rule); background: transparent;
+               transition: background 150ms var(--ks-ease), color 150ms var(--ks-ease);
+               white-space: nowrap; font-family: "SFMono-Regular", "Roboto Mono", monospace;
+               letter-spacing: 0.04em; }
+  .toc-link:hover { background: var(--ks-kinpaku); color: var(--ks-lacquer-deep); border-color: var(--ks-kinpaku); }
+
+  /* ── Sections ── */
+  .section { border-bottom: 1px solid var(--ks-rule); padding: 24px 40px; scroll-margin-top: 48px; }
+  .section:last-of-type { border-bottom: none; }
+  .sec-label { font-size: 9.5px; font-weight: 500; letter-spacing: 0.20em; text-transform: uppercase;
+                color: var(--ks-kinpaku); font-family: "SFMono-Regular", "Roboto Mono", monospace;
+                margin-bottom: 16px; }
+
+  /* ── Two-col layout (overview) ── */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
+  @media (max-width: 680px) { .two-col { grid-template-columns: 1fr; } }
+
+  /* ── Body bullet list ── */
+  .body-list { list-style: none; padding: 0; margin: 0; }
+  .body-list li { padding: 6px 0 6px 16px; position: relative; color: var(--ks-body);
+                   font-size: 13px; line-height: 1.7; border-bottom: 1px solid var(--ks-rule); }
+  .body-list li:last-child { border-bottom: none; }
+  .body-list li:before { content: ""; position: absolute; left: 2px; top: 14px;
+                          width: 5px; height: 5px; border-radius: 50%; background: var(--ks-kinpaku); }
+
+  /* ── Business flow diagram ── */
+  .biz-flow { display: flex; align-items: stretch; gap: 0; margin: 4px 0; }
+  .biz-col { display: flex; flex-direction: column; gap: 6px; flex: 1; }
+  .biz-col-mid { flex: 1.1; }
+  .biz-col-label { font-size: 8.5px; text-transform: uppercase; letter-spacing: 0.18em;
+                    color: var(--ks-faint); margin-bottom: 2px;
+                    font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+  .biz-node { padding: 8px 10px; border-radius: 3px; font-size: 11px; font-weight: 500; line-height: 1.3; }
+  .biz-cust { background: oklch(84% 0.19 80 / 0.07); border: 1px solid oklch(84% 0.19 80 / 0.2);
+               color: var(--ks-kinpaku-pale); }
+  .biz-out  { background: oklch(70% 0.12 188 / 0.07); border: 1px solid oklch(70% 0.12 188 / 0.2);
+               color: var(--ks-patina); }
+  .biz-platform { background: var(--ks-kinpaku); color: var(--ks-lacquer-deep); padding: 10px 12px;
+                   border-radius: 3px; font-size: 12px; font-weight: 700; text-align: center; }
+  .biz-mod { background: var(--ks-graphite-2); border: 1px solid var(--ks-rule); color: var(--ks-body);
+              padding: 6px 10px; border-radius: 3px; font-size: 11px; text-align: center; }
+  .biz-arrow { display: flex; align-items: center; padding: 0 8px; color: var(--ks-kinpaku);
+                font-size: 16px; flex-shrink: 0; margin-top: 20px; }
+
+  /* ── News ── */
+  .news-item { padding: 11px 0; border-bottom: 1px solid var(--ks-rule); }
+  .news-item:last-child { border-bottom: none; }
+  .news-row { display: flex; gap: 14px; align-items: flex-start; }
+  .news-date { font-size: 10px; color: var(--ks-faint); white-space: nowrap; min-width: 74px;
+                font-family: "SFMono-Regular", "Roboto Mono", monospace; padding-top: 2px; }
+  .news-headline { font-size: 13px; font-weight: 600; color: var(--ks-champagne); line-height: 1.4; }
+  .news-why { font-size: 12px; color: var(--ks-muted); margin-top: 5px; margin-left: 88px; line-height: 1.6; }
+
+  /* ── Financials / metrics ── */
+  .fin-meta { font-size: 11px; color: var(--ks-faint); margin-bottom: 14px;
+               font-family: "SFMono-Regular", "Roboto Mono", monospace; letter-spacing: 0.05em; }
+  .metrics-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+                   gap: 8px; margin-bottom: 18px; }
+  .metric-card { background: var(--ks-raised); border: 1px solid var(--ks-rule); border-radius: 3px; padding: 12px 14px;
+                  min-width: 0; }
+  .metric-label { font-size: 9px; font-weight: 500; color: var(--ks-faint); text-transform: uppercase;
+                   letter-spacing: 0.15em; margin-bottom: 5px;
+                   font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+  .metric-value { font-size: 0.92rem; font-weight: 700; color: var(--ks-champagne); line-height: 1.3; }
+  .metric-value.green { color: var(--ks-patina); }
+  .earn-bullets { list-style: none; padding: 0; margin: 0; }
+  .earn-bullets li { padding: 7px 0 7px 16px; position: relative; font-size: 13px;
+                      color: var(--ks-body); border-bottom: 1px solid var(--ks-rule); line-height: 1.7; }
+  .earn-bullets li:before { content: ""; position: absolute; left: 2px; top: 14px;
+                             width: 5px; height: 5px; border-radius: 50%; background: var(--ks-patina); }
+  .earn-bullets li:last-child { border-bottom: none; }
+
+  /* ── ARR chart sources ── */
+  .chart-sources { margin-top: 8px; font-size: 9.5px; color: var(--ks-faint); }
+  .chart-source-label { font-weight: 600; letter-spacing: .06em; text-transform: uppercase; margin-right: 4px; }
+  .chart-source-link { color: var(--ks-kinpaku); text-decoration: none; border-bottom: 1px solid transparent;
+                        transition: border-color .15s; }
+  .chart-source-link:hover { border-bottom-color: var(--ks-kinpaku); }
+  .chart-source-text { color: var(--ks-faint); }
+
+  /* ── ARR chart ── */
+  .chart-wrap { margin: 4px 0 8px; }
+  .chart-eyebrow { font-size: 9px; text-transform: uppercase; letter-spacing: 0.18em;
+                    color: var(--ks-faint); margin-bottom: 12px;
+                    font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+
+  /* ── Funding timeline (flex cards) ── */
+  .tl-flex  { display: flex; align-items: center; gap: 0; overflow-x: auto;
+               padding-bottom: 6px; margin: 8px 0; }
+  .tl-card  { background: var(--ks-raised); border: 1px solid var(--ks-rule); border-radius: 3px;
+               padding: 10px 12px; min-width: 88px; text-align: center; flex-shrink: 0; }
+  .tl-arrow { color: var(--ks-kinpaku); font-size: 14px; padding: 0 4px; flex-shrink: 0; }
+  .tl-round { font-size: 8px; text-transform: uppercase; letter-spacing: 0.10em;
+               color: var(--ks-faint); font-family: "SFMono-Regular", "Roboto Mono", monospace;
+               margin-bottom: 3px; }
+  .tl-amt   { font-size: 12px; font-weight: 700; color: var(--ks-kinpaku);
+               font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+  .tl-val   { font-size: 10px; color: var(--ks-patina);
+               font-family: "SFMono-Regular", "Roboto Mono", monospace; margin-top: 2px; }
+  .tl-date  { font-size: 9px; color: var(--ks-faint); margin-top: 1px; }
+  .tl-leads { font-size: 9px; color: var(--ks-muted); margin-top: 3px; line-height: 1.3; }
+
+  /* ── News source tag ── */
+  .news-source-row { margin-left: 88px; margin-top: 4px; margin-bottom: 1px; display: flex; align-items: center; flex-wrap: wrap; gap: 4px; }
+  .news-source-label { font-size: 9px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--ks-faint); margin-right: 2px; }
+  .news-source-sep { color: var(--ks-faint); font-size: 9px; }
+  .news-source-link { font-size: 9.5px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+    color: var(--ks-gold); text-decoration: none; border-bottom: 1px solid transparent;
+    transition: border-color .15s; }
+  .news-source-link:hover { border-bottom-color: var(--ks-gold); }
+  .news-source-nolink { color: var(--ks-faint); }
+  /* legacy — keep so old references don't break */
+  .news-source { font-size: 9.5px; font-weight: 600; color: var(--ks-faint); margin-left: 8px;
+                  font-family: "SFMono-Regular", "Roboto Mono", monospace; letter-spacing: 0.05em;
+                  background: var(--ks-raised); border: 1px solid var(--ks-rule);
+                  padding: 1px 6px; border-radius: 3px; vertical-align: middle; }
+
+  /* ── body-p (single paragraph, no bullets) ── */
+  .body-p { color: var(--ks-body); font-size: 13px; line-height: 1.75; }
+
+  /* ── Slide Kit ── */
+  .kit-grid { display: grid; grid-template-columns: 160px 1fr 1fr; gap: 24px; align-items: start; }
+  @media (max-width: 680px) { .kit-grid { grid-template-columns: 1fr; } }
+  .kit-identity { display: flex; flex-direction: column; gap: 8px; }
+  .kit-logo-lg  { width: 64px; height: 64px; border-radius: 10px; object-fit: contain;
+                   background: var(--ks-raised); padding: 6px; border: 1px solid var(--ks-rule); }
+  .kit-name { font-family: "Alumni Sans Pinstripe", Arial, sans-serif; font-size: 1.3rem;
+               font-weight: 300; color: var(--ks-champagne); line-height: 1.1; }
+  .kit-sub  { font-size: 11px; color: var(--ks-muted); }
+  .kit-link { font-size: 11px; color: var(--ks-kinpaku-pale); }
+  .kit-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; }
+  .kit-tag  { font-size: 9px; background: oklch(84% 0.19 80 / 0.08); border: 1px solid oklch(84% 0.19 80 / 0.2);
+               color: var(--ks-kinpaku-pale); padding: 2px 7px; border-radius: 3px;
+               font-family: "SFMono-Regular", "Roboto Mono", monospace; letter-spacing: 0.04em; }
+  .kit-copy { display: flex; flex-direction: column; gap: 6px; }
+  .kit-copy-label { font-size: 8.5px; text-transform: uppercase; letter-spacing: 0.18em;
+                     color: var(--ks-faint); font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+  .kit-stat { background: var(--ks-raised); border: 1px solid var(--ks-rule); border-radius: 3px;
+               padding: 8px 12px; font-size: 12.5px; font-weight: 600; color: var(--ks-champagne);
+               font-family: "SFMono-Regular", "Roboto Mono", monospace; cursor: text; }
+  .kit-bullet { background: var(--ks-graphite); border-left: 2px solid var(--ks-kinpaku);
+                 padding: 7px 10px; font-size: 12px; color: var(--ks-body); line-height: 1.5;
+                 margin-top: 2px; }
+  .kit-assets { display: flex; flex-direction: column; gap: 6px; }
+  .kit-url  { background: var(--ks-raised); border: 1px solid var(--ks-rule); border-radius: 3px;
+               padding: 7px 10px; font-size: 10.5px; color: var(--ks-patina); word-break: break-all;
+               font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+  .kit-swatches { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+  .kit-swatch-wrap { display: flex; flex-direction: column; align-items: center; gap: 4px; cursor: default; }
+  .kit-swatch { width: 36px; height: 36px; border-radius: 6px; border: 1px solid rgba(255,255,255,.08);
+                 box-shadow: 0 1px 4px rgba(0,0,0,.4); }
+  .kit-hex { font-size: 9px; font-family: "SFMono-Regular","Roboto Mono",monospace;
+              color: var(--ks-faint); letter-spacing: .03em; text-transform: uppercase; }
+
+  /* ── Leadership ── */
+  .exec-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
+  .exec-card { background: var(--ks-raised); border: 1px solid var(--ks-rule); border-radius: 4px;
+                padding: 14px 16px; }
+  .exec-title { font-size: 9px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
+                 color: var(--ks-faint); margin-bottom: 5px; }
+  .exec-since { font-weight: 400; color: var(--ks-faint); opacity: .7; }
+  .exec-name-row { margin-bottom: 6px; }
+  .exec-name { font-size: 13px; font-weight: 700; color: var(--ks-champagne); }
+  .exec-linkedin { font-size: 13px; font-weight: 700; color: var(--ks-kinpaku);
+                    text-decoration: none; border-bottom: 1px solid transparent;
+                    transition: border-color .15s; }
+  .exec-linkedin:hover { border-bottom-color: var(--ks-kinpaku); }
+  .exec-bg { font-size: 11px; color: var(--ks-muted); line-height: 1.55; }
+
+  /* ── Risk list ── */
+  .risk-list { list-style: none; padding: 0; }
+  .risk-list li { padding: 9px 0 9px 22px; border-bottom: 1px solid var(--ks-rule);
+                   position: relative; font-size: 13px; color: var(--ks-body); line-height: 1.7; }
+  .risk-list li:before { content: "!"; position: absolute; left: 3px; top: 10px; width: 13px; height: 13px;
+                          border-radius: 50%; background: oklch(58% 0.15 35 / 0.15);
+                          color: var(--ks-vermilion); font-size: 9px; font-weight: 900;
+                          text-align: center; line-height: 13px;
+                          font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+  .risk-list li:last-child { border-bottom: none; }
+  .risk-label { font-weight: 600; color: var(--ks-champagne); }
+
+  /* ── Comps table ── */
+  .comps-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  .comps-table th { text-align: left; font-size: 9px; font-weight: 500; letter-spacing: 0.12em;
+                     text-transform: uppercase; color: var(--ks-faint); padding: 0 12px 9px 0;
+                     border-bottom: 1px solid var(--ks-rule-strong);
+                     font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+  .comps-table td { padding: 8px 12px 8px 0; border-bottom: 1px solid var(--ks-rule);
+                     vertical-align: middle; color: var(--ks-body); }
+  .comps-table tr:last-child td { border-bottom: none; }
+  .comps-table tr:hover td { background: var(--ks-raised); }
+  .comp-name { font-weight: 600; color: var(--ks-champagne); font-size: 12.5px; }
+  .comp-ticker { color: var(--ks-faint); font-size: 11px; }
+  .comp-type-cell { font-size: 10px; color: var(--ks-faint); white-space: nowrap; }
+  .comp-ev { vertical-align: top; }
+  .comp-asof { font-size: 9px; color: var(--ks-faint); font-weight: 400; margin-top: 2px; }
+  .comp-source-link { font-size: 9.5px; color: var(--ks-kinpaku); text-decoration: none;
+                       border-bottom: 1px solid transparent; transition: border-color .15s; }
+  .comp-source-link:hover { border-bottom-color: var(--ks-kinpaku); }
+  .comp-source-nolink { font-size: 9.5px; color: var(--ks-faint); }
+  .subject-row td { background: oklch(84% 0.19 80 / 0.06); font-weight: 700; color: var(--ks-champagne); }
+  .subject-row td:first-child { border-left: 3px solid var(--ks-kinpaku); padding-left: 8px; color: var(--ks-kinpaku); }
+  .note-cell { color: var(--ks-faint); font-size: 11px; }
+
+  /* ── Slide bullets ── */
+  .slide-list { list-style: none; padding: 0; counter-reset: slides; }
+  .slide-list li { padding: 10px 0 10px 42px; border-bottom: 1px solid var(--ks-rule);
+                    position: relative; font-size: 13px; color: var(--ks-body); line-height: 1.7; }
+  .slide-list li:last-child { border-bottom: none; }
+  .slide-list li:before { counter-increment: slides; content: counter(slides);
+                           position: absolute; left: 0; top: 8px; width: 26px; height: 26px;
+                           border-radius: 2px; background: var(--ks-kinpaku); color: var(--ks-lacquer-deep);
+                           font-size: 11px; font-weight: 700; text-align: center; line-height: 26px;
+                           font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+
+  /* ── Diligence ── */
+  .dq-list { list-style: none; padding: 0; counter-reset: dqs; }
+  .dq-list li { padding: 10px 0 10px 42px; border-bottom: 1px solid var(--ks-rule);
+                 position: relative; font-size: 13px; color: var(--ks-body); line-height: 1.7; }
+  .dq-list li:last-child { border-bottom: none; }
+  .dq-list li:before { counter-increment: dqs; content: "Q" counter(dqs);
+                        position: absolute; left: 0; top: 8px; width: 26px; height: 26px;
+                        border-radius: 2px; background: var(--ks-raised); color: var(--ks-kinpaku);
+                        border: 1px solid var(--ks-rule); font-size: 9.5px; font-weight: 700;
+                        text-align: center; line-height: 26px;
+                        font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+
+  /* ── Chips ── */
+  .chip-list { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip { background: var(--ks-raised); border: 1px solid var(--ks-rule); color: var(--ks-muted);
+           font-size: 11.5px; padding: 3px 11px; border-radius: 20px; font-weight: 500; }
+
+  /* ── Footer ── */
+  .footer { background: var(--ks-raised); border-top: 1px solid var(--ks-rule-strong);
+             padding: 14px 40px; display: flex; justify-content: space-between; align-items: center; }
+  .footer-left { font-size: 10.5px; color: var(--ks-faint); line-height: 1.7; }
+  .footer-right { font-size: 10.5px; font-weight: 700; color: var(--ks-kinpaku);
+                   letter-spacing: 0.22em; font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+  .meta-note { font-size: 12px; color: var(--ks-muted); margin-top: 8px; }
+  .meta-note strong { color: var(--ks-champagne); }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+  @media print {
+    .toc { display: none; }
+    body { background: #fff; color: #111; }
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- ① HEADER: Logo + Name + Badges -->
+  <div class="header">
+    <div class="header-top">
+      <img class="company-logo" src="https://logo.clearbit.com/www.micron.com" alt="Micron Technology logo" onerror="this.style.display='none'">
+      <div class="header-name">
+        <span class="company-name">Micron Technology</span>
+        <div class="header-badges">
+          <span class="ticker-badge">MU</span>
+          <span class="stage-badge">PUBLIC (NASDAQ: MU)</span>
+          <span class="draft-badge">DRAFT</span>
+        </div>
+      </div>
+      <div class="header-meta" style="text-align:right">
+        <a href="https://www.micron.com" target="_blank">www.micron.com</a><br>
+        Alfred Research &nbsp;·&nbsp; June 01, 2026
+      </div>
+    </div>
+    <div class="verticals"><span class="vertical-tag">Memory Semiconductors</span><span class="vertical-tag">HBM / AI Memory</span><span class="vertical-tag">DRAM</span><span class="vertical-tag">NAND Storage</span></div>
+    
+  </div>
+
+  <!-- ② HERO STATS: 5 KPIs at a glance -->
+  <div class="hero-stats"><div class="hero-card"><div class="hero-label">ARR / Revenue</div><div class="hero-value" style="color:var(--ks-kinpaku)">$9.30B (FQ3 FY2025); Q4 FY2025 guide: $10.7B; Q2 FY2026 record: $23.9B</div><div class="hero-sub">+37% YoY / +16% QoQ (FQ3 FY2025); Q2 FY2026 +~196% YoY</div></div><div class="hero-card"><div class="hero-label">Gross Margin</div><div class="hero-value" style="color:var(--ks-champagne)">37.7% GAAP (FQ3 FY2025); guided ~42% in FQ4 FY2025; ~81% guided Q3 FY2026</div></div><div class="hero-card"><div class="hero-label">Op Margin</div><div class="hero-value" style="color:var(--ks-champagne)">26.8% GAAP (FQ3 FY2025); ~+1,300bps YoY</div></div><div class="hero-card"><div class="hero-label">Valuation</div><div class="hero-value" style="color:var(--ks-kinpaku)">~$1.09T market cap / ~$1.09T EV</div></div><div class="hero-card"><div class="hero-label">Employees</div><div class="hero-value" style="color:var(--ks-champagne)">~49,000</div></div><div class="hero-card"><div class="hero-label">Stage</div><div class="hero-value" style="color:var(--ks-muted)">PUBLIC (NASDAQ: MU)</div></div></div>
+
+  <!-- ③ TOC -->
+  <div class="toc"><a href="#overview" class="toc-link">Overview</a> <a href="#leadership" class="toc-link">Leadership</a> <a href="#product" class="toc-link">Revenue Model</a> <a href="#news" class="toc-link">News</a> <a href="#earnings" class="toc-link">Financials</a> <a href="#growth" class="toc-link">Growth</a> <a href="#risks" class="toc-link">Risks</a> <a href="#comps" class="toc-link">Comps</a> <a href="#funding" class="toc-link">Funding</a> <a href="#bullets" class="toc-link">Bullets</a> <a href="#diligence" class="toc-link">Diligence</a> <a href="#slidekit" class="toc-link">Slide Kit</a></div>
+
+  <!-- ④ BUSINESS OVERVIEW + VALUE CHAIN DIAGRAM (2-col) -->
+  <div class="section" id="overview"><div class="sec-label">Business Overview</div><div class="two-col"><div><ul class='body-list'><li>Micron Technology is the only U.S.-based manufacturer of memory and storage semiconductors, producing DRAM, NAND, and High Bandwidth Memory (HBM) solutions for AI infrastructure, data centers, mobile, and automotive markets.</li><li>FY2025 was a record year: $37.4B revenue (+49% YoY), $8.5B GAAP net income - a historic recovery from the FY2023 trough ($15.5B, -49% YoY) driven almost entirely by AI server DRAM and HBM demand.</li><li>HBM is the pivotal product: HBM revenue grew ~50% sequentially in Q3 FY2025; entire CY2026 HBM supply is sold out under multi-customer price/volume agreements. In March 2026, Micron entered high-volume production of HBM4 for NVIDIA's Vera Rubin platform.</li><li>Micron holds ~21% global HBM market share (2025), up from near-zero in 2023. SK Hynix leads (~52%), Samsung trails. NVIDIA CEO Jensen Huang publicly endorsed the Micron partnership - signaling graduation from secondary to strategic supplier.</li></ul></div><div>
+    <div class="biz-flow">
+      <div class="biz-col">
+        <div class="biz-col-label">CUSTOMERS</div>
+        <div class="biz-node biz-cust">Enterprise Customers</div>
+      </div>
+      <div class="biz-arrow">&#8594;</div>
+      <div class="biz-col biz-col-mid">
+        <div class="biz-col-label">PLATFORM</div>
+        <div class="biz-platform">Micron Technology</div>
+        <div class="biz-mod">Memory Semiconductors</div><div class="biz-mod">HBM / AI Memory</div><div class="biz-mod">DRAM</div>
+      </div>
+      <div class="biz-arrow">&#8594;</div>
+      <div class="biz-col">
+        <div class="biz-col-label">VALUE DELIVERED</div>
+        <div class="biz-node biz-out">Cloud Infrastructure</div><div class="biz-node biz-out">Data & Analytics Platform</div>
+      </div>
+    </div></div></div></div>
+
+  <!-- ④b EXECUTIVE LEADERSHIP -->
+  <div class="section" id="leadership"><div class="sec-label">Executive Leadership</div><div class="exec-grid"><div class="exec-card"><div class="exec-title">Chairman, President & CEO <span class="exec-since">since 2017</span></div><div class="exec-name-row"><a class="exec-linkedin" href="https://www.linkedin.com/in/sanjay-mehrotra-micron/" target="_blank" rel="noopener">Sanjay Mehrotra</a></div><div class="exec-bg">Joined Micron May 2017. Previously President & CEO of SanDisk (2011-2016), which he co-founded in 1988 and sold to Western Digital for $19B. Deep NAND/storage background. Leading Micron through the AI memory supercycle with $200B domestic investment commitment.</div></div></div></div>
+
+  <!-- ⑤ PRODUCT & REVENUE MODEL -->
+  <div class="section" id="product"><div class="sec-label">Product &amp; Revenue Model</div><ul class='body-list'><li>Product sales of DRAM (76.4% of FY2025 revenue), NAND (22.7%), and other (0.9%). Revenue organized across Cloud Memory BU ($13.5B FY2025, +257% YoY), Mobile & Client BU ($11.9B, +2% YoY), and Consumer & Device BU ($7.2B, +45% YoY). Pricing driven by supply/demand dynamics.</li><li>HBM commands significant ASP premium over standard DRAM - key margin driver.</li><li>Data center share of global DRAM consumption grew from 32% (5 years ago) to ~50% (2025).</li></ul></div>
+
+  <!-- ⑥ RECENT NEWS -->
+  <div class="section" id="news"><div class="sec-label">Recent News</div><div class="news-item"><div class="news-row"><span class="news-date">2026-03-18</span><span class="news-headline">Micron Reports Record Q2 FY2026 Revenue of $23.9B; Guides Q3 to $33.5B at ~81% Gross Margin</span></div><div class="news-source-row"><span class="news-source-label">Sources:</span> <a class="news-source-link" href="https://www.cnbc.com/2026/03/18/micron-mu-q2-earnings-report-2026.html" target="_blank" rel="noopener">CNBC</a> <span class="news-source-sep">·</span> <a class="news-source-link" href="https://finance.yahoo.com/news/micron-technology-inc-reports-results-200100050.html" target="_blank" rel="noopener">Micron IR / Yahoo Finance</a></div><div class="news-why">Revenue nearly tripled YoY - a step-change inflection that validates Micron's HBM positioning. Q3 guidance of $33.5B at 81% gross margin implies FY2026 is tracking to ~$90B+ in revenue, fundamentally re-rating the company's earnings power.</div></div><div class="news-item"><div class="news-row"><span class="news-date">2026-03-18</span><span class="news-headline">Micron First to High-Volume Production of HBM4 for NVIDIA Vera Rubin at GTC 2026</span></div><div class="news-source-row"><span class="news-source-label">Sources:</span> <a class="news-source-link" href="https://investors.micron.com/news-releases/news-release-details/micron-high-volume-production-hbm4-designed-nvidia-vera-rubin" target="_blank" rel="noopener">Micron IR</a> <span class="news-source-sep">·</span> <a class="news-source-link" href="https://www.tomshardware.com/pc-components/dram/micron-enters-high-volume-production-of-hbm4-for-nvidia-vera-rubin" target="_blank" rel="noopener">Tom's Hardware</a></div><div class="news-why">HBM4 delivers 2.8 TB/s bandwidth (2.3x over HBM3E). Being first to high-volume production for NVIDIA's next-gen AI accelerator reduces SK Hynix's near-monopoly risk and cements Micron as a Tier-1 NVIDIA supply chain partner.</div></div><div class="news-item"><div class="news-row"><span class="news-date">2025-12-30</span><span class="news-headline">Micron's Entire CY2026 HBM Capacity Sold Out; Can Only Fulfill ~50-67% of Largest Customer Demand</span></div><div class="news-source-row"><span class="news-source-label">Source:</span> <a class="news-source-link" href="https://markets.financialcontent.com/wral/article/tokenring-2025-12-30-the-ai-memory-supercycle-micron-shatters-records-as-hbm-capacity-sells-out-through-2026" target="_blank" rel="noopener">Financial Content / Market Minute</a></div><div class="news-why">Demand far outstripping supply through 2026 creates pricing power and revenue visibility typically unseen in commodity memory markets - this structural imbalance is the core bull thesis for sustained margin expansion.</div></div><div class="news-item"><div class="news-row"><span class="news-date">2025-12-25</span><span class="news-headline">Micron Captures ~21% Global HBM Market Share in 2025; Jensen Huang Publicly Endorses Partnership</span></div><div class="news-source-row"><span class="news-source-label">Source:</span> <a class="news-source-link" href="https://markets.financialcontent.com/wral/article/marketminute-2025-12-25-the-memory-wall-crumbles-how-microns-hbm-boom-redefined-the-ai-landscape-in-2025" target="_blank" rel="noopener">Financial Content / Market Minute</a></div><div class="news-why">Public validation from NVIDIA's CEO signals Micron has graduated from a secondary supplier to a strategic partner - crucial competitive moat as HBM becomes the dominant bottleneck in AI compute.</div></div><div class="news-item"><div class="news-row"><span class="news-date">2025-09-24</span><span class="news-headline">Micron Posts Record FY2025 Full-Year Revenue of $37.4B, Up 49% YoY; GAAP Net Income $8.5B</span></div><div class="news-source-row"><span class="news-source-label">Source:</span> <a class="news-source-link" href="https://www.sec.gov/Archives/edgar/data/0000723125/000072312525000024/a2025q4ex991-pressrelease.htm" target="_blank" rel="noopener">Micron SEC 8-K</a></div><div class="news-why">FY2025 marked a historic earnings recovery from the memory downcycle. $8.5B GAAP net income vs. deep losses in FY2023 - HBM and data center DRAM have structurally shifted Micron's margin profile permanently.</div></div><div class="news-item"><div class="news-row"><span class="news-date">2025-06-12</span><span class="news-headline">U.S.-China Trade Truce Reduces Near-Term Export Control Overhang for Micron's China Revenue</span></div><div class="news-source-row"><span class="news-source-label">Source:</span> <a class="news-source-link" href="https://www.axios.com/pro/tech-policy/newsletters/2025/06/12/tech-export-controls-cash" target="_blank" rel="noopener">Axios Pro Tech Policy</a></div><div class="news-why">China historically represented meaningful Micron DRAM/NAND revenue. White House concession on export control expansion eases a key investor overhang - though SEC filings still flag tariffs and export restrictions as material operating risks.</div></div></div>
+
+  <!-- ⑦ FINANCIALS / EARNINGS -->
+  <div class="section" id="earnings"><div class="sec-label">Financials &amp; Key Metrics<span style="font-weight:400;color:var(--ks-faint);margin-left:8px">FQ3 FY2025 (ended May 29, 2025) - most recently reported &middot; 2025-06-25</span></div><div class="metrics-grid"><div class="metric-card"><div class="metric-label">Revenue</div><div class="metric-value">$9.30B (FQ3 FY2025); Q4 FY2025 guide: $10.7B; Q2 FY2026 record: $23.9B</div></div><div class="metric-card"><div class="metric-label">Rev Growth</div><div class="metric-value green">+37% YoY / +16% QoQ (FQ3 FY2025); Q2 FY2026 +~196% YoY</div></div><div class="metric-card"><div class="metric-label">Gross Margin</div><div class="metric-value green">37.7% GAAP (FQ3 FY2025); guided ~42% in FQ4 FY2025; ~81% guided Q3 FY2026</div></div><div class="metric-card"><div class="metric-label">Op Margin</div><div class="metric-value green">26.8% GAAP (FQ3 FY2025); ~+1,300bps YoY</div></div><div class="metric-card"><div class="metric-label">Customers</div><div class="metric-value">N/A — semiconductor component supplier</div></div></div><ul class="earn-bullets"><li><strong>AI / Product:</strong> CEO Mehrotra: HBM revenue grew nearly 50% sequentially in FQ3 FY2025. Data center revenue more than doubled YoY to a quarterly record.</li><li><strong>Demand:</strong> AI training and inference are the dominant demand vectors. Supply tightness expected through and beyond CY2026 due to HBM's conversion-heavy manufacturing process.</li></ul></div>
+
+  <!-- ⑧ ARR GROWTH CHART -->
+  <div class="section" id="growth"><div class="sec-label">Revenue Trajectory</div>
+    <div class="chart-wrap">
+      <div class="chart-eyebrow">ARR / REVENUE TRAJECTORY</div>
+      <svg width="288" height="124" viewBox="0 0 288 124" style="overflow:visible">
+        
+        <rect x="24" y="61" width="56" height="37" fill="var(--ks-kinpaku)" rx="2" opacity="0.55"/>
+        <text x="52" y="55" text-anchor="middle" font-size="10" fill="var(--ks-champagne)" font-family="SFMono-Regular,Roboto Mono,monospace" font-weight="700">$15.5B</text>
+        
+        <text x="52" y="114" text-anchor="middle" font-size="10" fill="var(--ks-faint)" font-family="SFMono-Regular,Roboto Mono,monospace">2023</text>
+        <rect x="98" y="38" width="56" height="60" fill="var(--ks-kinpaku)" rx="2" opacity="0.78"/>
+        <text x="126" y="32" text-anchor="middle" font-size="10" fill="var(--ks-champagne)" font-family="SFMono-Regular,Roboto Mono,monospace" font-weight="700">$25.1B</text>
+        <text x="126" y="20" text-anchor="middle" font-size="9" fill="var(--ks-patina)" font-family="SFMono-Regular,Roboto Mono,monospace">+61%</text>
+        <text x="126" y="114" text-anchor="middle" font-size="10" fill="var(--ks-faint)" font-family="SFMono-Regular,Roboto Mono,monospace">2024</text>
+        <rect x="172" y="8" width="56" height="90" fill="var(--ks-kinpaku)" rx="2" opacity="1.00"/>
+        <text x="200" y="2" text-anchor="middle" font-size="10" fill="var(--ks-champagne)" font-family="SFMono-Regular,Roboto Mono,monospace" font-weight="700">$37.4B</text>
+        <text x="200" y="-10" text-anchor="middle" font-size="9" fill="var(--ks-patina)" font-family="SFMono-Regular,Roboto Mono,monospace">+48%</text>
+        <text x="200" y="114" text-anchor="middle" font-size="10" fill="var(--ks-faint)" font-family="SFMono-Regular,Roboto Mono,monospace">2025</text>
+        <line x1="24" y1="98" x2="264" y2="98" stroke="var(--ks-rule-strong)" stroke-width="1"/>
+      </svg>
+      <div class="chart-sources"><span class="chart-source-label">Sources:</span> <a class="chart-source-link" href="https://www.sec.gov/Archives/edgar/data/0000723125/000072312523000051/a2023q4ex991-pressrelease.htm" target="_blank" rel="noopener">Micron 10-K FY2023</a> · <a class="chart-source-link" href="https://www.sec.gov/Archives/edgar/data/0000723125/000072312524000023/a2024q4ex991-pressrelease.htm" target="_blank" rel="noopener">Micron 10-K FY2024</a> · <a class="chart-source-link" href="https://www.sec.gov/Archives/edgar/data/0000723125/000072312525000024/a2025q4ex991-pressrelease.htm" target="_blank" rel="noopener">Micron 8-K FY2025 Q4</a></div>
+    </div></div>
+
+  <!-- ⑨ KEY RISKS -->
+  <div class="section" id="risks"><div class="sec-label">Key Risks &amp; Debates</div><ul class="risk-list"><li><span class='risk-label'>Memory cyclicality:</span> semiconductor memory is notoriously cyclical - FY2023 ($15.5B) vs. FY2025 ($37.4B) illustrates the magnitude of swings. If AI capex decelerates or HBM oversupply emerges post-2026, Micron's revenue and margins could compress significantly</li><li><span class='risk-label'>SK Hynix HBM leadership:</span> SK Hynix holds ~52% global HBM market share vs. Micron's ~21% - NVIDIA's longstanding primary HBM supplier relationship with SK Hynix creates concentration risk for Micron's share gain thesis</li><li><span class='risk-label'>China export controls:</span> U.S.-China trade tensions and evolving export control regime create binary revenue risk for China-related sales and ongoing uncertainty for capex planning in domestic fabs</li><li><span class='risk-label'>Capex intensity:</span> $200B+ domestic investment commitment is massive - if the AI memory cycle turns, Micron could find itself with significant stranded capacity and high fixed costs, as it did in 2023</li><li><span class='risk-label'>Samsung competitive response:</span> Samsung is investing heavily in HBM ramp and process node catch-up - a successful Samsung HBM3E/HBM4 recovery could compress Micron's pricing power and market share gains</li><li><span class='risk-label'>Customer concentration:</span> NVIDIA and hyperscalers (Microsoft, Google, Amazon) likely represent a significant portion of HBM revenue - loss of a single large HBM customer would be disproportionately impactful</li></ul></div>
+
+  <!-- ⑩ COMPARABLE COMPANIES -->
+  <div class="section" id="comps"><div class="sec-label">Comparable Companies</div>
+    <table class="comps-table">
+      <thead><tr>
+        <th>Company</th><th>Ticker</th><th>Type</th>
+        <th class="right">EV/Rev</th><th class="right">Rev Growth</th>
+        <th class="right">Gross Margin</th><th>Note</th>
+      </tr></thead>
+      <tbody>
+        <tr>
+          <td class="comp-name">SK Hynix</td>
+          <td class="mono comp-ticker">000660.KS</td>
+          <td class="comp-type-cell">Public</td>
+          <td class="mono right comp-ev">~2.0-2.5x<div class="comp-asof">Jun 2026</div></td>
+          <td class="mono right">~50% YoY (FY2025, $68B)</td>
+          <td class="mono right">N/A</td>
+          <td class="note-cell">#1 HBM market share (~52%). First time exceeded Samsung in operating profit in 2025. Most direct memory comp.</td>
+        </tr>
+        <tr>
+          <td class="comp-name">Samsung Electronics</td>
+          <td class="mono comp-ticker">005930.KS</td>
+          <td class="comp-type-cell">Public</td>
+          <td class="mono right comp-ev">~0.4-0.5x<div class="comp-asof">Jun 2026</div></td>
+          <td class="mono right">~11% YoY (FY2025)</td>
+          <td class="mono right">N/A</td>
+          <td class="note-cell">Global #1 in memory; conglomerate discount compresses multiple. HBM revenue tripled 2025. $233B total revenue.</td>
+        </tr>
+        <tr>
+          <td class="comp-name">Western Digital</td>
+          <td class="mono comp-ticker">WDC</td>
+          <td class="comp-type-cell">Public</td>
+          <td class="mono right comp-ev">15.4x LTM<div class="comp-asof">Jun 01, 2026</div></td>
+          <td class="mono right">45.5% YoY</td>
+          <td class="mono right">45.4%</td>
+          <td class="note-cell">NAND/flash storage peer. $9.5B FY2025 revenue. Strong AI data center SSD tailwind.</td>
+        </tr>
+        <tr>
+          <td class="comp-name">Seagate</td>
+          <td class="mono comp-ticker">STX</td>
+          <td class="comp-type-cell">Public</td>
+          <td class="mono right comp-ev">18.2x LTM<div class="comp-asof">Jun 01, 2026</div></td>
+          <td class="mono right">44.1% YoY</td>
+          <td class="mono right">41.6%</td>
+          <td class="note-cell">$9.1B revenue. HDD storage; AI nearline demand driving growth. $56.7B market cap.</td>
+        </tr>
+        <tr>
+          <td class="comp-name">NVIDIA</td>
+          <td class="mono comp-ticker">NVDA</td>
+          <td class="comp-type-cell">Public</td>
+          <td class="mono right comp-ev">20.0x LTM<div class="comp-asof">Jun 01, 2026</div></td>
+          <td class="mono right">85.2% YoY</td>
+          <td class="mono right">74.1%</td>
+          <td class="note-cell">AI infra premium comp. ~$5.3T EV. Primary driver of HBM demand via GPU shipments — upstream demand signal for Micron.</td>
+        </tr>
+        <tr>
+          <td class="comp-name">Intel</td>
+          <td class="mono comp-ticker">INTC</td>
+          <td class="comp-type-cell">Public</td>
+          <td class="mono right comp-ev">11.2x LTM<div class="comp-asof">Jun 01, 2026</div></td>
+          <td class="mono right">7.2% YoY</td>
+          <td class="mono right">37.2%</td>
+          <td class="note-cell">Legacy x86 + foundry turnaround. $52.9B FY2025 revenue. Distressed multiple — contrast to Micron's re-rating illustrates cyclical vs. structural memory bull case.</td>
+        </tr></tbody>
+    </table></div>
+
+  <!-- ⑩b COMPETITORS (if no comps table) -->
+  
+
+  <!-- ⑪ FUNDING TIMELINE -->
+  
+
+  <!-- ⑫ INVESTORS -->
+  
+
+  <!-- ⑬ IPO READINESS -->
+  <div class="section"><div class="sec-label">IPO Readiness</div><p class='body-p'>N/A - public since 1984 (NASDAQ: MU)</p></div>
+
+  <!-- ⑭ SLIDE-READY BULLETS -->
+  <div class="section" id="bullets"><div class="sec-label">Slide-Ready Bullets</div><ol class="slide-list"><li>Micron is the only U.S.-based volume memory manufacturer - uniquely positioned at the intersection of the AI compute buildout (HBM demand) and domestic supply chain policy (CHIPS Act, $200B capex commitment across Idaho, Virginia, and New York)</li><li>FY2025 revenue of $37.4B (+49% YoY) was a record; FY2026 is tracking to ~$90B+ as Q2 FY2026 alone hit $23.9B with Q3 guided to $33.5B at ~81% gross margin - the AI memory supercycle is accelerating, not plateauing</li><li>HBM4 in high-volume production for NVIDIA Vera Rubin (March 2026) - Micron was first to ship, reducing SK Hynix's near-monopoly risk and cementing a Tier-1 NVIDIA partnership. Entire CY2026 HBM supply is sold out.</li><li>HBM TAM projected to grow at ~40% CAGR from ~$35B (2025) to ~$100B (2028) - Micron's ~21% share gain from near-zero in 2023 is the most significant competitive market share story in semiconductors today</li><li>Key risk: memory is highly cyclical (FY2023 revenue of $15.5B, -49% YoY, illustrates the downside). The bull case depends on sustained AI capex from hyperscalers and Micron maintaining HBM market share gains vs. SK Hynix and Samsung</li></ol></div>
+
+  <!-- ⑮ DILIGENCE QUESTIONS -->
+  <div class="section" id="diligence"><div class="sec-label">Smart Diligence Questions</div><ol class="dq-list"><li>What is Micron's actual HBM revenue as a percentage of total revenue and what are the contractual terms of the CY2026 sold-out supply agreements - specifically, are these fixed-price contracts or does pricing reset, and what is the take-or-pay structure?</li><li>How does Micron's HBM yield and cost structure compare to SK Hynix's at the HBM3E and HBM4 nodes? SK Hynix has a multi-year head start - if Micron's yield ramp lags, the gross margin expansion thesis could disappoint even with supply sold out.</li><li>What is Micron's exposure to a potential HBM oversupply scenario in 2027-2028 as Samsung recovers and new entrants emerge - and how does the $200B domestic capex commitment constrain Micron's ability to reduce supply if the cycle turns?</li></ol></div>
+
+  <!-- ⑯ SLIDE KIT -->
+  <div class="section" id="slidekit">
+    <div class="sec-label">Slide Kit &nbsp;&middot;&nbsp; <span style="font-weight:400;color:var(--ks-faint)">logo, stats, and copy-paste artifacts</span></div>
+    
+    <div class="kit-grid">
+      <div class="kit-identity">
+        <img src="https://logo.clearbit.com/www.micron.com" class="kit-logo-lg" alt="Micron Technology logo" onerror="this.style.display='none'">
+        <div class="kit-name">Micron Technology</div>
+        <div class="kit-sub">PUBLIC (NASDAQ: MU) · ~$1.09T market cap / ~$1.09T EV (May 2026)</div>
+        <a href="https://www.micron.com" class="kit-link" target="_blank">www.micron.com</a>
+        <div class="kit-tags"><span class="kit-tag">Memory Semiconductors</span><span class="kit-tag">HBM / AI Memory</span><span class="kit-tag">DRAM</span></div>
+      </div>
+      <div class="kit-copy">
+        <div class="kit-copy-label">COPY-PASTE STATS</div>
+        <div class="kit-stat">$9.30B (FQ3 FY2025); Q4 FY2025 guide: $10.7B; Q2 FY2026 record: $23.9B growing +37% YoY / +16% QoQ (FQ3 FY2025); Q2 FY2026 +~196% YoY</div><div class="kit-stat">Valued at ~$1.09T market cap / ~$1.09T EV (May 2026)</div>
+        <div class="kit-copy-label" style="margin-top:14px">TOP 3 SLIDE BULLETS</div>
+        <div class="kit-bullet">Micron is the only U.S.-based volume memory manufacturer - uniquely positioned at the intersection of the AI compute buildout (HBM demand) and domestic supply chain policy (CHIPS Act, $200B capex commitment across Idaho, Virginia, and New York)</div><div class="kit-bullet">FY2025 revenue of $37.4B (+49% YoY) was a record; FY2026 is tracking to ~$90B+ as Q2 FY2026 alone hit $23.9B with Q3 guided to $33.5B at ~81% gross margin - the AI memory supercycle is accelerating, not plateauing</div><div class="kit-bullet">HBM4 in high-volume production for NVIDIA Vera Rubin (March 2026) - Micron was first to ship, reducing SK Hynix's near-monopoly risk and cementing a Tier-1 NVIDIA partnership. Entire CY2026 HBM supply is sold out.</div>
+      </div>
+      <div class="kit-assets">
+        <div class="kit-copy-label">BRAND COLORS</div>
+        <div class="kit-swatches"><div class="kit-swatch-wrap" title="#BD03F7"><div class="kit-swatch" style="background:#BD03F7"></div><div class="kit-hex">#BD03F7</div></div><div class="kit-swatch-wrap" title="#8509B0"><div class="kit-swatch" style="background:#8509B0"></div><div class="kit-hex">#8509B0</div></div><div class="kit-swatch-wrap" title="#FF5147"><div class="kit-swatch" style="background:#FF5147"></div><div class="kit-hex">#FF5147</div></div><div class="kit-swatch-wrap" title="#0068FF"><div class="kit-swatch" style="background:#0068FF"></div><div class="kit-hex">#0068FF</div></div><div class="kit-swatch-wrap" title="#E81245"><div class="kit-swatch" style="background:#E81245"></div><div class="kit-hex">#E81245</div></div><div class="kit-swatch-wrap" title="#4F5A6C"><div class="kit-swatch" style="background:#4F5A6C"></div><div class="kit-hex">#4F5A6C</div></div></div>
+        <div class="kit-copy-label" style="margin-top:14px">BRAND TAGS</div>
+        <div class="kit-tags"><span class="kit-tag">Memory Semiconductors</span><span class="kit-tag">HBM / AI Memory</span><span class="kit-tag">DRAM</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-left">
+      Sources: Company IR, earnings transcripts, Bloomberg, SEC filings, Sacra, Crunchbase, yfinance<br>
+      DRAFT - internal use only. Human review required before distribution.
+    </div>
+    <div class="footer-right">ALFRED</div>
+  </div>
+
+</div>
+</body>
+</html>

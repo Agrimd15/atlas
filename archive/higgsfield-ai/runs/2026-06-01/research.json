@@ -1,0 +1,33 @@
+{
+  "name": "Higgsfield AI",
+  "website": "https://higgsfield.ai",
+  "founded": "2023",
+  "headquarters": "San Francisco, California, USA",
+  "employeeCount": "~70 to ~319 (provider figures vary widely; treat as approximate)",
+  "stage": "Series A (extended); unicorn at $1.3B post-money",
+  "shortDescription": "Mobile-and-web AI platform that turns text, images, or product links into cinematic short-form videos.",
+  "businessModel": "Consumption-based credits plus monthly subscriptions, layered with enterprise/team contracts (enterprise clients reportedly spend $200K+/year). It sells primarily to social-media marketers, agencies, e-commerce brands, and creators, with Team/Enterprise SKUs added in late 2025.",
+  "marketPositioning": "Positions as an orchestration or workspace layer that auto-selects and packages 30+ third-party frontier models (Sora 2, Kling, Veo, Seedance, Wan) plus its own control tooling, rather than training one foundation model like Runway, Luma, Pika, or OpenAI Sora. It differentiates on consumer/mobile-and-social distribution, viral presets, and marketing/ad use cases versus avatar-focused players (Synthesia, HeyGen).",
+  "endMarkets": ["Social-media marketers", "Marketing/advertising agencies", "E-commerce brands", "Content creators", "Enterprise brand and creative studios"],
+  "growthDrivers": [
+    "Viral, social-led distribution (4.5B+ cumulative impressions, ~4.5M video generations per day)",
+    "Product-market fit with social-media marketers (~85% of usage, ~80% producing commercial work)",
+    "Rapid multi-model aggregation: fast integration of every new frontier model (Sora 2, Kling, Veo, Seedance)",
+    "Move upmarket via Team/Enterprise plans and ad-creation tools (Higgsfield Ads, Marketing Studio)"
+  ],
+  "techDifferentiation": "Acts as an orchestration and reasoning layer: it uses LLMs (GPT-4.1 mini and GPT-5) to plan narrative arc, pacing and camera logic, then routes rendering to the best underlying video model (e.g. Sora 2). It adds proprietary controls: 50+ camera-movement presets, multi-axis motion control, a physics-aware Cinema Studio, and Soul ID character consistency from multiple reference images.",
+  "competitors": ["Runway", "Pika", "Luma", "Kling (Kuaishou)", "OpenAI Sora", "Google Veo", "Synthesia", "HeyGen"],
+  "leadership": [
+    {"name": "Alex Mashrabov", "title": "Co-founder & CEO", "since": "2023", "background": "Former Head of Generative AI at Snap (Snap Lenses); joined Snap after it acquired his startup AI Factory for $166M in 2020.", "source": "TechCrunch", "sourceUrl": "https://techcrunch.com/2026/01/15/ai-video-startup-higgsfield-founded-by-ex-snap-exec-lands-1-3b-valuation/"},
+    {"name": "Yerzat Dulat", "title": "Co-founder & CTO", "since": "2023", "background": "Open-source ML researcher and author of popular GitHub libraries; met Mashrabov via international science olympiads.", "source": "Sacra", "sourceUrl": "https://sacra.com/research/alex-mashrabov-higgsfield-ai-video-production/"},
+    {"name": "Mahi de Silva", "title": "Co-founder & Chief Strategy Officer", "since": "2023", "background": "Veteran executive with leadership roles at Triller, Amplify and Verisign; earlier a senior engineer at Apple.", "source": "Crunchbase / Sacra", "sourceUrl": "https://www.crunchbase.com/organization/higgsfield"}
+  ],
+  "sources": [
+    {"name": "TechCrunch (Jan 2026, $1.3B valuation)", "url": "https://techcrunch.com/2026/01/15/ai-video-startup-higgsfield-founded-by-ex-snap-exec-lands-1-3b-valuation/"},
+    {"name": "Sacra company profile", "url": "https://sacra.com/c/higgsfield/"},
+    {"name": "Sacra Mashrabov interview", "url": "https://sacra.com/research/alex-mashrabov-higgsfield-ai-video-production/"},
+    {"name": "OpenAI customer case study", "url": "https://openai.com/index/higgsfield/"},
+    {"name": "Crunchbase", "url": "https://www.crunchbase.com/organization/higgsfield"}
+  ],
+  "dataConfidence": "high on founders, funding, product and model; medium/low only on exact employee count (provider figures range ~70 to ~319). Revenue run-rate is company-disclosed / Sacra-estimated, not audited."
+}

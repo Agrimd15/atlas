@@ -1,0 +1,178 @@
+{
+  "company": "Decagon",
+  "folderId": "decagon",
+  "isPublic": false,
+  "ticker": null,
+  "runDate": "2026-06-03",
+  "founders": "Jesse Zhang (CEO & Co-Founder), Ashwin Sreenivas (CTO & Co-Founder)",
+  "founded": "August 2023",
+  "totalRaised": 481,
+  "totalRaisedNote": "~$481M cumulative across Seed through Series D plus tender. Sacra company page, as of Jan 2026.",
+  "lastKnownValuation": "$4.5B (Jan 2026, Series D)",
+  "stage": "Series D (post-money $4.5B); completed first employee tender offer at the same $4.5B mark in Mar 2026",
+  "employeeCount": "300+ (Mar 2026)",
+  "revenue": "~$35M annualized revenue as of Oct 2025 (Sacra estimate), up from ~$10M ARR at end of 2024",
+  "arr": "~$35M annualized run-rate (Oct 2025, Sacra estimate)",
+  "runRate": "~$35M (Oct 2025, Sacra). Q3 2025 GAAP revenue and ARR each grew >3x YoY.",
+  "revenueGrowth": "~3x+ YoY (Q3 2025 GAAP revenue and ARR each grew more than 3x YoY per Sacra); ARR ~2.5x from ~$10M (end-2024) to ~$35M (Oct 2025)",
+  "fundingRounds": [
+    {
+      "date": "2024-07",
+      "round": "Series A",
+      "amountFormatted": "$35M",
+      "postMoneyValuationFormatted": null,
+      "leadInvestors": ["Accel"],
+      "sources": [
+        {"name": "Sacra", "url": "https://sacra.com/c/decagon/"},
+        {"name": "TechCrunch", "url": "https://techcrunch.com/2024/06/18/decagon-claims-its-customers-service-bots-are-smarter-than-average/"}
+      ]
+    },
+    {
+      "date": "2024-10",
+      "round": "Series B",
+      "amountFormatted": "$65M",
+      "postMoneyValuationFormatted": "$650M",
+      "leadInvestors": ["Bain Capital Ventures", "Accel"],
+      "sources": [
+        {"name": "Sacra", "url": "https://sacra.com/c/decagon/"},
+        {"name": "Crunchbase", "url": "https://www.crunchbase.com/funding_round/decagon-485e-series-b--f88c694f"}
+      ]
+    },
+    {
+      "date": "2025-06",
+      "round": "Series C",
+      "amountFormatted": "$131M",
+      "postMoneyValuationFormatted": "$1.5B",
+      "leadInvestors": ["Accel", "Andreessen Horowitz (a16z growth)"],
+      "sources": [
+        {"name": "Sacra", "url": "https://sacra.com/c/decagon/"},
+        {"name": "Crunchbase", "url": "https://www.crunchbase.com/funding_round/decagon-485e-series-c--5a4f1ac0"}
+      ]
+    },
+    {
+      "date": "2026-01",
+      "round": "Series D",
+      "amountFormatted": "$250M",
+      "postMoneyValuationFormatted": "$4.5B",
+      "leadInvestors": ["Coatue Management", "Index Ventures", "Andreessen Horowitz (a16z)", "Forerunner", "Ribbit", "Definition"],
+      "sources": [
+        {"name": "Bloomberg", "url": "https://www.bloomberg.com/news/articles/2026-01-28/ai-customer-support-startup-decagon-valued-at-4-5-billion"},
+        {"name": "TechCrunch", "url": "https://techcrunch.com/2026/03/04/decagon-completes-first-tender-offer-at-4-5b-valuation/"},
+        {"name": "Sacra", "url": "https://sacra.com/c/decagon/"}
+      ]
+    },
+    {
+      "date": "2026-03",
+      "round": "Employee Tender Offer",
+      "amountFormatted": null,
+      "postMoneyValuationFormatted": "$4.5B",
+      "leadInvestors": [],
+      "sources": [
+        {"name": "TechCrunch", "url": "https://techcrunch.com/2026/03/04/decagon-completes-first-tender-offer-at-4-5b-valuation/"},
+        {"name": "Sacra", "url": "https://sacra.com/c/decagon/"}
+      ]
+    }
+  ],
+  "revenueHistory": [
+    {
+      "label": "2024 (YE)",
+      "value": 10,
+      "unit": "$M ARR",
+      "source": "Sacra",
+      "sourceUrl": "https://sacra.com/c/decagon/"
+    },
+    {
+      "label": "Oct 2025",
+      "value": 35,
+      "unit": "$M annualized run-rate",
+      "source": "Sacra",
+      "sourceUrl": "https://sacra.com/c/decagon/"
+    }
+  ],
+  "comps": [
+    {
+      "name": "Decagon",
+      "type": "Subject",
+      "valuation": "$4.5B",
+      "lastRaise": "$250M Series D (Jan 2026)",
+      "note": "AI support agents; ~$35M ARR (Oct 2025); 100+ enterprise customers",
+      "sourceUrl": "https://sacra.com/c/decagon/"
+    },
+    {
+      "name": "Sierra",
+      "type": "AI agents (CX)",
+      "valuation": "$15.8B",
+      "lastRaise": "$950M Series E (May 2026)",
+      "note": "Bret Taylor; closest scaled peer; ~$100M ARR reached Nov 2025",
+      "sourceUrl": "https://techcrunch.com/2026/05/04/sierra-raises-950m-as-the-race-to-own-enterprise-ai-gets-serious/"
+    },
+    {
+      "name": "Intercom (Fin)",
+      "type": "Support SaaS + AI agent",
+      "valuation": "$1.3B",
+      "lastRaise": "$250M venture debt (Mar 2026); last equity mark $1.3B (2024)",
+      "note": "Incumbent; Fin AI agent surpassed $100M ARR, ~$400M total ARR (Apr 2026)",
+      "sourceUrl": "https://sacra.com/c/intercom/"
+    },
+    {
+      "name": "Cresta",
+      "type": "Contact-center AI (copilot + agents)",
+      "valuation": "n/d (post-Series D)",
+      "lastRaise": "$125M Series D (Nov 2024)",
+      "note": "Real-time agent assist + virtual agents; ~$270M+ raised total",
+      "sourceUrl": "https://sacra.com/c/cresta-ai/"
+    },
+    {
+      "name": "Ada",
+      "type": "AI customer service",
+      "valuation": "$1.2B",
+      "lastRaise": "$130M Series C (May 2021)",
+      "note": "Earlier-gen unicorn; reasoning-engine support automation; ~$202M raised",
+      "sourceUrl": "https://sacra.com/c/ada/"
+    },
+    {
+      "name": "Gorgias",
+      "type": "Ecommerce CX + AI agent",
+      "valuation": "$530M",
+      "lastRaise": "$30M+ Series C (May 2024)",
+      "note": "Shopify-centric helpdesk; ~$69M ARR (2024), +34% YoY; AI Agent 2.0",
+      "sourceUrl": "https://sacra.com/c/gorgias/"
+    },
+    {
+      "name": "Crescendo",
+      "type": "Augmented AI CX (AI + human)",
+      "valuation": "$500M",
+      "lastRaise": "$50M venture (Oct 2024)",
+      "note": "General Catalyst-backed; acquired BPO PartnerHero; hybrid AI/human model",
+      "sourceUrl": "https://www.bloomberg.com/news/articles/2024-10-02/ai-startup-hits-500-million-valuation-to-rival-contact-centers"
+    },
+    {
+      "name": "Lorikeet",
+      "type": "AI support agents (fintech/complex)",
+      "valuation": "n/d",
+      "lastRaise": "$35M Series A (Aug 2025)",
+      "note": "QED-led; targets fintech/healthtech complex workflows; earlier-stage",
+      "sourceUrl": "https://www.axios.com/pro/enterprise-software-deals/2025/08/06/lorikeet-35-million-series-a-qed"
+    }
+  ],
+  "keyMetrics": {
+    "valuation": "$4.5B (Jan 2026, Series D)",
+    "arrRunRate": "~$35M annualized (Oct 2025, Sacra estimate)",
+    "arrPriorYear": "~$10M (YE 2024, Sacra estimate)",
+    "revenueGrowth": "~3x+ YoY (Q3 2025, Sacra)",
+    "customers": "100+ enterprise (added 100+ new in 2025)",
+    "totalRaised": "~$481M",
+    "employees": "300+ (Mar 2026)"
+  },
+  "ipoReadiness": "Not IPO-ready near term. At ~$35M ARR (Oct 2025) against a $4.5B private mark (~129x trailing run-rate), Decagon is scaling fast (3x+ YoY) but still an order of magnitude below the typical $200M-$500M+ ARR threshold for a software IPO. Even at sustained triple-digit growth, a realistic public-market window is likely 3-5+ years out; expect further private rounds first. Heavily VC-funded with strong growth-stage backers (Coatue, Index, a16z, Accel), so no funding pressure forcing an early listing.",
+  "sources": [
+    {"name": "Sacra — Decagon revenue, valuation & funding", "url": "https://sacra.com/c/decagon/"},
+    {"name": "Bloomberg — AI Customer Support Startup Decagon Valued at $4.5 Billion", "url": "https://www.bloomberg.com/news/articles/2026-01-28/ai-customer-support-startup-decagon-valued-at-4-5-billion"},
+    {"name": "TechCrunch — Decagon completes first tender offer at $4.5B valuation", "url": "https://techcrunch.com/2026/03/04/decagon-completes-first-tender-offer-at-4-5b-valuation/"},
+    {"name": "The Information — Decagon in Talks to Raise at $4 Billion Valuation", "url": "https://www.theinformation.com/articles/customer-support-ai-startup-decagon-talks-raise-4-billion-valuation"},
+    {"name": "Crunchbase — Decagon Series C funding round", "url": "https://www.crunchbase.com/funding_round/decagon-485e-series-c--5a4f1ac0"},
+    {"name": "Crunchbase — Decagon company profile", "url": "https://www.crunchbase.com/organization/decagon-485e"},
+    {"name": "TechCrunch — Decagon claims its customer service bots are smarter than average", "url": "https://techcrunch.com/2024/06/18/decagon-claims-its-customers-service-bots-are-smarter-than-average/"}
+  ],
+  "freshnessNote": "All figures are private marks/estimates, NOT live trading data (no public ticker). Valuation $4.5B and 300+ employees confirmed via Bloomberg + TechCrunch (Jan-Mar 2026). ARR/revenue figures are Sacra estimates as of the dates noted (YE 2024 ~$10M; Oct 2025 ~$35M) — directional, not company-disclosed. Note: a June 2026 The Information headline references talks to raise at a $4B valuation, but the already-closed Jan 2026 Series D priced the company higher at $4.5B, which is used here as the last confirmed mark. Comp valuations are each company's last-round mark on differing dates (expected for a private peer set)."
+}

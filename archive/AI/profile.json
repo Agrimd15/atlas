@@ -1,0 +1,279 @@
+{
+  "name": "C3.ai",
+  "ticker": "AI",
+  "stage": "Public (NYSE: AI)",
+  "website": "https://c3.ai",
+  "founded": "2009",
+  "hq": "Redwood City, CA",
+  "employeeCount": "~1,400",
+  "lastKnownValuation": "~$1.2B market cap / ~$832M EV (May 2026)",
+  "totalRaised": null,
+  "verticals": [
+    "Enterprise AI",
+    "Agentic AI",
+    "Federal / Defense",
+    "Industrial AI"
+  ],
+  "growth": "-36% YoY (FY2026); +25% YoY (FY2025)",
+  "ipoReadiness": "N/A — public since Dec 2020 (NYSE: AI)",
+  "revenueHistory": [
+    {
+      "year": 2023,
+      "value": 267,
+      "label": "$267M",
+      "source": "C3.ai 10-K FY2023",
+      "sourceUrl": "https://ir.c3.ai"
+    },
+    {
+      "year": 2024,
+      "value": 311,
+      "label": "$311M",
+      "source": "C3.ai SEC 8-K",
+      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/0001577526/000162828025028158/ex991-fy25xq4earnings.htm"
+    },
+    {
+      "year": 2025,
+      "value": 389,
+      "label": "$389M",
+      "source": "C3.ai SEC 8-K FY2025",
+      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/0001577526/000162828025028158/ex991-fy25xq4earnings.htm"
+    },
+    {
+      "year": 2026,
+      "value": 250,
+      "label": "$250M",
+      "source": "C3.ai Preliminary FY2026",
+      "sourceUrl": "https://www.businesswire.com/news/home/20260512004509/en/C3-AI-Announces-Preliminary-Fourth-Quarter-and-Full-Fiscal-Year-2026-Results-Thomas-M.-Siebel-Resumes-Role-of-Chief-Executive-Officer"
+    }
+  ],
+  "leadership": [
+    {
+      "name": "Thomas M. Siebel",
+      "title": "Chairman & CEO (returned May 2026)",
+      "since": "2009 (founder); resumed CEO May 2026",
+      "background": "Founder of C3.ai and Siebel Systems (acquired by Oracle for $5.8B). Stepped aside Sep 2025 due to health; resumed CEO after Ehikian's tenure. Pioneered enterprise CRM software in the 1990s.",
+      "linkedin": "",
+      "source": "C3.ai Press Release",
+      "sourceUrl": "https://c3.ai/c3-ai-announces-preliminary-fourth-quarter-and-full-fiscal-year-2026-results-thomas-m-siebel-resumes-role-of-chief-executive-officer/"
+    },
+    {
+      "name": "Ed Abbo",
+      "title": "President & Chief Technology Officer",
+      "since": "2011",
+      "background": "Long-tenured CTO; key architect of C3 Agentic AI Platform.",
+      "linkedin": "",
+      "source": "C3.ai Leadership Page",
+      "sourceUrl": "https://c3.ai/leadership/"
+    },
+    {
+      "name": "Hitesh Lath",
+      "title": "Chief Financial Officer",
+      "since": "",
+      "background": "CFO of C3.ai.",
+      "linkedin": "",
+      "source": "C3.ai Leadership Page",
+      "sourceUrl": "https://c3.ai/leadership/"
+    }
+  ],
+  "brief": {
+    "runDate": "2026-06-01",
+    "businessOverview": [
+      "C3.ai is an enterprise AI software company providing the C3 Agentic AI Platform, industry-specific SaaS AI applications, and generative AI offerings to large enterprises and government agencies.",
+      "Founded 2009 by Tom Siebel; IPO December 2020 (NYSE: AI). FY2025 revenue of $389M (+25% YoY) was the high-water mark — FY2026 revenue collapsed to ~$250M (-36%) following a disruptive CEO transition from Siebel to Stephen Ehikian (Sep 2025) and back to Siebel (May 2026).",
+      "Federal segment is the standout growth engine: 51 federal agreements closed in FY2025, federal bookings up 100%+ YoY, representing ~20% of total bookings. Federal/defense/aerospace was 45% of Q2 FY2026 bookings.",
+      "Primary go-to-market: hyperscaler partnerships (Microsoft Azure, AWS, Google Cloud) plus SI alliances (PwC, McKinsey QuantumBlack) now account for 73% of FY2025 agreements.",
+      "Strategic pivot underway to agentic AI: C3 Agentic Process Automation, C3 Code, and C3 Agentic Websites launched in late 2025. Company exploring potential sale or merger (Automation Anywhere talks reported Jan 2026) amid post-transition uncertainty."
+    ],
+    "productModel": "Subscription licenses (~86% of revenue in FY2025) for the C3 Agentic AI Platform and industry-specific applications across manufacturing, energy, healthcare, financial services, and federal. Professional services and prioritized engineering (IPDs) supplement subscriptions but compress gross margins (non-GAAP GM ~69% FY2025 but dropped to ~52% in Q1 FY2026 due to high IPD mix). C3.ai does not report ARR or NRR — moved to consumption/agreement-count metrics.",
+    "recentNews": [
+      {
+        "date": "2026-05-12",
+        "headline": "Tom Siebel Returns as CEO; Preliminary Q4 FY2026 Revenue of $51.6M — Down 53% YoY",
+        "whyItMatters": "Siebel's return signals a board vote of no-confidence in the Ehikian transition. Q4 revenue of $51.6M vs. $108.7M a year ago confirms the severity of the go-to-market collapse and makes near-term recovery difficult to underwrite.",
+        "sources": [
+          {
+            "name": "C3.ai IR / BusinessWire",
+            "url": "https://ir.c3.ai/news-releases/news-release-details/c3-ai-announces-preliminary-fourth-quarter-and-full-fiscal-year"
+          },
+          {
+            "name": "SEC Form 8-K",
+            "url": "https://www.sec.gov/Archives/edgar/data/0001577526/000119312526218253/d147244dex991.htm"
+          }
+        ]
+      },
+      {
+        "date": "2026-02-25",
+        "headline": "C3.ai Cuts 26% of Workforce (312 Jobs); Q3 FY2026 Revenue Misses at $53M vs. $76M Estimate",
+        "whyItMatters": "The cost reset under Ehikian was abrupt — acknowledging 'burning too much money' on day one. The 17% same-day stock drop signals a company in operational crisis. Annualized savings of ~$135M buys runway but not credibility.",
+        "sources": [
+          {
+            "name": "Bloomberg",
+            "url": "https://www.bloomberg.com/news/articles/2026-02-25/c3-ai-layoffs-to-hit-quarter-of-company-after-ceo-transition"
+          },
+          {
+            "name": "CNBC",
+            "url": "https://www.cnbc.com/2026/02/26/c3-ai-stock-layoffs-loss.html"
+          }
+        ]
+      },
+      {
+        "date": "2026-01-27",
+        "headline": "C3.ai Reportedly in Merger Talks with Automation Anywhere",
+        "whyItMatters": "A reverse merger at ~$1.7B market cap signals limited confidence in the standalone path. The deal structure raises dilution and strategic coherence concerns — but for shareholders, M&A optionality may be the best remaining thesis.",
+        "sources": [
+          {
+            "name": "The Information",
+            "url": "https://www.theinformation.com/articles/c3-ai-talks-merge-startup-automation-anywhere"
+          }
+        ]
+      },
+      {
+        "date": "2025-11-10",
+        "headline": "C3.ai Explores Potential Sale Following Founder CEO Departure",
+        "whyItMatters": "Strategic review launched immediately after Siebel stepped aside — including possible sale or private capital raise. Market's 6% rally on the Reuters report shows investors see more exit value than organic value.",
+        "sources": [
+          {
+            "name": "Bloomberg",
+            "url": "https://www.bloomberg.com/news/articles/2025-11-10/c3-ai-gains-after-report-says-software-company-is-exploring-sale"
+          }
+        ]
+      },
+      {
+        "date": "2025-09-01",
+        "headline": "Stephen Ehikian Named CEO; C3.ai Withdraws Full-Year FY2026 Guidance on Day One",
+        "whyItMatters": "Pulling guidance on a CEO's first day signals the incoming team had immediate visibility into a deteriorating pipeline — an unusually aggressive reset. Revenue dropped from $108M (Q4 FY2025) to sub-$55M within two quarters.",
+        "sources": [
+          {
+            "name": "SEC Form 8-K",
+            "url": "https://www.sec.gov/Archives/edgar/data/0001577526/000162828025039359/exhibit992-fy26q1salesands.htm"
+          }
+        ]
+      },
+      {
+        "date": "2025-04-30",
+        "headline": "C3.ai Posts Record Q4 FY2025 Revenue of $108.7M (+26% YoY)",
+        "whyItMatters": "This was C3.ai's peak quarter — federal bookings 100%+ YoY, 264 agreements in FY2025. The stark contrast with FY2026's ~$250M underscores how severe the transition disruption was and makes the recovery trajectory highly speculative.",
+        "sources": [
+          {
+            "name": "C3.ai SEC 8-K",
+            "url": "https://www.sec.gov/Archives/edgar/data/0001577526/000162828025028158/ex991-fy25xq4earnings.htm"
+          }
+        ]
+      }
+    ],
+    "earningsTakeaways": {
+      "quarter": "Q4 FY2025 (most recent completed year) + FY2026 preliminary",
+      "reportDate": "2025-04-30",
+      "keyMetrics": {
+        "revenue": "$108.7M (Q4 FY2025); $389M (FY2025); $250M (FY2026 preliminary)",
+        "revenueGrowth": "+25% YoY (FY2025); -36% YoY (FY2026)",
+        "arr": "Not disclosed — consumption-based model",
+        "nrr": "Not disclosed",
+        "grossMargin": "~69% non-GAAP (FY2025 Q4); ~52% non-GAAP (Q1 FY2026 — IPD mix)",
+        "operatingMargin": "GAAP operating loss $(498.5)M (FY2026)",
+        "customers": "264 agreements in FY2025 (+38% YoY); 46 agreements/quarter post-transition"
+      },
+      "aiCommentary": "Siebel FY2025: 'Breakthrough innovations in agentic AI, dramatically expanded strategic alliances.' Post-transition, Ehikian focused on go-to-market restructuring and a ~$135M cost reduction. Federal/defense is the standout: 45% of Q2 FY2026 bookings. $675M cash provides runway.",
+      "demandCommentary": "Federal demand remains strong (89% YoY growth in gov/defense/aerospace bookings Q2 FY2026). Commercial recovery is uncertain post-sales-reorg. Microsoft partnership pipeline grew 140% YoY in Q1 FY2026 — channel demand building, direct demand rebuilding."
+    },
+    "keyRisks": [
+      "Leadership instability: Siebel → Ehikian → Siebel in under a year destroyed go-to-market continuity and resulted in a 36% revenue decline in FY2026 — recovery trajectory is highly uncertain",
+      "Revenue collapse not yet reversed: FY2026 full-year at $250M is below FY2023 levels ($267M) — the company is currently regressing on the top line",
+      "M&A uncertainty: Automation Anywhere merger talks and strategic review process create headline risk and management distraction at a critical rebuild moment",
+      "Gross margin compression: Q1 FY2026 non-GAAP GM of 52% vs. 69% in Q4 FY2025 — IPD-heavy go-to-market strategy structurally pressures margins",
+      "Palantir gap widening: PLTR is profitable, growing 63% YoY, trading at 55x revenue — C3.ai at 3-4x revenue with negative growth is difficult to position as a peer",
+      "China/federal concentration: Federal is now 45% of bookings — export control policy shifts and government budget cycles create binary revenue risk"
+    ],
+    "comps": [
+      {
+        "name": "Palantir",
+        "ticker": "PLTR",
+        "type": "Public",
+        "evRevenue": "61.0x LTM",
+        "asOf": "2026-06-03",
+        "revenueGrowth": "84.7% YoY",
+        "grossMargin": "84.1%",
+        "note": "Most direct enterprise AI comp; profitable, growing fast, 55x revenue — the benchmark C3.ai aspires to. Gap has widened significantly.",
+        "source": "yfinance, close of 2026-06-03 (recomputed: last close × shares + net debt)",
+        "sourceUrl": "https://finance.yahoo.com/quote/PLTR",
+        "marketCap": "$326.5B"
+      },
+      {
+        "name": "Datadog",
+        "ticker": "DDOG",
+        "type": "Public",
+        "evRevenue": "21.6x LTM",
+        "asOf": "2026-06-03",
+        "revenueGrowth": "32.2% YoY",
+        "grossMargin": "79.9%",
+        "note": "Cloud-native AI observability; expanding into LLM monitoring. Premium multiple vs. peers.",
+        "source": "yfinance, close of 2026-06-03 (recomputed: last close × shares + net debt)",
+        "sourceUrl": "https://finance.yahoo.com/quote/DDOG",
+        "marketCap": "$82.8B"
+      },
+      {
+        "name": "Snowflake",
+        "ticker": "SNOW",
+        "type": "Public",
+        "evRevenue": "16.6x LTM",
+        "asOf": "2026-06-03",
+        "revenueGrowth": "33.5% YoY",
+        "grossMargin": "67.1%",
+        "note": "Consumption-based cloud data/AI platform; Cortex AI expanding. Comp on model structure.",
+        "source": "yfinance, close of 2026-06-03 (recomputed: last close × shares + net debt)",
+        "sourceUrl": "https://finance.yahoo.com/quote/SNOW",
+        "marketCap": "$83.6B"
+      },
+      {
+        "name": "Databricks",
+        "ticker": "Private",
+        "type": "Private",
+        "evRevenue": "~25x ARR (implied)",
+        "asOf": "Dec 2025 (Series L)",
+        "revenueGrowth": ">65% YoY",
+        "grossMargin": "N/A",
+        "note": "$134B valuation / $5.4B ARR run-rate. IPO S-1 expected H2 2026. Sets the ceiling for enterprise data+AI platforms.",
+        "source": "Databricks PR",
+        "sourceUrl": "https://www.databricks.com/company/newsroom/press-releases/databricks-grows-65-yoy-surpasses-5-4-billion-revenue-run-rate"
+      },
+      {
+        "name": "UiPath",
+        "ticker": "PATH",
+        "type": "Public",
+        "evRevenue": "2.4x LTM",
+        "asOf": "2026-06-03",
+        "revenueGrowth": "17.3% YoY",
+        "grossMargin": "83.0%",
+        "note": "Enterprise automation/AI orchestration; first GAAP profitable quarter. Cheapest multiple in peer set.",
+        "source": "yfinance, close of 2026-06-03 (recomputed: last close × shares + net debt)",
+        "sourceUrl": "https://finance.yahoo.com/quote/PATH",
+        "marketCap": "$5.3B"
+      },
+      {
+        "name": "BigBear.ai",
+        "ticker": "BBAI",
+        "type": "Public",
+        "evRevenue": "15.6x LTM",
+        "asOf": "2026-06-03",
+        "revenueGrowth": "-0.9% YoY",
+        "grossMargin": "25.8%",
+        "note": "Defense AI / decision intelligence. Most direct C3.ai gov/defense analog but smaller scale (~$170M revenue).",
+        "source": "yfinance, close of 2026-06-03 (recomputed: last close × shares + net debt)",
+        "sourceUrl": "https://finance.yahoo.com/quote/BBAI",
+        "marketCap": "$2.3B"
+      }
+    ],
+    "slideBullets": [
+      "C3.ai's FY2026 revenue collapsed to ~$250M (-36% YoY) from $389M in FY2025 — the steepest single-year decline among public enterprise AI software companies — driven entirely by a disruptive founder-CEO transition and sales reorg",
+      "Tom Siebel resumed the CEO role in May 2026 after Stephen Ehikian's 8-month tenure; the board is now executing a recovery with $675M cash, a leaner cost structure (-312 headcount), and a refocus on the federal segment (45% of Q2 FY2026 bookings)",
+      "Federal/government is the only reliably growing segment — US government/defense/aerospace bookings grew 89% YoY in Q2 FY2026, positioning C3.ai as a de facto enterprise AI infrastructure layer for agency digitization",
+      "Agentic AI product pivot (C3 Agentic Process Automation, C3 Code, Agentic Websites) launched in late 2025 targets a higher-multiple, stickier category — but commercial traction has not yet offset the sales disruption",
+      "M&A optionality is the near-term investor thesis: Automation Anywhere merger talks (Jan 2026) and a strategic review process suggest the board is weighing all options; at ~$1.2B market cap and $675M cash, the floor valuation is well-supported"
+    ],
+    "diligenceQuestions": [
+      "What does the commercial pipeline look like under Siebel's return — specifically, are the customer relationships disrupted during the Ehikian tenure (73% of FY2025 agreements came via channel partners) being actively recovered, and what is the current channel partner sentiment?",
+      "How sustainable is the federal revenue growth at 45% of bookings? What is the customer concentration within the federal segment (e.g., reliance on a single agency or CDAO vehicle), and what is the ceiling for this segment given C3.ai's current GSA schedule and contract vehicles?",
+      "What are the actual terms and current status of the Automation Anywhere merger discussions — is this a live deal, a dead conversation, or a negotiating signal — and how does it impact management bandwidth during the most critical rebuild quarter?"
+    ]
+  }
+}

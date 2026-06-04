@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Applied Intuition - Alfred Research Brief</title>
+<link href="https://fonts.googleapis.com/css2?family=Alumni+Sans+Pinstripe&family=Albert+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ── Neo Kinpaku design tokens ── */
+  :root {
+    --ks-lacquer:      oklch(7%  0.006 95);
+    --ks-lacquer-deep: oklch(4%  0.004 95);
+    --ks-raised:       oklch(11% 0.006 95);
+    --ks-graphite:     oklch(15% 0.008 95);
+    --ks-graphite-2:   oklch(19% 0.008 95);
+    --ks-kinpaku:      oklch(84% 0.19  80);
+    --ks-kinpaku-pale: oklch(86% 0.07  84);
+    --ks-kinpaku-rich: oklch(77% 0.13  82);
+    --ks-kinpaku-deep: oklch(61% 0.085 78);
+    --ks-patina:       oklch(70% 0.12 188);
+    --ks-vermilion:    oklch(58% 0.15  35);
+    --ks-champagne:    oklch(91% 0 0);
+    --ks-body:         oklch(88% 0 0);
+    --ks-muted:        oklch(72% 0 0);
+    --ks-faint:        oklch(62% 0 0);
+    --ks-rule:         oklch(78% 0 0 / 0.16);
+    --ks-rule-strong:  oklch(74% 0.09 82 / 0.6);
+    --ks-ease:         cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  /* ── Base ── */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Albert Sans", "Avenir Next", "Helvetica Neue", Arial, system-ui, sans-serif;
+         background: var(--ks-lacquer); color: var(--ks-body); font-size: 14px; line-height: 1.75; }
+  a { color: inherit; text-decoration: none; }
+  p { color: var(--ks-body); line-height: 1.75; margin-bottom: 6px; }
+  strong { color: var(--ks-champagne); }
+  .mono { font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+  .right { text-align: right; }
+
+  .wrapper { max-width: 920px; margin: 0 auto; background: var(--ks-lacquer);
+              border: 1px solid var(--ks-rule); }
+
+  /* ── Header ── */
+  .header { background: var(--ks-lacquer-deep); padding: 28px 40px 22px;
+             border-bottom: 1px solid var(--ks-rule-strong); }
+  .header-top { display: flex; align-items: center; gap: 18px; margin-bottom: 10px; }
+  .company-logo { width: 44px; height: 44px; border-radius: 8px; object-fit: contain;
+                   background: var(--ks-raised); padding: 4px;
+                   border: 1px solid var(--ks-rule); flex-shrink: 0; }
+  .header-name { flex: 1; }
+  .company-name { font-family: "Alumni Sans Pinstripe", "Albert Sans", Arial, sans-serif;
+                   font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 300;
+                   letter-spacing: -0.01em; line-height: 1.0; color: var(--ks-champagne);
+                   display: block; }
+  .header-badges { display: flex; align-items: center; gap: 7px; margin-top: 6px; flex-wrap: wrap; }
+  .ticker-badge { background: var(--ks-kinpaku); color: var(--ks-lacquer-deep);
+                   font-family: "SFMono-Regular", "Roboto Mono", monospace;
+                   font-size: 10px; font-weight: 700; padding: 3px 9px; border-radius: 2px;
+                   letter-spacing: 0.15em; }
+  .stage-badge { background: var(--ks-raised); border: 1px solid var(--ks-rule);
+                  color: var(--ks-muted); font-size: 10px; font-weight: 600; padding: 2px 8px;
+                  border-radius: 2px; letter-spacing: 0.12em;
+                  font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+  .draft-badge { background: oklch(58% 0.15 35 / 0.12); border: 1px solid oklch(58% 0.15 35 / 0.4);
+                  color: var(--ks-vermilion); font-size: 10px; font-weight: 700; padding: 2px 8px;
+                  border-radius: 2px; letter-spacing: 0.15em;
+                  font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+  .header-meta { font-size: 11.5px; color: var(--ks-faint); }
+  .header-meta a { color: var(--ks-kinpaku-pale); }
+  .verticals { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 6px; }
+  .vertical-tag { background: oklch(84% 0.19 80 / 0.08); border: 1px solid oklch(84% 0.19 80 / 0.2);
+                   color: var(--ks-kinpaku-pale); font-size: 10px; padding: 2px 9px; border-radius: 3px;
+                   font-family: "SFMono-Regular", "Roboto Mono", monospace; letter-spacing: 0.04em; }
+  .trading-bar { background: var(--ks-raised); border: 1px solid var(--ks-rule); border-radius: 3px;
+                  padding: 9px 14px; margin-top: 14px; font-size: 11px; color: var(--ks-faint);
+                  font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+  .trading-bar strong { color: var(--ks-champagne); margin-right: 4px; }
+
+  /* ── Hero stats bar ── */
+  .hero-stats { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+                 border-bottom: 1px solid var(--ks-rule-strong); }
+  .hero-card { background: var(--ks-raised); padding: 18px 22px;
+                border-right: 1px solid var(--ks-rule); }
+  .hero-card:last-child { border-right: none; }
+  .hero-label { font-size: 9px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.18em;
+                 color: var(--ks-faint); margin-bottom: 6px;
+                 font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+  .hero-value { font-size: 1.4rem; font-weight: 700; line-height: 1.1; color: var(--ks-champagne); }
+  .hero-sub { font-size: 10.5px; color: var(--ks-patina); margin-top: 3px;
+               font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+
+  /* ── TOC ── */
+  .toc { background: var(--ks-graphite); border-bottom: 1px solid var(--ks-rule-strong);
+          padding: 9px 40px; display: flex; flex-wrap: wrap; gap: 5px;
+          position: sticky; top: 0; z-index: 10; }
+  .toc-link { font-size: 10px; font-weight: 600; color: var(--ks-faint); padding: 3px 10px;
+               border-radius: 20px; border: 1px solid var(--ks-rule); background: transparent;
+               transition: background 150ms var(--ks-ease), color 150ms var(--ks-ease);
+               white-space: nowrap; font-family: "SFMono-Regular", "Roboto Mono", monospace;
+               letter-spacing: 0.04em; }
+  .toc-link:hover { background: var(--ks-kinpaku); color: var(--ks-lacquer-deep); border-color: var(--ks-kinpaku); }
+
+  /* ── Sections ── */
+  .section { border-bottom: 1px solid var(--ks-rule); padding: 24px 40px; scroll-margin-top: 48px; }
+  .section:last-of-type { border-bottom: none; }
+  .sec-label { font-size: 9.5px; font-weight: 500; letter-spacing: 0.20em; text-transform: uppercase;
+                color: var(--ks-kinpaku); font-family: "SFMono-Regular", "Roboto Mono", monospace;
+                margin-bottom: 16px; }
+
+  /* ── Two-col layout (overview) ── */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
+  @media (max-width: 680px) { .two-col { grid-template-columns: 1fr; } }
+
+  /* ── Body bullet list ── */
+  .body-list { list-style: none; padding: 0; margin: 0; }
+  .body-list li { padding: 6px 0 6px 16px; position: relative; color: var(--ks-body);
+                   font-size: 13px; line-height: 1.7; border-bottom: 1px solid var(--ks-rule); }
+  .body-list li:last-child { border-bottom: none; }
+  .body-list li:before { content: ""; position: absolute; left: 2px; top: 14px;
+                          width: 5px; height: 5px; border-radius: 50%; background: var(--ks-kinpaku); }
+
+  /* ── Business flow diagram ── */
+  .biz-flow { display: flex; align-items: stretch; gap: 0; margin: 4px 0; }
+  .biz-col { display: flex; flex-direction: column; gap: 6px; flex: 1; }
+  .biz-col-mid { flex: 1.1; }
+  .biz-col-label { font-size: 8.5px; text-transform: uppercase; letter-spacing: 0.18em;
+                    color: var(--ks-faint); margin-bottom: 2px;
+                    font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+  .biz-node { padding: 8px 10px; border-radius: 3px; font-size: 11px; font-weight: 500; line-height: 1.3; }
+  .biz-cust { background: oklch(84% 0.19 80 / 0.07); border: 1px solid oklch(84% 0.19 80 / 0.2);
+               color: var(--ks-kinpaku-pale); }
+  .biz-out  { background: oklch(70% 0.12 188 / 0.07); border: 1px solid oklch(70% 0.12 188 / 0.2);
+               color: var(--ks-patina); }
+  .biz-platform { background: var(--ks-kinpaku); color: var(--ks-lacquer-deep); padding: 10px 12px;
+                   border-radius: 3px; font-size: 12px; font-weight: 700; text-align: center; }
+  .biz-mod { background: var(--ks-graphite-2); border: 1px solid var(--ks-rule); color: var(--ks-body);
+              padding: 6px 10px; border-radius: 3px; font-size: 11px; text-align: center; }
+  .biz-arrow { display: flex; align-items: center; padding: 0 8px; color: var(--ks-kinpaku);
+                font-size: 16px; flex-shrink: 0; margin-top: 20px; }
+
+  /* ── News ── */
+  .news-item { padding: 11px 0; border-bottom: 1px solid var(--ks-rule); }
+  .news-item:last-child { border-bottom: none; }
+  .news-row { display: flex; gap: 14px; align-items: flex-start; }
+  .news-date { font-size: 10px; color: var(--ks-faint); white-space: nowrap; min-width: 74px;
+                font-family: "SFMono-Regular", "Roboto Mono", monospace; padding-top: 2px; }
+  .news-headline { font-size: 13px; font-weight: 600; color: var(--ks-champagne); line-height: 1.4; }
+  .news-why { font-size: 12px; color: var(--ks-muted); margin-top: 5px; margin-left: 88px; line-height: 1.6; }
+
+  /* ── Financials / metrics ── */
+  .fin-meta { font-size: 11px; color: var(--ks-faint); margin-bottom: 14px;
+               font-family: "SFMono-Regular", "Roboto Mono", monospace; letter-spacing: 0.05em; }
+  .metrics-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+                   gap: 8px; margin-bottom: 18px; }
+  .metric-card { background: var(--ks-raised); border: 1px solid var(--ks-rule); border-radius: 3px; padding: 12px 14px; }
+  .metric-label { font-size: 9px; font-weight: 500; color: var(--ks-faint); text-transform: uppercase;
+                   letter-spacing: 0.15em; margin-bottom: 5px;
+                   font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+  .metric-value { font-size: 1.4rem; font-weight: 700; color: var(--ks-champagne); line-height: 1; }
+  .metric-value.green { color: var(--ks-patina); }
+  .earn-bullets { list-style: none; padding: 0; margin: 0; }
+  .earn-bullets li { padding: 7px 0 7px 16px; position: relative; font-size: 13px;
+                      color: var(--ks-body); border-bottom: 1px solid var(--ks-rule); line-height: 1.7; }
+  .earn-bullets li:before { content: ""; position: absolute; left: 2px; top: 14px;
+                             width: 5px; height: 5px; border-radius: 50%; background: var(--ks-patina); }
+  .earn-bullets li:last-child { border-bottom: none; }
+
+  /* ── ARR chart ── */
+  .chart-wrap { margin: 4px 0 8px; }
+  .chart-eyebrow { font-size: 9px; text-transform: uppercase; letter-spacing: 0.18em;
+                    color: var(--ks-faint); margin-bottom: 12px;
+                    font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+
+  /* ── Funding timeline (flex cards) ── */
+  .tl-flex  { display: flex; align-items: center; gap: 0; overflow-x: auto;
+               padding-bottom: 6px; margin: 8px 0; }
+  .tl-card  { background: var(--ks-raised); border: 1px solid var(--ks-rule); border-radius: 3px;
+               padding: 10px 12px; min-width: 88px; text-align: center; flex-shrink: 0; }
+  .tl-arrow { color: var(--ks-kinpaku); font-size: 14px; padding: 0 4px; flex-shrink: 0; }
+  .tl-round { font-size: 8px; text-transform: uppercase; letter-spacing: 0.10em;
+               color: var(--ks-faint); font-family: "SFMono-Regular", "Roboto Mono", monospace;
+               margin-bottom: 3px; }
+  .tl-amt   { font-size: 12px; font-weight: 700; color: var(--ks-kinpaku);
+               font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+  .tl-val   { font-size: 10px; color: var(--ks-patina);
+               font-family: "SFMono-Regular", "Roboto Mono", monospace; margin-top: 2px; }
+  .tl-date  { font-size: 9px; color: var(--ks-faint); margin-top: 1px; }
+  .tl-leads { font-size: 9px; color: var(--ks-muted); margin-top: 3px; line-height: 1.3; }
+
+  /* ── News source tag ── */
+  .news-source-row { margin-left: 88px; margin-top: 3px; margin-bottom: 1px; }
+  .news-source-link { font-size: 9.5px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+    color: var(--ks-gold); text-decoration: none; border-bottom: 1px solid transparent;
+    transition: border-color .15s; }
+  .news-source-link:hover { border-bottom-color: var(--ks-gold); }
+  .news-source-nolink { color: var(--ks-faint); }
+  /* legacy — keep so old references don't break */
+  .news-source { font-size: 9.5px; font-weight: 600; color: var(--ks-faint); margin-left: 8px;
+                  font-family: "SFMono-Regular", "Roboto Mono", monospace; letter-spacing: 0.05em;
+                  background: var(--ks-raised); border: 1px solid var(--ks-rule);
+                  padding: 1px 6px; border-radius: 3px; vertical-align: middle; }
+
+  /* ── body-p (single paragraph, no bullets) ── */
+  .body-p { color: var(--ks-body); font-size: 13px; line-height: 1.75; }
+
+  /* ── Slide Kit ── */
+  .kit-grid { display: grid; grid-template-columns: 160px 1fr 1fr; gap: 24px; align-items: start; }
+  @media (max-width: 680px) { .kit-grid { grid-template-columns: 1fr; } }
+  .kit-identity { display: flex; flex-direction: column; gap: 8px; }
+  .kit-logo-lg  { width: 64px; height: 64px; border-radius: 10px; object-fit: contain;
+                   background: var(--ks-raised); padding: 6px; border: 1px solid var(--ks-rule); }
+  .kit-name { font-family: "Alumni Sans Pinstripe", Arial, sans-serif; font-size: 1.3rem;
+               font-weight: 300; color: var(--ks-champagne); line-height: 1.1; }
+  .kit-sub  { font-size: 11px; color: var(--ks-muted); }
+  .kit-link { font-size: 11px; color: var(--ks-kinpaku-pale); }
+  .kit-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; }
+  .kit-tag  { font-size: 9px; background: oklch(84% 0.19 80 / 0.08); border: 1px solid oklch(84% 0.19 80 / 0.2);
+               color: var(--ks-kinpaku-pale); padding: 2px 7px; border-radius: 3px;
+               font-family: "SFMono-Regular", "Roboto Mono", monospace; letter-spacing: 0.04em; }
+  .kit-copy { display: flex; flex-direction: column; gap: 6px; }
+  .kit-copy-label { font-size: 8.5px; text-transform: uppercase; letter-spacing: 0.18em;
+                     color: var(--ks-faint); font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+  .kit-stat { background: var(--ks-raised); border: 1px solid var(--ks-rule); border-radius: 3px;
+               padding: 8px 12px; font-size: 12.5px; font-weight: 600; color: var(--ks-champagne);
+               font-family: "SFMono-Regular", "Roboto Mono", monospace; cursor: text; }
+  .kit-bullet { background: var(--ks-graphite); border-left: 2px solid var(--ks-kinpaku);
+                 padding: 7px 10px; font-size: 12px; color: var(--ks-body); line-height: 1.5;
+                 margin-top: 2px; }
+  .kit-assets { display: flex; flex-direction: column; gap: 6px; }
+  .kit-url  { background: var(--ks-raised); border: 1px solid var(--ks-rule); border-radius: 3px;
+               padding: 7px 10px; font-size: 10.5px; color: var(--ks-patina); word-break: break-all;
+               font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+  .kit-swatches { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+  .kit-swatch-wrap { display: flex; flex-direction: column; align-items: center; gap: 4px; cursor: default; }
+  .kit-swatch { width: 36px; height: 36px; border-radius: 6px; border: 1px solid rgba(255,255,255,.08);
+                 box-shadow: 0 1px 4px rgba(0,0,0,.4); }
+  .kit-hex { font-size: 9px; font-family: "SFMono-Regular","Roboto Mono",monospace;
+              color: var(--ks-faint); letter-spacing: .03em; text-transform: uppercase; }
+
+  /* ── Risk list ── */
+  .risk-list { list-style: none; padding: 0; }
+  .risk-list li { padding: 9px 0 9px 22px; border-bottom: 1px solid var(--ks-rule);
+                   position: relative; font-size: 13px; color: var(--ks-body); line-height: 1.7; }
+  .risk-list li:before { content: "!"; position: absolute; left: 3px; top: 10px; width: 13px; height: 13px;
+                          border-radius: 50%; background: oklch(58% 0.15 35 / 0.15);
+                          color: var(--ks-vermilion); font-size: 9px; font-weight: 900;
+                          text-align: center; line-height: 13px;
+                          font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+  .risk-list li:last-child { border-bottom: none; }
+  .risk-label { font-weight: 600; color: var(--ks-champagne); }
+
+  /* ── Comps table ── */
+  .comps-table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+  .comps-table th { text-align: left; font-size: 9px; font-weight: 500; letter-spacing: 0.12em;
+                     text-transform: uppercase; color: var(--ks-faint); padding: 0 12px 9px 0;
+                     border-bottom: 1px solid var(--ks-rule-strong);
+                     font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+  .comps-table td { padding: 8px 12px 8px 0; border-bottom: 1px solid var(--ks-rule);
+                     vertical-align: middle; color: var(--ks-body); }
+  .comps-table tr:last-child td { border-bottom: none; }
+  .comps-table tr:hover td { background: var(--ks-raised); }
+  .subject-row td { background: oklch(84% 0.19 80 / 0.06); font-weight: 700; color: var(--ks-champagne); }
+  .subject-row td:first-child { border-left: 3px solid var(--ks-kinpaku); padding-left: 8px; color: var(--ks-kinpaku); }
+  .note-cell { color: var(--ks-faint); font-size: 11px; }
+
+  /* ── Slide bullets ── */
+  .slide-list { list-style: none; padding: 0; counter-reset: slides; }
+  .slide-list li { padding: 10px 0 10px 42px; border-bottom: 1px solid var(--ks-rule);
+                    position: relative; font-size: 13px; color: var(--ks-body); line-height: 1.7; }
+  .slide-list li:last-child { border-bottom: none; }
+  .slide-list li:before { counter-increment: slides; content: counter(slides);
+                           position: absolute; left: 0; top: 8px; width: 26px; height: 26px;
+                           border-radius: 2px; background: var(--ks-kinpaku); color: var(--ks-lacquer-deep);
+                           font-size: 11px; font-weight: 700; text-align: center; line-height: 26px;
+                           font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+
+  /* ── Diligence ── */
+  .dq-list { list-style: none; padding: 0; counter-reset: dqs; }
+  .dq-list li { padding: 10px 0 10px 42px; border-bottom: 1px solid var(--ks-rule);
+                 position: relative; font-size: 13px; color: var(--ks-body); line-height: 1.7; }
+  .dq-list li:last-child { border-bottom: none; }
+  .dq-list li:before { counter-increment: dqs; content: "Q" counter(dqs);
+                        position: absolute; left: 0; top: 8px; width: 26px; height: 26px;
+                        border-radius: 2px; background: var(--ks-raised); color: var(--ks-kinpaku);
+                        border: 1px solid var(--ks-rule); font-size: 9.5px; font-weight: 700;
+                        text-align: center; line-height: 26px;
+                        font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+
+  /* ── Chips ── */
+  .chip-list { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip { background: var(--ks-raised); border: 1px solid var(--ks-rule); color: var(--ks-muted);
+           font-size: 11.5px; padding: 3px 11px; border-radius: 20px; font-weight: 500; }
+
+  /* ── Footer ── */
+  .footer { background: var(--ks-raised); border-top: 1px solid var(--ks-rule-strong);
+             padding: 14px 40px; display: flex; justify-content: space-between; align-items: center; }
+  .footer-left { font-size: 10.5px; color: var(--ks-faint); line-height: 1.7; }
+  .footer-right { font-size: 10.5px; font-weight: 700; color: var(--ks-kinpaku);
+                   letter-spacing: 0.22em; font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+  .meta-note { font-size: 12px; color: var(--ks-muted); margin-top: 8px; }
+  .meta-note strong { color: var(--ks-champagne); }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+  @media print {
+    .toc { display: none; }
+    body { background: #fff; color: #111; }
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- ① HEADER: Logo + Name + Badges -->
+  <div class="header">
+    <div class="header-top">
+      <img class="company-logo" src="https://logo.clearbit.com/appliedintuition.com" alt="Applied Intuition logo" onerror="this.style.display='none'">
+      <div class="header-name">
+        <span class="company-name">Applied Intuition</span>
+        <div class="header-badges">
+          
+          <span class="stage-badge">PRIVATE</span>
+          <span class="draft-badge">DRAFT</span>
+        </div>
+      </div>
+      <div class="header-meta" style="text-align:right">
+        <a href="https://appliedintuition.com" target="_blank">appliedintuition.com</a><br>
+        Alfred Research &nbsp;·&nbsp; May 31, 2026
+      </div>
+    </div>
+    <div class="verticals"><span class="vertical-tag">Autonomous Vehicles</span><span class="vertical-tag">Simulation & Testing Software</span><span class="vertical-tag">Defense Tech</span><span class="vertical-tag">AI/ML Infrastructure</span></div>
+    
+  </div>
+
+  <!-- ② HERO STATS: 5 KPIs at a glance -->
+  <div class="hero-stats"><div class="hero-card"><div class="hero-label">ARR / Revenue</div><div class="hero-value" style="color:var(--ks-kinpaku)">$830M ARR (est.)</div><div class="hero-sub">~100% YoY</div></div><div class="hero-card"><div class="hero-label">Valuation</div><div class="hero-value" style="color:var(--ks-kinpaku)">$15B</div></div><div class="hero-card"><div class="hero-label">Total Raised</div><div class="hero-value" style="color:var(--ks-champagne)">$1,502M</div></div><div class="hero-card"><div class="hero-label">Employees</div><div class="hero-value" style="color:var(--ks-champagne)">~1,360</div></div><div class="hero-card"><div class="hero-label">Stage</div><div class="hero-value" style="color:var(--ks-muted)">PRIVATE</div></div></div>
+
+  <!-- ③ TOC -->
+  <div class="toc"><a href="#overview" class="toc-link">Overview</a> <a href="#product" class="toc-link">Revenue Model</a> <a href="#news" class="toc-link">News</a> <a href="#earnings" class="toc-link">Financials</a> <a href="#growth" class="toc-link">Growth</a> <a href="#risks" class="toc-link">Risks</a> <a href="#comps" class="toc-link">Comps</a> <a href="#funding" class="toc-link">Funding</a> <a href="#investors" class="toc-link">Investors</a> <a href="#bullets" class="toc-link">Bullets</a> <a href="#diligence" class="toc-link">Diligence</a> <a href="#slidekit" class="toc-link">Slide Kit</a></div>
+
+  <!-- ④ BUSINESS OVERVIEW + VALUE CHAIN DIAGRAM (2-col) -->
+  <div class="section" id="overview"><div class="sec-label">Business Overview</div><div class="two-col"><div><ul class='body-list'><li>Applied Intuition is a private Physical AI platform company selling simulation, testing, and autonomy software to the world's largest automakers and the U.S. Department of Defense.</li><li>The company operates across three product pillars: Tools and Infrastructure (simulation, data management, ML toolchain), Vehicle Platform (vendor-agnostic software OS licensed to OEMs), and Autonomy (AI-native stacks for automotive and defense). At ~$830M ARR with 100% YoY growth for two consecutive years, Applied Intuition is one of the fastest-scaling enterprise software businesses in the autonomous systems market.</li></ul></div><div>
+    <div class="biz-flow">
+      <div class="biz-col">
+        <div class="biz-col-label">CUSTOMERS</div>
+        <div class="biz-node biz-cust">18 of top 20 global automakers</div><div class="biz-node biz-cust">Audi</div><div class="biz-node biz-cust">Porsche</div><div class="biz-node biz-cust">TRATON GROUP</div>
+      </div>
+      <div class="biz-arrow">&#8594;</div>
+      <div class="biz-col biz-col-mid">
+        <div class="biz-col-label">PLATFORM</div>
+        <div class="biz-platform">Applied Intuition</div>
+        <div class="biz-mod">Autonomous Vehicles</div><div class="biz-mod">Simulation & Testing Software</div><div class="biz-mod">Defense Tech</div>
+      </div>
+      <div class="biz-arrow">&#8594;</div>
+      <div class="biz-col">
+        <div class="biz-col-label">VALUE DELIVERED</div>
+        <div class="biz-node biz-out">Defense Autonomous Systems</div><div class="biz-node biz-out">Validated Autonomy Software</div><div class="biz-node biz-out">Compressed Dev Cycles</div>
+      </div>
+    </div></div></div></div>
+
+  <!-- ⑤ PRODUCT & REVENUE MODEL -->
+  <div class="section" id="product"><div class="sec-label">Product &amp; Revenue Model</div><ul class='body-list'><li>Applied Intuition licenses software on an annual B2B SaaS model priced by engineering seats, simulation workload volume, and modules deployed.</li><li>The core simulation platform generates synthetic driving scenarios for ADAS/AV validation; its AI-powered Copilot feature accelerates scenario generation 40x.</li><li>The data management and ML toolchain sits upstream of training pipelines for OEM autonomy teams.</li><li>The Vehicle OS is a vendor-agnostic software layer that OEMs license to run AI-defined vehicle stacks without rebuilding from scratch.</li><li>On the defense side, the Axion and Acuity autonomy stacks address ground, air, sea, and space domains, expanded through the EpiSci acquisition and the Ghost Autonomy IP acquisition.</li><li>Government revenue is anchored by a $171M CDAO Autonomy Factory production contract and a $249M BPA with the U.S. military.</li><li>The dual commercial-defense model creates two separate land-and-expand vectors: OEM seat expansion as ADAS programs scale toward L3-L4, and DoD program growth as FY2026 autonomy budgets reach $13.4B.</li></ul></div>
+
+  <!-- ⑥ RECENT NEWS -->
+  <div class="section" id="news"><div class="sec-label">Recent News</div><div class="news-item"><div class="news-row"><span class="news-date">2025-06-17</span><span class="news-headline">Applied Intuition raises $600M Series F at $15B valuation, led by BlackRock and QIA</span></div><div class="news-why">The round nearly triples the $6B Series E valuation in 15 months, signals institutional pre-IPO positioning, and gives the company dry powder to scale defense GTM and international OEM coverage.</div></div><div class="news-item"><div class="news-row"><span class="news-date">2026-01-01</span><span class="news-headline">DOE Oak Ridge National Lab partnership for Golden Dome missile defense simulation</span></div><div class="news-why">Entry into missile defense simulation expands the addressable DoD contract surface beyond ground autonomy into a politically prioritized, high-budget program.</div></div><div class="news-item"><div class="news-row"><span class="news-date">2025-12-03</span><span class="news-headline">SNC partnership on air defense and counter-drone autonomy</span></div><div class="news-why">Counter-drone is the fastest-growing DoD procurement category; SNC partnership provides a system-integrator distribution channel into Air Force and combatant command programs.</div></div><div class="news-item"><div class="news-row"><span class="news-date">2025-09-09</span><span class="news-headline">Komatsu partnership for autonomous mining vehicles</span></div><div class="news-why">Extends the OEM customer base into industrial autonomy beyond passenger and defense vehicles, opening a new vertical with high simulation validation requirements.</div></div><div class="news-item"><div class="news-row"><span class="news-date">2025-01-01</span><span class="news-headline">Pentagon CDAO awards Applied Intuition up to $171M Autonomy Factory production contract</span></div><div class="news-why">First large-scale DoD-wide software production contract for autonomy infrastructure; establishes Applied Intuition as the default simulation layer across military programs.</div></div><div class="news-item"><div class="news-row"><span class="news-date">2024-07-25</span><span class="news-headline">$300M secondary transaction provides liquidity ahead of IPO</span></div><div class="news-why">Secondary at implied elevated valuation allows early investors and employees to take chips off the table while the company stays private, reducing IPO pressure timeline risk.</div></div></div>
+
+  <!-- ⑦ FINANCIALS / EARNINGS -->
+  <div class="section" id="earnings"><div class="sec-label">Financials &amp; Key Metrics<span style="font-weight:400;color:var(--ks-faint);margin-left:8px">FY2025 Update (Private Co.) &middot; June 2025</span></div><div class="metrics-grid"><div class="metric-card"><div class="metric-label">Revenue</div><div class="metric-value">$830M ARR (est.)</div></div><div class="metric-card"><div class="metric-label">Rev Growth</div><div class="metric-value green">~100% YoY</div></div></div><ul class="earn-bullets"><li><strong>AI / Product:</strong> Applied Intuition has compounded ARR at roughly 100% for two consecutive years: $207M (2023) to $415M (2024) to an estimated $830M (2025). The growth rate is notable because it has held at 2x scale against an expanding revenue base, suggesting the company is not hitting natural ceiling effects from its OEM customer set. The $15B Series F valuation implies an ~18x forward ARR multiple on $830M, which is a premium to public software comps but defensible given the growth rate.</li><li><strong>Demand:</strong> Demand is coming from two structurally distinct vectors. On the automotive side, the shift to software-defined vehicles is forcing OEMs to buy simulation infrastructure they previously built in-house; 18 of the top 20 global automakers as customers is an exceptionally high penetration rate for a sub-10-year-old software company.</li></ul></div>
+
+  <!-- ⑧ ARR GROWTH CHART -->
+  <div class="section" id="growth"><div class="sec-label">Revenue Trajectory</div>
+    <div class="chart-wrap">
+      <div class="chart-eyebrow">ARR / REVENUE TRAJECTORY</div>
+      <svg width="288" height="124" viewBox="0 0 288 124" style="overflow:visible">
+        
+        <rect x="24" y="76" width="56" height="22" fill="var(--ks-kinpaku)" rx="2" opacity="0.55"/>
+        <text x="52" y="70" text-anchor="middle" font-size="10" fill="var(--ks-champagne)" font-family="SFMono-Regular,Roboto Mono,monospace" font-weight="700">$207M</text>
+        
+        <text x="52" y="114" text-anchor="middle" font-size="10" fill="var(--ks-faint)" font-family="SFMono-Regular,Roboto Mono,monospace">2023</text>
+        <rect x="98" y="53" width="56" height="45" fill="var(--ks-kinpaku)" rx="2" opacity="0.78"/>
+        <text x="126" y="47" text-anchor="middle" font-size="10" fill="var(--ks-champagne)" font-family="SFMono-Regular,Roboto Mono,monospace" font-weight="700">$415M</text>
+        <text x="126" y="35" text-anchor="middle" font-size="9" fill="var(--ks-patina)" font-family="SFMono-Regular,Roboto Mono,monospace">+100%</text>
+        <text x="126" y="114" text-anchor="middle" font-size="10" fill="var(--ks-faint)" font-family="SFMono-Regular,Roboto Mono,monospace">2024</text>
+        <rect x="172" y="8" width="56" height="90" fill="var(--ks-kinpaku)" rx="2" opacity="1.00"/>
+        <text x="200" y="2" text-anchor="middle" font-size="10" fill="var(--ks-champagne)" font-family="SFMono-Regular,Roboto Mono,monospace" font-weight="700">$830M</text>
+        <text x="200" y="-10" text-anchor="middle" font-size="9" fill="var(--ks-patina)" font-family="SFMono-Regular,Roboto Mono,monospace">+100%</text>
+        <text x="200" y="114" text-anchor="middle" font-size="10" fill="var(--ks-faint)" font-family="SFMono-Regular,Roboto Mono,monospace">2025</text>
+        <line x1="24" y1="98" x2="264" y2="98" stroke="var(--ks-rule-strong)" stroke-width="1"/>
+      </svg>
+    </div></div>
+
+  <!-- ⑨ KEY RISKS -->
+  <div class="section" id="risks"><div class="sec-label">Key Risks &amp; Debates</div><ul class="risk-list"><li><span class='risk-label'>Customer concentration:</span> 18 of top 20 automakers sounds like diversification, but OEM capex cycles are highly correlated; a broad ADAS/AV investment pullback (as in 2022-2023) could compress seat expansion and new module attach rates simultaneously.</li><li><span class='risk-label'>Defense contract execution:</span> The $171M CDAO contract and $249M BPA are ceiling-value vehicles, not guaranteed revenue; actual drawdown depends on program office adoption, continuing resolution budget risk, and task-order competition.</li><li><span class='risk-label'>Valuation step-down at IPO:</span> The $15B private mark at ~18x ARR requires sustaining 80-100% growth into the IPO window. A deceleration to 50-60% growth would compress the multiple and risk a flat-to-down IPO, damaging retention and customer perception.</li><li><span class='risk-label'>Simulation-to-deployment gap:</span> If physical AI deployment timelines slip (as they repeatedly have in L4 automotive), TAM expansion slows and urgency to buy more simulation seats decreases.</li><li><span class='risk-label'>Build vs. buy at OEMs and DoD:</span> Large OEMs and defense primes have historically preferred internal tooling. Applied Intuition's penetration is strong but not irreversible; a top-3 OEM shifting to an NVIDIA DRIVE Sim-based stack would be a material ARR risk.</li><li><span class='risk-label'>Talent cost opacity:</span> Headcount grew 57% YoY to ~1,360 at likely SF-level compensation. No disclosed gross margin or FCF data - it is unclear whether the business is FCF positive or still capital-burning, which matters for IPO multiple sustainability.</li></ul></div>
+
+  <!-- ⑩ COMPARABLE COMPANIES -->
+  <div class="section" id="comps"><div class="sec-label">Comparable Companies</div>
+    <table class="comps-table">
+      <thead><tr>
+        <th>Company</th><th>Ticker</th><th class="right">EV/Rev</th>
+        <th class="right">Rev Growth</th><th>Note</th>
+      </tr></thead>
+      <tbody>
+        <tr class="subject-row">
+          <td>Palantir Technologies</td>
+          <td class="mono">PLTR</td>
+          <td class="mono right">~45x NTM</td>
+          <td class="mono right">~35% YoY</td>
+          <td class="note-cell">subject - closest public analog as dual-use commercial/government AI software platform</td>
+        </tr>
+        <tr class="">
+          <td>Mobileye Global</td>
+          <td class="mono">MBLY</td>
+          <td class="mono right">~4x NTM</td>
+          <td class="mono right">-7% YoY (2024)</td>
+          <td class="note-cell">ADAS/AV technology supplier to same OEM customer set</td>
+        </tr>
+        <tr class="">
+          <td>ANSYS</td>
+          <td class="mono">ANSS</td>
+          <td class="mono right">~14x NTM</td>
+          <td class="mono right">~12% YoY</td>
+          <td class="note-cell">simulation software incumbent; lacks AI-native scenario generation and defense autonomy stack</td>
+        </tr>
+        <tr class="">
+          <td>Shield AI</td>
+          <td class="mono">-</td>
+          <td class="mono right">~10x ARR (est.)</td>
+          <td class="mono right">~60-80% YoY (est.)</td>
+          <td class="note-cell">private defense autonomy platform; ~$5B valuation, most comparable DoD software comps vector</td>
+        </tr></tbody>
+    </table></div>
+
+  <!-- ⑩b COMPETITORS (if no comps table) -->
+  
+
+  <!-- ⑪ FUNDING TIMELINE -->
+  <div class="section" id="funding"><div class="sec-label">Funding History</div><div class="tl-scroll"><div class="tl-flex">
+        <div class="tl-card">
+          <div class="tl-round">Series A</div>
+          <div class="tl-amt">$11.5M</div>
+          
+          <div class="tl-date">2018-01</div>
+          <div class="tl-leads">Andreessen Horowitz</div>
+        </div>
+        <div class="tl-arrow">&#8594;</div>
+        <div class="tl-card">
+          <div class="tl-round">Series B</div>
+          <div class="tl-amt">$40M</div>
+          
+          <div class="tl-date">2019-09</div>
+          <div class="tl-leads">General Catalyst</div>
+        </div>
+        <div class="tl-arrow">&#8594;</div>
+        <div class="tl-card">
+          <div class="tl-round">Series C</div>
+          <div class="tl-amt">$125M</div>
+          
+          <div class="tl-date">2020-10</div>
+          
+        </div>
+        <div class="tl-arrow">&#8594;</div>
+        <div class="tl-card">
+          <div class="tl-round">Series D</div>
+          <div class="tl-amt">$175M</div>
+          <div class="tl-val">$3.6B</div>
+          <div class="tl-date">2021-11</div>
+          <div class="tl-leads">Elad Gil, Addition</div>
+        </div>
+        <div class="tl-arrow">&#8594;</div>
+        <div class="tl-card">
+          <div class="tl-round">Series E</div>
+          <div class="tl-amt">$250M</div>
+          <div class="tl-val">$6B</div>
+          <div class="tl-date">2024-03</div>
+          <div class="tl-leads">Lux Capital, Eldridge</div>
+        </div>
+        <div class="tl-arrow">&#8594;</div>
+        <div class="tl-card">
+          <div class="tl-round">Secondary</div>
+          <div class="tl-amt">$300M</div>
+          
+          <div class="tl-date">2024-07</div>
+          
+        </div>
+        <div class="tl-arrow">&#8594;</div>
+        <div class="tl-card">
+          <div class="tl-round">Series F</div>
+          <div class="tl-amt">$600M</div>
+          <div class="tl-val">$15B</div>
+          <div class="tl-date">2025-06</div>
+          <div class="tl-leads">BlackRock, Kleiner Perkins</div>
+        </div>
+        </div></div><div class="meta-note">Total raised: <strong>$1,502M</strong></div></div>
+
+  <!-- ⑫ INVESTORS -->
+  <div class="section" id="investors"><div class="sec-label">Notable Investors</div><div class='chip-list'><span class='chip'>BlackRock</span><span class='chip'>Kleiner Perkins</span><span class='chip'>Franklin Templeton</span><span class='chip'>Qatar Investment Authority</span><span class='chip'>Abu Dhabi Investment Council</span><span class='chip'>Lux Capital</span><span class='chip'>General Catalyst</span><span class='chip'>Andreessen Horowitz</span><span class='chip'>Coatue</span><span class='chip'>Elad Gil</span><span class='chip'>Addition</span><span class='chip'>BOND</span><span class='chip'>Fidelity</span><span class='chip'>Tribe Capital</span></div></div>
+
+  <!-- ⑬ IPO READINESS -->
+  <div class="section"><div class="sec-label">IPO Readiness</div><ul class='body-list'><li>CEO stated Series F is likely the last pre-IPO round.</li><li>IPO expected 2026-2027.</li><li>At $830M ARR and 100% growth, a 12-15x NTM revenue multiple would imply $16-21B public market cap.</li><li>Headcount 57% YoY to ~1,360 signals investment ahead of offering.</li><li>No disclosed gross margin or FCF data.</li></ul></div>
+
+  <!-- ⑭ SLIDE-READY BULLETS -->
+  <div class="section" id="bullets"><div class="sec-label">Slide-Ready Bullets</div><ol class="slide-list"><li>$830M ARR (est.) growing ~100% YoY for two consecutive years - 18 of the top 20 global automakers are active customers.</li><li>$15B valuation set in June 2025 Series F led by BlackRock, QIA, and Franklin Templeton - total primary capital raised exceeds $1.5B since 2018.</li><li>Dual-use platform with $171M CDAO Autonomy Factory contract and $249M U.S. military BPA anchoring a defense revenue stream against a $13.4B FY2026 DoD autonomy budget.</li><li>AI-powered scenario generation (Copilot) accelerates simulation workflows 40x - enabling OEMs to compress ADAS/AV validation cycles that previously took months.</li><li>CEO flagged Series F as likely the last pre-IPO round; IPO window targeted 2026-2027, with 57% headcount growth to ~1,360 employees signaling investment ahead of the offering.</li></ol></div>
+
+  <!-- ⑮ DILIGENCE QUESTIONS -->
+  <div class="section" id="diligence"><div class="sec-label">Smart Diligence Questions</div><ol class="dq-list"><li>Of the $830M ARR, how much is attributable to defense contracts versus commercial OEM licenses, and what is the renewal and expansion rate within each segment - specifically, how much of the DoD ARR is tied to time-limited BPA drawdowns versus recurring software seat licenses?</li><li>What does gross margin look like across the three product pillars (Tools and Infrastructure, Vehicle Platform, Autonomy), and how does the margin profile of defense contracts compare to commercial OEM SaaS given typical cost-plus and fixed-price government procurement structures?</li><li>Given that Vehicle OS and autonomy stacks require deep integration into OEM software architectures, what is the average contract length and what switching costs or contractual protections prevent a large OEM from replacing Applied Intuition's simulation layer with an internally developed or NVIDIA DRIVE Sim-based alternative over a 3-5 year horizon?</li></ol></div>
+
+  <!-- ⑯ SLIDE KIT -->
+  <div class="section" id="slidekit">
+    <div class="sec-label">Slide Kit &nbsp;&middot;&nbsp; <span style="font-weight:400;color:var(--ks-faint)">logo, stats, and copy-paste artifacts</span></div>
+    
+    <div class="kit-grid">
+      <div class="kit-identity">
+        <img src="https://logo.clearbit.com/appliedintuition.com" class="kit-logo-lg" alt="Applied Intuition logo" onerror="this.style.display='none'">
+        <div class="kit-name">Applied Intuition</div>
+        <div class="kit-sub">PRIVATE · $15B (June 2025 Series F)</div>
+        <a href="https://appliedintuition.com" class="kit-link" target="_blank">appliedintuition.com</a>
+        <div class="kit-tags"><span class="kit-tag">Autonomous Vehicles</span><span class="kit-tag">Simulation & Testing Software</span><span class="kit-tag">Defense Tech</span></div>
+      </div>
+      <div class="kit-copy">
+        <div class="kit-copy-label">COPY-PASTE STATS</div>
+        <div class="kit-stat">$830M ARR (est.) growing ~100% YoY</div><div class="kit-stat">Valued at $15B (June 2025 Series F)</div><div class="kit-stat">$1,502M total raised</div>
+        <div class="kit-copy-label" style="margin-top:14px">TOP 3 SLIDE BULLETS</div>
+        <div class="kit-bullet">$830M ARR (est.) growing ~100% YoY for two consecutive years - 18 of the top 20 global automakers are active customers.</div><div class="kit-bullet">$15B valuation set in June 2025 Series F led by BlackRock, QIA, and Franklin Templeton - total primary capital raised exceeds $1.5B since 2018.</div><div class="kit-bullet">Dual-use platform with $171M CDAO Autonomy Factory contract and $249M U.S. military BPA anchoring a defense revenue stream against a $13.4B FY2026 DoD autonomy budget.</div>
+      </div>
+      <div class="kit-assets">
+        <div class="kit-copy-label">BRAND COLORS</div>
+        <div class="kit-swatches"><div class="kit-swatch-wrap" title="#006CFA"><div class="kit-swatch" style="background:#006CFA"></div><div class="kit-hex">#006CFA</div></div><div class="kit-swatch-wrap" title="#7C3AED"><div class="kit-swatch" style="background:#7C3AED"></div><div class="kit-hex">#7C3AED</div></div><div class="kit-swatch-wrap" title="#41BE64"><div class="kit-swatch" style="background:#41BE64"></div><div class="kit-hex">#41BE64</div></div><div class="kit-swatch-wrap" title="#FA4C55"><div class="kit-swatch" style="background:#FA4C55"></div><div class="kit-hex">#FA4C55</div></div><div class="kit-swatch-wrap" title="#0BC242"><div class="kit-swatch" style="background:#0BC242"></div><div class="kit-hex">#0BC242</div></div><div class="kit-swatch-wrap" title="#00A0FF"><div class="kit-swatch" style="background:#00A0FF"></div><div class="kit-hex">#00A0FF</div></div></div>
+        <div class="kit-copy-label" style="margin-top:14px">BRAND TAGS</div>
+        <div class="kit-tags"><span class="kit-tag">Autonomous Vehicles</span><span class="kit-tag">Simulation & Testing Software</span><span class="kit-tag">Defense Tech</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-left">
+      Sources: Company IR, earnings transcripts, Bloomberg, SEC filings, Sacra, Crunchbase, yfinance<br>
+      DRAFT - internal use only. Human review required before distribution.
+    </div>
+    <div class="footer-right">ALFRED</div>
+  </div>
+
+</div>
+</body>
+</html>

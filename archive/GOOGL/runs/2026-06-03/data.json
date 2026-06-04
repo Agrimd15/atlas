@@ -1,0 +1,121 @@
+{
+  "ticker": "GOOGL",
+  "runDate": "2026-06-03",
+  "marketCloseAsOf": "2026-06-03",
+  "freshnessNote": "All multiples reflect the 2026-06-03 market close.",
+  "sources": [
+    "yfinance / Yahoo Finance",
+    "FMP /stable/profile",
+    "SEC EDGAR"
+  ],
+  "trading": {
+    "priceAsOf": "2026-06-03",
+    "stockPrice": "$359",
+    "marketCap": "$2.1T",
+    "enterpriseValue": "$2.1T",
+    "totalRevenueLTM": "$422.5B",
+    "revenueGrowthYoY": "21.8%",
+    "grossMargin": "60.4%",
+    "operatingMarginGAAP": "36.1%",
+    "ebitdaMargin": "38.2%",
+    "fcfPerShare": 27921750016,
+    "totalDebt": "$95.9B",
+    "totalCash": "$126.8B",
+    "evRevenueLTM": "4.9x",
+    "evBasis": "recomputed: last close \u00d7 shares + net debt",
+    "forwardPE": 24.8,
+    "priceToSalesLTM": 10.3,
+    "52wHigh": 408.61,
+    "52wLow": 162.0,
+    "dayChange": "-0.8%",
+    "volume": 48643640,
+    "avgVolume": 28430574,
+    "analystTargetPrice": 429.9666,
+    "analystTargetHigh": 515.0,
+    "analystTargetLow": 340.0,
+    "analystRating": "strong_buy",
+    "numberOfAnalysts": 53,
+    "shortName": "Alphabet Inc.",
+    "sector": "Communication Services",
+    "industry": "Internet Content & Information",
+    "sharesOutstanding": 5823665113
+  },
+  "profile": {},
+  "comps": [
+    {
+      "ticker": "AAPL",
+      "name": "Apple Inc.",
+      "priceAsOf": "2026-06-03",
+      "marketCap": "$4.6T",
+      "evRevenueLTM": "10.1x",
+      "revenueGrowth": "16.6%",
+      "grossMargin": "47.9%",
+      "analystRating": "buy",
+      "source": "yfinance / Yahoo Finance",
+      "sourceUrl": "https://finance.yahoo.com/quote/AAPL"
+    },
+    {
+      "ticker": "MSFT",
+      "name": "Microsoft Corporation",
+      "priceAsOf": "2026-06-03",
+      "marketCap": "$3.2T",
+      "evRevenueLTM": "10.1x",
+      "revenueGrowth": "18.3%",
+      "grossMargin": "68.3%",
+      "analystRating": "strong_buy",
+      "source": "yfinance / Yahoo Finance",
+      "sourceUrl": "https://finance.yahoo.com/quote/MSFT"
+    }
+  ],
+  "secFilings": {
+    "company": "Alphabet Inc.",
+    "cik": "0001652044",
+    "fiscalYearEnd": "1231",
+    "filings": [
+      {
+        "form": "8-K",
+        "filingDate": "2026-05-21",
+        "reportDate": "2026-05-21",
+        "url": "https://www.sec.gov/Archives/edgar/data/1652044/000119312526234488/d144566d8k.htm",
+        "source": "SEC EDGAR (primary filing)"
+      },
+      {
+        "form": "8-K",
+        "filingDate": "2026-05-11",
+        "reportDate": "2026-05-11",
+        "url": "https://www.sec.gov/Archives/edgar/data/1652044/000119312526216986/d109021d8k.htm",
+        "source": "SEC EDGAR (primary filing)"
+      },
+      {
+        "form": "10-Q",
+        "filingDate": "2026-04-30",
+        "reportDate": "2026-03-31",
+        "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000048/goog-20260331.htm",
+        "source": "SEC EDGAR (primary filing)"
+      },
+      {
+        "form": "10-K",
+        "filingDate": "2026-02-05",
+        "reportDate": "2025-12-31",
+        "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm",
+        "source": "SEC EDGAR (primary filing)"
+      },
+      {
+        "form": "10-Q",
+        "filingDate": "2025-10-30",
+        "reportDate": "2025-09-30",
+        "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204425000091/goog-20250930.htm",
+        "source": "SEC EDGAR (primary filing)"
+      },
+      {
+        "form": "10-K",
+        "filingDate": "2025-02-05",
+        "reportDate": "2024-12-31",
+        "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204425000014/goog-20241231.htm",
+        "source": "SEC EDGAR (primary filing)"
+      }
+    ],
+    "source": "SEC EDGAR",
+    "sourceUrl": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001652044&type=&dateb=&owner=include&count=40"
+  }
+}

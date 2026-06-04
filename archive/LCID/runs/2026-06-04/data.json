@@ -1,0 +1,163 @@
+{
+  "ticker": "LCID",
+  "runDate": "2026-06-04",
+  "marketCloseAsOf": "2026-06-03",
+  "freshnessNote": "All multiples reflect the 2026-06-03 market close.",
+  "sources": [
+    "yfinance / Yahoo Finance",
+    "FMP /stable/profile",
+    "SEC EDGAR"
+  ],
+  "trading": {
+    "priceAsOf": "2026-06-03",
+    "stockPrice": "$6",
+    "marketCap": "$2.2B",
+    "enterpriseValue": "$4.7B",
+    "totalRevenueLTM": "$1.4B",
+    "revenueGrowthYoY": "20.2%",
+    "grossMargin": "-95.6%",
+    "operatingMarginGAAP": "-336.9%",
+    "ebitdaMargin": "-234.9%",
+    "fcfPerShare": -3035099648,
+    "totalDebt": "$3.2B",
+    "totalCash": "$700M",
+    "evRevenueLTM": "3.4x",
+    "evBasis": "recomputed: last close \u00d7 shares + net debt",
+    "forwardPE": -1.2,
+    "priceToSalesLTM": 1.6,
+    "52wHigh": 33.7,
+    "52wLow": 5.55,
+    "dayChange": "-7.3%",
+    "volume": 15549258,
+    "avgVolume": 14343293,
+    "analystTargetPrice": 8.4,
+    "analystTargetHigh": 17.0,
+    "analystTargetLow": 5.0,
+    "analystRating": "none",
+    "numberOfAnalysts": 10,
+    "shortName": "Lucid Group, Inc.",
+    "sector": "Consumer Cyclical",
+    "industry": "Auto Manufacturers",
+    "sharesOutstanding": 390256808
+  },
+  "profile": {
+    "cik": "0001811210",
+    "exchange": "NASDAQ Global Select",
+    "isin": "US5494982029",
+    "beta": 0.883,
+    "lastDividend": 0
+  },
+  "comps": [
+    {
+      "ticker": "TSLA",
+      "name": "Tesla, Inc.",
+      "priceAsOf": "2026-06-03",
+      "marketCap": "$1.6T",
+      "evRevenueLTM": "16.0x",
+      "revenueGrowth": "15.8%",
+      "grossMargin": "19.1%",
+      "analystRating": "buy",
+      "source": "yfinance / Yahoo Finance",
+      "sourceUrl": "https://finance.yahoo.com/quote/TSLA"
+    },
+    {
+      "ticker": "RIVN",
+      "name": "Rivian Automotive, Inc.",
+      "priceAsOf": "2026-06-03",
+      "marketCap": "$24.5B",
+      "evRevenueLTM": "4.5x",
+      "revenueGrowth": "11.4%",
+      "grossMargin": "1.0%",
+      "analystRating": "hold",
+      "source": "yfinance / Yahoo Finance",
+      "sourceUrl": "https://finance.yahoo.com/quote/RIVN"
+    },
+    {
+      "ticker": "NIO",
+      "name": "NIO Inc.",
+      "priceAsOf": "2026-06-03",
+      "marketCap": "$13.6B",
+      "evRevenueLTM": "0.1x",
+      "revenueGrowth": "112.2%",
+      "grossMargin": "15.7%",
+      "analystRating": "buy",
+      "source": "yfinance / Yahoo Finance",
+      "sourceUrl": "https://finance.yahoo.com/quote/NIO"
+    },
+    {
+      "ticker": "XPEV",
+      "name": "XPeng Inc.",
+      "priceAsOf": "2026-06-03",
+      "marketCap": "$13.6B",
+      "evRevenueLTM": "0.1x",
+      "revenueGrowth": "-17.6%",
+      "grossMargin": "20.0%",
+      "analystRating": "buy",
+      "source": "yfinance / Yahoo Finance",
+      "sourceUrl": "https://finance.yahoo.com/quote/XPEV"
+    },
+    {
+      "ticker": "LI",
+      "name": "Li Auto Inc.",
+      "priceAsOf": "2026-06-03",
+      "marketCap": "$12.6B",
+      "evRevenueLTM": "-0.6x",
+      "revenueGrowth": "-11.4%",
+      "grossMargin": "16.0%",
+      "analystRating": "buy",
+      "source": "yfinance / Yahoo Finance",
+      "sourceUrl": "https://finance.yahoo.com/quote/LI"
+    }
+  ],
+  "secFilings": {
+    "company": "Lucid Group, Inc.",
+    "cik": "0001811210",
+    "fiscalYearEnd": "1231",
+    "filings": [
+      {
+        "form": "8-K",
+        "filingDate": "2026-06-01",
+        "reportDate": "2026-05-30",
+        "url": "https://www.sec.gov/Archives/edgar/data/1811210/000162828026039266/lcid-20260530.htm",
+        "source": "SEC EDGAR (primary filing)"
+      },
+      {
+        "form": "10-Q",
+        "filingDate": "2026-05-05",
+        "reportDate": "2026-03-31",
+        "url": "https://www.sec.gov/Archives/edgar/data/1811210/000162828026030517/lcid-20260331.htm",
+        "source": "SEC EDGAR (primary filing)"
+      },
+      {
+        "form": "8-K",
+        "filingDate": "2026-05-05",
+        "reportDate": "2026-05-05",
+        "url": "https://www.sec.gov/Archives/edgar/data/1811210/000162828026030509/lcid-20260505.htm",
+        "source": "SEC EDGAR (primary filing)"
+      },
+      {
+        "form": "10-K",
+        "filingDate": "2026-02-24",
+        "reportDate": "2025-12-31",
+        "url": "https://www.sec.gov/Archives/edgar/data/1811210/000162828026011053/lcid-20251231.htm",
+        "source": "SEC EDGAR (primary filing)"
+      },
+      {
+        "form": "10-Q",
+        "filingDate": "2025-11-05",
+        "reportDate": "2025-09-30",
+        "url": "https://www.sec.gov/Archives/edgar/data/1811210/000162828025049571/lcid-20250930.htm",
+        "source": "SEC EDGAR (primary filing)"
+      },
+      {
+        "form": "10-K",
+        "filingDate": "2025-02-25",
+        "reportDate": "2024-12-31",
+        "url": "https://www.sec.gov/Archives/edgar/data/1811210/000162828025007725/lcid-20241231.htm",
+        "source": "SEC EDGAR (primary filing)"
+      }
+    ],
+    "source": "SEC EDGAR",
+    "sourceUrl": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001811210&type=&dateb=&owner=include&count=40"
+  }
+}

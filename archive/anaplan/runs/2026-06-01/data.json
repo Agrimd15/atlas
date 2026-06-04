@@ -1,0 +1,76 @@
+{
+  "lastKnownValuation": "$10.7B enterprise value (Thoma Bravo take-private, June 2022, $66/share)",
+  "totalRaised": null,
+  "takePrivatePrice": "$66/share (~$10.7B EV, ~14x ARR at close, June 2022)",
+  "revenueHistory": [
+    {"year": 2021, "value": 440, "label": "$440M"},
+    {"year": 2022, "value": 592, "label": "$592M"},
+    {"year": 2025, "value": 1000, "label": "$1B+ ARR"}
+  ],
+  "keyMetrics": {
+    "arr": ">$1B ARR (milestone reported Jan 2026)",
+    "nrr": "Not disclosed post go-private; was ~120%+ as public company",
+    "grossMargin": "Not disclosed post go-private; was ~70-73% as public company",
+    "customerCount": "Not disclosed post go-private",
+    "enterprise_customers": "200+ customers with >$1M ACV"
+  },
+  "ipoReadiness": "High. Confidential IPO filing reported by The Information (Jan 2026). Thoma Bravo has held ~3.5 years. $1B ARR milestone crossed. Rule of 55 profitability achieved. Key S-1 watch items: (1) NRR recovery, (2) FCF margin, (3) growth rate vs. Pigment/OneStream.",
+  "comps": [
+    {
+      "name": "Workday",
+      "ticker": "WDAY",
+      "evRevenue": "~5.8x NTM",
+      "revenueGrowth": "~16% YoY",
+      "note": "Closest public EPM/HCM comp; includes Adaptive Planning (Anaplan's direct FP&A competitor). $53B EV.",
+      "source": "Gurufocus",
+      "sourceUrl": "https://www.gurufocus.com/term/ev2rev/WDAY"
+    },
+    {
+      "name": "OneStream (Hg)",
+      "ticker": "OS (delisted Apr 2026)",
+      "evRevenue": "~13x 2024 revenue at Hg take-private",
+      "revenueGrowth": "~23% YoY",
+      "note": "Most direct EPM pure-play comp. Hg paid $6.4B (~13x 2024 rev). Best precedent transaction for Anaplan re-IPO valuation.",
+      "source": "OneStream/Hg press release",
+      "sourceUrl": "https://www.prnewswire.com/news-releases/onestream-announces-completion-of-acquisition-by-hg-for-6-4-billion-302731460.html"
+    },
+    {
+      "name": "Pigment",
+      "ticker": "Private",
+      "evRevenue": "~10x ARR (implied; $1B valuation / ~$100M ARR)",
+      "revenueGrowth": "~100% YoY (doubling annually)",
+      "note": "High-growth disruptor displacing Anaplan at mid-market/enterprise. $397M raised; $1B valuation (Series D, Apr 2024, ICONIQ-led). 57% of new revenue from enterprise.",
+      "source": "TechCrunch",
+      "sourceUrl": "https://techcrunch.com/2024/04/04/business-planning-startup-pigment-raises-145-million-round-in-rare-french-tech-megaround/"
+    },
+    {
+      "name": "Vena Solutions",
+      "ticker": "Private",
+      "evRevenue": "N/A",
+      "revenueGrowth": "~25% YoY",
+      "note": "Mid-market EPM; Excel-native. ~$116M ARR (Sacra 2024). Vista Equity-backed. Acquired Acterys Feb 2026.",
+      "source": "Sacra",
+      "sourceUrl": "https://sacra.com/research/vena-at-116m-arr/"
+    },
+    {
+      "name": "Planful",
+      "ticker": "Private",
+      "evRevenue": "N/A",
+      "revenueGrowth": "N/A",
+      "note": "SMB/mid-market FP&A and EPM. Vector Capital-backed. 1,400+ customers. Competes below Anaplan's enterprise tier.",
+      "source": "Crunchbase",
+      "sourceUrl": "https://www.crunchbase.com/organization/planful"
+    },
+    {
+      "name": "Prophix (Hg-backed)",
+      "ticker": "Private",
+      "evRevenue": "N/A",
+      "revenueGrowth": "N/A",
+      "note": "Mid-market EPM. Hg (same sponsor as OneStream) backing signals PE consolidation of EPM space.",
+      "source": "Industry",
+      "sourceUrl": null
+    }
+  ],
+  "source": "The Information; Thoma Bravo; GlobeNewswire",
+  "sourceUrl": "https://finance.yahoo.com/news/thoma-bravo-backed-anaplan-prepares-014313535.html"
+}

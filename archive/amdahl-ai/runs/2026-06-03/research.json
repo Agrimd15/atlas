@@ -1,0 +1,103 @@
+{
+  "disambiguation": "This is a current (founded 2025) seed-stage AI startup based in San Francisco, NOT the historical Amdahl Corporation mainframe maker founded by Gene Amdahl (later acquired by Fujitsu). The modern company deliberately takes its name as an homage to computer architect Gene Amdahl, whose work on parallel-processing scaling (Amdahl's Law) the founders cite as inspiration for their GTM approach (per the company's own site and a16z Speedrun profile). Confidence: MODERATE-HIGH that this is a single, identifiable company. Multiple independent primary sources corroborate the same entity: the a16z Speedrun portfolio page, the company website (amdahl.co; a16z lists the domain as amdahl.ai), the LinkedIn company page (linkedin.com/company/amdahl-ai), CEO Annette Sung's LinkedIn, and a podcast interview. Caveat: there is NO tier-1 press coverage (no TechCrunch/Axios/Bloomberg/WSJ article), and the Crunchbase/PitchBook profiles returned HTTP errors / were not directly readable, so funding specifics could not be independently verified beyond the company's own claims and the a16z Speedrun listing.",
+  "isPublic": false,
+  "ticker": null,
+  "businessModel": "B2B SaaS. Amdahl sells an AI 'customer intelligence context engine' for go-to-market (GTM) teams. It ingests both structured data (CRM, analytics) and unstructured natural-language data (call transcripts, support tickets, meeting notes, docs) from tools across the GTM stack, then structures and enriches it (ML classifiers, clustering, pattern mining) so AI agents and human teams get cited, attributed answers instead of hallucinated content. Delivered via integrations plus an MCP (Model Context Protocol) server and a REST API. Positioned as 'the data scientist your GTM team never got to hire.' Revenue model not publicly disclosed in detail; appears to be a contract/subscription model sold to GTM teams (company cites ~20 signed design partners). Note: no public pricing found.",
+  "products": [
+    "Customer Intelligence Context Engine — unifies structured (CRM, analytics) and unstructured (calls, support docs, notes) GTM data into a queryable, source-attributed context layer for AI agents and GTM teams",
+    "MCP (Model Context Protocol) server — exposes the context layer to AI agents",
+    "REST API — programmatic access to the structured context",
+    "Use-case workflows for Sales, Sales Enablement, Product Marketing, and Content Marketing (e.g., research-backed marketing content generation)"
+  ],
+  "marketPositioning": "Positions itself as the 'context layer' / 'context engine for every GTM agent.' Thesis: scattered, unstructured GTM data is 'wrong input at the source' for AI-driven GTM, so a structuring/semantic layer is the missing piece. Company-claimed benchmarks (self-reported, not independently verified): wins 8 of 10 questions vs. standard connectors in blind benchmarks; 4.1/5 vs 2.4/5 average score; ~400x token-usage reduction while improving accuracy; every claim traced to a specific source. Targets AI-native B2B GTM teams. Compliance posture: SOC 2 Type II, zero data retention with Anthropic, no training on customer data.",
+  "competitors": [
+    "Standard CRM/data connectors and RAG connectors (company benchmarks itself against generic 'standard connectors')",
+    "Clay (GTM data enrichment) — listed as an integration but operates in adjacent GTM-data space",
+    "Gong / other revenue-intelligence platforms (adjacent; also an integration source)",
+    "Broader 'AI context / enterprise data context' startups (e.g., context-layer and GTM-intelligence startups). NOTE: no source explicitly names Amdahl's competitors; this list is inferred from category and integration overlap and should be treated as analyst inference, not sourced fact."
+  ],
+  "endMarkets": [
+    "B2B SaaS / software companies (seed to Series C, per CEO background)",
+    "AI-native B2B scaleups",
+    "Go-to-market functions: Sales, Sales Enablement, Product Marketing, Content Marketing"
+  ],
+  "growthDrivers": [
+    "Rise of AI/agentic GTM tooling creating demand for a reliable, cited 'context layer' to feed agents",
+    "a16z Speedrun (SR006 cohort) network, brand, and capital",
+    "Reported demand signals: ~100-company waitlist and ~20 signed design partners (company-reported)",
+    "Integration breadth across the GTM stack (Salesforce, HubSpot, Gong, Slack, Apollo, 6sense, LinkedIn, Granola, Clay, and others) lowering adoption friction"
+  ],
+  "customers": [
+    "Company reports a sales pipeline involving names such as Instacart, OpenTable, Airwallex, and Stripe — NOTE: described as '$4M in pipeline FROM companies like' these, which indicates prospects/pipeline, NOT confirmed paying customers. Source: a16z Speedrun profile.",
+    "~20 signed design partners (count company-reported; individual names not disclosed)",
+    "Anonymized case references on the site: a 'Series C data company' (content cycle cut from 4 weeks to 1 day), 'B2B SaaS companies', and an 'AI-native B2B scaleup'"
+  ],
+  "funding": [
+    {
+      "round": "a16z Speedrun (SR006 cohort) — accelerator backing; specific Amdahl check size NOT disclosed",
+      "date": null,
+      "amount": "Not disclosed for Amdahl specifically. a16z Speedrun generally invests up to $1M per company (program-level figure, not an Amdahl-specific confirmation).",
+      "leadInvestors": ["a16z Speedrun", "Precursor Ventures"],
+      "valuation": "No reliable public source found",
+      "source": "a16z Speedrun company profile; amdahl.co",
+      "sourceUrl": "https://speedrun.a16z.com/companies/amdahl"
+    }
+  ],
+  "leadership": [
+    {
+      "name": "Annette Sung",
+      "title": "Co-Founder & CEO",
+      "background": "Self-described 10+ years building product and content marketing engines for venture-backed startups (seed to Series C). Frequent speaker on 'agentic marketing' / GTM-as-execution-system.",
+      "source": "LinkedIn; a16z Speedrun; GTM Vault podcast",
+      "sourceUrl": "https://www.linkedin.com/in/annette-sung-baa36042"
+    },
+    {
+      "name": "Robert Khoury",
+      "title": "Co-Founder & CTO",
+      "background": "Listed as co-founder/CTO on a16z Speedrun profile and company site. Specific prior employers not individually attributed; team described collectively as ex-Databricks/Coinbase/GTM operators.",
+      "source": "a16z Speedrun; amdahl.co",
+      "sourceUrl": "https://speedrun.a16z.com/companies/amdahl"
+    },
+    {
+      "name": "Arya Soltanieh",
+      "title": "Co-Founder & Lead Engineer",
+      "background": "Listed as co-founder/lead engineer on a16z Speedrun profile and company site. Specific prior background not individually attributed.",
+      "source": "a16z Speedrun; amdahl.co",
+      "sourceUrl": "https://speedrun.a16z.com/companies/amdahl"
+    },
+    {
+      "name": "Steve Dickerman",
+      "title": "VP of Sales",
+      "background": "Listed on the company site as VP of Sales / contact person. Prior background not disclosed.",
+      "source": "amdahl.co",
+      "sourceUrl": "https://www.amdahl.co/"
+    },
+    {
+      "name": "Vin Vadoothker",
+      "title": "Founding AI Engineer",
+      "background": "Listed on the company site as a founding AI engineer.",
+      "source": "amdahl.co",
+      "sourceUrl": "https://www.amdahl.co/"
+    }
+  ],
+  "dataGaps": [
+    "No disclosed dollar amount for any equity/seed round; only the a16z Speedrun 'up to $1M' program-level figure and Precursor Ventures as a named investor. Could not confirm a separate priced seed round.",
+    "No valuation figure from any reputable source.",
+    "Crunchbase and PitchBook profiles could not be read (HTTP 403 / not directly accessible), so third-party-verified funding/valuation could not be confirmed.",
+    "The '$4M' figure is described as PIPELINE (prospective sales), not funding and not confirmed revenue — and Instacart/OpenTable/Airwallex/Stripe appear to be pipeline/prospects, not confirmed paying customers.",
+    "No tier-1 press coverage found (no TechCrunch, Axios, Bloomberg, WSJ, FT, Reuters, The Information, Fortune article specific to this Amdahl).",
+    "Exact founding date (only 'Founded 2025' per a16z) and precise team size (a16z says ~5 employees) not independently verified.",
+    "Co-founders Robert Khoury and Arya Soltanieh backgrounds are only collectively attributed (ex-Databricks/Coinbase/GTM); individual histories unconfirmed.",
+    "Competitor list is analyst inference; no source names Amdahl's competitors directly.",
+    "Website domain ambiguity: a16z lists 'amdahl.ai' but the live, readable site is 'amdahl.co' (LinkedIn handle is /company/amdahl-ai). Likely the same entity but worth flagging.",
+    "Benchmark claims (8/10, 4.1 vs 2.4, 400x token reduction) are company self-reported and not independently verified."
+  ],
+  "sources": [
+    "https://speedrun.a16z.com/companies/amdahl",
+    "https://www.amdahl.co/",
+    "https://www.linkedin.com/company/amdahl-ai",
+    "https://www.linkedin.com/in/annette-sung-baa36042",
+    "https://www.gtmvault.co/p/gtm-40-agentic-marketing-rewrites",
+    "https://eu.36kr.com/en/p/3786499459685632"
+  ]
+}
