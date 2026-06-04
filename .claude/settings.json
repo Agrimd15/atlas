@@ -1,5 +1,4 @@
 {
-<<<<<<< HEAD
   "hooks": {
     "SessionStart": [
       {
@@ -11,12 +10,11 @@
         ]
       }
     ]
-=======
+  },
   "mcpServers": {
     "ramp-data": {
       "type": "http",
       "url": "https://mcp.ramp.com/ramp-data/anthropic/mcp"
     }
->>>>>>> 6f411e1 (feat(data): add Ramp Data MCP for B2B demand signals)
   }
 }
