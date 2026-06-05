@@ -1,0 +1,31 @@
+{
+  "quarter": "Q3 FY2026 (ended March 31, 2026)",
+  "reportDate": "2026-05-14",
+  "keyMetrics": {
+    "revenue": "$22.5M total revenue (SaaS revenue $20.9M; professional services $1.6M)",
+    "revenueGrowth": "+7% YoY (SaaS +7% YoY; services +9% YoY)",
+    "gaapEps": "$0.09 diluted (GAAP net income $2.4M, up from $66K a year ago)",
+    "nonGaapEps": "$0.11 diluted; non-GAAP net income $3.2M",
+    "adjEbitda": "$3.2M adjusted EBITDA (~14% margin)",
+    "grossMargin": "73% GAAP / 74% non-GAAP",
+    "totalSaasArr": "~$75M total SaaS ARR (derived: AI Knowledge Hub ARR $48.0M = 64% of total SaaS ARR). All-customer SaaS ARR +7% YoY; +11% YoY excluding non-core legacy messaging",
+    "aiKnowledgeHubArr": "$48.0M AI Knowledge Hub ARR, +26% YoY, = 64% of total SaaS ARR",
+    "cash": "$80.5M cash & equivalents (up from $62.9M at June 30, 2025), zero debt"
+  },
+  "guidance": {
+    "fy2026Revenue": "$90.5M-$91.0M (raised)",
+    "fy2026NonGaapEps": "$0.39-$0.42 (non-GAAP net income $11.3M-$12.1M); GAAP EPS $0.25-$0.28; FY2026 adjusted EBITDA $11.9M-$12.4M (~13% margin)",
+    "note": "Q4 FY2026 guide: revenue $21.5M-$22.0M. Management expects AI Knowledge ARR to grow double digits into FY2027. A one-time ~$1.6M total SaaS ARR reduction (incl. ~$0.9M AI Knowledge) hit Q3 from an EMEA on-premise customer that terminated rather than migrate to eGain Cloud, attributed to country-level restrictions on cloud services."
+  },
+  "aiCommentary": "AI demand was the dominant theme. AI Knowledge Hub ARR grew 26% YoY to $48.0M and now represents 64% of total SaaS ARR, and management said the mix will keep shifting toward it. CEO Ashu Roy framed knowledge as the foundation for enterprise AI - 'Knowledge is the instruction layer for AI' - arguing that without a clean knowledge foundation, AI deployments degrade into a 'garbage in, garbage out' problem. CFO Eric Smit noted a structural buyer-evaluation change: AI Knowledge is now being evaluated as enterprise infrastructure rather than solely a contact-center solution, broadening the buying center and deal size. At eGain Solve London the company launched four new platform products, including an AI Knowledge Suite for retail banking, an AI Agent for Cisco Webex Contact Center, and connectors for Microsoft Teams, Slack and Zoom Team Chat.",
+  "demandCommentary": "Pipeline and RFP activity accelerated sharply: management said RFP volume in the trailing 60 days was roughly double its average rate, concentrated in U.S. Fortune 1000 BFSI (banking, insurance) and healthcare. The surge was attributed to growing market awareness of the knowledge-quality problem in AI deployments. Offsetting the strength, the quarter absorbed a one-time ~$1.6M total SaaS ARR reduction when an EMEA on-premise customer declined to migrate to eGain Cloud and terminated; excluding non-core legacy messaging, all-customer SaaS ARR would have grown 11% YoY versus the reported 7%. The company carries no debt, ended with $80.5M cash, generated $18.7M operating cash flow YTD (~27% margin), and has ~$20M remaining under its buyback authorization.",
+  "keyQuotes": [
+    {"quote": "We delivered solid third quarter results with revenue in line with expectations and strong profitability that exceeded expectations.", "speaker": "Ashu Roy, CEO", "source": "eGain press release", "sourceUrl": "https://www.egain.com/company/news/press-releases/egain-reports-third-quarter-2026-results-highlighting-accelerating-ai-knowledge-demand-and-improved-profitability/"},
+    {"quote": "Knowledge is the instruction layer for AI. It provides the what, and the how and occasionally the why.", "speaker": "Ashu Roy, CEO (Q3 FY2026 earnings call)", "source": "eGain Q3 FY2026 earnings call", "sourceUrl": "https://www.egain.com/company/news/press-releases/egain-reports-third-quarter-2026-results-highlighting-accelerating-ai-knowledge-demand-and-improved-profitability/"}
+  ],
+  "sources": [
+    {"name": "SEC EDGAR - eGain Form 8-K, Exhibit 99.1 (Q3 FY2026 earnings release, filed 2026-05-14)", "url": "https://www.sec.gov/Archives/edgar/data/1066194/000106619426000011/egan-20260514x8k.htm"},
+    {"name": "eGain press release - Reports Third Quarter 2026 Results", "url": "https://www.egain.com/company/news/press-releases/egain-reports-third-quarter-2026-results-highlighting-accelerating-ai-knowledge-demand-and-improved-profitability/"},
+    {"name": "SEC EDGAR - eGain Form 10-Q (quarter ended March 31, 2026)", "url": "https://www.sec.gov/Archives/edgar/data/1066194/000110465926061184/egan-20260331x10q.htm"}
+  ]
+}

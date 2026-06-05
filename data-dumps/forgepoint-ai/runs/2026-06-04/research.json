@@ -1,0 +1,70 @@
+{
+  "name": "Forgepoint",
+  "website": "https://forgepoint.ai",
+  "founded": "2025",
+  "headquarters": "San Francisco, CA",
+  "employeeCount": "~11-50 (LinkedIn company size range)",
+  "stage": "Seed (early-stage; backed by a16z Speedrun)",
+  "lastKnownValuation": "not disclosed in trusted sources",
+  "totalRaised": null,
+  "verticals": ["AI", "Vertical SaaS", "Manufacturing", "Industrials"],
+  "shortDescription": "AI back-office workers automating quoting, RFQs, and order ops for American manufacturers.",
+  "businessModel": "Forgepoint sells AI 'workers' (software agents) to American manufacturers on a SaaS basis, beginning with an AI Inside Sales Rep that automates the RFQ-to-quote workflow. It targets the manufacturing back office, automating quoting, purchasing, invoicing, and sales coordination. Deployment is a done-for-you ~30-day integration into a customer's existing ERP/CRM.",
+  "marketPositioning": "Positions itself as the vertical-AI automation layer for U.S. manufacturers (steel, metal supply, metalworks, industrial OEMs), industries reliant on slow manual quoting with multi-day turnarounds. Pitches dramatically faster cycle times and deep ERP integration as its wedge. Company states it has 'more customer demand than we can serve.'",
+  "endMarkets": ["Manufacturing", "Industrials", "Steel / Metal Supply", "Metalworks", "Aerospace / Industrial OEMs"],
+  "growthDrivers": [
+    "Large, under-digitized manufacturing back office still running on Excel, email and PDFs",
+    "Fast ERP-integrated deployment (<30 days) lowering adoption friction",
+    "Broad pre-built ERP/CRM connector library (SAP, NetSuite, Epicor, Sage, Infor, Acumatica, Syspro)",
+    "Re-shoring tailwind and AI-agent labor substitution in the back office"
+  ],
+  "techDifferentiation": "Forgepoint's agent ingests messy real-world inputs - RFQ emails, PDF part drawings, Excel sheets, and STP/CAD files - and pulls real-time pricing from a customer's ERP to generate margin-checked, approval-routed quotes. It is SOC 2 Type II certified and connects directly to ERPs for live pricing rather than relying on static catalogs.",
+  "competitors": [
+    "Paperless Parts (manufacturing quoting software)",
+    "Xometry (manufacturing marketplace / instant quoting)",
+    "11x (AI sales workers)",
+    "Artisan (AI BDR / sales agents)",
+    "Paradigm (AI agents)",
+    "Tulip / legacy manufacturing-ops software incumbents"
+  ],
+  "leadership": [
+    {
+      "name": "Jack Strauss",
+      "title": "Co-Founder & CEO",
+      "since": "2025",
+      "background": "Ex-Northrop Grumman and Acer OEM roles; Bain & Co manufacturing practice (semiconductor & aerospace); Chief of Staff then GTM lead at Xwing (AI aviation startup, scaled 25 to 150 employees, acquired by Joby Aviation). Stanford MBA; BA, USC.",
+      "linkedin": "https://www.linkedin.com/in/jack-strauss/",
+      "source": "LinkedIn",
+      "sourceUrl": "https://www.linkedin.com/in/jack-strauss/"
+    },
+    {
+      "name": "Alex Pareto",
+      "title": "Co-Founder & CTO",
+      "since": "2025",
+      "background": "Previously led engineering for Spend Management at Brex; led engineering at NTWRK (Complex); founder of demeanor.co (Y Combinator S18, acquired by NTWRK); earlier on Facebook's video platform. BS Computer Science, USC.",
+      "linkedin": "https://www.linkedin.com/in/alexpareto/",
+      "source": "LinkedIn",
+      "sourceUrl": "https://www.linkedin.com/in/alexpareto/"
+    }
+  ],
+  "fundingRounds": [
+    {
+      "round": "Seed / early-stage (a16z Speedrun-backed)",
+      "date": "2025",
+      "amount": null,
+      "amountFormatted": "not disclosed in trusted sources",
+      "postMoneyValuationFormatted": "not disclosed in trusted sources",
+      "leadInvestors": ["Andreessen Horowitz (a16z Speedrun)"],
+      "allInvestors": ["Andreessen Horowitz (a16z Speedrun)", "Company Ventures", "angels from Brex, Xwing, Betterment"],
+      "source": "PitchBook",
+      "sourceUrl": "https://pitchbook.com/profiles/company/941431-96"
+    }
+  ],
+  "notableInvestors": [
+    "Andreessen Horowitz (a16z Speedrun)",
+    "Company Ventures",
+    "Angels from Brex, Xwing, Betterment"
+  ],
+  "ipoReadiness": "Not applicable - very early (founded 2025, seed-stage, ~11-50 employees). IPO is many years and multiple funding rounds away; near-term path is product-market fit and a priced seed/Series A.",
+  "dataConfidence": "medium - Founders, HQ, founding year, product, ERP integrations, and investor set are verifiable from the company site, LinkedIn, and PitchBook. No specific funding amount or valuation is disclosed in trusted sources. The forgepoint.ai homepage cites 'Y Combinator' while other sources emphasize 'a16z Speedrun'; YC affiliation is unverified. Employee count is a LinkedIn range."
+}

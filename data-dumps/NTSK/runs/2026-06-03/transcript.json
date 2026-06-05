@@ -1,0 +1,48 @@
+{
+  "runDate": "2026-06-03",
+  "quarter": "Q1 FY2027 (ended April 30, 2026) — most recent reported quarter; Netskope IPO'd NASDAQ (NTSK) September 2025",
+  "reportDate": "2026-06-03",
+  "keyMetrics": {
+    "arr": "$845M (Q1 FY2027, +29% YoY)",
+    "revenue": "$202M (Q1 FY2027, +28% YoY)",
+    "revenueGrowth": "28% YoY (Q1 FY2027); 32% YoY (FY2026 full year)",
+    "nrr": "118% (as of July 31, 2025)",
+    "grr": "96% (as of July 31, 2025)",
+    "customers": "4,317 (as of July 31, 2025, +21% YoY)",
+    "rpo": ">$1B (as of October 31, 2025, +41% YoY)",
+    "grossMargin": "~71% GAAP (H1 FY2026 per S-1); 68.1% per yfinance LTM",
+    "operatingMarginGAAP": "-58.2% (LTM, yfinance)",
+    "netLoss": "-$354.5M (FY2025); improving to -$169.5M (H1 FY2026)"
+  },
+  "aiCommentary": "Netskope transitioned from a high-growth private SASE/SSE unicorn to a newly public compounder, completing its $908M NASDAQ IPO in September 2025 at $19/share. The company is executing on a durable 30%+ growth trajectory — $845M ARR, 29% YoY growth, and NRR of 118% — while the stock trades at $12, a 37% discount to its IPO price and 53% below the analyst consensus target of $17.89. At 3.6x EV/Revenue with 32% growth, NTSK is the cheapest security name on a growth-adjusted basis versus peers like Cloudflare (36x, 34% growth) and CrowdStrike (39x, 23% growth). The central debate is whether the discount reflects legitimate concerns about gross margin compression, elevated losses, and Zscaler competition — or whether it represents a materially mispriced post-IPO compounder in a structurally growing security category.",
+  "demandCommentary": "Demand is driven by three compounding forces: (1) AI adoption — enterprises deploying generative AI tools face new data-exfiltration and shadow-AI risks requiring Netskope's inline traffic inspection and DLP; CEO Sanjay Beri stated 'the world is moving to AI and cloud — that requires a redefinition of the biggest market in security' on IPO day; (2) cloud migration — ongoing shift from perimeter security to cloud-native SASE architectures structurally favors Netskope's cloud-first platform; (3) vendor consolidation — CISOs are actively rationalizing point security tools into integrated platforms, a trend benefiting full-platform SSE vendors. The IPO roadshow was reportedly 20x oversubscribed per Bloomberg, with AI-driven cyber threat expansion cited as the primary institutional investment thesis.",
+  "keyQuotes": [
+    {
+      "speaker": "Sanjay Beri, Co-Founder and CEO, Netskope",
+      "quote": "The world is moving to AI and cloud. That requires a redefinition of the biggest market in security, data network security. That's what we are.",
+      "context": "CNBC interview on IPO debut day, September 18, 2025",
+      "source": "CNBC",
+      "sourceUrl": "https://www.cnbc.com/video/2025/09/18/netskope-ceo-sanjay-beri-on-ipo-debut-company-growth-outlook.html"
+    },
+    {
+      "speaker": "Sanjay Beri, Co-Founder and CEO, Netskope",
+      "quote": "I'm not a believer that in security and networking, people want one platform. People need to play well with each other in the industry and integrate for the best of the customer.",
+      "context": "CNBC interview, September 2025, on platform strategy vs. Palo Alto Networks' bundling approach",
+      "source": "CNBC",
+      "sourceUrl": "https://www.cnbc.com/2025/09/18/netskope-ipo-stock-nasdaq-ntsk.html"
+    },
+    {
+      "speaker": "Sanjay Beri, Co-Founder and CEO, Netskope",
+      "quote": "Netskope posted 32% revenue growth and ended Q4 FY2026 with $811M in ARR — claiming the title of fastest-growing public security company.",
+      "context": "CNBC Fortt Knox Earnings interview, March 12, 2026, following Q4 FY2026 results",
+      "source": "CNBC",
+      "sourceUrl": "https://www.cnbc.com/video/2026/03/12/sanjay-beri-netskope-ceo-fortt-knox-earnings.html"
+    }
+  ],
+  "sources": [
+    {"name": "CNBC — Netskope IPO debut", "url": "https://www.cnbc.com/2025/09/18/netskope-ipo-stock-nasdaq-ntsk.html", "description": "IPO first-day coverage; CEO quotes on platform strategy and AI demand"},
+    {"name": "Bloomberg — IPO demand / AI tailwinds", "url": "https://www.bloomberg.com/news/articles/2025-09-16/netskope-ipo-in-demand-as-ai-era-heightens-cyber-threats", "description": "IPO 20x oversubscribed; AI cyber threat expansion as demand driver"},
+    {"name": "SEC S-1", "url": "https://www.sec.gov/Archives/edgar/data/0002063196/000095017025110855/ck0002063196-20250822.htm", "description": "Primary IPO filing: ARR $707M, NRR 118%, GRR 96%, 4,317 customers"},
+    {"name": "SEC 10-Q Q1 FY2027", "url": "https://www.sec.gov/Archives/edgar/data/2063196/000119312526255732/ck0002063196-20260430.htm", "description": "Q1 FY2027: ARR $845M +29% YoY, revenue $202M +28% YoY"}
+  ]
+}

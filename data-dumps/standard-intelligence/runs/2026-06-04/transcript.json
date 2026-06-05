@@ -1,0 +1,82 @@
+{
+  "interviewsAndTalks": [
+    {
+      "title": "The First Fully General Computer Action Model (FDM-1 technical write-up)",
+      "date": "2026-02-23",
+      "keyPoints": [
+        "Core thesis: 'Building a general computer agent requires an internet-scale video corpus, just as building GPT-3 required an internet-scale text corpus' — the model operates directly on video rather than screenshots and learns unsupervised from internet-scale data.",
+        "Regime shift: computer action 'used to be fundamentally data-constrained, expensive, and unscalable... This brings computer action from a data-constrained regime to a compute-constrained one.'",
+        "Inverse dynamics model (IDM) auto-labels actions because 'mouse movement and typing actions are often easily inferable from the screen'; masked-diffusion architecture trained on an ~11-million-hour video dataset.",
+        "Token efficiency: video encoder is '50x more token-efficient than the previous state-of-the-art and 100x more token-efficient than OpenAI's encoder,' compressing ~2 hours of 30 FPS video into 1M tokens.",
+        "Demos: autonomously drives a car around an SF block after <1 hour of fine-tuning; basic Blender CAD (gear extrusion); 'uniquely good at fuzzing,' finding a banking-app bug allowing a negative account balance.",
+        "Ambition: FDM-1 positioned to become 'a coworker for CAD, finance, engineering, and eventually ML research.'"
+      ],
+      "notableQuote": "Computer action used to be fundamentally data-constrained, expensive, and unscalable... This brings computer action from a data-constrained regime to a compute-constrained one.",
+      "source": "Standard Intelligence (si.inc blog)",
+      "sourceUrl": "https://si.inc/posts/fdm1/"
+    },
+    {
+      "title": "Standard Intelligence: Training General Intelligence in Pixel Space (Sequoia founder profile)",
+      "date": "2026-04-30",
+      "keyPoints": [
+        "Sequoia describes founders Galen Mead and Devansh Pandey (who met as teens via the Atlas Fellowship and left undergrad) as 'deeply contrarian' and 'bitter lesson-pilled.'",
+        "Founders' thesis: 'the most promising path to general computer agents may not run through language, screenshots, and tool calls, but through scaling raw video' — video pretraining is 'the only approach that can truly scale action data.'",
+        "Framed as 'the Tesla FSD approach applied to knowledge work on computer screens' — the model predicts 'the next mouse movement, click, and keystroke from the pixels in front of it' rather than text tokens.",
+        "Explicit contrast with big labs: a departure from how OpenAI and Anthropic structure computer-use agents through text-based reasoning and tool integration; SI acts directly from visual input with no language intermediary.",
+        "Method philosophy: 'feed the model the raw stream of computer use, scale it aggressively, and let the generality emerge from the data.'"
+      ],
+      "notableQuote": "Feed the model the raw stream of computer use, scale it aggressively, and let the generality emerge from the data.",
+      "source": "Sequoia Capital",
+      "sourceUrl": "https://www.sequoiacap.com/article/standard-intelligence-training-general-intelligence-in-pixel-space/"
+    },
+    {
+      "title": "A Brief Fundraising Update (si.inc)",
+      "date": "2026-04-30",
+      "keyPoints": [
+        "Raised $75M from Sequoia and Spark Capital (partners Sonya Huang, Yasmin Razavi); angels/advisors include Andrej Karpathy, Milan Kovac, and Stanley Druckenmiller.",
+        "Use of funds: scaling compute for the FDM-1 series, 'blue-sky' research into aligned general learners that 'explore and build skills in new environments,' and alignment techniques for human-level learners.",
+        "Mission framed as 'building aligned AGI' through models that 'explore and learn like humans do'; states current alignment techniques are insufficient for general learners.",
+        "Forward-looking: expects to 'achieve superhuman performance on general computer tasks,' analogous to how current LLMs perform on coding."
+      ],
+      "notableQuote": "Models must generalize far out of their training distributions, actively exploring and building skills in new environments.",
+      "source": "Standard Intelligence (si.inc blog)",
+      "sourceUrl": "https://si.inc/posts/a/"
+    },
+    {
+      "title": "Standard Intelligence raises $75M to develop efficient computer use models (SiliconANGLE)",
+      "date": "2026-04-30",
+      "keyPoints": [
+        "Independent confirmation of the $75M raise led by Sequoia and Spark, with Karpathy among angels; team is six people.",
+        "FDM-1 trains on video footage instead of screenshots, replacing manual annotation with an inverse dynamics model for automatic action labeling; ~11M hours of footage.",
+        "Video encoder ~100x more efficient than OpenAI's, using masked compression; enables ~2 hours of 30 FPS video per prompt in a 1M-token context window.",
+        "Demonstrated capabilities: designing metal components in engineering software, learning autonomous vehicle controls via a web interface after one hour of fine-tuning, and vulnerability scanning.",
+        "Future plans: invest in compute infrastructure and develop safety guardrails specifically for computer-use models."
+      ],
+      "notableQuote": "The video encoder is described as roughly 100 times more efficient than OpenAI's alternative, using masked compression to reduce memory requirements while maintaining output quality.",
+      "source": "SiliconANGLE",
+      "sourceUrl": "https://siliconangle.com/2026/04/30/standard-intelligence-raises-75m-develop-efficient-computer-use-models/"
+    },
+    {
+      "title": "An Open Base Model for Conversational Speech (hertz-dev release)",
+      "date": "2024-11-03",
+      "keyPoints": [
+        "Earliest public statement of mission: 'At SI, we're doing fundamental research with the goal of building aligned general intelligence.'",
+        "Released hertz-dev as 'the first publicly released base model for conversational audio' (8.5B params, full-duplex), 'the easiest conversational audio model in the world for researchers to fine-tune and build on top of.'",
+        "Technical: ~80ms theoretical / 120ms real-world latency on an RTX 4090, claimed 2x lower than prior state of the art; handles overlapping two-speaker audio.",
+        "Signals the team's open-source, base-model-first instinct that predates the pivot to computer-use video models."
+      ],
+      "notableQuote": "At SI, we're doing fundamental research with the goal of building aligned general intelligence.",
+      "source": "Standard Intelligence (si.inc blog)",
+      "sourceUrl": "https://si.inc/posts/hertz-dev/"
+    }
+  ],
+  "managementTone": "The founders project a high-conviction, deliberately contrarian posture: they bet that general computer agents emerge from scaling raw video ('pixel space') rather than the language-plus-tool-calls scaffolding OpenAI and Anthropic use, explicitly invoking the 'bitter lesson' and the Tesla FSD analogy. Tone is research-lab idealistic rather than commercial — they lead with 'aligned AGI' and a 'science of alignment for general learners,' framing the $75M as funding compute and blue-sky safety research, not near-term revenue. The signal is a long-horizon, technically aggressive moonshot that wants to reframe the problem (compute-constrained, not data-constrained) rather than incrementally improve existing agent harnesses.",
+  "demandCommentary": "There is no customer/revenue traction yet — the company is pre-product, so 'demand' is demonstrated capability rather than bookings. FDM-1's marquee proof points are autonomously driving a Toyota RAV4 around an SF block after under an hour of fine-tuning, doing basic Blender CAD via continuous mouse movements, and autonomous bug-finding (fuzzing a banking app into a negative balance). The strongest traction signal is investor demand — a $75M round (~$500M reported valuation) from Sequoia and Spark with Karpathy, Kovac, and Druckenmiller as angels — plus the credibility of previously shipping the open-source hertz-dev audio model.",
+  "sources": [
+    {"name": "Standard Intelligence — FDM-1 technical write-up", "url": "https://si.inc/posts/fdm1/"},
+    {"name": "Sequoia Capital — Training General Intelligence in Pixel Space", "url": "https://www.sequoiacap.com/article/standard-intelligence-training-general-intelligence-in-pixel-space/"},
+    {"name": "Standard Intelligence — A Brief Fundraising Update", "url": "https://si.inc/posts/a/"},
+    {"name": "SiliconANGLE — Standard Intelligence raises $75M", "url": "https://siliconangle.com/2026/04/30/standard-intelligence-raises-75m-develop-efficient-computer-use-models/"},
+    {"name": "Standard Intelligence — hertz-dev open audio base model", "url": "https://si.inc/posts/hertz-dev/"}
+  ]
+}

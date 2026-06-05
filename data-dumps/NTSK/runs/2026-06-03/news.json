@@ -1,0 +1,75 @@
+{
+  "runDate": "2026-06-03",
+  "items": [
+    {
+      "date": "2026-06-03",
+      "headline": "Netskope Reports Q1 FY2027 Results: ARR Up 29% to $845M, Revenue Up 28% to $202M",
+      "whyItMatters": "Netskope's quarterly report demonstrates continued hypergrowth post-IPO with ARR approaching $1B, validating the company's platform execution and SASE market positioning. ARR growth deceleration from 34% to 29% YoY is the key investor watchpoint.",
+      "source": "SEC EDGAR / Netskope IR",
+      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2063196/000119312526255439/ck0002063196-20260603.htm"
+    },
+    {
+      "date": "2025-12-11",
+      "headline": "Netskope Posts First Post-IPO Earnings; Full-Year FY2026 Guidance of $701-703M Beats Street Estimates",
+      "whyItMatters": "Beating analyst consensus of ~$690M on its inaugural public earnings report signals management credibility; the guidance raise also reflects enterprise security spending momentum driven by AI-related threat surface expansion.",
+      "source": "Bloomberg",
+      "sourceUrl": "https://www.bloomberg.com/news/articles/2025-12-11/netskope-s-full-year-guidance-initiation-beats-estimates"
+    },
+    {
+      "date": "2025-09-18",
+      "headline": "Netskope Climbs 21% After $908M IPO on NASDAQ Under Ticker NTSK",
+      "whyItMatters": "The largest cybersecurity IPO of 2025 signaled robust institutional demand for SASE infrastructure; Lightspeed's 19.3% stake appreciated to ~$1.5B windfall. First-day close of $22.49 vs. $19 IPO price; stock has since fallen below $19.",
+      "source": "Bloomberg",
+      "sourceUrl": "https://www.bloomberg.com/news/articles/2025-09-18/cybersecurity-firm-netskope-climbs-21-after-908-million-ipo"
+    },
+    {
+      "date": "2025-09-18",
+      "headline": "Netskope Shares Rise 18% in Market Debut, Yielding Lightspeed $1 Billion Return",
+      "whyItMatters": "Lightspeed's $1B+ windfall reinforces the value creation in enterprise SASE/SSE and is likely to attract further institutional capital to the category; shares closed at $22.49 vs. $19 IPO price.",
+      "source": "Axios",
+      "sourceUrl": "https://www.axios.com/pro/enterprise-software-deals/2025/09/18/netskope-ipo-cloud-cybersecurity-debut"
+    },
+    {
+      "date": "2025-09-17",
+      "headline": "Netskope Prices IPO at $19 Per Share, Top of Marketed Range After 20x Oversubscription",
+      "whyItMatters": "Pricing at the top of the raised range after upsizing from $813M to $908M reflects exceptional deal quality; the book was reportedly ~20x covered, rare for software in the current rate environment.",
+      "source": "Bloomberg",
+      "sourceUrl": "https://www.bloomberg.com/news/articles/2025-09-17/cybersecurity-firm-netskope-said-to-price-ipo-at-19-per-share"
+    },
+    {
+      "date": "2025-09-16",
+      "headline": "Netskope IPO In Demand as AI Era Heightens Cyber Threats",
+      "whyItMatters": "Bloomberg investor demand coverage explicitly links AI adoption to expanded cloud security attack surfaces, positioning Netskope's SASE/SSE suite as a direct beneficiary of enterprise AI security budget increases.",
+      "source": "Bloomberg",
+      "sourceUrl": "https://www.bloomberg.com/news/articles/2025-09-16/netskope-ipo-in-demand-as-ai-era-heightens-cyber-threats"
+    },
+    {
+      "date": "2025-09-08",
+      "headline": "Netskope Files to Raise $813M in IPO; H1 Revenue Grew 31% to $328.5M",
+      "whyItMatters": "The IPO prospectus revealed 31% first-half revenue growth and narrowing net losses ($169.5M vs. $206.7M), giving public investors their first look at one of the largest private cybersecurity companies.",
+      "source": "Bloomberg",
+      "sourceUrl": "https://www.bloomberg.com/news/articles/2025-09-08/cybersecurity-firm-netskope-seeks-to-raise-813-million-in-ipo"
+    },
+    {
+      "date": "2025-09-08",
+      "headline": "Netskope Follows Rubrik as Rare Cybersecurity IPO; Both Backed by Lightspeed",
+      "whyItMatters": "TechCrunch contextualizes Netskope as only the second major cybersecurity IPO of 2025, noting Lightspeed's 19.3% ownership and back-to-back wins cementing it as the defining SASE/security franchise investor.",
+      "source": "TechCrunch",
+      "sourceUrl": "https://techcrunch.com/2025/09/08/netskope-follows-rubrik-as-a-rare-cybersecurity-ipo-both-backed-lightspeed/"
+    },
+    {
+      "date": "2025-08-22",
+      "headline": "Netskope Files for IPO Showing Revenue Rise; Last Private Valuation $7.5B in 2021",
+      "whyItMatters": "The S-1 filing confirmed Netskope's revenue trajectory and put a formal IPO process in motion after years of speculation; the 2021 private mark of $7.5B sets the baseline for IPO price discovery.",
+      "source": "Bloomberg",
+      "sourceUrl": "https://www.bloomberg.com/news/articles/2025-08-22/cybersecurity-firm-netskope-files-for-ipo-showing-revenue-rise"
+    },
+    {
+      "date": "2021-07-09",
+      "headline": "Netskope Raises $300M Series H at $7.5B Valuation, Led by ICONIQ Growth",
+      "whyItMatters": "The Series H at $7.5B cemented Netskope as one of the most valuable private cybersecurity companies globally; the round provided runway to scale enterprise sales and build out the NewEdge network ahead of an eventual public offering.",
+      "source": "TechCrunch",
+      "sourceUrl": "https://techcrunch.com/2021/07/09/cloud-security-platform-netskope-boosts-valuation-to-7-5b-following-300m-raise/"
+    }
+  ]
+}

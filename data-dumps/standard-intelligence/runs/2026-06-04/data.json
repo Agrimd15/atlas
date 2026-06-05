@@ -1,0 +1,102 @@
+{
+  "fundingSummary": {
+    "totalRaised": "$75M (Series A, April 2026); no prior priced/seed round disclosed",
+    "lastKnownValuation": "~$500M post-money (Series A, April 2026; reported by The Information)",
+    "valuationSourceUrl": "https://www.theinformation.com/newsletters/ai-agenda/standard-intelligence-rides-neolab-fervor-computer-use-model",
+    "isPreRevenue": true,
+    "revenueNote": "Pre-revenue research lab; ~6-person team in San Francisco. No disclosed ARR/KPIs or revenue as of June 2026 — the company is building foundation models (FDM-1, a video-trained 'computer use' model; previously open-sourced the 'hertz-dev' audio model) and has not commercialized. No public ticker and no public trading multiples exist for the subject (private). Capital is earmarked for compute scaling, FDM-1 development, and hiring.",
+    "fundingRounds": [
+      {
+        "round": "Series A",
+        "date": "2026-04",
+        "amountFormatted": "$75M",
+        "postMoneyValuationFormatted": "~$500M (reported)",
+        "leadInvestors": ["Sequoia Capital", "Spark Capital"],
+        "source": "SiliconANGLE",
+        "sourceUrl": "https://siliconangle.com/2026/04/30/standard-intelligence-raises-75m-develop-efficient-computer-use-models/"
+      }
+    ],
+    "investors": [
+      "Sequoia Capital (Sonya Huang)",
+      "Spark Capital (Yasmin Razavi)",
+      "Andrej Karpathy (angel/advisor)",
+      "Stanley Druckenmiller (angel/advisor)",
+      "Milan Kovac (angel/advisor)"
+    ],
+    "ipoReadiness": "Very early — pre-revenue research lab, ~6 employees, founded by Galen Mead and Devansh Pandey. An IPO is not on the horizon; the company is at the foundational-research / pre-product stage and years away from any commercialization or public-market candidacy."
+  },
+  "marketCloseAsOf": null,
+  "freshnessNote": "Subject is a PRIVATE, pre-revenue company with no public ticker — there is no market close and no live trading multiple. The valuation shown is a last-round private mark (reported ~$500M post-money, Series A, April 2026), not a market price. Comparable valuations below are also last-round private marks; their dates legitimately differ by company.",
+  "rampDemandSignal": {
+    "available": false,
+    "note": "Ramp Data not applicable: Standard Intelligence is a ~6-person pre-product research lab, not an established B2B vendor with a measurable corporate-card spend footprint, so it does not appear in Ramp's vendor-adoption index."
+  },
+  "comps": [
+    {
+      "name": "Thinking Machines Lab",
+      "type": "Frontier AI lab (Mira Murati)",
+      "valuation": "$12B (Jul 2025)",
+      "lastRaise": "$2B seed (Jul 2025), led by Andreessen Horowitz",
+      "note": "Closest structural peer: a pre-product, reputation-driven lab (ex-OpenAI CTO). The $12B seed mark stands as its last priced round.",
+      "source": "TechCrunch",
+      "sourceUrl": "https://techcrunch.com/2025/07/15/mira-muratis-thinking-machines-lab-is-worth-12b-in-seed-round/"
+    },
+    {
+      "name": "Safe Superintelligence (SSI)",
+      "type": "Frontier AI lab (Ilya Sutskever)",
+      "valuation": "$32B (Apr 2025)",
+      "lastRaise": "$2B (Apr 2025); earlier $1B at ~$5B (Sep 2024)",
+      "note": "Another pre-product lab valued on founder reputation; backers include Greenoaks, a16z, Lightspeed, DST, Alphabet, Nvidia.",
+      "source": "TechCrunch",
+      "sourceUrl": "https://techcrunch.com/2025/04/12/openai-co-founder-ilya-sutskevers-safe-superintelligence-reportedly-valued-at-32b/"
+    },
+    {
+      "name": "Cognition (Devin)",
+      "type": "Agentic AI / autonomous coding agent",
+      "valuation": "$10.2B (Sep 2025)",
+      "lastRaise": "$400M (Sep 2025), post-Windsurf acquisition",
+      "note": "Closest 'agent that uses software' comp — but revenue-generating, unlike the subject's pre-product research stage.",
+      "source": "CNBC",
+      "sourceUrl": "https://www.cnbc.com/2025/09/08/cognition-valued-at-10point2-billion-two-months-after-windsurf-.html"
+    },
+    {
+      "name": "Mistral AI",
+      "type": "Frontier AI lab (open-weight models; Europe)",
+      "valuation": "~$14B / €11.7B (Sep 2025)",
+      "lastRaise": "€1.7B Series C (Sep 2025), led by ASML",
+      "note": "Europe's largest-ever venture round; ASML took ~11% fully diluted. A scaled, productized frontier-lab benchmark.",
+      "source": "CNBC",
+      "sourceUrl": "https://www.cnbc.com/2025/09/09/ai-firm-mistral-valued-at-14-billion-as-asml-takes-major-stake.html"
+    },
+    {
+      "name": "Anthropic",
+      "type": "Frontier AI lab (Claude)",
+      "valuation": "$380B (Feb 2026)",
+      "lastRaise": "$30B Series G (Feb 2026), led by GIC and Coatue",
+      "note": "Scaled-incumbent ceiling for the category; reportedly in talks May 2026 to raise more at a >$900B valuation.",
+      "source": "Bloomberg",
+      "sourceUrl": "https://www.bloomberg.com/news/articles/2026-05-12/anthropic-in-talks-to-raise-30-billion-at-900-billion-valuation"
+    },
+    {
+      "name": "OpenAI",
+      "type": "Frontier AI lab (ChatGPT)",
+      "valuation": "$852B (Mar 2026)",
+      "lastRaise": "$122B round (closed Mar 2026)",
+      "note": "Largest private financing in history; the category's top-end benchmark and a direct computer-use (Operator) competitor.",
+      "source": "CNBC",
+      "sourceUrl": "https://www.cnbc.com/2026/02/27/open-ai-funding-round-amazon.html"
+    }
+  ],
+  "sources": [
+    {"name": "The Information — Standard Intelligence computer-use model ($500M post-money report)", "url": "https://www.theinformation.com/newsletters/ai-agenda/standard-intelligence-rides-neolab-fervor-computer-use-model"},
+    {"name": "SiliconANGLE — Standard Intelligence raises $75M", "url": "https://siliconangle.com/2026/04/30/standard-intelligence-raises-75m-develop-efficient-computer-use-models/"},
+    {"name": "Standard Intelligence blog — A Brief Fundraising Update", "url": "https://si.inc/posts/a/"},
+    {"name": "Sequoia Capital — Training General Intelligence in Pixel Space", "url": "https://www.sequoiacap.com/article/standard-intelligence-training-general-intelligence-in-pixel-space/"},
+    {"name": "TechCrunch — Thinking Machines Lab $12B seed", "url": "https://techcrunch.com/2025/07/15/mira-muratis-thinking-machines-lab-is-worth-12b-in-seed-round/"},
+    {"name": "TechCrunch — Safe Superintelligence $32B", "url": "https://techcrunch.com/2025/04/12/openai-co-founder-ilya-sutskevers-safe-superintelligence-reportedly-valued-at-32b/"},
+    {"name": "Bloomberg — Anthropic in talks at $900B valuation", "url": "https://www.bloomberg.com/news/articles/2026-05-12/anthropic-in-talks-to-raise-30-billion-at-900-billion-valuation"},
+    {"name": "CNBC — OpenAI funding round", "url": "https://www.cnbc.com/2026/02/27/open-ai-funding-round-amazon.html"},
+    {"name": "CNBC — Mistral valued at $14B, ASML stake", "url": "https://www.cnbc.com/2025/09/09/ai-firm-mistral-valued-at-14-billion-as-asml-takes-major-stake.html"},
+    {"name": "CNBC — Cognition valued at $10.2B", "url": "https://www.cnbc.com/2025/09/08/cognition-valued-at-10point2-billion-two-months-after-windsurf-.html"}
+  ]
+}

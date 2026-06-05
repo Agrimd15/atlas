@@ -26,7 +26,7 @@ const TEMPLATE = path.join(__dirname, 'template', 'index.html');
 // only via the gated /full view. Add more demo ids over time. (Folder ids: Broadcom = "AVGO".)
 // Fresh restart: prior coverage was moved to archive/ (preserved in git, off the live
 // site). Add demo ids back here as new companies are researched into data-dumps/.
-const DEMO_IDS = [];
+const DEMO_IDS = ['EGAN', 'NTSK', 'forgepoint-ai', 'standard-intelligence'];
 
 const readJSON = (p) => { try { return JSON.parse(fs.readFileSync(p, 'utf8')); } catch { return null; } };
 const ensureDir = (p) => fs.mkdirSync(p, { recursive: true });

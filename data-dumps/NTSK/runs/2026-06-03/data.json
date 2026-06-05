@@ -1,0 +1,57 @@
+{
+  "asOf": "2026-06-03",
+  "marketCloseAsOf": "2026-06-03",
+  "freshnessNote": "All multiples reflect the 2026-06-03 market close via yfinance/Yahoo Finance. Netskope IPO'd September 18, 2025 (NTSK on NASDAQ). Subject-company KPIs sourced from SEC filings (10-Q filed 2026-06-03 for Q1 FY2027 ended April 30, 2026).",
+  "trading": {
+    "ticker": "NTSK",
+    "priceAsOf": "2026-06-03",
+    "stockPrice": "$12.00",
+    "marketCap": "$2.9B",
+    "enterpriseValue": "$2.5B",
+    "totalRevenueLTM": "$709M",
+    "revenueGrowthYoY": "32.2%",
+    "grossMargin": "68.1%",
+    "operatingMarginGAAP": "-58.2%",
+    "evRevenueLTM": "3.6x",
+    "evBasis": "recomputed: last close × shares + net debt",
+    "weekHigh52": "$27.99",
+    "weekLow52": "$7.67",
+    "analystTargetPrice": "$17.89",
+    "analystRating": "strong_buy",
+    "numberOfAnalysts": 18,
+    "source": "yfinance / Yahoo Finance",
+    "sourceUrl": "https://finance.yahoo.com/quote/NTSK"
+  },
+  "kpis": {
+    "arr": {"value": "$845M", "date": "2026-04-30 (Q1 FY2027)", "source": "SEC EDGAR 8-K", "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2063196/000119312526255439/ck0002063196-20260603.htm"},
+    "arrGrowthYoY": {"value": "29% YoY", "date": "2026-04-30", "source": "SEC EDGAR 8-K", "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2063196/000119312526255439/ck0002063196-20260603.htm"},
+    "revenueQ1FY2027": {"value": "$202M", "date": "2026-04-30", "source": "SEC EDGAR 8-K", "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2063196/000119312526255439/ck0002063196-20260603.htm"},
+    "nrr": {"value": "118%", "date": "2025-07-31 (S-1)", "source": "Netskope S-1 SEC filing", "sourceUrl": "https://www.sec.gov/Archives/edgar/data/0002063196/000095017025110855/ck0002063196-20250822.htm"},
+    "grr": {"value": "96%", "date": "2025-07-31 (S-1)", "source": "Netskope S-1 SEC filing", "sourceUrl": "https://www.sec.gov/Archives/edgar/data/0002063196/000095017025110855/ck0002063196-20250822.htm"},
+    "customers": {"value": "4,317 customers across 90 countries", "date": "2025-07-31 (S-1)", "source": "Netskope S-1 SEC filing", "sourceUrl": "https://www.sec.gov/Archives/edgar/data/0002063196/000095017025110855/ck0002063196-20250822.htm"},
+    "rpo": {"value": ">$1B", "date": "2025-10-31 (Q3 FY2026)", "source": "SEC EDGAR 10-Q", "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2063196/000119312525316190/ck0002063196-20251031.htm"}
+  },
+  "fundingRounds": [
+    {"round": "Series A", "date": "2013-10", "amountFormatted": "$21M", "leadInvestors": ["Social Capital", "Lightspeed Venture Partners"], "source": "TechCrunch", "sourceUrl": "https://techcrunch.com/2013/10/03/netskope-comes-out-of-stealth-with-21m-from-socialcapital-and-lightspeed-and-a-dream-team-of-enterprise-vets/"},
+    {"round": "Series F", "date": "2018-11", "amount": 168.7, "amountFormatted": "$168.7M", "postMoneyValuationFormatted": "~$1B", "leadInvestors": ["ICONIQ Growth"], "source": "TechCrunch", "sourceUrl": "https://techcrunch.com/2018/11/13/netskope-raises-168-7m-at-a-1b-valuation-for-its-cloud-security-platform/"},
+    {"round": "Series G", "date": "2020-02", "amount": 340, "amountFormatted": "$340M", "postMoneyValuationFormatted": "~$3B", "leadInvestors": ["ICONIQ Growth", "Lightspeed Venture Partners"], "source": "Crunchbase News", "sourceUrl": "https://news.crunchbase.com/venture/cloud-security-provider-netskope-raises-340m-at-nearly-3b-valuation/"},
+    {"round": "Series H", "date": "2021-07", "amount": 300, "amountFormatted": "$300M", "postMoneyValuationFormatted": "$7.5B", "leadInvestors": ["ICONIQ Growth"], "otherInvestors": ["Lightspeed Venture Partners", "Accel", "Sequoia Capital Global Equities", "Sapphire Ventures", "Geodesic Capital"], "source": "TechCrunch", "sourceUrl": "https://techcrunch.com/2021/07/09/cloud-security-platform-netskope-boosts-valuation-to-7-5b-following-300m-raise/"},
+    {"round": "Convertible Note", "date": "2023-01", "amount": 401, "amountFormatted": "$401M", "leadInvestors": ["Morgan Stanley Tactical Value"], "note": "IPO-bridge note; total pre-IPO capital ~$1.4B", "source": "Crunchbase News", "sourceUrl": "https://news.crunchbase.com/venture/biggest-funding-rounds-spacex-netskope/"},
+    {"round": "IPO", "date": "2025-09", "amount": 908, "amountFormatted": "$908M", "note": "NASDAQ: NTSK; priced at $19/share; first-day close $22.49 (+21%); largest cybersecurity IPO of 2025", "source": "Bloomberg", "sourceUrl": "https://www.bloomberg.com/news/articles/2025-09-18/cybersecurity-firm-netskope-climbs-21-after-908-million-ipo"}
+  ],
+  "comps": [
+    {"ticker": "NTSK", "name": "Netskope", "type": "Subject", "priceAsOf": "2026-06-03", "marketCap": "$2.9B", "evRevenueLTM": "3.6x", "revenueGrowth": "32.2%", "grossMargin": "68.1%", "note": "subject company; stock at $12 vs $19 IPO price; analyst consensus target $17.89", "source": "yfinance / Yahoo Finance", "sourceUrl": "https://finance.yahoo.com/quote/NTSK"},
+    {"ticker": "ZS", "name": "Zscaler", "priceAsOf": "2026-06-03", "marketCap": "$21.7B", "evRevenueLTM": "6.3x", "revenueGrowth": "25.4%", "grossMargin": "76.7%", "note": "most direct pure-play SSE peer; $2.2B ARR, 7,700+ customers", "source": "yfinance / Yahoo Finance", "sourceUrl": "https://finance.yahoo.com/quote/ZS"},
+    {"ticker": "PANW", "name": "Palo Alto Networks", "priceAsOf": "2026-06-03", "marketCap": "$228.6B", "evRevenueLTM": "22.7x", "revenueGrowth": "14.9%", "grossMargin": "73.5%", "note": "platform security leader; Prisma SASE at $1.3B ARR; premium multiple on bundling strategy", "source": "yfinance / Yahoo Finance", "sourceUrl": "https://finance.yahoo.com/quote/PANW"},
+    {"ticker": "CRWD", "name": "CrowdStrike", "priceAsOf": "2026-06-03", "marketCap": "$190.3B", "evRevenueLTM": "38.6x", "revenueGrowth": "23.3%", "grossMargin": "74.8%", "note": "endpoint+identity security leader; network security adjacency; highest multiple in peer set", "source": "yfinance / Yahoo Finance", "sourceUrl": "https://finance.yahoo.com/quote/CRWD"},
+    {"ticker": "NET", "name": "Cloudflare", "priceAsOf": "2026-06-03", "marketCap": "$84.8B", "evRevenueLTM": "36.1x", "revenueGrowth": "33.5%", "grossMargin": "73.3%", "note": "network security + Zero Trust; closest growth-rate analog to NTSK; 36x multiple vs NTSK 3.6x", "source": "yfinance / Yahoo Finance", "sourceUrl": "https://finance.yahoo.com/quote/NET"},
+    {"ticker": "FTNT", "name": "Fortinet", "priceAsOf": "2026-06-03", "marketCap": "$107.3B", "evRevenueLTM": "14.7x", "revenueGrowth": "20.1%", "grossMargin": "80.3%", "note": "network security incumbent; hardware+software model; lower growth but highest gross margin", "source": "yfinance / Yahoo Finance", "sourceUrl": "https://finance.yahoo.com/quote/FTNT"},
+    {"ticker": "S", "name": "SentinelOne", "priceAsOf": "2026-06-03", "marketCap": "$5.5B", "evRevenueLTM": "4.6x", "revenueGrowth": "20.8%", "grossMargin": "73.2%", "note": "closest market cap peer; AI-native endpoint; lower growth, similar multiple distress thesis", "source": "yfinance / Yahoo Finance", "sourceUrl": "https://finance.yahoo.com/quote/S"}
+  ],
+  "secFilings": [
+    {"form": "10-Q", "filingDate": "2026-06-03", "reportDate": "2026-04-30 (Q1 FY2027)", "url": "https://www.sec.gov/Archives/edgar/data/2063196/000119312526255732/ck0002063196-20260430.htm", "source": "SEC EDGAR"},
+    {"form": "10-K", "filingDate": "2026-03-31", "reportDate": "2026-01-31 (FY2026)", "url": "https://www.sec.gov/Archives/edgar/data/2063196/000119312526135011/ck0002063196-20260131.htm", "source": "SEC EDGAR"},
+    {"form": "10-Q", "filingDate": "2025-12-11", "reportDate": "2025-10-31 (Q3 FY2026)", "url": "https://www.sec.gov/Archives/edgar/data/2063196/000119312525316190/ck0002063196-20251031.htm", "source": "SEC EDGAR"},
+    {"form": "S-1", "filingDate": "2025-08-22", "reportDate": "2025-07-31 (H1 FY2026)", "url": "https://www.sec.gov/Archives/edgar/data/0002063196/000095017025110855/ck0002063196-20250822.htm", "source": "SEC EDGAR"}
+  ]
+}
