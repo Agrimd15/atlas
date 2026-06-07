@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>eGain Corporation · Atlas Research Brief</title>
-<link href="https://fonts.googleapis.com/css2?family=Alumni+Sans+Pinstripe&family=Albert+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   /* Institutional (light) design tokens: sell-side research note */
   :root {
@@ -32,12 +31,13 @@
 
   /* ── Base ── */
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: "Albert Sans", "Avenir Next", "Helvetica Neue", Arial, system-ui, sans-serif;
-         background: var(--ks-lacquer); color: var(--ks-body); font-size: 16.5px; line-height: 1.65; }
+  body { font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+         background: var(--ks-lacquer); color: var(--ks-body); font-size: 14px; line-height: 1.55;
+         font-variant-numeric: tabular-nums; }
   a { color: inherit; text-decoration: none; }
-  p { color: var(--ks-body); line-height: 1.75; margin-bottom: 6px; }
+  p { color: var(--ks-body); line-height: 1.6; margin-bottom: 6px; }
   strong { color: var(--ks-champagne); }
-  .mono { font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+  .mono { font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; font-variant-numeric: tabular-nums; }
   .right { text-align: right; }
 
   .wrapper { width: 100%; max-width: 1400px; margin: 0 auto; background: var(--ks-lacquer);
@@ -57,26 +57,26 @@
                    display: block; }
   .header-badges { display: flex; align-items: center; gap: 7px; margin-top: 6px; flex-wrap: wrap; }
   .ticker-badge { background: transparent; color: var(--ks-kinpaku);
-                   font-family: "SFMono-Regular", "Roboto Mono", monospace;
+                   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
                    font-size: 10.5px; font-weight: 700; padding: 0; border-radius: 0;
                    letter-spacing: 0.16em; text-transform: uppercase; }
   .stage-badge { background: var(--ks-raised); border: 1px solid var(--ks-rule);
                   color: var(--ks-muted); font-size: 10px; font-weight: 600; padding: 2px 8px;
                   border-radius: 2px; letter-spacing: 0.12em;
-                  font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+                  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; }
   .draft-badge { background: var(--ks-kinpaku); border: 1px solid var(--ks-kinpaku);
                   color: #ffffff; font-size: 10px; font-weight: 700; padding: 2px 9px;
                   border-radius: 2px; letter-spacing: 0.15em;
-                  font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+                  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; }
   .header-meta { font-size: 11.5px; color: var(--ks-faint); }
   .header-meta a { color: var(--ks-kinpaku-pale); }
   .verticals { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 6px; }
   .vertical-tag { background: var(--ks-graphite); border: 1px solid var(--ks-rule);
                    color: var(--ks-muted); font-size: 10px; padding: 2px 9px; border-radius: 3px;
-                   font-family: "SFMono-Regular", "Roboto Mono", monospace; letter-spacing: 0.06em; }
+                   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; letter-spacing: 0.06em; }
   .trading-bar { background: var(--ks-raised); border: 1px solid var(--ks-rule); border-radius: 3px;
                   padding: 9px 14px; margin-top: 14px; font-size: 11px; color: var(--ks-faint);
-                  font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+                  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; }
   .trading-bar strong { color: var(--ks-champagne); margin-right: 4px; }
 
   /* ── Hero stats bar ── */
@@ -90,12 +90,12 @@
   .hero-card:last-child { border-right: none; }
   .hero-label { font-size: 9.5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.13em;
                  color: var(--ks-faint); margin-bottom: 6px; white-space: nowrap;
-                 font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+                 font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; }
   /* big number stays on ONE line; a long head shrinks to fit rather than wrapping */
-  .hero-value { font-family: "SFMono-Regular", "Roboto Mono", monospace; font-size: 1.5rem; font-weight: 700;
+  .hero-value { font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; font-size: 1.5rem; font-weight: 700;
                  line-height: 1.1; color: var(--ks-kinpaku); white-space: nowrap; }
   .hero-value.long { font-size: 1.1rem; letter-spacing: -0.01em; }
-  .hero-sub { font-family: "SFMono-Regular", "Roboto Mono", monospace; font-size: 10.5px;
+  .hero-sub { font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; font-size: 10.5px;
                color: var(--ks-faint); margin-top: 4px; line-height: 1.3; }
   .hero-sub.pos { color: var(--ks-patina); }
   /* narrow screens: let the 5-col strip reflow (print/desktop keep 5 across) */
@@ -109,26 +109,26 @@
   .toc-link { font-size: 10px; font-weight: 600; color: var(--ks-faint); padding: 3px 10px;
                border-radius: 20px; border: 1px solid var(--ks-rule); background: transparent;
                transition: background 150ms var(--ks-ease), color 150ms var(--ks-ease);
-               white-space: nowrap; font-family: "SFMono-Regular", "Roboto Mono", monospace;
+               white-space: nowrap; font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
                letter-spacing: 0.04em; }
   .toc-link:hover { background: var(--ks-kinpaku); color: var(--ks-lacquer-deep); border-color: var(--ks-kinpaku); }
 
   /* ── Sections ── */
   .section { border-bottom: 1px solid var(--ks-rule); padding: 24px 40px; scroll-margin-top: 48px; }
   .section:last-of-type { border-bottom: none; }
-  .sec-label { font-family: "SFMono-Regular", "Roboto Mono", monospace; font-size: 10px; font-weight: 700;
+  .sec-label { font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; font-size: 10px; font-weight: 700;
                 letter-spacing: 0.15em; text-transform: uppercase; color: var(--ks-accent);
                 margin-bottom: 15px; padding-bottom: 7px; border-bottom: 1px solid var(--ks-rule); }
   /* normal-weight metadata line under a section label (quarter, as-of, captions) —
      keeps the eyebrow itself short and uncluttered instead of wrapping inline */
-  .sec-meta { font-family: "SFMono-Regular", "Roboto Mono", monospace; font-size: 10.5px;
+  .sec-meta { font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; font-size: 10.5px;
                color: var(--ks-faint); margin: -9px 0 14px; letter-spacing: 0.03em; line-height: 1.4; }
 
   /* ── Two-col layout (overview) ── */
   .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: start; }
   @media (max-width: 760px) { .two-col { grid-template-columns: 1fr; } }
   .diagram-caption { font-size: 11px; color: var(--ks-faint); margin-bottom: 10px; line-height: 1.4;
-                      font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+                      font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; }
 
   /* ── "Understand the business" explainer (plain / technical / simple) ── */
   .explain-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 24px; }
@@ -139,7 +139,7 @@
   .explain-2 { border-top-color: var(--ks-patina); }
   .explain-label { font-size: 10px; font-weight: 700; letter-spacing: 0.13em; text-transform: uppercase;
                     color: var(--ks-kinpaku); margin-bottom: 9px;
-                    font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+                    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; }
   .explain-1 .explain-label { color: var(--ks-accent); }
   .explain-2 .explain-label { color: var(--ks-patina); }
   .explain-text { font-size: 14px; line-height: 1.6; color: var(--ks-body); }
@@ -156,7 +156,7 @@
   .diff-table th { text-align: left; font-size: 9px; font-weight: 700; letter-spacing: 0.1em;
                     text-transform: uppercase; color: var(--ks-faint); padding: 0 14px 8px 0;
                     border-bottom: 1.5px solid var(--ks-kinpaku);
-                    font-family: "SFMono-Regular", "Roboto Mono", monospace; vertical-align: bottom; }
+                    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; vertical-align: bottom; }
   .diff-table td { padding: 11px 14px 11px 0; border-bottom: 1px solid var(--ks-rule);
                     vertical-align: top; color: var(--ks-body); line-height: 1.55; }
   .diff-table tr:last-child td { border-bottom: none; }
@@ -165,6 +165,46 @@
   .diff-table .diff-edge { color: var(--ks-body); }
   @media (max-width: 680px) { .diff-table, .diff-table thead, .diff-table tbody, .diff-table tr, .diff-table td { display: block; width: auto; }
     .diff-table thead { display: none; } .diff-table .diff-player { white-space: normal; padding-top: 12px; } }
+
+  /* ── SWOT analysis (2×2 quadrant) ── */
+  .swot-standout { font-size: 14.5px; line-height: 1.7; color: var(--ks-body);
+                    background: var(--ks-graphite); border-left: 3px solid var(--ks-kinpaku);
+                    padding: 12px 16px; border-radius: 0 6px 6px 0; margin-bottom: 18px; }
+  .swot-standout-label { font-weight: 700; color: var(--ks-champagne); }
+  .swot-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 760px) { .swot-grid { grid-template-columns: 1fr; } }
+  .swot-quad { border: 1px solid var(--ks-rule); border-top: 3px solid var(--ks-rule-strong);
+                border-radius: 6px; padding: 14px 16px 12px; background: var(--ks-lacquer); }
+  .swot-quad.swot-s { border-top-color: var(--ks-patina);  background: #f3faf6; }
+  .swot-quad.swot-w { border-top-color: var(--ks-vermilion); background: #fcf4f5; }
+  .swot-quad.swot-o { border-top-color: var(--ks-kinpaku-pale); background: #f3f7fc; }
+  .swot-quad.swot-t { border-top-color: #b8791a; background: #fdf8ef; }
+  .swot-head { display: flex; align-items: baseline; justify-content: space-between;
+                gap: 8px; margin-bottom: 8px; padding-bottom: 7px;
+                border-bottom: 1px solid var(--ks-rule); }
+  .swot-title { font-size: 11px; font-weight: 700; letter-spacing: 0.11em;
+                 text-transform: uppercase; color: var(--ks-champagne);
+                 font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; }
+  .swot-sub { font-size: 9.5px; letter-spacing: 0.06em; text-transform: uppercase;
+               color: var(--ks-faint); font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; }
+  .swot-list { list-style: none; margin: 0; padding: 0; }
+  .swot-list li { position: relative; padding: 0 0 7px 15px; font-size: 13.5px;
+                   line-height: 1.55; color: var(--ks-body); }
+  .swot-list li:last-child { padding-bottom: 0; }
+  .swot-list li::before { content: ""; position: absolute; left: 1px; top: 8px;
+                           width: 5px; height: 5px; border-radius: 50%;
+                           background: var(--ks-rule-strong); }
+  .swot-s .swot-list li::before { background: var(--ks-patina); }
+  .swot-w .swot-list li::before { background: var(--ks-vermilion); }
+  .swot-o .swot-list li::before { background: var(--ks-kinpaku-pale); }
+  .swot-t .swot-list li::before { background: #b8791a; }
+  .swot-pt { font-weight: 700; color: var(--ks-champagne); }
+
+  /* ── Gartner Magic Quadrant (embedded image) ── */
+  .gartner-caption { font-size: 14px; line-height: 1.65; color: var(--ks-muted); margin-bottom: 14px; }
+  .gartner-wrap { border: 1px solid var(--ks-rule); border-radius: 8px; padding: 14px;
+                   background: var(--ks-raised); text-align: center; }
+  .gartner-img { max-width: 100%; height: auto; border-radius: 4px; display: inline-block; }
 
   /* ── Body bullet list ── */
   .body-list { list-style: none; padding: 0; margin: 0; }
@@ -180,7 +220,7 @@
   .biz-col-mid { flex: 1.05; }
   .biz-col-label { font-size: 9px; text-transform: uppercase; letter-spacing: 0.14em;
                     color: var(--ks-faint); margin-bottom: 3px; line-height: 1.3;
-                    font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+                    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; }
   .biz-node { padding: 9px 11px; border-radius: 4px; }
   .biz-node-name { font-size: 12.5px; font-weight: 600; line-height: 1.25; }
   .biz-node-sub { font-size: 10.5px; font-weight: 400; line-height: 1.3; margin-top: 2px;
@@ -202,13 +242,13 @@
   .news-item:last-child { border-bottom: none; }
   .news-row { display: flex; gap: 14px; align-items: flex-start; }
   .news-date { font-size: 10px; color: var(--ks-faint); white-space: nowrap; min-width: 74px;
-                font-family: "SFMono-Regular", "Roboto Mono", monospace; padding-top: 2px; }
+                font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; padding-top: 2px; }
   .news-headline { font-size: 15.5px; font-weight: 600; color: var(--ks-champagne); line-height: 1.4; }
   .news-why { font-size: 14px; color: var(--ks-muted); margin-top: 6px; margin-left: 88px; line-height: 1.6; }
 
   /* ── Financials / metrics ── */
   .fin-meta { font-size: 11px; color: var(--ks-faint); margin-bottom: 14px;
-               font-family: "SFMono-Regular", "Roboto Mono", monospace; letter-spacing: 0.05em; }
+               font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; letter-spacing: 0.05em; }
   /* auto-fill (not auto-fit): a partial last row keeps card width + stays left-aligned */
   .metrics-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
                    gap: 10px; margin-bottom: 18px; }
@@ -218,30 +258,35 @@
      cards aligned whether the label is 1 or 2 lines */
   .metric-label { font-size: 9.5px; font-weight: 500; color: var(--ks-faint); text-transform: uppercase;
                    letter-spacing: 0.12em; margin-bottom: 6px; line-height: 1.3; min-height: 1.9em;
-                   font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+                   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; }
   /* big number stays on ONE line; a long/sentence-like head shrinks AND wraps inside the
      card instead of overflowing into the neighbouring tile */
-  .metric-value { font-family: "SFMono-Regular", "Roboto Mono", monospace; font-size: 1.15rem; font-weight: 700;
+  .metric-value { font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; font-size: 1.15rem; font-weight: 700;
                    color: var(--ks-kinpaku); line-height: 1.2; white-space: nowrap; }
   .metric-value.long { font-size: 0.95rem; letter-spacing: -0.01em; white-space: normal;
                         overflow-wrap: anywhere; line-height: 1.3; }
   .metric-value.green { color: var(--ks-patina); }
   .metric-sub { font-size: 10.5px; color: var(--ks-faint); margin-top: 4px; line-height: 1.35;
-                 font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+                 font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; }
   .metric-sub.pos { color: var(--ks-patina); font-weight: 600; }
+  /* period tag: the time window each metric covers, so a number is never undated */
+  .metric-period { font-size: 9px; color: var(--ks-faint); margin-top: 5px; line-height: 1.3;
+                    letter-spacing: 0.04em; text-transform: uppercase; white-space: normal;
+                    overflow-wrap: anywhere; padding-top: 4px; border-top: 1px solid var(--ks-rule);
+                    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; }
 
   /* ── Quarterly trend matrix (Revenue / QoQ / Gross Margin × last 4 quarters) ── */
   .qtrend-wrap { margin: 4px 0 6px; }
   .qtrend-table { width: 100%; border-collapse: collapse; margin-top: 8px; }
   .qtrend-table th, .qtrend-table td { padding: 7px 12px; border-bottom: 1px solid var(--ks-rule);
                    font-size: 13px; }
-  .qtrend-table thead th { font-family: "SFMono-Regular", "Roboto Mono", monospace; font-size: 10px;
+  .qtrend-table thead th { font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; font-size: 10px;
                    font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
                    color: var(--ks-faint); border-bottom: 1px solid var(--ks-rule-strong); }
   .qtrend-table td.mono { color: var(--ks-champagne); font-weight: 600; }
   .qtrend-table td.pos { color: var(--ks-patina); }
   .qtrend-table td.neg { color: var(--ks-vermilion); }
-  .qtrend-rowlbl { text-align: left; font-family: "SFMono-Regular", "Roboto Mono", monospace;
+  .qtrend-rowlbl { text-align: left; font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
                    font-size: 10.5px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em;
                    color: var(--ks-faint); white-space: nowrap; }
   .qtrend-table tbody tr:last-child td { border-bottom: none; }
@@ -267,7 +312,7 @@
   .chart-wrap { margin: 4px 0 8px; }
   .chart-eyebrow { font-size: 9px; text-transform: uppercase; letter-spacing: 0.18em;
                     color: var(--ks-faint); margin-bottom: 12px;
-                    font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+                    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; }
 
   /* ── Funding timeline (flex cards) ── */
   .tl-flex  { display: flex; align-items: center; gap: 0; overflow-x: auto;
@@ -276,12 +321,12 @@
                padding: 10px 12px; min-width: 88px; text-align: center; flex-shrink: 0; }
   .tl-arrow { color: var(--ks-kinpaku); font-size: 14px; padding: 0 4px; flex-shrink: 0; }
   .tl-round { font-size: 8px; text-transform: uppercase; letter-spacing: 0.10em;
-               color: var(--ks-faint); font-family: "SFMono-Regular", "Roboto Mono", monospace;
+               color: var(--ks-faint); font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
                margin-bottom: 3px; }
   .tl-amt   { font-size: 12px; font-weight: 700; color: var(--ks-kinpaku);
-               font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+               font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; }
   .tl-val   { font-size: 10px; color: var(--ks-patina);
-               font-family: "SFMono-Regular", "Roboto Mono", monospace; margin-top: 2px; }
+               font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; margin-top: 2px; }
   .tl-date  { font-size: 9px; color: var(--ks-faint); margin-top: 1px; }
   .tl-leads { font-size: 9px; color: var(--ks-muted); margin-top: 3px; line-height: 1.3; }
 
@@ -296,7 +341,7 @@
   .news-source-nolink { color: var(--ks-faint); }
   /* legacy: keep so old references do not break */
   .news-source { font-size: 9.5px; font-weight: 600; color: var(--ks-faint); margin-left: 8px;
-                  font-family: "SFMono-Regular", "Roboto Mono", monospace; letter-spacing: 0.05em;
+                  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; letter-spacing: 0.05em;
                   background: var(--ks-raised); border: 1px solid var(--ks-rule);
                   padding: 1px 6px; border-radius: 3px; vertical-align: middle; }
 
@@ -309,11 +354,11 @@
                  border-bottom: 1px solid var(--ks-rule); }
   .filing-row:last-child { border-bottom: none; }
   .filing-row:hover .filing-go { opacity: 1; }
-  .filing-form { font-family: "SFMono-Regular", "Roboto Mono", monospace; font-weight: 700;
+  .filing-form { font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; font-weight: 700;
                   font-size: 12.5px; color: var(--ks-kinpaku); min-width: 52px; }
-  .filing-meta { font-family: "SFMono-Regular", "Roboto Mono", monospace; font-size: 11.5px;
+  .filing-meta { font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; font-size: 11.5px;
                   color: var(--ks-faint); flex: 1; }
-  .filing-go { font-family: "SFMono-Regular", "Roboto Mono", monospace; font-size: 10.5px;
+  .filing-go { font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; font-size: 10.5px;
                 font-weight: 700; letter-spacing: 0.04em; color: var(--ks-kinpaku-pale);
                 opacity: 0.55; transition: opacity .15s; white-space: nowrap; }
 
@@ -330,20 +375,20 @@
   .kit-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; }
   .kit-tag  { font-size: 9px; background: var(--ks-graphite); border: 1px solid var(--ks-rule);
                color: var(--ks-kinpaku-pale); padding: 2px 7px; border-radius: 3px;
-               font-family: "SFMono-Regular", "Roboto Mono", monospace; letter-spacing: 0.04em; }
+               font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; letter-spacing: 0.04em; }
   .kit-copy { display: flex; flex-direction: column; gap: 6px; }
   .kit-copy-label { font-size: 8.5px; text-transform: uppercase; letter-spacing: 0.18em;
-                     color: var(--ks-faint); font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+                     color: var(--ks-faint); font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; }
   .kit-stat { background: var(--ks-raised); border: 1px solid var(--ks-rule); border-radius: 3px;
                padding: 8px 12px; font-size: 12.5px; font-weight: 600; color: var(--ks-champagne);
-               font-family: "SFMono-Regular", "Roboto Mono", monospace; cursor: text; }
+               font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; cursor: text; }
   .kit-bullet { background: var(--ks-graphite); border-left: 2px solid var(--ks-kinpaku);
                  padding: 7px 10px; font-size: 12px; color: var(--ks-body); line-height: 1.5;
                  margin-top: 2px; }
   .kit-assets { display: flex; flex-direction: column; gap: 6px; }
   .kit-url  { background: var(--ks-raised); border: 1px solid var(--ks-rule); border-radius: 3px;
                padding: 7px 10px; font-size: 10.5px; color: var(--ks-patina); word-break: break-all;
-               font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+               font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; }
   .kit-swatches { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
   .kit-swatch-wrap { display: flex; flex-direction: column; align-items: center; gap: 4px; cursor: default; }
   .kit-swatch { width: 36px; height: 36px; border-radius: 6px; border: 1px solid rgba(0,0,0,.12);
@@ -374,7 +419,7 @@
                           border-radius: 50%; background: rgba(179,18,43,0.1);
                           color: var(--ks-vermilion); font-size: 9px; font-weight: 900;
                           text-align: center; line-height: 13px;
-                          font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+                          font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; }
   .risk-list li:last-child { border-bottom: none; }
   .risk-label { font-weight: 600; color: var(--ks-champagne); }
 
@@ -383,7 +428,7 @@
   .comps-table th { text-align: left; font-size: 9px; font-weight: 700; letter-spacing: 0.1em;
                      text-transform: uppercase; color: var(--ks-faint); padding: 0 12px 8px 0;
                      border-bottom: 1.5px solid var(--ks-kinpaku); vertical-align: bottom;
-                     font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+                     font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; }
   .comps-table th.right { text-align: right; }
   /* unit (LTM / YoY) parked under the header so each cell value is one clean token */
   .th-unit { display: block; text-transform: none; font-weight: 400; font-size: 8.5px;
@@ -422,7 +467,7 @@
                            position: absolute; left: 0; top: 8px; width: 26px; height: 26px;
                            border-radius: 2px; background: var(--ks-kinpaku); color: var(--ks-lacquer-deep);
                            font-size: 11px; font-weight: 700; text-align: center; line-height: 26px;
-                           font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+                           font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; }
 
   /* ── Diligence ── */
   .dq-list { list-style: none; padding: 0; counter-reset: dqs; }
@@ -434,7 +479,7 @@
                         border-radius: 2px; background: var(--ks-raised); color: var(--ks-kinpaku);
                         border: 1px solid var(--ks-rule); font-size: 9.5px; font-weight: 700;
                         text-align: center; line-height: 26px;
-                        font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+                        font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; }
 
   /* ── Chips ── */
   .chip-list { display: flex; flex-wrap: wrap; gap: 6px; }
@@ -446,7 +491,7 @@
              padding: 14px 40px; display: flex; justify-content: space-between; align-items: center; }
   .footer-left { font-size: 10.5px; color: var(--ks-faint); line-height: 1.7; }
   .footer-right { font-size: 10.5px; font-weight: 700; color: var(--ks-kinpaku);
-                   letter-spacing: 0.22em; font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+                   letter-spacing: 0.22em; font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; }
   .meta-note { font-size: 12px; color: var(--ks-muted); margin-top: 8px; }
   .meta-note strong { color: var(--ks-champagne); }
 
@@ -475,6 +520,7 @@
     .biz-flow, .chart-wrap, .kit-grid, .filing-row,
     .body-list li, .earn-bullets li, .risk-list li, .explain-list li,
     .slide-list li, .dq-list li, .comps-table tr, .diff-table tr,
+    .swot-quad, .swot-list li, .gartner-wrap,
     img, svg { break-inside: avoid; }
 
     /* Never strand a heading at the foot of a page */
@@ -535,7 +581,7 @@
   </div>
 
   <!-- ② HERO STATS: 5 KPIs at a glance -->
-  <div class="hero-stats"><div class="hero-card"><div class="hero-label">Market Cap</div><div class="hero-value" style="color:var(--ks-kinpaku)">$207M</div><div class="hero-sub">2026-06-03 close</div></div><div class="hero-card"><div class="hero-label">EV / Revenue</div><div class="hero-value" style="color:var(--ks-kinpaku)">1.4x</div><div class="hero-sub">LTM · 2026-06-03 close</div></div><div class="hero-card"><div class="hero-label">Share Price</div><div class="hero-value" style="color:var(--ks-kinpaku)">$7.53</div><div class="hero-sub">2026-06-03 close</div></div><div class="hero-card"><div class="hero-label">Revenue</div><div class="hero-value" style="color:var(--ks-kinpaku)">$22.5M</div><div class="hero-sub pos">+7% YoY (SaaS +7%; +11% ex-legacy messaging)</div></div><div class="hero-card"><div class="hero-label">Valuation</div><div class="hero-value long" style="color:var(--ks-kinpaku)">$207M market cap</div></div></div>
+  <div class="hero-stats"><div class="hero-card"><div class="hero-label">Market Cap</div><div class="hero-value" style="color:var(--ks-kinpaku)">$198M</div><div class="hero-sub">2026-06-05 close</div></div><div class="hero-card"><div class="hero-label">EV / Revenue</div><div class="hero-value" style="color:var(--ks-kinpaku)">1.3x</div><div class="hero-sub">LTM · 2026-06-05 close</div></div><div class="hero-card"><div class="hero-label">Share Price</div><div class="hero-value" style="color:var(--ks-kinpaku)">$7.20</div><div class="hero-sub">2026-06-05 close</div></div><div class="hero-card"><div class="hero-label">Revenue</div><div class="hero-value" style="color:var(--ks-kinpaku)">$22.5M</div><div class="hero-sub pos">+7% YoY (SaaS +7%; +11% ex-legacy messaging)</div></div><div class="hero-card"><div class="hero-label">Valuation</div><div class="hero-value long" style="color:var(--ks-kinpaku)">$207M market cap</div></div></div>
 
   <!-- ③ TOC -->
   <div class="toc"><a href="#overview" class="toc-link">Overview</a> <a href="#leadership" class="toc-link">Leadership</a> <a href="#product" class="toc-link">Revenue Model</a> <a href="#news" class="toc-link">News</a> <a href="#earnings" class="toc-link">Financials</a> <a href="#growth" class="toc-link">Growth</a> <a href="#risks" class="toc-link">Risks</a> <a href="#comps" class="toc-link">Comps</a> <a href="#filings" class="toc-link">Filings</a> <a href="#funding" class="toc-link">Funding</a> <a href="#bullets" class="toc-link">Bullets</a> <a href="#diligence" class="toc-link">Diligence</a> <a href="#slidekit" class="toc-link">Slide Kit</a></div>
@@ -573,7 +619,36 @@
   <div class="section" id="news"><div class="sec-label">Recent News</div><div class="news-item"><div class="news-row"><span class="news-date">2026-05-14</span><span class="news-headline">eGain Reports Q3 FY2026: Revenue +7% to $22.5M, GAAP Net Income $2.4M, AI Knowledge Hub ARR +26%</span></div><div class="news-source-row"><span class="news-source-label">Source:</span> <a class="news-source-link" href="https://www.sec.gov/Archives/edgar/data/1066194/000106619426000011/egan-20260514x8k.htm" target="_blank" rel="noopener">eGain (SEC EDGAR 8-K)</a></div><div class="news-why">Profitability inflected sharply (adj. EBITDA margin 14% vs 6% y/y; GAAP EPS $0.09 vs ~$0.00) as the AI Knowledge Hub, ARR up 26% to $48.0M, now 64% of SaaS ARR, becomes the growth engine. Management flagged RFP activity roughly doubling, mostly U.S. Fortune 1000 banking, insurance and healthcare.</div></div><div class="news-item"><div class="news-row"><span class="news-date">2026-05-06</span><span class="news-headline">eGain Launches Agentic Studio with Multi-Agent Orchestration</span></div><div class="news-source-row"><span class="news-source-label">Source:</span> <a class="news-source-link" href="https://www.egain.com/company/news/press-releases/egain-launches-agentic-studio-with-multi-agent-orchestration-to-autonomously-resolve-customer-requests/" target="_blank" rel="noopener">eGain</a></div><div class="news-why">Agentic Studio coordinates multiple AI agents via MCP and A2A protocols to autonomously resolve complex requests, with actions grounded in policy-compliant knowledge, moving eGain up-stack from knowledge retrieval into the agentic orchestration layer.</div></div><div class="news-item"><div class="news-row"><span class="news-date">2026-04-07</span><span class="news-headline">eGain Announces Enterprise AI Connectors for Microsoft Copilot, Anthropic Claude, Google Gemini, and Cursor</span></div><div class="news-source-row"><span class="news-source-label">Source:</span> <a class="news-source-link" href="https://www.egain.com/company/news/press-releases/egain-announces-enterprise-ai-platform-connectors-for-copilot-claude-gemini-and-cursor/" target="_blank" rel="noopener">eGain</a></div><div class="news-why">Repositions eGain as the governed knowledge layer feeding third-party AI platforms rather than a standalone CX tool, expanding the TAM from contact centers to enterprise-wide AI grounding.</div></div><div class="news-item"><div class="news-row"><span class="news-date">2026-03-25</span><span class="news-headline">eGain Launches AI Knowledge Suite for Retail Banking</span></div><div class="news-source-row"><span class="news-source-label">Source:</span> <a class="news-source-link" href="https://www.egain.com/company/news/press-releases/egain-launches-ai-knowledge-suite-for-retail-banking-to-drive-growth-satisfaction-and-compliance/" target="_blank" rel="noopener">eGain</a></div><div class="news-why">A vertical bundle (guided needs-based sales, AscentAI compliance automation, HERE enterprise browser) for community/regional banks and credit unions, directly aligned with the BFSI demand surge management cited on the Q3 call.</div></div><div class="news-item"><div class="news-row"><span class="news-date">2025-12-01</span><span class="news-headline">Achmea Selects eGain AI Knowledge Hub and AI Agent to Power Digital Transformation</span></div><div class="news-source-row"><span class="news-source-label">Source:</span> <a class="news-source-link" href="https://www.egain.com/company/news/press-releases/achmea-selects-egain-ai-knowledge-hub-and-ai-agent-to-power-digital-transformation/" target="_blank" rel="noopener">eGain</a></div><div class="news-why">Marquee win, one of Europe's largest cooperative insurers, deploying eGain across ~21,000 users, each with an AI Agent license, integrating 26,000+ documents. A large per-seat expansion validating land-and-expand in regulated European BFSI.</div></div><div class="news-item"><div class="news-row"><span class="news-date">2025-09-04</span><span class="news-headline">eGain Expands Stock Repurchase Program to $60M Aggregate with FY2025 Results</span></div><div class="news-source-row"><span class="news-source-label">Source:</span> <a class="news-source-link" href="https://www.sec.gov/Archives/edgar/data/1066194/000106619425000008/egan-20250904xex99d1.htm" target="_blank" rel="noopener">eGain (SEC EDGAR 8-K)</a></div><div class="news-why">Board lifted the buyback authorization from $40M to $60M after repurchasing ~$39.8M, a capital-return signal underscoring management confidence as the AI transition plays out on a net-cash balance sheet.</div></div></div>
 
   <!-- ⑦ FINANCIALS / EARNINGS -->
-  <div class="section" id="earnings"><div class="sec-label">Financials &amp; Key Metrics</div><div class="sec-meta">Q3 FY2026 (ended March 31, 2026) &middot; 2026-05-14</div><div class="metrics-grid"><div class="metric-card"><div class="metric-label">Revenue</div><div class="metric-value">$22.5M</div><div class="metric-sub pos">+7% YoY (SaaS +7%; +11% ex-legacy messaging)</div></div><div class="metric-card"><div class="metric-label">Ai Knowledge Hub Arr</div><div class="metric-value">$48.0M</div><div class="metric-sub">+26% YoY</div></div><div class="metric-card"><div class="metric-label">Gaap Eps</div><div class="metric-value long">$0.09 diluted</div><div class="metric-sub">GAAP net income $2.4M</div></div><div class="metric-card"><div class="metric-label">Non Gaap Eps</div><div class="metric-value long">$0.11 diluted</div><div class="metric-sub">non-GAAP net income $3.2M</div></div><div class="metric-card"><div class="metric-label">Adj Ebitda</div><div class="metric-value">$3.2M</div><div class="metric-sub">~14% margin</div></div><div class="metric-card"><div class="metric-label">Gross Margin Gaap</div><div class="metric-value">73%</div><div class="metric-sub">GAAP / 74% non-GAAP</div></div><div class="metric-card"><div class="metric-label">Cash</div><div class="metric-value">$80.5M</div><div class="metric-sub">cash, zero debt</div></div><div class="metric-card"><div class="metric-label">Fy2026Guide</div><div class="metric-value long">Revenue $90.5-91.0M; non-GAAP EPS $0.39-0.42; adj. EBITDA $11.9-12.4M</div></div></div><div class="qtrend-wrap"><div class="chart-eyebrow">LAST 4 QUARTERS</div><table class="qtrend-table"><thead><tr><th class="qtrend-rowlbl"></th><th class="right">2Q25</th><th class="right">3Q25</th><th class="right">4Q25</th><th class="right">1Q26</th></tr></thead><tbody><tr><td class="qtrend-rowlbl">Revenue</td><td class="mono right">$23M</td><td class="mono right">$24M</td><td class="mono right">$23M</td><td class="mono right">$22M</td></tr><tr><td class="qtrend-rowlbl">QoQ</td><td class="mono right pos">+10.6%</td><td class="mono right pos">+1.2%</td><td class="mono right neg">-2.3%</td><td class="mono right neg">-2.1%</td></tr><tr><td class="qtrend-rowlbl">Gross Margin</td><td class="mono right">72.7%</td><td class="mono right">75.2%</td><td class="mono right">73.1%</td><td class="mono right">73.4%</td></tr></tbody></table><div class="chart-sources"><span class="chart-source-label">Source:</span> <a class="chart-source-link" href="https://finance.yahoo.com/quote/EGAN/financials" target="_blank" rel="noopener">yfinance / Yahoo Finance (quarterly income statement)</a> &nbsp;&middot;&nbsp; calendar-quarter labels on fiscal period-ends; gross margin = gross profit / revenue. Most recent quarter (1Q26): 7.1% YoY revenue growth.</div></div><ul class="earn-bullets"><li><strong>AI / Product:</strong> AI demand was the dominant theme. AI Knowledge Hub ARR grew 26% YoY to $48.0M and now represents 64% of total SaaS ARR, and management said the mix will keep shifting toward it.</li><li><strong>Demand:</strong> Pipeline and RFP activity accelerated sharply: management said trailing-60-day RFP volume was roughly double its average rate, concentrated in U.S. Fortune 1000 BFSI (banking, insurance) and healthcare, attributed to growing awareness of the knowledge-quality problem in AI deployments. Offsetting the strength, the quarter absorbed a one-time ~$1.6M total SaaS ARR reduction (incl. ~$0.9M AI Knowledge) when an EMEA on-premise customer declined to migrate to eGain Cloud and terminated, tied to country-level cloud restrictions; excluding non-core legacy messaging, all-customer SaaS ARR would have grown 11% YoY versus the reported 7%. The company ended with $80.5M cash, no debt, ~27% YTD operating-cash-flow margin, and ~$20M remaining under its buyback authorization.</li></ul><div class="news-source-row"><span class="news-source-label">Sources:</span> <a class="news-source-link" href="https://www.sec.gov/Archives/edgar/data/1066194/000106619426000011/egan-20260514x8k.htm" target="_blank" rel="noopener">SEC EDGAR - eGain Form 8-K (Q3 FY2026 earnings, filed 2026-05-14)</a> <span class="news-source-sep">·</span> <a class="news-source-link" href="https://www.egain.com/company/news/press-releases/egain-reports-third-quarter-2026-results-highlighting-accelerating-ai-knowledge-demand-and-improved-profitability/" target="_blank" rel="noopener">eGain press release - Reports Third Quarter 2026 Results</a> <span class="news-source-sep">·</span> <a class="news-source-link" href="https://www.sec.gov/Archives/edgar/data/1066194/000110465926061184/egan-20260331x10q.htm" target="_blank" rel="noopener">SEC EDGAR - eGain Form 10-Q (quarter ended 2026-03-31)</a></div></div>
+  <div class="section" id="earnings"><div class="sec-label">Financials &amp; Key Metrics</div><div class="sec-meta">Reporting period: Q3 FY2026 (ended March 31, 2026); reported 2026-05-14. Each metric is tagged with the period it covers; LTM and as-of figures are labeled individually.</div><div class="metrics-grid"><div class="metric-card"><div class="metric-label">Revenue</div><div class="metric-value">$22.5M</div><div class="metric-sub pos">+7% YoY (SaaS +7%; +11% ex-legacy messaging)</div><div class="metric-period">Q3 FY2026</div></div><div class="metric-card"><div class="metric-label">Ai Knowledge Hub Arr</div><div class="metric-value">$48.0M</div><div class="metric-sub">+26% YoY</div><div class="metric-period">Q3 FY2026</div></div><div class="metric-card"><div class="metric-label">Gaap Eps</div><div class="metric-value long">$0.09 diluted</div><div class="metric-sub">GAAP net income $2.4M</div><div class="metric-period">Q3 FY2026</div></div><div class="metric-card"><div class="metric-label">Non Gaap Eps</div><div class="metric-value long">$0.11 diluted</div><div class="metric-sub">non-GAAP net income $3.2M</div><div class="metric-period">Q3 FY2026</div></div><div class="metric-card"><div class="metric-label">Adj Ebitda</div><div class="metric-value">$3.2M</div><div class="metric-sub">~14% margin</div><div class="metric-period">Q3 FY2026</div></div><div class="metric-card"><div class="metric-label">Gross Margin Gaap</div><div class="metric-value">73%</div><div class="metric-sub">GAAP / 74% non-GAAP</div><div class="metric-period">Q3 FY2026</div></div><div class="metric-card"><div class="metric-label">Cash</div><div class="metric-value">$80.5M</div><div class="metric-sub">cash, zero debt</div><div class="metric-period">Q3 FY2026</div></div><div class="metric-card"><div class="metric-label">Guidance</div><div class="metric-value long">Revenue $90.5-91.0M; non-GAAP EPS $0.39-0.42; adj. EBITDA $11.9-12.4M</div><div class="metric-period">FY2026 guidance</div></div></div><div class="qtrend-wrap">
+    <div class="chart-wrap">
+      <div class="chart-eyebrow">QUARTERLY REVENUE ($B)</div>
+      <svg width="580" height="190" viewBox="0 0 580 190" style="overflow:visible;max-width:100%">
+        
+        <rect x="30" y="51" width="78" height="105" fill="var(--ks-kinpaku)" rx="3" opacity="0.55"/>
+        <text x="69" y="42" text-anchor="middle" font-size="14" fill="var(--ks-champagne)" font-family="Arial,Helvetica,sans-serif" font-weight="700">$21M</text>
+        
+        <text x="69" y="178" text-anchor="middle" font-size="11.5" fill="var(--ks-faint)" font-family="Arial,Helvetica,sans-serif">1Q25</text>
+        <rect x="140" y="40" width="78" height="116" fill="var(--ks-kinpaku)" rx="3" opacity="0.66"/>
+        <text x="179" y="31" text-anchor="middle" font-size="14" fill="var(--ks-champagne)" font-family="Arial,Helvetica,sans-serif" font-weight="700">$23M</text>
+        <text x="179" y="13" text-anchor="middle" font-size="11" fill="var(--ks-patina)" font-family="Arial,Helvetica,sans-serif" font-weight="700">+11%</text>
+        <text x="179" y="178" text-anchor="middle" font-size="11.5" fill="var(--ks-faint)" font-family="Arial,Helvetica,sans-serif">2Q25</text>
+        <rect x="250" y="38" width="78" height="118" fill="var(--ks-kinpaku)" rx="3" opacity="0.78"/>
+        <text x="289" y="29" text-anchor="middle" font-size="14" fill="var(--ks-champagne)" font-family="Arial,Helvetica,sans-serif" font-weight="700">$24M</text>
+        <text x="289" y="11" text-anchor="middle" font-size="11" fill="var(--ks-patina)" font-family="Arial,Helvetica,sans-serif" font-weight="700">+1%</text>
+        <text x="289" y="178" text-anchor="middle" font-size="11.5" fill="var(--ks-faint)" font-family="Arial,Helvetica,sans-serif">3Q25</text>
+        <rect x="360" y="41" width="78" height="115" fill="var(--ks-kinpaku)" rx="3" opacity="0.89"/>
+        <text x="399" y="32" text-anchor="middle" font-size="14" fill="var(--ks-champagne)" font-family="Arial,Helvetica,sans-serif" font-weight="700">$23M</text>
+        <text x="399" y="14" text-anchor="middle" font-size="11" fill="var(--ks-patina)" font-family="Arial,Helvetica,sans-serif" font-weight="700">-2%</text>
+        <text x="399" y="178" text-anchor="middle" font-size="11.5" fill="var(--ks-faint)" font-family="Arial,Helvetica,sans-serif">4Q25</text>
+        <rect x="470" y="44" width="78" height="112" fill="var(--ks-kinpaku)" rx="3" opacity="1.00"/>
+        <text x="509" y="35" text-anchor="middle" font-size="14" fill="var(--ks-champagne)" font-family="Arial,Helvetica,sans-serif" font-weight="700">$22M</text>
+        <text x="509" y="17" text-anchor="middle" font-size="11" fill="var(--ks-patina)" font-family="Arial,Helvetica,sans-serif" font-weight="700">-2%</text>
+        <text x="509" y="178" text-anchor="middle" font-size="11.5" fill="var(--ks-faint)" font-family="Arial,Helvetica,sans-serif">1Q26</text>
+        <line x1="30" y1="158" x2="550" y2="158" stroke="var(--ks-rule-strong)" stroke-width="1"/>
+      </svg>
+      
+      
+    </div><div class="chart-eyebrow">LAST 5 QUARTERS</div><table class="qtrend-table"><thead><tr><th class="qtrend-rowlbl"></th><th class="right">1Q25</th><th class="right">2Q25</th><th class="right">3Q25</th><th class="right">4Q25</th><th class="right">1Q26</th></tr></thead><tbody><tr><td class="qtrend-rowlbl">Revenue</td><td class="mono right">$21M</td><td class="mono right">$23M</td><td class="mono right">$24M</td><td class="mono right">$23M</td><td class="mono right">$22M</td></tr><tr><td class="qtrend-rowlbl">QoQ</td><td class="mono right"></td><td class="mono right pos">+10.6%</td><td class="mono right pos">+1.2%</td><td class="mono right neg">-2.3%</td><td class="mono right neg">-2.1%</td></tr><tr><td class="qtrend-rowlbl">Gross Margin</td><td class="mono right">68.0%</td><td class="mono right">72.7%</td><td class="mono right">75.2%</td><td class="mono right">73.1%</td><td class="mono right">73.4%</td></tr></tbody></table><div class="chart-sources"><span class="chart-source-label">Source:</span> <a class="chart-source-link" href="https://finance.yahoo.com/quote/EGAN/financials" target="_blank" rel="noopener">yfinance / Yahoo Finance (quarterly income statement)</a> &nbsp;&middot;&nbsp; calendar-quarter labels on fiscal period-ends; gross margin = gross profit / revenue. Most recent quarter (1Q26): 7.1% YoY revenue growth.</div></div><ul class="earn-bullets"><li><strong>AI / Product:</strong> AI demand was the dominant theme. AI Knowledge Hub ARR grew 26% YoY to $48.0M and now represents 64% of total SaaS ARR, and management said the mix will keep shifting toward it.</li><li><strong>Demand:</strong> Pipeline and RFP activity accelerated sharply: management said trailing-60-day RFP volume was roughly double its average rate, concentrated in U.S. Fortune 1000 BFSI (banking, insurance) and healthcare, attributed to growing awareness of the knowledge-quality problem in AI deployments. Offsetting the strength, the quarter absorbed a one-time ~$1.6M total SaaS ARR reduction (incl. ~$0.9M AI Knowledge) when an EMEA on-premise customer declined to migrate to eGain Cloud and terminated, tied to country-level cloud restrictions; excluding non-core legacy messaging, all-customer SaaS ARR would have grown 11% YoY versus the reported 7%. The company ended with $80.5M cash, no debt, ~27% YTD operating-cash-flow margin, and ~$20M remaining under its buyback authorization.</li></ul><div class="news-source-row"><span class="news-source-label">Sources:</span> <a class="news-source-link" href="https://www.sec.gov/Archives/edgar/data/1066194/000106619426000011/egan-20260514x8k.htm" target="_blank" rel="noopener">SEC EDGAR - eGain Form 8-K (Q3 FY2026 earnings, filed 2026-05-14)</a> <span class="news-source-sep">·</span> <a class="news-source-link" href="https://www.egain.com/company/news/press-releases/egain-reports-third-quarter-2026-results-highlighting-accelerating-ai-knowledge-demand-and-improved-profitability/" target="_blank" rel="noopener">eGain press release - Reports Third Quarter 2026 Results</a> <span class="news-source-sep">·</span> <a class="news-source-link" href="https://www.sec.gov/Archives/edgar/data/1066194/000110465926061184/egan-20260331x10q.htm" target="_blank" rel="noopener">SEC EDGAR - eGain Form 10-Q (quarter ended 2026-03-31)</a></div></div>
 
   <!-- ⑧ ARR GROWTH CHART -->
   <div class="section" id="growth"><div class="sec-label">Revenue Trajectory</div>
@@ -582,17 +657,17 @@
       <svg width="360" height="190" viewBox="0 0 360 190" style="overflow:visible;max-width:100%">
         
         <rect x="30" y="38" width="78" height="118" fill="var(--ks-kinpaku)" rx="3" opacity="0.55"/>
-        <text x="69" y="29" text-anchor="middle" font-size="14" fill="var(--ks-champagne)" font-family="SFMono-Regular,Roboto Mono,monospace" font-weight="700">$93.1M</text>
+        <text x="69" y="29" text-anchor="middle" font-size="14" fill="var(--ks-champagne)" font-family="Arial,Helvetica,sans-serif" font-weight="700">$93.1M</text>
         
-        <text x="69" y="178" text-anchor="middle" font-size="11.5" fill="var(--ks-faint)" font-family="SFMono-Regular,Roboto Mono,monospace">FY2024</text>
+        <text x="69" y="178" text-anchor="middle" font-size="11.5" fill="var(--ks-faint)" font-family="Arial,Helvetica,sans-serif">FY2024</text>
         <rect x="140" y="44" width="78" height="112" fill="var(--ks-kinpaku)" rx="3" opacity="0.78"/>
-        <text x="179" y="35" text-anchor="middle" font-size="14" fill="var(--ks-champagne)" font-family="SFMono-Regular,Roboto Mono,monospace" font-weight="700">$88.4M</text>
-        <text x="179" y="17" text-anchor="middle" font-size="11" fill="var(--ks-patina)" font-family="SFMono-Regular,Roboto Mono,monospace" font-weight="700">-5%</text>
-        <text x="179" y="178" text-anchor="middle" font-size="11.5" fill="var(--ks-faint)" font-family="SFMono-Regular,Roboto Mono,monospace">FY2025</text>
+        <text x="179" y="35" text-anchor="middle" font-size="14" fill="var(--ks-champagne)" font-family="Arial,Helvetica,sans-serif" font-weight="700">$88.4M</text>
+        <text x="179" y="17" text-anchor="middle" font-size="11" fill="var(--ks-patina)" font-family="Arial,Helvetica,sans-serif" font-weight="700">-5%</text>
+        <text x="179" y="178" text-anchor="middle" font-size="11.5" fill="var(--ks-faint)" font-family="Arial,Helvetica,sans-serif">FY2025</text>
         <rect x="250" y="41" width="78" height="115" fill="var(--ks-kinpaku)" rx="3" opacity="1.00"/>
-        <text x="289" y="32" text-anchor="middle" font-size="14" fill="var(--ks-champagne)" font-family="SFMono-Regular,Roboto Mono,monospace" font-weight="700">$90.5-91M (guide)</text>
-        <text x="289" y="14" text-anchor="middle" font-size="11" fill="var(--ks-patina)" font-family="SFMono-Regular,Roboto Mono,monospace" font-weight="700">+3%</text>
-        <text x="289" y="178" text-anchor="middle" font-size="11.5" fill="var(--ks-faint)" font-family="SFMono-Regular,Roboto Mono,monospace">FY2026E</text>
+        <text x="289" y="32" text-anchor="middle" font-size="14" fill="var(--ks-champagne)" font-family="Arial,Helvetica,sans-serif" font-weight="700">$90.5-91M (guide)</text>
+        <text x="289" y="14" text-anchor="middle" font-size="11" fill="var(--ks-patina)" font-family="Arial,Helvetica,sans-serif" font-weight="700">+3%</text>
+        <text x="289" y="178" text-anchor="middle" font-size="11.5" fill="var(--ks-faint)" font-family="Arial,Helvetica,sans-serif">FY2026E</text>
         <line x1="30" y1="158" x2="330" y2="158" stroke="var(--ks-rule-strong)" stroke-width="1"/>
       </svg>
       
@@ -606,10 +681,16 @@
   <div class="section" id="comps"><div class="sec-label">Comparable Companies</div>
     <table class="comps-table">
       <thead><tr><th class="comp-name-col">Company</th><th>Ticker</th><th>Type</th><th class="right">EV / Rev<span class="th-unit">LTM</span></th><th class="right">Rev Growth<span class="th-unit">YoY</span></th><th class="right">Gross Margin</th><th>Note</th></tr></thead>
-      <tbody><tr class="subj"><td class="comp-name">eGain</td><td class="mono comp-ticker"><a class="comp-source-link" href="https://finance.yahoo.com/quote/EGAN" target="_blank" rel="noopener">EGAN</a></td><td class="comp-type-cell">Subject</td><td class="mono right comp-ev">1.4x</td><td class="mono right">7.1%</td><td class="mono right">73.6%</td><td class="note-cell">subject; ~$8/share, $207M mkt cap, $80.5M cash / zero debt; AI Knowledge Hub ARR +26%; profitable (adj. EBITDA ~14%)</td></tr><tr><td class="comp-name">NICE Ltd</td><td class="mono comp-ticker"><a class="comp-source-link" href="https://finance.yahoo.com/quote/NICE" target="_blank" rel="noopener">NICE</a></td><td class="comp-type-cell"></td><td class="mono right comp-ev">1.8x</td><td class="mono right">9.8%</td><td class="mono right">65.8%</td><td class="note-cell">scaled CX/CCaaS incumbent; CXone platform with embedded knowledge & agent-assist; far larger, similar growth</td></tr><tr><td class="comp-name">Verint Systems</td><td class="mono comp-ticker"><a class="comp-source-link" href="https://finance.yahoo.com/quote/VRNT" target="_blank" rel="noopener">VRNT</a></td><td class="comp-type-cell"></td><td class="mono right comp-ev">2.2x</td><td class="mono right">-1.0%</td><td class="mono right">70.9%</td><td class="note-cell">CX/workforce-engagement peer; flat-to-declining revenue; direct knowledge & self-service competitor</td></tr><tr><td class="comp-name">Five9</td><td class="mono comp-ticker"><a class="comp-source-link" href="https://finance.yahoo.com/quote/FIVN" target="_blank" rel="noopener">FIVN</a></td><td class="comp-type-cell"></td><td class="mono right comp-ev">1.6x</td><td class="mono right">9.2%</td><td class="mono right">55.5%</td><td class="note-cell">cloud contact-center (CCaaS); adjacent channel/ecosystem; lower gross margin hardware-of-the-cloud model</td></tr><tr><td class="comp-name">Pegasystems</td><td class="mono comp-ticker"><a class="comp-source-link" href="https://finance.yahoo.com/quote/PEGA" target="_blank" rel="noopener">PEGA</a></td><td class="comp-type-cell"></td><td class="mono right comp-ev">3.2x</td><td class="mono right">-9.6%</td><td class="mono right">75.0%</td><td class="note-cell">CRM/BPM + customer-engagement AI; richer multiple despite negative reported growth on subscription-transition optics</td></tr><tr><td class="comp-name">Sprinklr</td><td class="mono comp-ticker"><a class="comp-source-link" href="https://finance.yahoo.com/quote/CXM" target="_blank" rel="noopener">CXM</a></td><td class="comp-type-cell"></td><td class="mono right comp-ev">0.3x</td><td class="mono right">8.9%</td><td class="mono right">67.4%</td><td class="note-cell">unified-CXM peer; optically low EV/Rev reflects a large net-cash balance (cash-rich, depressed EV) - read with caution</td></tr><tr><td class="comp-name">Freshworks</td><td class="mono comp-ticker"><a class="comp-source-link" href="https://finance.yahoo.com/quote/FRSH" target="_blank" rel="noopener">FRSH</a></td><td class="comp-type-cell"></td><td class="mono right comp-ev">1.9x</td><td class="mono right">16.5%</td><td class="mono right">85.0%</td><td class="note-cell">SMB/mid-market CX & ITSM; fastest grower and highest gross margin in the set; AI 'Freddy' positioning</td></tr></tbody>
-    </table><div class="chart-sources"><span class="chart-source-label">Sources:</span> Public-ticker multiples pulled live from <a class="chart-source-link" href="https://finance.yahoo.com" target="_blank" rel="noopener">yfinance / Yahoo Finance</a>, as of the 2026-06-03 market close; EV/Rev recomputed from last close × shares + net debt. Rev Growth (YoY) and Gross Margin reflect each company's most recent reported quarter / LTM, so their as-of periods differ by company and from the price close above.</div></div>
+      <tbody><tr class="subj"><td class="comp-name">eGain</td><td class="mono comp-ticker"><a class="comp-source-link" href="https://finance.yahoo.com/quote/EGAN" target="_blank" rel="noopener">EGAN</a></td><td class="comp-type-cell">Subject</td><td class="mono right comp-ev">1.3x</td><td class="mono right">7.1%</td><td class="mono right">73.6%</td><td class="note-cell">subject; ~$8/share, $207M mkt cap, $80.5M cash / zero debt; AI Knowledge Hub ARR +26%; profitable (adj. EBITDA ~14%)</td></tr><tr><td class="comp-name">NICE Ltd</td><td class="mono comp-ticker"><a class="comp-source-link" href="https://finance.yahoo.com/quote/NICE" target="_blank" rel="noopener">NICE</a></td><td class="comp-type-cell"></td><td class="mono right comp-ev">1.7x</td><td class="mono right">9.8%</td><td class="mono right">65.8%</td><td class="note-cell">scaled CX/CCaaS incumbent; CXone platform with embedded knowledge & agent-assist; far larger, similar growth</td></tr><tr><td class="comp-name">Verint Systems</td><td class="mono comp-ticker"><a class="comp-source-link" href="https://finance.yahoo.com/quote/VRNT" target="_blank" rel="noopener">VRNT</a></td><td class="comp-type-cell"></td><td class="mono right comp-ev">2.2x</td><td class="mono right">-1.0%</td><td class="mono right">70.9%</td><td class="note-cell">CX/workforce-engagement peer; flat-to-declining revenue; direct knowledge & self-service competitor</td></tr><tr><td class="comp-name">Five9</td><td class="mono comp-ticker"><a class="comp-source-link" href="https://finance.yahoo.com/quote/FIVN" target="_blank" rel="noopener">FIVN</a></td><td class="comp-type-cell"></td><td class="mono right comp-ev">1.6x</td><td class="mono right">9.2%</td><td class="mono right">55.5%</td><td class="note-cell">cloud contact-center (CCaaS); adjacent channel/ecosystem; lower gross margin hardware-of-the-cloud model</td></tr><tr><td class="comp-name">Pegasystems</td><td class="mono comp-ticker"><a class="comp-source-link" href="https://finance.yahoo.com/quote/PEGA" target="_blank" rel="noopener">PEGA</a></td><td class="comp-type-cell"></td><td class="mono right comp-ev">3.2x</td><td class="mono right">-9.6%</td><td class="mono right">75.0%</td><td class="note-cell">CRM/BPM + customer-engagement AI; richer multiple despite negative reported growth on subscription-transition optics</td></tr><tr><td class="comp-name">Sprinklr</td><td class="mono comp-ticker"><a class="comp-source-link" href="https://finance.yahoo.com/quote/CXM" target="_blank" rel="noopener">CXM</a></td><td class="comp-type-cell"></td><td class="mono right comp-ev">0.4x</td><td class="mono right">6.8%</td><td class="mono right">66.3%</td><td class="note-cell">unified-CXM peer; optically low EV/Rev reflects a large net-cash balance (cash-rich, depressed EV) - read with caution</td></tr><tr><td class="comp-name">Freshworks</td><td class="mono comp-ticker"><a class="comp-source-link" href="https://finance.yahoo.com/quote/FRSH" target="_blank" rel="noopener">FRSH</a></td><td class="comp-type-cell"></td><td class="mono right comp-ev">1.9x</td><td class="mono right">16.5%</td><td class="mono right">85.0%</td><td class="note-cell">SMB/mid-market CX & ITSM; fastest grower and highest gross margin in the set; AI 'Freddy' positioning</td></tr></tbody>
+    </table><div class="chart-sources"><span class="chart-source-label">Sources:</span> Public-ticker multiples pulled live from <a class="chart-source-link" href="https://finance.yahoo.com" target="_blank" rel="noopener">yfinance / Yahoo Finance</a>, as of the 2026-06-05 market close; EV/Rev recomputed from last close × shares + net debt. Rev Growth (YoY) and Gross Margin reflect each company's most recent reported quarter / LTM, so their as-of periods differ by company and from the price close above.</div></div>
 
-  <!-- ⑩b COMPETITORS (if no comps table) -->
+  <!-- ⑩a SWOT ANALYSIS (how the subject stands out vs the comp set) -->
+  
+
+  <!-- ⑩b GARTNER MAGIC QUADRANT (optional embedded map) -->
+  
+
+  <!-- ⑩c COMPETITORS (if no comps table) -->
   
 
   <!-- ⑩c PRIMARY FILINGS (SEC EDGAR) -->
