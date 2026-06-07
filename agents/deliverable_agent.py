@@ -262,12 +262,12 @@ def build_bar_chart(series: list, eyebrow: str = "REVENUE TRAJECTORY",
         if i > 0 and series[i-1]["value"]:
             pct = int(round(((r["value"] - series[i-1]["value"]) / series[i-1]["value"]) * 100))
             sign = "+" if pct >= 0 else ""
-            growth = f'<text x="{x + bar_w//2}" y="{y - 27}" text-anchor="middle" font-size="11" fill="{growth_color}" font-family="SFMono-Regular,Roboto Mono,monospace" font-weight="700">{sign}{pct}%</text>'
+            growth = f'<text x="{x + bar_w//2}" y="{y - 27}" text-anchor="middle" font-size="11" fill="{growth_color}" font-family="Arial,Helvetica,sans-serif" font-weight="700">{sign}{pct}%</text>'
         bars += f"""
         <rect x="{x}" y="{y}" width="{bar_w}" height="{bar_h}" fill="{accent}" rx="3" opacity="{opacity:.2f}"/>
-        <text x="{x + bar_w//2}" y="{y - 9}" text-anchor="middle" font-size="14" fill="var(--ks-champagne)" font-family="SFMono-Regular,Roboto Mono,monospace" font-weight="700">{r.get("label","")}</text>
+        <text x="{x + bar_w//2}" y="{y - 9}" text-anchor="middle" font-size="14" fill="var(--ks-champagne)" font-family="Arial,Helvetica,sans-serif" font-weight="700">{r.get("label","")}</text>
         {growth}
-        <text x="{x + bar_w//2}" y="{base_y + 22}" text-anchor="middle" font-size="11.5" fill="var(--ks-faint)" font-family="SFMono-Regular,Roboto Mono,monospace">{r.get("year","")}</text>"""
+        <text x="{x + bar_w//2}" y="{base_y + 22}" text-anchor="middle" font-size="11.5" fill="var(--ks-faint)" font-family="Arial,Helvetica,sans-serif">{r.get("year","")}</text>"""
     seen, footnotes = set(), []
     for r in series:
         src, url = r.get("source",""), r.get("sourceUrl","")
@@ -296,10 +296,13 @@ def build_arr_chart(rev_history: list) -> str:
 
 def build_quarterly_trend(ticker: str) -> str:
     """
-    Compact 'last 4 quarters' matrix (Revenue, QoQ, Gross Margin across quarters,
-    oldest -> newest so it reads left to right) pulled LIVE from yfinance, so the
-    Financials section shows trajectory instead of a single-quarter snapshot, which
-    is what a reviewing MD actually wants. Returns '' for private companies or when
+    Combined quarterly-revenue unit for the Financials section: a bar chart of the
+    last ~5 quarters' revenue sitting directly above the matrix (Revenue, QoQ, Gross
+    Margin), both oldest -> newest and both driven by the SAME live yfinance pull so
+    the picture and the precise numbers can never disagree. The chart replaces the
+    old standalone revenue-trajectory bars (which duplicated this table); putting them
+    together gives an MD the trajectory and the exact figures in one place, ending on
+    the most recent reported quarter. Returns '' for private companies or when
     quarterly data is unavailable, so it degrades silently and never breaks a brief.
     """
     if not ticker or not re.fullmatch(r"[A-Za-z.\-]{1,6}", ticker):
@@ -313,6 +316,16 @@ def build_quarterly_trend(ticker: str) -> str:
     if len(qs) < 2:
         return ""
     qs = list(reversed(qs))                                  # oldest -> newest
+
+    # Bar chart from the SAME quarters (revenue in $B), so visual + table always tie.
+    chart_html = ""
+    chart_series = [
+        {"value": q["revenueNum"] / 1e9, "label": q.get("revenue", ""), "year": q.get("label", "")}
+        for q in qs if q.get("revenueNum")
+    ]
+    if len(chart_series) >= 2:
+        chart_html = build_bar_chart(chart_series, eyebrow="QUARTERLY REVENUE ($B)",
+                                     accent="var(--ks-kinpaku)")
 
     heads = "".join(f'<th class="right">{q.get("label","")}</th>' for q in qs)
 
@@ -343,7 +356,8 @@ def build_quarterly_trend(ticker: str) -> str:
         f'<a class="chart-source-link" href="{url}" target="_blank" rel="noopener">{src}</a>'
         f' &nbsp;&middot;&nbsp; {basis}.{yoy_txt}</div>')
     return (
-        f'<div class="qtrend-wrap"><div class="chart-eyebrow">LAST {len(qs)} QUARTERS</div>'
+        f'<div class="qtrend-wrap">{chart_html}'
+        f'<div class="chart-eyebrow">LAST {len(qs)} QUARTERS</div>'
         f'<table class="qtrend-table"><thead><tr><th class="qtrend-rowlbl"></th>{heads}</tr></thead>'
         f'<tbody>{rows}</tbody></table>{caption}</div>')
 
@@ -1275,7 +1289,6 @@ def build_html(profile: dict) -> str:
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{name} · Atlas Research Brief</title>
-<link href="https://fonts.googleapis.com/css2?family=Alumni+Sans+Pinstripe&family=Albert+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   /* Institutional (light) design tokens: sell-side research note */
   :root {{
@@ -1303,12 +1316,13 @@ def build_html(profile: dict) -> str:
 
   /* ── Base ── */
   * {{ box-sizing: border-box; margin: 0; padding: 0; }}
-  body {{ font-family: "Albert Sans", "Avenir Next", "Helvetica Neue", Arial, system-ui, sans-serif;
-         background: var(--ks-lacquer); color: var(--ks-body); font-size: 16.5px; line-height: 1.65; }}
+  body {{ font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+         background: var(--ks-lacquer); color: var(--ks-body); font-size: 14px; line-height: 1.55;
+         font-variant-numeric: tabular-nums; }}
   a {{ color: inherit; text-decoration: none; }}
-  p {{ color: var(--ks-body); line-height: 1.75; margin-bottom: 6px; }}
+  p {{ color: var(--ks-body); line-height: 1.6; margin-bottom: 6px; }}
   strong {{ color: var(--ks-champagne); }}
-  .mono {{ font-family: "SFMono-Regular", "Roboto Mono", monospace; }}
+  .mono {{ font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; font-variant-numeric: tabular-nums; }}
   .right {{ text-align: right; }}
 
   .wrapper {{ width: 100%; max-width: 1400px; margin: 0 auto; background: var(--ks-lacquer);
@@ -1328,26 +1342,26 @@ def build_html(profile: dict) -> str:
                    display: block; }}
   .header-badges {{ display: flex; align-items: center; gap: 7px; margin-top: 6px; flex-wrap: wrap; }}
   .ticker-badge {{ background: transparent; color: var(--ks-kinpaku);
-                   font-family: "SFMono-Regular", "Roboto Mono", monospace;
+                   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
                    font-size: 10.5px; font-weight: 700; padding: 0; border-radius: 0;
                    letter-spacing: 0.16em; text-transform: uppercase; }}
   .stage-badge {{ background: var(--ks-raised); border: 1px solid var(--ks-rule);
                   color: var(--ks-muted); font-size: 10px; font-weight: 600; padding: 2px 8px;
                   border-radius: 2px; letter-spacing: 0.12em;
-                  font-family: "SFMono-Regular", "Roboto Mono", monospace; }}
+                  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; }}
   .draft-badge {{ background: var(--ks-kinpaku); border: 1px solid var(--ks-kinpaku);
                   color: #ffffff; font-size: 10px; font-weight: 700; padding: 2px 9px;
                   border-radius: 2px; letter-spacing: 0.15em;
-                  font-family: "SFMono-Regular", "Roboto Mono", monospace; }}
+                  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; }}
   .header-meta {{ font-size: 11.5px; color: var(--ks-faint); }}
   .header-meta a {{ color: var(--ks-kinpaku-pale); }}
   .verticals {{ margin-top: 10px; display: flex; flex-wrap: wrap; gap: 6px; }}
   .vertical-tag {{ background: var(--ks-graphite); border: 1px solid var(--ks-rule);
                    color: var(--ks-muted); font-size: 10px; padding: 2px 9px; border-radius: 3px;
-                   font-family: "SFMono-Regular", "Roboto Mono", monospace; letter-spacing: 0.06em; }}
+                   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; letter-spacing: 0.06em; }}
   .trading-bar {{ background: var(--ks-raised); border: 1px solid var(--ks-rule); border-radius: 3px;
                   padding: 9px 14px; margin-top: 14px; font-size: 11px; color: var(--ks-faint);
-                  font-family: "SFMono-Regular", "Roboto Mono", monospace; }}
+                  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; }}
   .trading-bar strong {{ color: var(--ks-champagne); margin-right: 4px; }}
 
   /* ── Hero stats bar ── */
@@ -1361,12 +1375,12 @@ def build_html(profile: dict) -> str:
   .hero-card:last-child {{ border-right: none; }}
   .hero-label {{ font-size: 9.5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.13em;
                  color: var(--ks-faint); margin-bottom: 6px; white-space: nowrap;
-                 font-family: "SFMono-Regular", "Roboto Mono", monospace; }}
+                 font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; }}
   /* big number stays on ONE line; a long head shrinks to fit rather than wrapping */
-  .hero-value {{ font-family: "SFMono-Regular", "Roboto Mono", monospace; font-size: 1.5rem; font-weight: 700;
+  .hero-value {{ font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; font-size: 1.5rem; font-weight: 700;
                  line-height: 1.1; color: var(--ks-kinpaku); white-space: nowrap; }}
   .hero-value.long {{ font-size: 1.1rem; letter-spacing: -0.01em; }}
-  .hero-sub {{ font-family: "SFMono-Regular", "Roboto Mono", monospace; font-size: 10.5px;
+  .hero-sub {{ font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; font-size: 10.5px;
                color: var(--ks-faint); margin-top: 4px; line-height: 1.3; }}
   .hero-sub.pos {{ color: var(--ks-patina); }}
   /* narrow screens: let the 5-col strip reflow (print/desktop keep 5 across) */
@@ -1380,26 +1394,26 @@ def build_html(profile: dict) -> str:
   .toc-link {{ font-size: 10px; font-weight: 600; color: var(--ks-faint); padding: 3px 10px;
                border-radius: 20px; border: 1px solid var(--ks-rule); background: transparent;
                transition: background 150ms var(--ks-ease), color 150ms var(--ks-ease);
-               white-space: nowrap; font-family: "SFMono-Regular", "Roboto Mono", monospace;
+               white-space: nowrap; font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
                letter-spacing: 0.04em; }}
   .toc-link:hover {{ background: var(--ks-kinpaku); color: var(--ks-lacquer-deep); border-color: var(--ks-kinpaku); }}
 
   /* ── Sections ── */
   .section {{ border-bottom: 1px solid var(--ks-rule); padding: 24px 40px; scroll-margin-top: 48px; }}
   .section:last-of-type {{ border-bottom: none; }}
-  .sec-label {{ font-family: "SFMono-Regular", "Roboto Mono", monospace; font-size: 10px; font-weight: 700;
+  .sec-label {{ font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; font-size: 10px; font-weight: 700;
                 letter-spacing: 0.15em; text-transform: uppercase; color: var(--ks-accent);
                 margin-bottom: 15px; padding-bottom: 7px; border-bottom: 1px solid var(--ks-rule); }}
   /* normal-weight metadata line under a section label (quarter, as-of, captions) —
      keeps the eyebrow itself short and uncluttered instead of wrapping inline */
-  .sec-meta {{ font-family: "SFMono-Regular", "Roboto Mono", monospace; font-size: 10.5px;
+  .sec-meta {{ font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; font-size: 10.5px;
                color: var(--ks-faint); margin: -9px 0 14px; letter-spacing: 0.03em; line-height: 1.4; }}
 
   /* ── Two-col layout (overview) ── */
   .two-col {{ display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: start; }}
   @media (max-width: 760px) {{ .two-col {{ grid-template-columns: 1fr; }} }}
   .diagram-caption {{ font-size: 11px; color: var(--ks-faint); margin-bottom: 10px; line-height: 1.4;
-                      font-family: "SFMono-Regular", "Roboto Mono", monospace; }}
+                      font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; }}
 
   /* ── "Understand the business" explainer (plain / technical / simple) ── */
   .explain-grid {{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 24px; }}
@@ -1410,7 +1424,7 @@ def build_html(profile: dict) -> str:
   .explain-2 {{ border-top-color: var(--ks-patina); }}
   .explain-label {{ font-size: 10px; font-weight: 700; letter-spacing: 0.13em; text-transform: uppercase;
                     color: var(--ks-kinpaku); margin-bottom: 9px;
-                    font-family: "SFMono-Regular", "Roboto Mono", monospace; }}
+                    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; }}
   .explain-1 .explain-label {{ color: var(--ks-accent); }}
   .explain-2 .explain-label {{ color: var(--ks-patina); }}
   .explain-text {{ font-size: 14px; line-height: 1.6; color: var(--ks-body); }}
@@ -1427,7 +1441,7 @@ def build_html(profile: dict) -> str:
   .diff-table th {{ text-align: left; font-size: 9px; font-weight: 700; letter-spacing: 0.1em;
                     text-transform: uppercase; color: var(--ks-faint); padding: 0 14px 8px 0;
                     border-bottom: 1.5px solid var(--ks-kinpaku);
-                    font-family: "SFMono-Regular", "Roboto Mono", monospace; vertical-align: bottom; }}
+                    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; vertical-align: bottom; }}
   .diff-table td {{ padding: 11px 14px 11px 0; border-bottom: 1px solid var(--ks-rule);
                     vertical-align: top; color: var(--ks-body); line-height: 1.55; }}
   .diff-table tr:last-child td {{ border-bottom: none; }}
@@ -1455,9 +1469,9 @@ def build_html(profile: dict) -> str:
                 border-bottom: 1px solid var(--ks-rule); }}
   .swot-title {{ font-size: 11px; font-weight: 700; letter-spacing: 0.11em;
                  text-transform: uppercase; color: var(--ks-champagne);
-                 font-family: "SFMono-Regular", "Roboto Mono", monospace; }}
+                 font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; }}
   .swot-sub {{ font-size: 9.5px; letter-spacing: 0.06em; text-transform: uppercase;
-               color: var(--ks-faint); font-family: "SFMono-Regular", "Roboto Mono", monospace; }}
+               color: var(--ks-faint); font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; }}
   .swot-list {{ list-style: none; margin: 0; padding: 0; }}
   .swot-list li {{ position: relative; padding: 0 0 7px 15px; font-size: 13.5px;
                    line-height: 1.55; color: var(--ks-body); }}
@@ -1491,19 +1505,22 @@ def build_html(profile: dict) -> str:
   .biz-col-mid {{ flex: 1.05; }}
   .biz-col-label {{ font-size: 9px; text-transform: uppercase; letter-spacing: 0.14em;
                     color: var(--ks-faint); margin-bottom: 3px; line-height: 1.3;
-                    font-family: "SFMono-Regular", "Roboto Mono", monospace; }}
+                    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; }}
   .biz-node {{ padding: 9px 11px; border-radius: 4px; }}
-  .biz-node-name {{ font-size: 12.5px; font-weight: 600; line-height: 1.25; }}
+  .biz-node-name {{ font-size: 12.5px; font-weight: 600; line-height: 1.25;
+                    overflow-wrap: anywhere; }}
   .biz-node-sub {{ font-size: 10.5px; font-weight: 400; line-height: 1.3; margin-top: 2px;
-                   color: var(--ks-muted); }}
+                   color: var(--ks-muted); overflow-wrap: anywhere; }}
   .biz-cust {{ background: rgba(19,49,92,0.05); border: 1px solid rgba(19,49,92,0.18);
                color: var(--ks-champagne); }}
   .biz-out  {{ background: rgba(10,125,77,0.06); border: 1px solid rgba(10,125,77,0.22);
                color: var(--ks-champagne); }}
   .biz-platform {{ background: var(--ks-kinpaku); color: var(--ks-lacquer-deep); padding: 11px 12px;
-                   border-radius: 4px; font-size: 13px; font-weight: 700; text-align: center; }}
+                   border-radius: 4px; font-size: 13px; font-weight: 700; text-align: center;
+                   overflow-wrap: anywhere; }}
   .biz-mod {{ background: var(--ks-graphite-2); border: 1px solid var(--ks-rule); color: var(--ks-body);
-              padding: 8px 10px; border-radius: 4px; font-size: 12px; text-align: center; line-height: 1.3; }}
+              padding: 8px 10px; border-radius: 4px; font-size: 12px; text-align: center; line-height: 1.3;
+              overflow-wrap: anywhere; }}
   .biz-arrow {{ display: flex; align-items: center; padding: 0 9px; color: var(--ks-kinpaku);
                 font-size: 18px; flex-shrink: 0; align-self: center; }}
   @media (max-width: 720px) {{ .biz-flow {{ flex-direction: column; }} .biz-arrow {{ transform: rotate(90deg); margin: 2px auto; }} }}
@@ -1513,13 +1530,13 @@ def build_html(profile: dict) -> str:
   .news-item:last-child {{ border-bottom: none; }}
   .news-row {{ display: flex; gap: 14px; align-items: flex-start; }}
   .news-date {{ font-size: 10px; color: var(--ks-faint); white-space: nowrap; min-width: 74px;
-                font-family: "SFMono-Regular", "Roboto Mono", monospace; padding-top: 2px; }}
+                font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; padding-top: 2px; }}
   .news-headline {{ font-size: 15.5px; font-weight: 600; color: var(--ks-champagne); line-height: 1.4; }}
   .news-why {{ font-size: 14px; color: var(--ks-muted); margin-top: 6px; margin-left: 88px; line-height: 1.6; }}
 
   /* ── Financials / metrics ── */
   .fin-meta {{ font-size: 11px; color: var(--ks-faint); margin-bottom: 14px;
-               font-family: "SFMono-Regular", "Roboto Mono", monospace; letter-spacing: 0.05em; }}
+               font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; letter-spacing: 0.05em; }}
   /* auto-fill (not auto-fit): a partial last row keeps card width + stays left-aligned */
   .metrics-grid {{ display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
                    gap: 10px; margin-bottom: 18px; }}
@@ -1529,35 +1546,35 @@ def build_html(profile: dict) -> str:
      cards aligned whether the label is 1 or 2 lines */
   .metric-label {{ font-size: 9.5px; font-weight: 500; color: var(--ks-faint); text-transform: uppercase;
                    letter-spacing: 0.12em; margin-bottom: 6px; line-height: 1.3; min-height: 1.9em;
-                   font-family: "SFMono-Regular", "Roboto Mono", monospace; }}
+                   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; }}
   /* big number stays on ONE line; a long/sentence-like head shrinks AND wraps inside the
      card instead of overflowing into the neighbouring tile */
-  .metric-value {{ font-family: "SFMono-Regular", "Roboto Mono", monospace; font-size: 1.15rem; font-weight: 700;
+  .metric-value {{ font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; font-size: 1.15rem; font-weight: 700;
                    color: var(--ks-kinpaku); line-height: 1.2; white-space: nowrap; }}
   .metric-value.long {{ font-size: 0.95rem; letter-spacing: -0.01em; white-space: normal;
                         overflow-wrap: anywhere; line-height: 1.3; }}
   .metric-value.green {{ color: var(--ks-patina); }}
   .metric-sub {{ font-size: 10.5px; color: var(--ks-faint); margin-top: 4px; line-height: 1.35;
-                 font-family: "SFMono-Regular", "Roboto Mono", monospace; }}
+                 font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; }}
   .metric-sub.pos {{ color: var(--ks-patina); font-weight: 600; }}
   /* period tag: the time window each metric covers, so a number is never undated */
   .metric-period {{ font-size: 9px; color: var(--ks-faint); margin-top: 5px; line-height: 1.3;
                     letter-spacing: 0.04em; text-transform: uppercase; white-space: normal;
                     overflow-wrap: anywhere; padding-top: 4px; border-top: 1px solid var(--ks-rule);
-                    font-family: "SFMono-Regular", "Roboto Mono", monospace; }}
+                    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; }}
 
   /* ── Quarterly trend matrix (Revenue / QoQ / Gross Margin × last 4 quarters) ── */
   .qtrend-wrap {{ margin: 4px 0 6px; }}
   .qtrend-table {{ width: 100%; border-collapse: collapse; margin-top: 8px; }}
   .qtrend-table th, .qtrend-table td {{ padding: 7px 12px; border-bottom: 1px solid var(--ks-rule);
                    font-size: 13px; }}
-  .qtrend-table thead th {{ font-family: "SFMono-Regular", "Roboto Mono", monospace; font-size: 10px;
+  .qtrend-table thead th {{ font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; font-size: 10px;
                    font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
                    color: var(--ks-faint); border-bottom: 1px solid var(--ks-rule-strong); }}
   .qtrend-table td.mono {{ color: var(--ks-champagne); font-weight: 600; }}
   .qtrend-table td.pos {{ color: var(--ks-patina); }}
   .qtrend-table td.neg {{ color: var(--ks-vermilion); }}
-  .qtrend-rowlbl {{ text-align: left; font-family: "SFMono-Regular", "Roboto Mono", monospace;
+  .qtrend-rowlbl {{ text-align: left; font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
                    font-size: 10.5px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em;
                    color: var(--ks-faint); white-space: nowrap; }}
   .qtrend-table tbody tr:last-child td {{ border-bottom: none; }}
@@ -1583,7 +1600,7 @@ def build_html(profile: dict) -> str:
   .chart-wrap {{ margin: 4px 0 8px; }}
   .chart-eyebrow {{ font-size: 9px; text-transform: uppercase; letter-spacing: 0.18em;
                     color: var(--ks-faint); margin-bottom: 12px;
-                    font-family: "SFMono-Regular", "Roboto Mono", monospace; }}
+                    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; }}
 
   /* ── Funding timeline (flex cards) ── */
   .tl-flex  {{ display: flex; align-items: center; gap: 0; overflow-x: auto;
@@ -1592,12 +1609,12 @@ def build_html(profile: dict) -> str:
                padding: 10px 12px; min-width: 88px; text-align: center; flex-shrink: 0; }}
   .tl-arrow {{ color: var(--ks-kinpaku); font-size: 14px; padding: 0 4px; flex-shrink: 0; }}
   .tl-round {{ font-size: 8px; text-transform: uppercase; letter-spacing: 0.10em;
-               color: var(--ks-faint); font-family: "SFMono-Regular", "Roboto Mono", monospace;
+               color: var(--ks-faint); font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
                margin-bottom: 3px; }}
   .tl-amt   {{ font-size: 12px; font-weight: 700; color: var(--ks-kinpaku);
-               font-family: "SFMono-Regular", "Roboto Mono", monospace; }}
+               font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; }}
   .tl-val   {{ font-size: 10px; color: var(--ks-patina);
-               font-family: "SFMono-Regular", "Roboto Mono", monospace; margin-top: 2px; }}
+               font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; margin-top: 2px; }}
   .tl-date  {{ font-size: 9px; color: var(--ks-faint); margin-top: 1px; }}
   .tl-leads {{ font-size: 9px; color: var(--ks-muted); margin-top: 3px; line-height: 1.3; }}
 
@@ -1612,7 +1629,7 @@ def build_html(profile: dict) -> str:
   .news-source-nolink {{ color: var(--ks-faint); }}
   /* legacy: keep so old references do not break */
   .news-source {{ font-size: 9.5px; font-weight: 600; color: var(--ks-faint); margin-left: 8px;
-                  font-family: "SFMono-Regular", "Roboto Mono", monospace; letter-spacing: 0.05em;
+                  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; letter-spacing: 0.05em;
                   background: var(--ks-raised); border: 1px solid var(--ks-rule);
                   padding: 1px 6px; border-radius: 3px; vertical-align: middle; }}
 
@@ -1625,11 +1642,11 @@ def build_html(profile: dict) -> str:
                  border-bottom: 1px solid var(--ks-rule); }}
   .filing-row:last-child {{ border-bottom: none; }}
   .filing-row:hover .filing-go {{ opacity: 1; }}
-  .filing-form {{ font-family: "SFMono-Regular", "Roboto Mono", monospace; font-weight: 700;
+  .filing-form {{ font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; font-weight: 700;
                   font-size: 12.5px; color: var(--ks-kinpaku); min-width: 52px; }}
-  .filing-meta {{ font-family: "SFMono-Regular", "Roboto Mono", monospace; font-size: 11.5px;
+  .filing-meta {{ font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; font-size: 11.5px;
                   color: var(--ks-faint); flex: 1; }}
-  .filing-go {{ font-family: "SFMono-Regular", "Roboto Mono", monospace; font-size: 10.5px;
+  .filing-go {{ font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; font-size: 10.5px;
                 font-weight: 700; letter-spacing: 0.04em; color: var(--ks-kinpaku-pale);
                 opacity: 0.55; transition: opacity .15s; white-space: nowrap; }}
 
@@ -1646,20 +1663,20 @@ def build_html(profile: dict) -> str:
   .kit-tags {{ display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; }}
   .kit-tag  {{ font-size: 9px; background: var(--ks-graphite); border: 1px solid var(--ks-rule);
                color: var(--ks-kinpaku-pale); padding: 2px 7px; border-radius: 3px;
-               font-family: "SFMono-Regular", "Roboto Mono", monospace; letter-spacing: 0.04em; }}
+               font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; letter-spacing: 0.04em; }}
   .kit-copy {{ display: flex; flex-direction: column; gap: 6px; }}
   .kit-copy-label {{ font-size: 8.5px; text-transform: uppercase; letter-spacing: 0.18em;
-                     color: var(--ks-faint); font-family: "SFMono-Regular", "Roboto Mono", monospace; }}
+                     color: var(--ks-faint); font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; }}
   .kit-stat {{ background: var(--ks-raised); border: 1px solid var(--ks-rule); border-radius: 3px;
                padding: 8px 12px; font-size: 12.5px; font-weight: 600; color: var(--ks-champagne);
-               font-family: "SFMono-Regular", "Roboto Mono", monospace; cursor: text; }}
+               font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; cursor: text; }}
   .kit-bullet {{ background: var(--ks-graphite); border-left: 2px solid var(--ks-kinpaku);
                  padding: 7px 10px; font-size: 12px; color: var(--ks-body); line-height: 1.5;
                  margin-top: 2px; }}
   .kit-assets {{ display: flex; flex-direction: column; gap: 6px; }}
   .kit-url  {{ background: var(--ks-raised); border: 1px solid var(--ks-rule); border-radius: 3px;
                padding: 7px 10px; font-size: 10.5px; color: var(--ks-patina); word-break: break-all;
-               font-family: "SFMono-Regular", "Roboto Mono", monospace; }}
+               font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; }}
   .kit-swatches {{ display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }}
   .kit-swatch-wrap {{ display: flex; flex-direction: column; align-items: center; gap: 4px; cursor: default; }}
   .kit-swatch {{ width: 36px; height: 36px; border-radius: 6px; border: 1px solid rgba(0,0,0,.12);
@@ -1690,7 +1707,7 @@ def build_html(profile: dict) -> str:
                           border-radius: 50%; background: rgba(179,18,43,0.1);
                           color: var(--ks-vermilion); font-size: 9px; font-weight: 900;
                           text-align: center; line-height: 13px;
-                          font-family: "SFMono-Regular", "Roboto Mono", monospace; }}
+                          font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; }}
   .risk-list li:last-child {{ border-bottom: none; }}
   .risk-label {{ font-weight: 600; color: var(--ks-champagne); }}
 
@@ -1699,7 +1716,7 @@ def build_html(profile: dict) -> str:
   .comps-table th {{ text-align: left; font-size: 9px; font-weight: 700; letter-spacing: 0.1em;
                      text-transform: uppercase; color: var(--ks-faint); padding: 0 12px 8px 0;
                      border-bottom: 1.5px solid var(--ks-kinpaku); vertical-align: bottom;
-                     font-family: "SFMono-Regular", "Roboto Mono", monospace; }}
+                     font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; }}
   .comps-table th.right {{ text-align: right; }}
   /* unit (LTM / YoY) parked under the header so each cell value is one clean token */
   .th-unit {{ display: block; text-transform: none; font-weight: 400; font-size: 8.5px;
@@ -1738,7 +1755,7 @@ def build_html(profile: dict) -> str:
                            position: absolute; left: 0; top: 8px; width: 26px; height: 26px;
                            border-radius: 2px; background: var(--ks-kinpaku); color: var(--ks-lacquer-deep);
                            font-size: 11px; font-weight: 700; text-align: center; line-height: 26px;
-                           font-family: "SFMono-Regular", "Roboto Mono", monospace; }}
+                           font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; }}
 
   /* ── Diligence ── */
   .dq-list {{ list-style: none; padding: 0; counter-reset: dqs; }}
@@ -1750,7 +1767,7 @@ def build_html(profile: dict) -> str:
                         border-radius: 2px; background: var(--ks-raised); color: var(--ks-kinpaku);
                         border: 1px solid var(--ks-rule); font-size: 9.5px; font-weight: 700;
                         text-align: center; line-height: 26px;
-                        font-family: "SFMono-Regular", "Roboto Mono", monospace; }}
+                        font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; }}
 
   /* ── Chips ── */
   .chip-list {{ display: flex; flex-wrap: wrap; gap: 6px; }}
@@ -1762,7 +1779,7 @@ def build_html(profile: dict) -> str:
              padding: 14px 40px; display: flex; justify-content: space-between; align-items: center; }}
   .footer-left {{ font-size: 10.5px; color: var(--ks-faint); line-height: 1.7; }}
   .footer-right {{ font-size: 10.5px; font-weight: 700; color: var(--ks-kinpaku);
-                   letter-spacing: 0.22em; font-family: "SFMono-Regular", "Roboto Mono", monospace; }}
+                   letter-spacing: 0.22em; font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; }}
   .meta-note {{ font-size: 12px; color: var(--ks-muted); margin-top: 8px; }}
   .meta-note strong {{ color: var(--ks-champagne); }}
 
