@@ -1,0 +1,58 @@
+[
+  {
+    "date": "2026-05-27",
+    "headline": "Salesforce posts record Q1 FY27: revenue $11.13B (+13%), Agentforce ARR $1.2B (+205%), $25B accelerated buyback",
+    "whyItMatters": "Combined Agentforce + Data 360 ARR ~$3.4B (+200%+ YoY) validates the AI-monetization thesis, while a $25B ASR shrinks the share count as core growth normalizes toward ~11%.",
+    "source": "Salesforce",
+    "sourceUrl": "https://www.salesforce.com/news/press-releases/2026/05/27/fy27-q1-earnings/"
+  },
+  {
+    "date": "2026-02-25",
+    "headline": "Record Q4 FY26; $50B buyback authorization (largest ever) and FY27 revenue guide $45.8-46.2B",
+    "whyItMatters": "The $50B repurchase program (anchored by a $25B ASR) plus a 5.8% dividend increase mark a decisive capital-return pivot; FY27 guide of +10-11% and RPO $72.4B (+14%) frame the durable-growth case for the multiple.",
+    "source": "Salesforce",
+    "sourceUrl": "https://www.salesforce.com/news/press-releases/2026/02/25/fy26-q4-earnings/"
+  },
+  {
+    "date": "2025-12-03",
+    "headline": "Record Q3 FY26; FY26 guide raised, Agentforce + Data 360 ARR near $1.4B (+114% YoY)",
+    "whyItMatters": "Revenue $10.3B (+9%) at 35.5% non-GAAP op margin with FCF +22% kept the margin/cash story intact while triple-digit AI-product ARR growth gave the first hard proof Agentforce converts to recurring revenue.",
+    "source": "Salesforce",
+    "sourceUrl": "https://www.salesforce.com/news/press-releases/2025/12/03/fy26-q3-earnings/"
+  },
+  {
+    "date": "2025-11-18",
+    "headline": "Salesforce completes ~$8B acquisition of Informatica",
+    "whyItMatters": "Bolts enterprise data integration, governance and MDM onto the platform \u2014 the data backbone Agentforce needs \u2014 adding ~$1.1B Informatica Cloud ARR; its largest deal since Slack.",
+    "source": "Salesforce",
+    "sourceUrl": "https://www.salesforce.com/news/press-releases/2025/11/18/salesforce-completes-acquisition-of-informatica/"
+  },
+  {
+    "date": "2025-10-14",
+    "headline": "Salesforce expands partnerships with OpenAI and Anthropic; Agentforce coming to ChatGPT",
+    "whyItMatters": "Embedding Agentforce 360 into ChatGPT and naming Claude a preferred model for regulated industries widens distribution and de-risks the model layer \u2014 positioning Salesforce as an AI orchestrator rather than a single-LLM bet.",
+    "source": "CNBC",
+    "sourceUrl": "https://www.cnbc.com/2025/10/14/salesforce-will-bring-agentforce-to-openais-chatgpt-later-in-2025.html"
+  },
+  {
+    "date": "2025-10-13",
+    "headline": "Agentforce 360 launches at Dreamforce 2025; Salesforce declares the 'Agentic Enterprise'",
+    "whyItMatters": "The rebranded flagship (Agentforce Builder, Agent Script, Voice, Intelligent Context) with 12,000 customers is the centerpiece of the AI re-rating narrative; proof points like Reddit deflecting 46% of support cases anchor the enterprise-ROI pitch.",
+    "source": "TechCrunch",
+    "sourceUrl": "https://techcrunch.com/2025/10/13/salesforce-announces-agentforce-360-as-enterprise-ai-competition-heats-up/"
+  },
+  {
+    "date": "2025-09-02",
+    "headline": "Benioff confirms ~4,000 customer-support layoffs as Agentforce reduces headcount needs",
+    "whyItMatters": "Cutting support staff from ~9,000 to ~5,000 ('I need less heads') is both a margin tailwind and the clearest public demonstration of Salesforce eating its own AI \u2014 while raising the execution/optics risk of automating a core customer-facing function.",
+    "source": "CNBC",
+    "sourceUrl": "https://www.cnbc.com/2025/09/02/salesforce-ceo-confirms-4000-layoffs-because-i-need-less-heads-with-ai.html"
+  },
+  {
+    "date": "2025-05-27",
+    "headline": "Salesforce signs definitive agreement to acquire Informatica for ~$8B equity value",
+    "whyItMatters": "Kicked off Salesforce's return to large-scale M&A after a buyback-focused, activist-pressured stretch \u2014 signaling management again sees data infrastructure as strategic enough to spend on rather than only return cash.",
+    "source": "Salesforce",
+    "sourceUrl": "https://www.salesforce.com/news/press-releases/2025/05/27/salesforce-signs-definitive-agreement-to-acquire-informatica/"
+  }
+]

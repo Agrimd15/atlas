@@ -1,0 +1,36 @@
+{
+  "quarter": "Q1 FY2027 (ended April 30, 2026)",
+  "reportDate": "2026-05-27",
+  "keyMetrics": {
+    "revenue": "$11.13B (Q1 FY27, +13% YoY / +12% cc)",
+    "subscriptionSupport": "$10.59B (Q1 FY27, +14% YoY)",
+    "nonGaapOpMargin": "34.8% (Q1 FY27, +250 bps YoY)",
+    "nonGaapDilutedEps": "$3.88 (Q1 FY27, +50% YoY)",
+    "freeCashFlow": "$6.6B (Q1 FY27, +4% YoY)",
+    "agentAndAiArr": "Agentforce ARR $1.2B (+205% YoY); Agentforce + Data 360 ~$3.4B (+200%+, incl. ~$1.1B Informatica) \u2014 Q1 FY27",
+    "remainingPerfObligation": "cRPO $33.6B (+14% YoY); total RPO $67.9B (+11% YoY) \u2014 as of Apr 30, 2026",
+    "evRevenue": "4.3x LTM (as of 2026-06-05 close)",
+    "fy27Guidance": "Revenue $45.9-46.2B (FY2027 guide, ~11% YoY); non-GAAP EPS $14.06-14.12",
+    "capitalReturn": "$50B buyback authorization; ~$24.9B repurchased in Q1 FY27; dividend $0.44/qtr"
+  },
+  "aiCommentary": "Agentforce ARR crossed $1.2B, up 205% YoY \u2014 the fastest-scaling product line in company history and the centerpiece of the AI re-acceleration story. Combined Agentforce + Data 360 ARR reached ~$3.4B (+200%+ YoY), including ~$1.1B Informatica Cloud ARR. Bookings from premium SKUs (Agentforce One Edition, Agentforce for Apps) grew ~60% YoY. Usage signals underscored real consumption: 28.6T tokens processed (+152% QoQ) converted into 3.8B Agentic Work Units across Agentforce and Slack (+111% QoQ). Critically for durability, over 50% of Agentforce + Data 360 bookings came from existing customers expanding deployments \u2014 land-and-expand at higher consumption tiers rather than promotional land deals.",
+  "demandCommentary": "Demand was framed as healthy and broadening. A record 98 deals over $1M new ACV closed in Q1, with Slack reportedly ~half of the $1M+ wins. cRPO of $33.6B (+14% YoY) outpaced reported revenue growth (+13%), a constructive forward-demand signal, and >50% of Agentforce + Data 360 bookings were existing-customer expansions. CFO Robin Washington explicitly guided to organic revenue acceleration in 2H FY27 (Sales, Service, Slack, Agentforce, Data 360) \u2014 implying 1H is the trough of the transition year. The Ramp Data demand signal corroborates dominance but flags the bear case: Salesforce holds 70.7% of CRM category card-spend (rank #1) yet category adoption slipped 1.2% YoY with a ~43% competitor switch rate.",
+  "sources": [
+    {
+      "name": "Salesforce Investor Relations \u2014 Q1 FY2027 press release",
+      "url": "https://investor.salesforce.com/news/news-details/2026/Salesforce-Delivers-Record-First-Quarter-Fiscal-2027-Results/default.aspx"
+    },
+    {
+      "name": "SEC EDGAR \u2014 Salesforce 10-Q (Q1 FY2027, period ended Apr 30, 2026)",
+      "url": "https://www.sec.gov/Archives/edgar/data/1108524/000110852426000127/crm-20260430.htm"
+    },
+    {
+      "name": "SEC EDGAR \u2014 Salesforce 8-K Exhibit 99.1 (Q1 FY2027 earnings release)",
+      "url": "https://www.sec.gov/Archives/edgar/data/0001108524/000110852426000125/crm-q1fy27xexhibit991.htm"
+    },
+    {
+      "name": "Seeking Alpha \u2014 CRM Q1 FY2027 earnings call transcript",
+      "url": "https://seekingalpha.com/article/4909408-salesforce-inc-crm-q1-2027-earnings-call-transcript"
+    }
+  ]
+}

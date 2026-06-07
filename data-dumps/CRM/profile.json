@@ -1,0 +1,474 @@
+{
+  "name": "Salesforce, Inc.",
+  "ticker": "CRM",
+  "exchange": "NYSE",
+  "stage": "Public",
+  "website": "https://www.salesforce.com",
+  "verticals": [
+    "CRM",
+    "Enterprise Software",
+    "Cloud / SaaS",
+    "AI Agents",
+    "Data Platform",
+    "Customer Service",
+    "Sales Automation"
+  ],
+  "shortDescription": "The #1 CRM software company, evolving its multi-cloud Customer 360 suite into an AI 'digital labor' platform (Agentforce + Data 360).",
+  "businessModel": "Recurring per-seat SaaS subscriptions (~95% of revenue) plus an emerging Agentforce consumption (Flex Credits) motion; multi-cloud land-and-expand.",
+  "marketContext": "Largest enterprise applications vendor; the bellwether for whether incumbent software can monetize AI agents faster than AI compresses the per-seat model.",
+  "competitors": [
+    "Microsoft (Dynamics 365 / Copilot)",
+    "ServiceNow",
+    "Oracle",
+    "SAP",
+    "Adobe",
+    "HubSpot",
+    "Zoho",
+    "Sierra"
+  ],
+  "revenueHistory": [
+    {
+      "year": "FY2024",
+      "value": 34.86,
+      "label": "$34.9B",
+      "source": "Salesforce FY2025 10-K (prior-year comparative)",
+      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1108524/000110852425000006/crm-20250131.htm"
+    },
+    {
+      "year": "FY2025",
+      "value": 37.9,
+      "label": "$37.9B",
+      "source": "Salesforce FY2025 10-K",
+      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1108524/000110852425000006/crm-20250131.htm"
+    },
+    {
+      "year": "FY2026",
+      "value": 41.45,
+      "label": "$41.5B",
+      "source": "Salesforce Q4 FY2026 results",
+      "sourceUrl": "https://www.salesforce.com/news/press-releases/2026/02/25/fy26-q4-earnings/"
+    },
+    {
+      "year": "LTM 4/26",
+      "value": 42.8,
+      "label": "$42.8B",
+      "source": "yfinance / Yahoo Finance (LTM through Apr 30, 2026)",
+      "sourceUrl": "https://finance.yahoo.com/quote/CRM/financials"
+    }
+  ],
+  "leadership": [
+    {
+      "name": "Marc Benioff",
+      "title": "Chair of the Board & Chief Executive Officer (Co-Founder)",
+      "background": "Co-founded Salesforce in 1999; pioneer of cloud SaaS.",
+      "sourceUrl": "https://www.salesforce.com/news/press-releases/2025/02/05/salesforce-appoints-robin-washington-as-president-and-chief-operating-and-financial-officer/"
+    },
+    {
+      "name": "Robin Washington",
+      "title": "President & Chief Operating and Financial Officer",
+      "background": "Appointed Feb 2025; former Gilead CFO. Also principal accounting officer as of March 2026.",
+      "sourceUrl": "https://www.cnbc.com/2025/02/05/salesforce-picks-robin-washington-to-be-finance-and-operating-leader.html"
+    },
+    {
+      "name": "Srinivas (Srini) Tallapragada",
+      "title": "President & Chief Engineering and Customer Success Officer",
+      "background": "Leads engineering and customer success.",
+      "sourceUrl": "https://www.salesforce.com/news/srinivas_tallapragada/"
+    },
+    {
+      "name": "David Schmaier",
+      "title": "President & Chief Strategy Officer",
+      "background": "Former Chief Product Officer; founder of Vlocity (acquired by Salesforce).",
+      "sourceUrl": "https://www.salesforce.com/news/david/"
+    }
+  ],
+  "rampDemandSignal": {
+    "vendor": "Salesforce",
+    "category": "CRM",
+    "shareOfCategorySpend": "70.7%",
+    "adoptionRate": "76.1% of businesses using a CRM",
+    "adoptionRankInCategory": 1,
+    "adoptionYoYChange": "-1.2%",
+    "competitorSwitchRate": "43.0%",
+    "newAdopterShare": "61.4%",
+    "dominantSegment": "Mid-Market (44%), SMB (30%)",
+    "aiSectorContext": "Technology-sector AI adoption rose 70.4% (Jun 2025) -> 77.2% (Apr 2026) across 50k+ businesses",
+    "asOf": "2026-04 (adoption) / live pull 2026-06-07",
+    "source": "Ramp Data (ramp.com/data)",
+    "sourceUrl": "https://ramp.com/data"
+  },
+  "lastRunDate": "2026-06-07",
+  "marketCloseAsOf": "2026-06-05",
+  "freshnessNote": "All multiples reflect the 2026-06-05 market close.",
+  "trading": {
+    "priceAsOf": "2026-06-05",
+    "stockPrice": "$186",
+    "marketCap": "$152.1B",
+    "enterpriseValue": "$182.8B",
+    "totalRevenueLTM": "$42.8B",
+    "revenueGrowthYoY": "13.3%",
+    "grossMargin": "77.6%",
+    "operatingMarginGAAP": "21.8%",
+    "ebitdaMargin": "30.1%",
+    "fcfPerShare": 16552999936,
+    "totalDebt": "$42.5B",
+    "totalCash": "$11.8B",
+    "evRevenueLTM": "4.3x",
+    "evBasis": "recomputed: last close \u00d7 shares + net debt",
+    "forwardPE": 11.9,
+    "priceToSalesLTM": 3.6,
+    "52wHigh": 276.8,
+    "52wLow": 163.52,
+    "dayChange": "-1.6%",
+    "volume": 12960629,
+    "avgVolume": 14050801,
+    "analystTargetPrice": 254.98906,
+    "analystTargetHigh": 475.0,
+    "analystTargetLow": 160.0,
+    "analystRating": "buy",
+    "numberOfAnalysts": 53,
+    "shortName": "Salesforce, Inc.",
+    "sector": "Technology",
+    "industry": "Software - Application",
+    "sharesOutstanding": 819000000
+  },
+  "explainer": {
+    "plain": [
+      "Salesforce makes the software companies use to keep track of their customers \u2014 every sales call, support ticket, marketing email and online order \u2014 so a business has one shared view of who its customers are and what they need.",
+      "It rents that software to ~150,000 companies as an annual subscription. Its newest push, 'Agentforce,' adds AI agents that can actually do customer-service and sales work, not just store the data."
+    ],
+    "technical": [
+      "Multi-tenant SaaS: all customers run on one shared codebase and metadata layer spanning Sales, Service, Marketing/Commerce, Slack/Platform, Tableau, MuleSoft, Data 360 and Agentforce.",
+      "Revenue is ~95% recurring subscription & support, billed annually in advance \u2014 which is why RPO ($67.9B) and cRPO ($33.6B, +14%) are the key forward indicators. Agentforce layers a consumption model (Flex Credits, ~$0.10/action) on top of per-seat licensing, expanding TAM from human seats toward enterprise labor budgets.",
+      "The model throws off enormous cash: 34.8% non-GAAP operating margin and $6.6B of free cash flow in a single quarter (Q1 FY27)."
+    ],
+    "simple": [
+      "Think of Salesforce as the giant filing cabinet and switchboard for a company's customer relationships.",
+      "Now the filing cabinet has hired robot clerks (Agentforce) that answer the phones and do the paperwork themselves. Salesforce charges rent for the cabinet (per desk) \u2014 and is starting to also charge per task the robots complete."
+    ]
+  },
+  "brief": {
+    "runDate": "2026-06-07",
+    "businessOverview": "Salesforce, Inc. (NYSE: CRM) is the world's largest customer-relationship-management (CRM) software company and the pioneer of cloud-delivered enterprise SaaS. Founded in 1999, it began as a sales-force-automation tool that proved business software could be delivered over the internet on a subscription, and has since expanded into a multi-cloud enterprise application suite \u2014 its 'Customer 360' / 'Data 360' platform \u2014 spanning sales, service, marketing, commerce, analytics, integration and collaboration. It generated record FY2026 revenue of ~$41.5B (year ended Jan 31, 2026) at a 34.1% non-GAAP operating margin, and is ranked #1 in CRM applications by worldwide market share (IDC).\n\nSalesforce serves ~150,000+ customers across every industry and size, from small businesses to the bulk of the Fortune 500. Go-to-market combines a large direct enterprise sales force, a deep partner ecosystem (system integrators, ISVs, consulting partners), and the AppExchange marketplace. The model is land-and-expand: customers typically start in one cloud and add more over time, driving multi-cloud cross-sell. Ramp card-spend data corroborates the dominance \u2014 Salesforce captures ~70.7% of all CRM category spend across 50k+ businesses (rank #1).\n\nCurrent strategy centers on AI 'digital labor.' Agentforce lets enterprises deploy autonomous AI agents for service, sales and other workflows, grounded by Data 360 (formerly Data Cloud), which unifies enterprise data so agents act on trusted, governed context. Management positions Agentforce + Data 360 as the fastest-growing products in company history \u2014 combined ARR reached ~$3.4B (+200%+ YoY) by Q1 FY2027, with Agentforce alone at $1.2B (+205% YoY).",
+    "productModel": "Salesforce's architecture is a unified, multi-tenant cloud platform on which all applications share one metadata and data foundation. The core 'clouds' include Sales Cloud and Service Cloud (its two largest), Marketing and Commerce Cloud, the Platform (custom development, automation and Slack for collaboration), Data 360 (its customer-data platform), Tableau (analytics, 2019), MuleSoft (integration/APIs, 2018), Informatica (data management, 2025) and Agentforce (the agentic-AI layer). Slack (acquired for ~$27.7B in 2021) serves as the conversational front-end and 'agent operating system' for surfacing Agentforce inside the flow of work.\n\nThe revenue model is overwhelmingly recurring subscription & support (~95% of revenue) \u2014 per-seat term licenses billed annually in advance \u2014 which produces high visibility (reflected in RPO of $67.9B and cRPO of $33.6B, +14% YoY) and >90% subscription gross margins. With Agentforce, Salesforce is layering a consumption (usage-based) motion on top of seats: after initially pricing at ~$2 per conversation, it moved in May 2025 to 'Flex Credits,' where each Agentforce action consumes ~$0.10 of credits, sold in packs with pay-as-you-go and pre-commit options.\n\nThis seat-plus-consumption hybrid is the central business-model evolution: as AI agents do more 'work,' Salesforce monetizes actions/outcomes rather than only human seats, expanding addressable spend beyond headcount \u2014 but introducing lumpier, less predictable consumption revenue. As of Q1 FY2027 Salesforce also revised its disclosure to two subscription buckets \u2014 Agentforce Apps ($6.91B, 65% of subscription revenue, +9% YoY) and Data 360, Headless Platform & Other ($3.68B, 35%, +25% YoY) \u2014 retiring the old per-cloud splits. The ecosystem (AppExchange, system integrators, the Trailblazer developer community) extends the platform and is a major source of stickiness, increasingly important for rolling out Agentforce at enterprise scale.",
+    "recentNews": [
+      {
+        "date": "2026-05-27",
+        "headline": "Salesforce posts record Q1 FY27: revenue $11.13B (+13%), Agentforce ARR $1.2B (+205%), $25B accelerated buyback",
+        "whyItMatters": "Combined Agentforce + Data 360 ARR ~$3.4B (+200%+ YoY) validates the AI-monetization thesis, while a $25B ASR shrinks the share count as core growth normalizes toward ~11%.",
+        "source": "Salesforce",
+        "sourceUrl": "https://www.salesforce.com/news/press-releases/2026/05/27/fy27-q1-earnings/"
+      },
+      {
+        "date": "2026-02-25",
+        "headline": "Record Q4 FY26; $50B buyback authorization (largest ever) and FY27 revenue guide $45.8-46.2B",
+        "whyItMatters": "The $50B repurchase program (anchored by a $25B ASR) plus a 5.8% dividend increase mark a decisive capital-return pivot; FY27 guide of +10-11% and RPO $72.4B (+14%) frame the durable-growth case for the multiple.",
+        "source": "Salesforce",
+        "sourceUrl": "https://www.salesforce.com/news/press-releases/2026/02/25/fy26-q4-earnings/"
+      },
+      {
+        "date": "2025-12-03",
+        "headline": "Record Q3 FY26; FY26 guide raised, Agentforce + Data 360 ARR near $1.4B (+114% YoY)",
+        "whyItMatters": "Revenue $10.3B (+9%) at 35.5% non-GAAP op margin with FCF +22% kept the margin/cash story intact while triple-digit AI-product ARR growth gave the first hard proof Agentforce converts to recurring revenue.",
+        "source": "Salesforce",
+        "sourceUrl": "https://www.salesforce.com/news/press-releases/2025/12/03/fy26-q3-earnings/"
+      },
+      {
+        "date": "2025-11-18",
+        "headline": "Salesforce completes ~$8B acquisition of Informatica",
+        "whyItMatters": "Bolts enterprise data integration, governance and MDM onto the platform \u2014 the data backbone Agentforce needs \u2014 adding ~$1.1B Informatica Cloud ARR; its largest deal since Slack.",
+        "source": "Salesforce",
+        "sourceUrl": "https://www.salesforce.com/news/press-releases/2025/11/18/salesforce-completes-acquisition-of-informatica/"
+      },
+      {
+        "date": "2025-10-14",
+        "headline": "Salesforce expands partnerships with OpenAI and Anthropic; Agentforce coming to ChatGPT",
+        "whyItMatters": "Embedding Agentforce 360 into ChatGPT and naming Claude a preferred model for regulated industries widens distribution and de-risks the model layer \u2014 positioning Salesforce as an AI orchestrator rather than a single-LLM bet.",
+        "source": "CNBC",
+        "sourceUrl": "https://www.cnbc.com/2025/10/14/salesforce-will-bring-agentforce-to-openais-chatgpt-later-in-2025.html"
+      },
+      {
+        "date": "2025-10-13",
+        "headline": "Agentforce 360 launches at Dreamforce 2025; Salesforce declares the 'Agentic Enterprise'",
+        "whyItMatters": "The rebranded flagship (Agentforce Builder, Agent Script, Voice, Intelligent Context) with 12,000 customers is the centerpiece of the AI re-rating narrative; proof points like Reddit deflecting 46% of support cases anchor the enterprise-ROI pitch.",
+        "source": "TechCrunch",
+        "sourceUrl": "https://techcrunch.com/2025/10/13/salesforce-announces-agentforce-360-as-enterprise-ai-competition-heats-up/"
+      },
+      {
+        "date": "2025-09-02",
+        "headline": "Benioff confirms ~4,000 customer-support layoffs as Agentforce reduces headcount needs",
+        "whyItMatters": "Cutting support staff from ~9,000 to ~5,000 ('I need less heads') is both a margin tailwind and the clearest public demonstration of Salesforce eating its own AI \u2014 while raising the execution/optics risk of automating a core customer-facing function.",
+        "source": "CNBC",
+        "sourceUrl": "https://www.cnbc.com/2025/09/02/salesforce-ceo-confirms-4000-layoffs-because-i-need-less-heads-with-ai.html"
+      },
+      {
+        "date": "2025-05-27",
+        "headline": "Salesforce signs definitive agreement to acquire Informatica for ~$8B equity value",
+        "whyItMatters": "Kicked off Salesforce's return to large-scale M&A after a buyback-focused, activist-pressured stretch \u2014 signaling management again sees data infrastructure as strategic enough to spend on rather than only return cash.",
+        "source": "Salesforce",
+        "sourceUrl": "https://www.salesforce.com/news/press-releases/2025/05/27/salesforce-signs-definitive-agreement-to-acquire-informatica/"
+      }
+    ],
+    "earningsTakeaways": {
+      "quarter": "Q1 FY2027 (ended April 30, 2026)",
+      "reportDate": "2026-05-27",
+      "keyMetrics": {
+        "revenue": "$11.13B (Q1 FY27, +13% YoY / +12% cc)",
+        "subscriptionSupport": "$10.59B (Q1 FY27, +14% YoY)",
+        "nonGaapOpMargin": "34.8% (Q1 FY27, +250 bps YoY)",
+        "nonGaapDilutedEps": "$3.88 (Q1 FY27, +50% YoY)",
+        "freeCashFlow": "$6.6B (Q1 FY27, +4% YoY)",
+        "agentAndAiArr": "Agentforce ARR $1.2B (+205% YoY); Agentforce + Data 360 ~$3.4B (+200%+, incl. ~$1.1B Informatica) \u2014 Q1 FY27",
+        "remainingPerfObligation": "cRPO $33.6B (+14% YoY); total RPO $67.9B (+11% YoY) \u2014 as of Apr 30, 2026",
+        "evRevenue": "4.3x LTM (as of 2026-06-05 close)",
+        "fy27Guidance": "Revenue $45.9-46.2B (FY2027 guide, ~11% YoY); non-GAAP EPS $14.06-14.12",
+        "capitalReturn": "$50B buyback authorization; ~$24.9B repurchased in Q1 FY27; dividend $0.44/qtr"
+      },
+      "aiCommentary": "Agentforce ARR crossed $1.2B, up 205% YoY \u2014 the fastest-scaling product line in company history and the centerpiece of the AI re-acceleration story. Combined Agentforce + Data 360 ARR reached ~$3.4B (+200%+ YoY), including ~$1.1B Informatica Cloud ARR. Bookings from premium SKUs (Agentforce One Edition, Agentforce for Apps) grew ~60% YoY. Usage signals underscored real consumption: 28.6T tokens processed (+152% QoQ) converted into 3.8B Agentic Work Units across Agentforce and Slack (+111% QoQ). Critically for durability, over 50% of Agentforce + Data 360 bookings came from existing customers expanding deployments \u2014 land-and-expand at higher consumption tiers rather than promotional land deals.",
+      "demandCommentary": "Demand was framed as healthy and broadening. A record 98 deals over $1M new ACV closed in Q1, with Slack reportedly ~half of the $1M+ wins. cRPO of $33.6B (+14% YoY) outpaced reported revenue growth (+13%), a constructive forward-demand signal, and >50% of Agentforce + Data 360 bookings were existing-customer expansions. CFO Robin Washington explicitly guided to organic revenue acceleration in 2H FY27 (Sales, Service, Slack, Agentforce, Data 360) \u2014 implying 1H is the trough of the transition year. The Ramp Data demand signal corroborates dominance but flags the bear case: Salesforce holds 70.7% of CRM category card-spend (rank #1) yet category adoption slipped 1.2% YoY with a ~43% competitor switch rate.",
+      "sources": [
+        {
+          "name": "Salesforce Investor Relations \u2014 Q1 FY2027 press release",
+          "url": "https://investor.salesforce.com/news/news-details/2026/Salesforce-Delivers-Record-First-Quarter-Fiscal-2027-Results/default.aspx"
+        },
+        {
+          "name": "SEC EDGAR \u2014 Salesforce 10-Q (Q1 FY2027, period ended Apr 30, 2026)",
+          "url": "https://www.sec.gov/Archives/edgar/data/1108524/000110852426000127/crm-20260430.htm"
+        },
+        {
+          "name": "SEC EDGAR \u2014 Salesforce 8-K Exhibit 99.1 (Q1 FY2027 earnings release)",
+          "url": "https://www.sec.gov/Archives/edgar/data/0001108524/000110852426000125/crm-q1fy27xexhibit991.htm"
+        },
+        {
+          "name": "Seeking Alpha \u2014 CRM Q1 FY2027 earnings call transcript",
+          "url": "https://seekingalpha.com/article/4909408-salesforce-inc-crm-q1-2027-earnings-call-transcript"
+        }
+      ]
+    },
+    "keyRisks": [
+      "AI dis-intermediation of the seat model \u2014 Benioff's own ~4,000 support-role cuts show AI reducing headcount; if customers follow, per-seat licensing (the core revenue base) could erode faster than consumption revenue replaces it. The market has repeatedly refused to reward earnings beats on fears that 'software may not survive AI.'",
+      "Decelerated growth \u2014 total revenue grew ~13% in Q1 FY27 and FY27 guidance implies ~11%; Salesforce now sits in the low-growth tier of its comp set, closer to SAP (6%) and Adobe (12%) than to ServiceNow (22%), HubSpot (23%) or Oracle (22%), pressuring the case for multiple expansion.",
+      "Share erosion at the edges \u2014 Ramp data shows CRM category adoption -1.2% YoY and a ~43% competitor switch rate; HubSpot (mid-market), Microsoft Dynamics/Copilot and ServiceNow are all encroaching on different parts of the footprint.",
+      "Agentforce monetization is early and lumpy \u2014 the shift to consumption (Flex Credits) trades predictable seat revenue for usage-based revenue that is harder to forecast, and the ~$3.4B AI/Data ARR is a disclosed metric, not yet a clean P&L line.",
+      "Disclosure gaps \u2014 Salesforce does not disclose NRR/attrition, and it retired its per-cloud revenue splits as of Q1 FY27, reducing underwriting visibility during the most important transition in years.",
+      "M&A integration & capital-allocation optics \u2014 back-to-back large deals (Informatica ~$8B, Slack ~$27.7B) alongside a $50B buyback carry integration risk and the optics of repurchasing stock while automating staff."
+    ],
+    "comps": [
+      {
+        "name": "Salesforce",
+        "ticker": "CRM",
+        "type": "Subject",
+        "evRevenue": "4.3x",
+        "revenueGrowth": "13.3%",
+        "grossMargin": "77.6%",
+        "note": "subject; $186/sh, $152B mkt cap; 4.3x EV/Rev on 13% growth + 34.8% non-GAAP op margin (~Rule-of-48); $50B buyback authorization",
+        "source": "yfinance / Yahoo Finance",
+        "sourceUrl": "https://finance.yahoo.com/quote/CRM"
+      },
+      {
+        "name": "ServiceNow",
+        "ticker": "NOW",
+        "type": "Peer",
+        "evRevenue": "8.1x",
+        "revenueGrowth": "22.1%",
+        "grossMargin": "76.6%",
+        "note": "AI 'control tower' for enterprise workflows; premium 8.1x on 22% growth \u2014 the AI compounder CRM is measured against",
+        "source": "yfinance / Yahoo Finance",
+        "sourceUrl": "https://finance.yahoo.com/quote/NOW"
+      },
+      {
+        "name": "Microsoft",
+        "ticker": "MSFT",
+        "type": "Peer",
+        "evRevenue": "9.9x",
+        "revenueGrowth": "18.3%",
+        "grossMargin": "68.3%",
+        "note": "Dynamics 365 + Copilot agents; 9.9x on 18% growth \u2014 the agent competitor carrying a far richer multiple",
+        "source": "yfinance / Yahoo Finance",
+        "sourceUrl": "https://finance.yahoo.com/quote/MSFT"
+      },
+      {
+        "name": "Oracle",
+        "ticker": "ORCL",
+        "type": "Peer",
+        "evRevenue": "11.5x",
+        "revenueGrowth": "21.7%",
+        "grossMargin": "67.1%",
+        "note": "Enterprise apps + OCI cloud; 11.5x on 22% growth \u2014 re-rated on AI/cloud capacity demand",
+        "source": "yfinance / Yahoo Finance",
+        "sourceUrl": "https://finance.yahoo.com/quote/ORCL"
+      },
+      {
+        "name": "SAP",
+        "ticker": "SAP",
+        "type": "Peer",
+        "evRevenue": "5.7x",
+        "revenueGrowth": "6.0%",
+        "grossMargin": "73.7%",
+        "note": "Enterprise apps incumbent; 5.7x on 6% growth \u2014 the low-growth large-cap suite comp",
+        "source": "yfinance / Yahoo Finance",
+        "sourceUrl": "https://finance.yahoo.com/quote/SAP"
+      },
+      {
+        "name": "Adobe",
+        "ticker": "ADBE",
+        "type": "Peer",
+        "evRevenue": "4.1x",
+        "revenueGrowth": "12.0%",
+        "grossMargin": "89.4%",
+        "note": "Creative/marketing software; 4.1x on 12% growth, ~89% GM \u2014 closest multiple comp to CRM",
+        "source": "yfinance / Yahoo Finance",
+        "sourceUrl": "https://finance.yahoo.com/quote/ADBE"
+      },
+      {
+        "name": "Workday",
+        "ticker": "WDAY",
+        "type": "Peer",
+        "evRevenue": "2.9x",
+        "revenueGrowth": "13.5%",
+        "grossMargin": "75.8%",
+        "note": "HR/Finance SaaS; 2.9x on 13.5% growth \u2014 similar growth, cheaper, narrower TAM",
+        "source": "yfinance / Yahoo Finance",
+        "sourceUrl": "https://finance.yahoo.com/quote/WDAY"
+      },
+      {
+        "name": "HubSpot",
+        "ticker": "HUBS",
+        "type": "Peer",
+        "evRevenue": "2.9x",
+        "revenueGrowth": "23.4%",
+        "grossMargin": "83.7%",
+        "note": "Mid-market CRM challenger; 2.9x on 23% growth \u2014 the downstream share-taker",
+        "source": "yfinance / Yahoo Finance",
+        "sourceUrl": "https://finance.yahoo.com/quote/HUBS"
+      }
+    ],
+    "swot": {
+      "standoutSummary": "Salesforce screens as the value name in large-cap software \u2014 4.3x EV/Revenue and ~12x forward earnings vs ServiceNow 8.1x, Oracle 11.5x and Microsoft 9.9x \u2014 despite a comparable Rule-of-40 (13% growth + 34.8% non-GAAP margin \u2248 48) and the largest installed base in enterprise apps. The whole debate is whether Agentforce re-accelerates growth before AI compresses the per-seat model.",
+      "strengths": [
+        {
+          "point": "Category dominance & installed base",
+          "detail": "~150k customers and 70.7% of all CRM card-spend across 50k+ businesses (Ramp Data, rank #1) \u2014 an unmatched cross-sell surface for Agentforce."
+        },
+        {
+          "point": "Best-in-class profitability & FCF",
+          "detail": "34.8% non-GAAP operating margin and $6.6B quarterly free cash flow (Q1 FY27) \u2014 among the highest absolute FCF in software, funding a $50B buyback."
+        },
+        {
+          "point": "Value multiple with optionality",
+          "detail": "4.3x EV/Rev and ~12x forward P/E \u2014 a clear discount to NOW (8.1x), ORCL (11.5x) and MSFT (9.9x) for a profitable, 13%-growth megacap."
+        }
+      ],
+      "weaknesses": [
+        {
+          "point": "Decelerated core growth",
+          "detail": "13% YoY vs NOW (22%), HUBS (23%), ORCL (22%) \u2014 Salesforce sits in the low-growth tier of its comp set, nearer SAP (6%) and ADBE (12%) than the AI compounders."
+        },
+        {
+          "point": "Slipping share at the margin",
+          "detail": "CRM category adoption -1.2% YoY and a ~43% competitor switch rate (Ramp Data) \u2014 share is being nibbled by HubSpot, Microsoft and ServiceNow."
+        },
+        {
+          "point": "Disclosure opacity",
+          "detail": "No NRR/attrition disclosure and a revamped revenue taxonomy (per-cloud splits dropped in Q1 FY27) make the Agentforce transition harder to underwrite."
+        }
+      ],
+      "opportunities": [
+        {
+          "point": "Agentforce monetization",
+          "detail": "$1.2B ARR (+205% YoY) plus a consumption (Flex Credits) motion that monetizes AI 'actions' beyond seats \u2014 the key to re-rating toward peer multiples."
+        },
+        {
+          "point": "Data 360 + Informatica",
+          "detail": "~$3.4B combined AI/data ARR; the unified data backbone deepens the moat and raises switching costs for agents."
+        },
+        {
+          "point": "Capital return as EPS lever",
+          "detail": "$50B buyback / $25B ASR shrinks the share count into a normalizing-growth period, supporting double-digit EPS growth on single-digit-to-low-teens revenue growth."
+        }
+      ],
+      "threats": [
+        {
+          "point": "AI compresses the seat model",
+          "detail": "The core bear case \u2014 if AI cuts customer headcount, per-seat licensing erodes faster than Agentforce consumption fills the gap."
+        },
+        {
+          "point": "Agent competition",
+          "detail": "Microsoft Copilot agents, ServiceNow, Sierra and the foundation-model players (OpenAI, Anthropic) all target the same enterprise agent budget."
+        },
+        {
+          "point": "Lower visibility premium",
+          "detail": "Lumpier consumption revenue reduces the forecastability that historically supported Salesforce's multiple."
+        }
+      ],
+      "sources": [
+        {
+          "name": "Salesforce Q1 FY2027 results (IR)",
+          "url": "https://investor.salesforce.com/news/news-details/2026/Salesforce-Delivers-Record-First-Quarter-Fiscal-2027-Results/default.aspx"
+        },
+        {
+          "name": "yfinance / Yahoo Finance \u2014 live comps (2026-06-05 close)",
+          "url": "https://finance.yahoo.com/quote/CRM"
+        },
+        {
+          "name": "Ramp Data \u2014 CRM category share & adoption",
+          "url": "https://ramp.com/data"
+        }
+      ]
+    },
+    "slideBullets": [
+      "Value multiple in megacap software: 4.3x EV/Rev and ~12x forward P/E (2026-06-05 close) vs ServiceNow 8.1x, Oracle 11.5x, Microsoft 9.9x \u2014 the market is pricing CRM for sub-trend growth, not AI re-acceleration.",
+      "Q1 FY27 (ended Apr 30, 2026): revenue $11.13B (+13% YoY), non-GAAP operating margin 34.8% (+250 bps), non-GAAP EPS $3.88 (+50%), free cash flow $6.6B \u2014 a beat-and-raise on profitability.",
+      "Agentforce ARR $1.2B (+205% YoY); combined Agentforce + Data 360 ARR ~$3.4B (+200%+, incl. ~$1.1B Informatica) \u2014 the fastest-scaling product line in company history.",
+      "Capital return at scale: $50B buyback authorization, ~$24.9B repurchased in Q1 (incl. a $25B ASR); cRPO $33.6B (+14%) outpaces revenue \u2014 a constructive forward-demand signal.",
+      "Demand vs risk: 70.7% of CRM category card-spend and rank #1 adoption (Ramp Data) \u2014 but adoption -1.2% YoY and ~13% growth (vs 20%+ AI peers) frame the 'can software survive AI' debate."
+    ],
+    "businessOverviewSources": [
+      {
+        "name": "Salesforce Q4 FY2026 results (IR)",
+        "url": "https://www.salesforce.com/news/press-releases/2026/02/25/fy26-q4-earnings/"
+      },
+      {
+        "name": "Salesforce \u2014 What is Customer 360",
+        "url": "https://www.salesforce.com/products/what-is-customer-360/"
+      },
+      {
+        "name": "Ramp Data \u2014 CRM category share & adoption",
+        "url": "https://ramp.com/data"
+      }
+    ],
+    "productModelSources": [
+      {
+        "name": "Salesforce \u2014 Customer 360 product overview",
+        "url": "https://www.salesforce.com/products/what-is-customer-360/"
+      },
+      {
+        "name": "Salesforce \u2014 flexible Agentforce pricing (Flex Credits)",
+        "url": "https://www.salesforce.com/news/press-releases/2025/05/15/agentforce-flexible-pricing-news/"
+      },
+      {
+        "name": "SEC EDGAR \u2014 Salesforce 10-Q (Q1 FY2027 revenue disaggregation)",
+        "url": "https://www.sec.gov/Archives/edgar/data/1108524/000110852426000127/crm-20260430.htm"
+      }
+    ],
+    "keyRisksSources": [
+      {
+        "name": "CNBC \u2014 Salesforce's beat fails to convince market software can survive AI",
+        "url": "https://www.cnbc.com/2026/05/27/salesforces-beat-fails-to-convince-market-that-software-can-survive-ai.html"
+      },
+      {
+        "name": "CNBC \u2014 Benioff confirms ~4,000 layoffs as AI cuts headcount",
+        "url": "https://www.cnbc.com/2025/09/02/salesforce-ceo-confirms-4000-layoffs-because-i-need-less-heads-with-ai.html"
+      },
+      {
+        "name": "Ramp Data \u2014 CRM category adoption trend",
+        "url": "https://ramp.com/data"
+      }
+    ],
+    "diligenceQuestions": [
+      "What are net revenue retention and gross attrition doing inside the installed base \u2014 Salesforce no longer discloses NRR, and Ramp data shows CRM category adoption down 1.2% YoY with a ~43% switch rate?",
+      "How much of the ~$3.4B Agentforce + Data 360 ARR is net-new incremental spend versus repricing/rebundling of existing seat revenue \u2014 and what is the gross-margin profile of consumption (Flex Credits) revenue vs. subscription?",
+      "What organic, ex-Informatica, constant-currency subscription growth is embedded in the 2H FY27 'acceleration' guide, and what Agentforce attach/expansion rate is required to hit it?"
+    ]
+  }
+}
