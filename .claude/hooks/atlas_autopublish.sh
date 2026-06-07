@@ -13,10 +13,13 @@
 #   • never blocks the session — every git step is best-effort (exit 0)
 set -uo pipefail
 
-# PostToolUse payload (JSON) arrives on stdin. Only proceed for brief renders.
+# PostToolUse payload (JSON, incl. tool_response) arrives on stdin. Gate on the
+# deliverable agent's success marker — "Brief saved" only appears in the OUTPUT of
+# an actual successful render, so a mere mention of the script (grep/echo/commit
+# message) won't trigger a publish. This is the precise signal of a real render.
 payload="$(cat 2>/dev/null || true)"
 case "$payload" in
-  *deliverable_agent.py*) ;;
+  *"Brief saved"*) ;;
   *) exit 0 ;;
 esac
 
