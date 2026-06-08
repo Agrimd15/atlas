@@ -500,6 +500,85 @@
       "Revenue quality: what share of the ~$35M ARR is per-resolution versus per-conversation versus pilots, and what are net revenue retention and gross margin after third-party model and ElevenLabs voice costs?",
       "Moat: as the underlying LLMs commoditize, what is genuinely defensible (AOP workflow depth, proprietary resolution data, integration lock-in), and how does win-rate hold head-to-head against Salesforce Agentforce and Sierra?",
       "Valuation bridge: what underpins the $4.5B mark at ~129x run-rate, and how should one read the June 2026 reports of talks near $4B (primary versus secondary, down-round risk, or reporting noise)?"
-    ]
+    ],
+    "rampDemandSignal": {
+      "available": true,
+      "asOf": "2026-04",
+      "source": "Ramp Data",
+      "sourceUrl": "https://ramp.com/data",
+      "headline": "Decagon is the breakout in AI Support Bots: while incumbents Intercom and Zendesk shed share, Decagon is the only top-5 vendor growing adoption (+6.9% YoY), already holds #3 in category spend, and wins the most customers switching vendors (#1).",
+      "cards": [
+        {
+          "label": "Category",
+          "value": "AI Support Bots",
+          "sub": "Decagon",
+          "pos": false
+        },
+        {
+          "label": "Adoption Growth",
+          "value": "+6.9%",
+          "sub": "YoY — only top-5 gainer",
+          "pos": true
+        },
+        {
+          "label": "Spend Share",
+          "value": "14.3%",
+          "sub": "#3 in category already",
+          "pos": true
+        },
+        {
+          "label": "Win Rate vs Switchers",
+          "value": "39.4%",
+          "sub": "#1 — wins most switchers",
+          "pos": true
+        }
+      ],
+      "leaderboard": {
+        "category": "AI Support Bots",
+        "rows": [
+          {
+            "vendor": "Intercom",
+            "adoption": "48.1%",
+            "spendShare": "33.7%",
+            "growthYoY": "-1.6%",
+            "note": "leader, share eroding",
+            "isSubject": false
+          },
+          {
+            "vendor": "Zendesk",
+            "adoption": "15.1%",
+            "spendShare": "32.4%",
+            "growthYoY": "-0.9%",
+            "note": "enterprise incumbent",
+            "isSubject": false
+          },
+          {
+            "vendor": "Gorgias",
+            "adoption": "11.4%",
+            "spendShare": "4.2%",
+            "growthYoY": "-3.3%",
+            "note": "e-commerce niche, declining",
+            "isSubject": false
+          },
+          {
+            "vendor": "Decagon",
+            "adoption": "10.4%",
+            "spendShare": "14.3%",
+            "growthYoY": "+6.9%",
+            "note": "breakout — #1 new-adopter & switch-win",
+            "isSubject": true
+          },
+          {
+            "vendor": "Freshworks",
+            "adoption": "7.7%",
+            "spendShare": "6.7%",
+            "growthYoY": "+0.4%",
+            "note": "broad suite",
+            "isSubject": false
+          }
+        ]
+      },
+      "note": "Decagon is private — this is a demand proxy from buyer card spend, a leading read on traction ahead of disclosed ARR. Ramp's panel is corporate-card spend across 50k+ businesses and skews SMB / mid-market, so it under-captures committed enterprise contracts."
+    }
   }
 }

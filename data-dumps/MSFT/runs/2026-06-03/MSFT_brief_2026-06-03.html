@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Microsoft Corporation · Atlas Research Brief</title>
-<link href="https://fonts.googleapis.com/css2?family=Alumni+Sans+Pinstripe&family=Albert+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   /* Institutional (light) design tokens: sell-side research note */
   :root {
@@ -32,12 +31,13 @@
 
   /* ── Base ── */
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: "Albert Sans", "Avenir Next", "Helvetica Neue", Arial, system-ui, sans-serif;
-         background: var(--ks-lacquer); color: var(--ks-body); font-size: 16.5px; line-height: 1.65; }
+  body { font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+         background: var(--ks-lacquer); color: var(--ks-body); font-size: 14px; line-height: 1.55;
+         font-variant-numeric: tabular-nums; }
   a { color: inherit; text-decoration: none; }
-  p { color: var(--ks-body); line-height: 1.75; margin-bottom: 6px; }
+  p { color: var(--ks-body); line-height: 1.6; margin-bottom: 6px; }
   strong { color: var(--ks-champagne); }
-  .mono { font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+  .mono { font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; font-variant-numeric: tabular-nums; }
   .right { text-align: right; }
 
   .wrapper { width: 100%; max-width: 1400px; margin: 0 auto; background: var(--ks-lacquer);
@@ -57,26 +57,45 @@
                    display: block; }
   .header-badges { display: flex; align-items: center; gap: 7px; margin-top: 6px; flex-wrap: wrap; }
   .ticker-badge { background: transparent; color: var(--ks-kinpaku);
-                   font-family: "SFMono-Regular", "Roboto Mono", monospace;
+                   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
                    font-size: 10.5px; font-weight: 700; padding: 0; border-radius: 0;
                    letter-spacing: 0.16em; text-transform: uppercase; }
   .stage-badge { background: var(--ks-raised); border: 1px solid var(--ks-rule);
                   color: var(--ks-muted); font-size: 10px; font-weight: 600; padding: 2px 8px;
                   border-radius: 2px; letter-spacing: 0.12em;
-                  font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+                  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; }
   .draft-badge { background: var(--ks-kinpaku); border: 1px solid var(--ks-kinpaku);
                   color: #ffffff; font-size: 10px; font-weight: 700; padding: 2px 9px;
                   border-radius: 2px; letter-spacing: 0.15em;
-                  font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+                  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; }
   .header-meta { font-size: 11.5px; color: var(--ks-faint); }
   .header-meta a { color: var(--ks-kinpaku-pale); }
+  /* ── Version history (header disclosure) ── */
+  .verhist { position: relative; display: inline-block; }
+  .verhist > summary { cursor: pointer; list-style: none; color: var(--ks-faint);
+                        font-size: 11.5px; user-select: none; white-space: nowrap; }
+  .verhist > summary::-webkit-details-marker { display: none; }
+  .verhist > summary:hover, .verhist[open] > summary { color: var(--ks-champagne); }
+  .verhist-menu { position: absolute; right: 0; top: 100%; margin-top: 6px; z-index: 30;
+                   background: var(--ks-raised); border: 1px solid var(--ks-rule);
+                   border-radius: 6px; box-shadow: 0 8px 28px rgba(0,0,0,0.14);
+                   padding: 6px; min-width: 190px; text-align: left; }
+  .verhist-head { font-size: 9px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+                   color: var(--ks-faint); padding: 3px 10px 6px; border-bottom: 1px solid var(--ks-rule);
+                   margin-bottom: 4px; }
+  .verhist-item { display: block; padding: 5px 10px; border-radius: 4px; font-size: 11.5px;
+                   color: var(--ks-body); white-space: nowrap; }
+  a.verhist-item:hover { background: var(--ks-graphite-2); color: var(--ks-champagne); }
+  .verhist-item.current { color: var(--ks-faint); font-weight: 700; }
+  @media print { .verhist-menu { display: none !important; }
+                  .verhist > summary { color: var(--ks-faint); cursor: default; } }
   .verticals { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 6px; }
   .vertical-tag { background: var(--ks-graphite); border: 1px solid var(--ks-rule);
                    color: var(--ks-muted); font-size: 10px; padding: 2px 9px; border-radius: 3px;
-                   font-family: "SFMono-Regular", "Roboto Mono", monospace; letter-spacing: 0.06em; }
+                   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; letter-spacing: 0.06em; }
   .trading-bar { background: var(--ks-raised); border: 1px solid var(--ks-rule); border-radius: 3px;
                   padding: 9px 14px; margin-top: 14px; font-size: 11px; color: var(--ks-faint);
-                  font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+                  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; }
   .trading-bar strong { color: var(--ks-champagne); margin-right: 4px; }
 
   /* ── Hero stats bar ── */
@@ -90,12 +109,12 @@
   .hero-card:last-child { border-right: none; }
   .hero-label { font-size: 9.5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.13em;
                  color: var(--ks-faint); margin-bottom: 6px; white-space: nowrap;
-                 font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+                 font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; }
   /* big number stays on ONE line; a long head shrinks to fit rather than wrapping */
-  .hero-value { font-family: "SFMono-Regular", "Roboto Mono", monospace; font-size: 1.5rem; font-weight: 700;
+  .hero-value { font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; font-size: 1.5rem; font-weight: 700;
                  line-height: 1.1; color: var(--ks-kinpaku); white-space: nowrap; }
   .hero-value.long { font-size: 1.1rem; letter-spacing: -0.01em; }
-  .hero-sub { font-family: "SFMono-Regular", "Roboto Mono", monospace; font-size: 10.5px;
+  .hero-sub { font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; font-size: 10.5px;
                color: var(--ks-faint); margin-top: 4px; line-height: 1.3; }
   .hero-sub.pos { color: var(--ks-patina); }
   /* narrow screens: let the 5-col strip reflow (print/desktop keep 5 across) */
@@ -109,26 +128,26 @@
   .toc-link { font-size: 10px; font-weight: 600; color: var(--ks-faint); padding: 3px 10px;
                border-radius: 20px; border: 1px solid var(--ks-rule); background: transparent;
                transition: background 150ms var(--ks-ease), color 150ms var(--ks-ease);
-               white-space: nowrap; font-family: "SFMono-Regular", "Roboto Mono", monospace;
+               white-space: nowrap; font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
                letter-spacing: 0.04em; }
   .toc-link:hover { background: var(--ks-kinpaku); color: var(--ks-lacquer-deep); border-color: var(--ks-kinpaku); }
 
   /* ── Sections ── */
   .section { border-bottom: 1px solid var(--ks-rule); padding: 24px 40px; scroll-margin-top: 48px; }
   .section:last-of-type { border-bottom: none; }
-  .sec-label { font-family: "SFMono-Regular", "Roboto Mono", monospace; font-size: 10px; font-weight: 700;
+  .sec-label { font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; font-size: 10px; font-weight: 700;
                 letter-spacing: 0.15em; text-transform: uppercase; color: var(--ks-accent);
                 margin-bottom: 15px; padding-bottom: 7px; border-bottom: 1px solid var(--ks-rule); }
   /* normal-weight metadata line under a section label (quarter, as-of, captions) —
      keeps the eyebrow itself short and uncluttered instead of wrapping inline */
-  .sec-meta { font-family: "SFMono-Regular", "Roboto Mono", monospace; font-size: 10.5px;
+  .sec-meta { font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; font-size: 10.5px;
                color: var(--ks-faint); margin: -9px 0 14px; letter-spacing: 0.03em; line-height: 1.4; }
 
   /* ── Two-col layout (overview) ── */
   .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: start; }
   @media (max-width: 760px) { .two-col { grid-template-columns: 1fr; } }
   .diagram-caption { font-size: 11px; color: var(--ks-faint); margin-bottom: 10px; line-height: 1.4;
-                      font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+                      font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; }
 
   /* ── "Understand the business" explainer (plain / technical / simple) ── */
   .explain-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 24px; }
@@ -139,7 +158,7 @@
   .explain-2 { border-top-color: var(--ks-patina); }
   .explain-label { font-size: 10px; font-weight: 700; letter-spacing: 0.13em; text-transform: uppercase;
                     color: var(--ks-kinpaku); margin-bottom: 9px;
-                    font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+                    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; }
   .explain-1 .explain-label { color: var(--ks-accent); }
   .explain-2 .explain-label { color: var(--ks-patina); }
   .explain-text { font-size: 14px; line-height: 1.6; color: var(--ks-body); }
@@ -156,7 +175,7 @@
   .diff-table th { text-align: left; font-size: 9px; font-weight: 700; letter-spacing: 0.1em;
                     text-transform: uppercase; color: var(--ks-faint); padding: 0 14px 8px 0;
                     border-bottom: 1.5px solid var(--ks-kinpaku);
-                    font-family: "SFMono-Regular", "Roboto Mono", monospace; vertical-align: bottom; }
+                    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; vertical-align: bottom; }
   .diff-table td { padding: 11px 14px 11px 0; border-bottom: 1px solid var(--ks-rule);
                     vertical-align: top; color: var(--ks-body); line-height: 1.55; }
   .diff-table tr:last-child td { border-bottom: none; }
@@ -165,6 +184,46 @@
   .diff-table .diff-edge { color: var(--ks-body); }
   @media (max-width: 680px) { .diff-table, .diff-table thead, .diff-table tbody, .diff-table tr, .diff-table td { display: block; width: auto; }
     .diff-table thead { display: none; } .diff-table .diff-player { white-space: normal; padding-top: 12px; } }
+
+  /* ── SWOT analysis (2×2 quadrant) ── */
+  .swot-standout { font-size: 14.5px; line-height: 1.7; color: var(--ks-body);
+                    background: var(--ks-graphite); border-left: 3px solid var(--ks-kinpaku);
+                    padding: 12px 16px; border-radius: 0 6px 6px 0; margin-bottom: 18px; }
+  .swot-standout-label { font-weight: 700; color: var(--ks-champagne); }
+  .swot-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 760px) { .swot-grid { grid-template-columns: 1fr; } }
+  .swot-quad { border: 1px solid var(--ks-rule); border-top: 3px solid var(--ks-rule-strong);
+                border-radius: 6px; padding: 14px 16px 12px; background: var(--ks-lacquer); }
+  .swot-quad.swot-s { border-top-color: var(--ks-patina);  background: #f3faf6; }
+  .swot-quad.swot-w { border-top-color: var(--ks-vermilion); background: #fcf4f5; }
+  .swot-quad.swot-o { border-top-color: var(--ks-kinpaku-pale); background: #f3f7fc; }
+  .swot-quad.swot-t { border-top-color: #b8791a; background: #fdf8ef; }
+  .swot-head { display: flex; align-items: baseline; justify-content: space-between;
+                gap: 8px; margin-bottom: 8px; padding-bottom: 7px;
+                border-bottom: 1px solid var(--ks-rule); }
+  .swot-title { font-size: 11px; font-weight: 700; letter-spacing: 0.11em;
+                 text-transform: uppercase; color: var(--ks-champagne);
+                 font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; }
+  .swot-sub { font-size: 9.5px; letter-spacing: 0.06em; text-transform: uppercase;
+               color: var(--ks-faint); font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; }
+  .swot-list { list-style: none; margin: 0; padding: 0; }
+  .swot-list li { position: relative; padding: 0 0 7px 15px; font-size: 13.5px;
+                   line-height: 1.55; color: var(--ks-body); }
+  .swot-list li:last-child { padding-bottom: 0; }
+  .swot-list li::before { content: ""; position: absolute; left: 1px; top: 8px;
+                           width: 5px; height: 5px; border-radius: 50%;
+                           background: var(--ks-rule-strong); }
+  .swot-s .swot-list li::before { background: var(--ks-patina); }
+  .swot-w .swot-list li::before { background: var(--ks-vermilion); }
+  .swot-o .swot-list li::before { background: var(--ks-kinpaku-pale); }
+  .swot-t .swot-list li::before { background: #b8791a; }
+  .swot-pt { font-weight: 700; color: var(--ks-champagne); }
+
+  /* ── Gartner Magic Quadrant (embedded image) ── */
+  .gartner-caption { font-size: 14px; line-height: 1.65; color: var(--ks-muted); margin-bottom: 14px; }
+  .gartner-wrap { border: 1px solid var(--ks-rule); border-radius: 8px; padding: 14px;
+                   background: var(--ks-raised); text-align: center; }
+  .gartner-img { max-width: 100%; height: auto; border-radius: 4px; display: inline-block; }
 
   /* ── Body bullet list ── */
   .body-list { list-style: none; padding: 0; margin: 0; }
@@ -180,19 +239,22 @@
   .biz-col-mid { flex: 1.05; }
   .biz-col-label { font-size: 9px; text-transform: uppercase; letter-spacing: 0.14em;
                     color: var(--ks-faint); margin-bottom: 3px; line-height: 1.3;
-                    font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+                    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; }
   .biz-node { padding: 9px 11px; border-radius: 4px; }
-  .biz-node-name { font-size: 12.5px; font-weight: 600; line-height: 1.25; }
+  .biz-node-name { font-size: 12.5px; font-weight: 600; line-height: 1.25;
+                    overflow-wrap: anywhere; }
   .biz-node-sub { font-size: 10.5px; font-weight: 400; line-height: 1.3; margin-top: 2px;
-                   color: var(--ks-muted); }
+                   color: var(--ks-muted); overflow-wrap: anywhere; }
   .biz-cust { background: rgba(19,49,92,0.05); border: 1px solid rgba(19,49,92,0.18);
                color: var(--ks-champagne); }
   .biz-out  { background: rgba(10,125,77,0.06); border: 1px solid rgba(10,125,77,0.22);
                color: var(--ks-champagne); }
   .biz-platform { background: var(--ks-kinpaku); color: var(--ks-lacquer-deep); padding: 11px 12px;
-                   border-radius: 4px; font-size: 13px; font-weight: 700; text-align: center; }
+                   border-radius: 4px; font-size: 13px; font-weight: 700; text-align: center;
+                   overflow-wrap: anywhere; }
   .biz-mod { background: var(--ks-graphite-2); border: 1px solid var(--ks-rule); color: var(--ks-body);
-              padding: 8px 10px; border-radius: 4px; font-size: 12px; text-align: center; line-height: 1.3; }
+              padding: 8px 10px; border-radius: 4px; font-size: 12px; text-align: center; line-height: 1.3;
+              overflow-wrap: anywhere; }
   .biz-arrow { display: flex; align-items: center; padding: 0 9px; color: var(--ks-kinpaku);
                 font-size: 18px; flex-shrink: 0; align-self: center; }
   @media (max-width: 720px) { .biz-flow { flex-direction: column; } .biz-arrow { transform: rotate(90deg); margin: 2px auto; } }
@@ -202,13 +264,13 @@
   .news-item:last-child { border-bottom: none; }
   .news-row { display: flex; gap: 14px; align-items: flex-start; }
   .news-date { font-size: 10px; color: var(--ks-faint); white-space: nowrap; min-width: 74px;
-                font-family: "SFMono-Regular", "Roboto Mono", monospace; padding-top: 2px; }
+                font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; padding-top: 2px; }
   .news-headline { font-size: 15.5px; font-weight: 600; color: var(--ks-champagne); line-height: 1.4; }
   .news-why { font-size: 14px; color: var(--ks-muted); margin-top: 6px; margin-left: 88px; line-height: 1.6; }
 
   /* ── Financials / metrics ── */
   .fin-meta { font-size: 11px; color: var(--ks-faint); margin-bottom: 14px;
-               font-family: "SFMono-Regular", "Roboto Mono", monospace; letter-spacing: 0.05em; }
+               font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; letter-spacing: 0.05em; }
   /* auto-fill (not auto-fit): a partial last row keeps card width + stays left-aligned */
   .metrics-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
                    gap: 10px; margin-bottom: 18px; }
@@ -218,16 +280,38 @@
      cards aligned whether the label is 1 or 2 lines */
   .metric-label { font-size: 9.5px; font-weight: 500; color: var(--ks-faint); text-transform: uppercase;
                    letter-spacing: 0.12em; margin-bottom: 6px; line-height: 1.3; min-height: 1.9em;
-                   font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+                   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; }
   /* big number stays on ONE line; a long/sentence-like head shrinks AND wraps inside the
      card instead of overflowing into the neighbouring tile */
-  .metric-value { font-family: "SFMono-Regular", "Roboto Mono", monospace; font-size: 1.15rem; font-weight: 700;
+  .metric-value { font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; font-size: 1.15rem; font-weight: 700;
                    color: var(--ks-kinpaku); line-height: 1.2; white-space: nowrap; }
   .metric-value.long { font-size: 0.95rem; letter-spacing: -0.01em; white-space: normal;
                         overflow-wrap: anywhere; line-height: 1.3; }
   .metric-value.green { color: var(--ks-patina); }
   .metric-sub { font-size: 10.5px; color: var(--ks-faint); margin-top: 4px; line-height: 1.35;
-                 font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+                 font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; }
+  .metric-sub.pos { color: var(--ks-patina); font-weight: 600; }
+  /* period tag: the time window each metric covers, so a number is never undated */
+  .metric-period { font-size: 9px; color: var(--ks-faint); margin-top: 5px; line-height: 1.3;
+                    letter-spacing: 0.04em; text-transform: uppercase; white-space: normal;
+                    overflow-wrap: anywhere; padding-top: 4px; border-top: 1px solid var(--ks-rule);
+                    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; }
+
+  /* ── Quarterly trend matrix (Revenue / QoQ / Gross Margin × last 4 quarters) ── */
+  .qtrend-wrap { margin: 4px 0 6px; }
+  .qtrend-table { width: 100%; border-collapse: collapse; margin-top: 8px; }
+  .qtrend-table th, .qtrend-table td { padding: 7px 12px; border-bottom: 1px solid var(--ks-rule);
+                   font-size: 13px; }
+  .qtrend-table thead th { font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; font-size: 10px;
+                   font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+                   color: var(--ks-faint); border-bottom: 1px solid var(--ks-rule-strong); }
+  .qtrend-table td.mono { color: var(--ks-champagne); font-weight: 600; }
+  .qtrend-table td.pos { color: var(--ks-patina); }
+  .qtrend-table td.neg { color: var(--ks-vermilion); }
+  .qtrend-rowlbl { text-align: left; font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+                   font-size: 10.5px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em;
+                   color: var(--ks-faint); white-space: nowrap; }
+  .qtrend-table tbody tr:last-child td { border-bottom: none; }
   .earn-bullets { list-style: none; padding: 0; margin: 0; }
   .earn-bullets li { padding: 8px 0 8px 16px; position: relative; font-size: 14.5px;
                       color: var(--ks-body); border-bottom: 1px solid var(--ks-rule); line-height: 1.65; }
@@ -238,6 +322,12 @@
   /* ── ARR chart sources ── */
   .chart-sources { margin-top: 8px; font-size: 9.5px; color: var(--ks-faint); }
   .chart-source-label { font-weight: 600; letter-spacing: .06em; text-transform: uppercase; margin-right: 4px; }
+  .demand-headline { font-size: 12.5px; line-height: 1.5; color: var(--ks-champagne); margin: 0 0 12px;
+                     padding-left: 11px; border-left: 2px solid var(--ks-accent); }
+  .demand-subhead { font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; font-size: 11px;
+                    font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--ks-accent);
+                    margin: 22px 0 13px; padding-top: 16px; border-top: 1px solid var(--ks-rule); }
+  .demand-subhead span { font-weight: 400; text-transform: none; letter-spacing: 0; color: var(--ks-faint); }
   .chart-source-link { color: var(--ks-kinpaku); text-decoration: none; border-bottom: 1px solid transparent;
                         transition: border-color .15s; }
   .chart-source-link:hover { border-bottom-color: var(--ks-kinpaku); }
@@ -250,7 +340,7 @@
   .chart-wrap { margin: 4px 0 8px; }
   .chart-eyebrow { font-size: 9px; text-transform: uppercase; letter-spacing: 0.18em;
                     color: var(--ks-faint); margin-bottom: 12px;
-                    font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+                    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; }
 
   /* ── Funding timeline (flex cards) ── */
   .tl-flex  { display: flex; align-items: center; gap: 0; overflow-x: auto;
@@ -259,12 +349,12 @@
                padding: 10px 12px; min-width: 88px; text-align: center; flex-shrink: 0; }
   .tl-arrow { color: var(--ks-kinpaku); font-size: 14px; padding: 0 4px; flex-shrink: 0; }
   .tl-round { font-size: 8px; text-transform: uppercase; letter-spacing: 0.10em;
-               color: var(--ks-faint); font-family: "SFMono-Regular", "Roboto Mono", monospace;
+               color: var(--ks-faint); font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
                margin-bottom: 3px; }
   .tl-amt   { font-size: 12px; font-weight: 700; color: var(--ks-kinpaku);
-               font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+               font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; }
   .tl-val   { font-size: 10px; color: var(--ks-patina);
-               font-family: "SFMono-Regular", "Roboto Mono", monospace; margin-top: 2px; }
+               font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; margin-top: 2px; }
   .tl-date  { font-size: 9px; color: var(--ks-faint); margin-top: 1px; }
   .tl-leads { font-size: 9px; color: var(--ks-muted); margin-top: 3px; line-height: 1.3; }
 
@@ -279,7 +369,7 @@
   .news-source-nolink { color: var(--ks-faint); }
   /* legacy: keep so old references do not break */
   .news-source { font-size: 9.5px; font-weight: 600; color: var(--ks-faint); margin-left: 8px;
-                  font-family: "SFMono-Regular", "Roboto Mono", monospace; letter-spacing: 0.05em;
+                  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; letter-spacing: 0.05em;
                   background: var(--ks-raised); border: 1px solid var(--ks-rule);
                   padding: 1px 6px; border-radius: 3px; vertical-align: middle; }
 
@@ -292,11 +382,11 @@
                  border-bottom: 1px solid var(--ks-rule); }
   .filing-row:last-child { border-bottom: none; }
   .filing-row:hover .filing-go { opacity: 1; }
-  .filing-form { font-family: "SFMono-Regular", "Roboto Mono", monospace; font-weight: 700;
+  .filing-form { font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; font-weight: 700;
                   font-size: 12.5px; color: var(--ks-kinpaku); min-width: 52px; }
-  .filing-meta { font-family: "SFMono-Regular", "Roboto Mono", monospace; font-size: 11.5px;
+  .filing-meta { font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; font-size: 11.5px;
                   color: var(--ks-faint); flex: 1; }
-  .filing-go { font-family: "SFMono-Regular", "Roboto Mono", monospace; font-size: 10.5px;
+  .filing-go { font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; font-size: 10.5px;
                 font-weight: 700; letter-spacing: 0.04em; color: var(--ks-kinpaku-pale);
                 opacity: 0.55; transition: opacity .15s; white-space: nowrap; }
 
@@ -313,20 +403,20 @@
   .kit-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; }
   .kit-tag  { font-size: 9px; background: var(--ks-graphite); border: 1px solid var(--ks-rule);
                color: var(--ks-kinpaku-pale); padding: 2px 7px; border-radius: 3px;
-               font-family: "SFMono-Regular", "Roboto Mono", monospace; letter-spacing: 0.04em; }
+               font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; letter-spacing: 0.04em; }
   .kit-copy { display: flex; flex-direction: column; gap: 6px; }
   .kit-copy-label { font-size: 8.5px; text-transform: uppercase; letter-spacing: 0.18em;
-                     color: var(--ks-faint); font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+                     color: var(--ks-faint); font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; }
   .kit-stat { background: var(--ks-raised); border: 1px solid var(--ks-rule); border-radius: 3px;
                padding: 8px 12px; font-size: 12.5px; font-weight: 600; color: var(--ks-champagne);
-               font-family: "SFMono-Regular", "Roboto Mono", monospace; cursor: text; }
+               font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; cursor: text; }
   .kit-bullet { background: var(--ks-graphite); border-left: 2px solid var(--ks-kinpaku);
                  padding: 7px 10px; font-size: 12px; color: var(--ks-body); line-height: 1.5;
                  margin-top: 2px; }
   .kit-assets { display: flex; flex-direction: column; gap: 6px; }
   .kit-url  { background: var(--ks-raised); border: 1px solid var(--ks-rule); border-radius: 3px;
                padding: 7px 10px; font-size: 10.5px; color: var(--ks-patina); word-break: break-all;
-               font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+               font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; }
   .kit-swatches { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
   .kit-swatch-wrap { display: flex; flex-direction: column; align-items: center; gap: 4px; cursor: default; }
   .kit-swatch { width: 36px; height: 36px; border-radius: 6px; border: 1px solid rgba(0,0,0,.12);
@@ -357,7 +447,7 @@
                           border-radius: 50%; background: rgba(179,18,43,0.1);
                           color: var(--ks-vermilion); font-size: 9px; font-weight: 900;
                           text-align: center; line-height: 13px;
-                          font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+                          font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; }
   .risk-list li:last-child { border-bottom: none; }
   .risk-label { font-weight: 600; color: var(--ks-champagne); }
 
@@ -366,7 +456,7 @@
   .comps-table th { text-align: left; font-size: 9px; font-weight: 700; letter-spacing: 0.1em;
                      text-transform: uppercase; color: var(--ks-faint); padding: 0 12px 8px 0;
                      border-bottom: 1.5px solid var(--ks-kinpaku); vertical-align: bottom;
-                     font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+                     font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; }
   .comps-table th.right { text-align: right; }
   /* unit (LTM / YoY) parked under the header so each cell value is one clean token */
   .th-unit { display: block; text-transform: none; font-weight: 400; font-size: 8.5px;
@@ -405,7 +495,7 @@
                            position: absolute; left: 0; top: 8px; width: 26px; height: 26px;
                            border-radius: 2px; background: var(--ks-kinpaku); color: var(--ks-lacquer-deep);
                            font-size: 11px; font-weight: 700; text-align: center; line-height: 26px;
-                           font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+                           font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; }
 
   /* ── Diligence ── */
   .dq-list { list-style: none; padding: 0; counter-reset: dqs; }
@@ -417,7 +507,7 @@
                         border-radius: 2px; background: var(--ks-raised); color: var(--ks-kinpaku);
                         border: 1px solid var(--ks-rule); font-size: 9.5px; font-weight: 700;
                         text-align: center; line-height: 26px;
-                        font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+                        font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; }
 
   /* ── Chips ── */
   .chip-list { display: flex; flex-wrap: wrap; gap: 6px; }
@@ -429,7 +519,7 @@
              padding: 14px 40px; display: flex; justify-content: space-between; align-items: center; }
   .footer-left { font-size: 10.5px; color: var(--ks-faint); line-height: 1.7; }
   .footer-right { font-size: 10.5px; font-weight: 700; color: var(--ks-kinpaku);
-                   letter-spacing: 0.22em; font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+                   letter-spacing: 0.22em; font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; }
   .meta-note { font-size: 12px; color: var(--ks-muted); margin-top: 8px; }
   .meta-note strong { color: var(--ks-champagne); }
 
@@ -458,6 +548,7 @@
     .biz-flow, .chart-wrap, .kit-grid, .filing-row,
     .body-list li, .earn-bullets li, .risk-list li, .explain-list li,
     .slide-list li, .dq-list li, .comps-table tr, .diff-table tr,
+    .swot-quad, .swot-list li, .gartner-wrap,
     img, svg { break-inside: avoid; }
 
     /* Never strand a heading at the foot of a page */
@@ -510,7 +601,7 @@
       </div>
       <div class="header-meta" style="text-align:right">
         <a href="https://www.microsoft.com" target="_blank">www.microsoft.com</a><br>
-        Atlas &nbsp;·&nbsp; June 03, 2026
+        Atlas &nbsp;&middot;&nbsp; Updated June 03, 2026
       </div>
     </div>
     <div class="verticals"><span class="vertical-tag">Cloud / AI Infrastructure</span><span class="vertical-tag">Enterprise Software</span><span class="vertical-tag">Productivity SaaS</span><span class="vertical-tag">Gaming</span></div>
@@ -518,7 +609,7 @@
   </div>
 
   <!-- ② HERO STATS: 5 KPIs at a glance -->
-  <div class="hero-stats"><div class="hero-card"><div class="hero-label">Market Cap</div><div class="hero-value" style="color:var(--ks-kinpaku)">$3.2T</div><div class="hero-sub">2026-06-03 close</div></div><div class="hero-card"><div class="hero-label">EV / Revenue</div><div class="hero-value" style="color:var(--ks-kinpaku)">10.1x</div><div class="hero-sub">LTM · 2026-06-03 close</div></div><div class="hero-card"><div class="hero-label">Share Price</div><div class="hero-value" style="color:var(--ks-kinpaku)">$427.34</div><div class="hero-sub">2026-06-03 close</div></div><div class="hero-card"><div class="hero-label">Revenue</div><div class="hero-value" style="color:var(--ks-kinpaku)">$82.9B</div><div class="hero-sub pos">+18% YoY; +15% cc</div></div></div>
+  <div class="hero-stats"><div class="hero-card"><div class="hero-label">Market Cap</div><div class="hero-value" style="color:var(--ks-kinpaku)">$3.1T</div><div class="hero-sub">2026-06-08 close</div></div><div class="hero-card"><div class="hero-label">EV / Revenue</div><div class="hero-value" style="color:var(--ks-kinpaku)">9.8x</div><div class="hero-sub">LTM · 2026-06-08 close</div></div><div class="hero-card"><div class="hero-label">Share Price</div><div class="hero-value" style="color:var(--ks-kinpaku)">$411.74</div><div class="hero-sub">2026-06-08 close</div></div><div class="hero-card"><div class="hero-label">Revenue</div><div class="hero-value" style="color:var(--ks-kinpaku)">$82.9B</div><div class="hero-sub pos">+18% YoY; +15% cc</div></div></div>
 
   <!-- ③ TOC -->
   <div class="toc"><a href="#overview" class="toc-link">Overview</a> <a href="#leadership" class="toc-link">Leadership</a> <a href="#product" class="toc-link">Revenue Model</a> <a href="#news" class="toc-link">News</a> <a href="#earnings" class="toc-link">Financials</a> <a href="#risks" class="toc-link">Risks</a> <a href="#comps" class="toc-link">Comps</a> <a href="#filings" class="toc-link">Filings</a> <a href="#bullets" class="toc-link">Bullets</a> <a href="#diligence" class="toc-link">Diligence</a> <a href="#slidekit" class="toc-link">Slide Kit</a></div>
@@ -556,7 +647,36 @@
   <div class="section" id="news"><div class="sec-label">Recent News</div><div class="news-item"><div class="news-row"><span class="news-date">2026-04-29</span><span class="news-headline">Microsoft FQ3 2026 beats as Azure reaccelerates to 40%; AI run-rate tops $37B</span></div><div class="news-source-row"><span class="news-source-label">Source:</span> <a class="news-source-link" href="https://www.cnbc.com/2026/04/29/microsoft-msft-q3-earnings-report-2026.html" target="_blank" rel="noopener">CNBC</a></div><div class="news-why">Azure +40% (+39% cc) beat the 37-38% guide and reversed several quarters of deceleration; AI run-rate surpassed $37B (+~123% YoY) and Microsoft Cloud crossed $50B for the first time at $54.5B. The print reframed the AI demand debate in Microsoft's favor.</div></div><div class="news-item"><div class="news-row"><span class="news-date">2026-04-29</span><span class="news-headline">Microsoft guides to ~$190B calendar-2026 capex; stock falls on spending shock</span></div><div class="news-source-row"><span class="news-source-label">Source:</span> <a class="news-source-link" href="https://finance.yahoo.com/markets/stocks/articles/microsoft-spending-billions-ai-investors-153500229.html" target="_blank" rel="noopener">Yahoo Finance</a></div><div class="news-why">The ~$190B outlook came in ~$35B above the ~$155B consensus, with management attributing ~$25B to memory/component inflation rather than added capacity. Shares fell ~3% after hours on fears depreciation could outrun AI revenue.</div></div><div class="news-item"><div class="news-row"><span class="news-date">2026-04-29</span><span class="news-headline">Microsoft 365 Copilot paid seats surpass 20 million</span></div><div class="news-source-row"><span class="news-source-label">Source:</span> <a class="news-source-link" href="https://www.geekwire.com/2026/microsoft-tops-wall-street-expectations-reports-accelerating-azure-growth-and-37b-ai-run-rate/" target="_blank" rel="noopener">GeekWire</a></div><div class="news-why">M365 Copilot paid seats reached 20M+, a ~33% sequential jump from ~15M in January, with seat adds +250% YoY. It confirms accelerating enterprise AI adoption, though ~3.3% penetration shows substantial runway and an unproven full monetization curve.</div></div><div class="news-item"><div class="news-row"><span class="news-date">2026-04-27</span><span class="news-headline">Microsoft and OpenAI restructure their agreement</span></div><div class="news-source-row"><span class="news-source-label">Source:</span> <a class="news-source-link" href="https://www.geekwire.com/2026/microsoft-tops-wall-street-expectations-reports-accelerating-azure-growth-and-37b-ai-run-rate/" target="_blank" rel="noopener">GeekWire</a></div><div class="news-why">The restructured deal removes Azure exclusivity and IP revenue-share payments while extending Microsoft's IP licensing through 2032; OpenAI's 20% revenue share to Microsoft continues through 2030 but is now capped. It improves Microsoft's long-term margin profile and frees it to build its own frontier models.</div></div><div class="news-item"><div class="news-row"><span class="news-date">2026-03-15</span><span class="news-headline">Microsoft reorganizes Copilot and consumer-AI org under Mustafa Suleyman</span></div><div class="news-source-row"><span class="news-source-label">Source:</span> <a class="news-source-link" href="https://www.tradingkey.com/analysis/stocks/us-stocks/261829603-msft-q3-earnings-preview-azure-copilot-capex-tradingkey" target="_blank" rel="noopener">TradingKey</a></div><div class="news-why">The reorg consolidated Copilot and consumer-AI efforts to accelerate product velocity and prepare for in-house model integration, signaling intent to own more of the AI stack rather than rely solely on OpenAI.</div></div><div class="news-item"><div class="news-row"><span class="news-date">2026-05-19</span><span class="news-headline">At Build 2026, Microsoft unveils seven in-house MAI models, led by MAI-Thinking-1</span></div><div class="news-source-row"><span class="news-source-label">Source:</span> <a class="news-source-link" href="https://www.geekwire.com/2026/microsoft-unveils-seven-homegrown-ai-models-in-bid-for-long-term-self-sufficiency/" target="_blank" rel="noopener">GeekWire</a></div><div class="news-why">The MAI Superintelligence Team launched seven models trained from scratch (no distillation), including Microsoft's first reasoning model (MAI-Thinking-1), a 5B MAI-Code-1-Flash for VS Code/GitHub Copilot, and MAI-Image-2.5, a strategic push toward self-sufficiency and lower long-term inference costs versus OpenAI dependence.</div></div><div class="news-item"><div class="news-row"><span class="news-date">2026-05-12</span><span class="news-headline">Microsoft signals shift toward consumption-based pricing for AI products</span></div><div class="news-source-row"><span class="news-source-label">Source:</span> <a class="news-source-link" href="https://www.directionsonmicrosoft.com/microsofts-q3-fy26-take-aways-consumption-pricing-is-coming-sooner-rather-than-later/" target="_blank" rel="noopener">Directions on Microsoft</a></div><div class="news-why">Management commentary that consumption-based pricing for Copilot and AI services is coming sooner than expected, a model shift that could expand the monetizable surface beyond fixed per-seat SKUs but adds revenue-timing variability.</div></div><div class="news-item"><div class="news-row"><span class="news-date">2026-04-30</span><span class="news-headline">Investors question whether AI spend will pay off despite the beat</span></div><div class="news-source-row"><span class="news-source-label">Source:</span> <a class="news-source-link" href="https://finance.yahoo.com/markets/stocks/articles/microsoft-spending-billions-ai-investors-153500229.html" target="_blank" rel="noopener">Yahoo Finance</a></div><div class="news-why">Even after a strong quarter, the debate centers on whether near-doubling capex within two years generates sufficient returns before depreciation pressures margins, keeping MSFT's path tied to sustained Azure/Copilot acceleration.</div></div></div>
 
   <!-- ⑦ FINANCIALS / EARNINGS -->
-  <div class="section" id="earnings"><div class="sec-label">Financials &amp; Key Metrics</div><div class="sec-meta">FQ3 2026 (ended March 31, 2026); most recent reported &middot; 2026-04-29</div><div class="metrics-grid"><div class="metric-card"><div class="metric-label">Revenue</div><div class="metric-value">$82.9B</div><div class="metric-sub">+18% YoY; +15% cc</div></div><div class="metric-card"><div class="metric-label">Diluted Eps</div><div class="metric-value">$4.27</div></div><div class="metric-card"><div class="metric-label">Microsoft Cloud</div><div class="metric-value">$54.5B</div><div class="metric-sub">+29% YoY; first quarter above $50B</div></div><div class="metric-card"><div class="metric-label">Azure Growth</div><div class="metric-value long">+40% YoY</div><div class="metric-sub">+39% cc</div></div><div class="metric-card"><div class="metric-label">Ai Revenue Run Rate</div><div class="metric-value long">>$37B annualized</div><div class="metric-sub">+~123% YoY</div></div><div class="metric-card"><div class="metric-label">Productivity And Business Processes</div><div class="metric-value">$35.0B</div><div class="metric-sub">+17% YoY</div></div><div class="metric-card"><div class="metric-label">Intelligent Cloud</div><div class="metric-value">$34.7B</div><div class="metric-sub">+30% YoY</div></div><div class="metric-card"><div class="metric-label">More Personal Computing</div><div class="metric-value">$13.2B</div><div class="metric-sub">-1% YoY</div></div><div class="metric-card"><div class="metric-label">M365Copilot Paid Seats</div><div class="metric-value">20M+</div><div class="metric-sub">+~33% QoQ; seat adds +250% YoY</div></div><div class="metric-card"><div class="metric-label">Capex Outlook</div><div class="metric-value">~$40B</div><div class="metric-sub">current quarter; ~$190B calendar 2026</div></div><div class="metric-card"><div class="metric-label">Next Quarter Azure Guidance</div><div class="metric-value long">39-40% cc growth</div></div></div><ul class="earn-bullets"><li><strong>AI / Product:</strong> AI was the dominant theme. The AI run-rate surpassed $37B (+~123% YoY), and Azure's reacceleration to 40% was driven substantially by AI inference and training demand.</li><li><strong>Demand:</strong> Demand was broadly positive: Azure consumption growth reaccelerated and was described as constrained more by capacity/supply than by demand, supporting the heavy capex. Microsoft Cloud crossing $50B and P&BP growing 17% pointed to durable enterprise spend, while More Personal Computing was roughly flat (-1%) on a soft PC/legacy backdrop.</li></ul></div>
+  <div class="section" id="earnings"><div class="sec-label">Financials &amp; Key Metrics</div><div class="sec-meta">Reporting period: FQ3 2026 (ended March 31, 2026); most recent reported; reported 2026-04-29. Each metric is tagged with the period it covers; LTM and as-of figures are labeled individually.</div><div class="metrics-grid"><div class="metric-card"><div class="metric-label">Revenue</div><div class="metric-value">$82.9B</div><div class="metric-sub">+18% YoY; +15% cc</div><div class="metric-period">FQ3 2026</div></div><div class="metric-card"><div class="metric-label">Diluted Eps</div><div class="metric-value">$4.27</div><div class="metric-period">FQ3 2026</div></div><div class="metric-card"><div class="metric-label">Microsoft Cloud</div><div class="metric-value">$54.5B</div><div class="metric-sub">+29% YoY; first quarter above $50B</div><div class="metric-period">FQ3 2026</div></div><div class="metric-card"><div class="metric-label">Azure Growth</div><div class="metric-value long">+40% YoY</div><div class="metric-sub">+39% cc</div><div class="metric-period">guidance</div></div><div class="metric-card"><div class="metric-label">Ai Revenue Run Rate</div><div class="metric-value long">>$37B annualized</div><div class="metric-sub">+~123% YoY</div><div class="metric-period">run-rate</div></div><div class="metric-card"><div class="metric-label">Productivity And Business Processes</div><div class="metric-value">$35.0B</div><div class="metric-sub">+17% YoY</div><div class="metric-period">FQ3 2026</div></div><div class="metric-card"><div class="metric-label">Intelligent Cloud</div><div class="metric-value">$34.7B</div><div class="metric-sub">+30% YoY</div><div class="metric-period">FQ3 2026</div></div><div class="metric-card"><div class="metric-label">More Personal Computing</div><div class="metric-value">$13.2B</div><div class="metric-sub">-1% YoY</div><div class="metric-period">FQ3 2026</div></div><div class="metric-card"><div class="metric-label">M365Copilot Paid Seats</div><div class="metric-value">20M+</div><div class="metric-sub">+~33% QoQ; seat adds +250% YoY</div><div class="metric-period">FQ3 2026</div></div><div class="metric-card"><div class="metric-label">Capex Outlook</div><div class="metric-value">~$40B</div><div class="metric-sub">current quarter; ~$190B calendar 2026</div><div class="metric-period">guidance</div></div><div class="metric-card"><div class="metric-label">Guidance</div><div class="metric-value long">39-40% cc growth</div><div class="metric-period">guidance</div></div></div><div class="qtrend-wrap">
+    <div class="chart-wrap">
+      <div class="chart-eyebrow">QUARTERLY REVENUE ($B)</div>
+      <svg width="580" height="190" viewBox="0 0 580 190" style="overflow:visible;max-width:100%">
+        
+        <rect x="30" y="57" width="78" height="99" fill="var(--ks-kinpaku)" rx="3" opacity="0.55"/>
+        <text x="69" y="48" text-anchor="middle" font-size="14" fill="var(--ks-champagne)" font-family="Arial,Helvetica,sans-serif" font-weight="700">$70.1B</text>
+        
+        <text x="69" y="178" text-anchor="middle" font-size="11.5" fill="var(--ks-faint)" font-family="Arial,Helvetica,sans-serif">1Q25</text>
+        <rect x="140" y="48" width="78" height="108" fill="var(--ks-kinpaku)" rx="3" opacity="0.66"/>
+        <text x="179" y="39" text-anchor="middle" font-size="14" fill="var(--ks-champagne)" font-family="Arial,Helvetica,sans-serif" font-weight="700">$76.4B</text>
+        <text x="179" y="21" text-anchor="middle" font-size="11" fill="var(--ks-patina)" font-family="Arial,Helvetica,sans-serif" font-weight="700">+9%</text>
+        <text x="179" y="178" text-anchor="middle" font-size="11.5" fill="var(--ks-faint)" font-family="Arial,Helvetica,sans-serif">2Q25</text>
+        <rect x="250" y="46" width="78" height="110" fill="var(--ks-kinpaku)" rx="3" opacity="0.78"/>
+        <text x="289" y="37" text-anchor="middle" font-size="14" fill="var(--ks-champagne)" font-family="Arial,Helvetica,sans-serif" font-weight="700">$77.7B</text>
+        <text x="289" y="19" text-anchor="middle" font-size="11" fill="var(--ks-patina)" font-family="Arial,Helvetica,sans-serif" font-weight="700">+2%</text>
+        <text x="289" y="178" text-anchor="middle" font-size="11.5" fill="var(--ks-faint)" font-family="Arial,Helvetica,sans-serif">3Q25</text>
+        <rect x="360" y="41" width="78" height="115" fill="var(--ks-kinpaku)" rx="3" opacity="0.89"/>
+        <text x="399" y="32" text-anchor="middle" font-size="14" fill="var(--ks-champagne)" font-family="Arial,Helvetica,sans-serif" font-weight="700">$81.3B</text>
+        <text x="399" y="14" text-anchor="middle" font-size="11" fill="var(--ks-patina)" font-family="Arial,Helvetica,sans-serif" font-weight="700">+5%</text>
+        <text x="399" y="178" text-anchor="middle" font-size="11.5" fill="var(--ks-faint)" font-family="Arial,Helvetica,sans-serif">4Q25</text>
+        <rect x="470" y="38" width="78" height="118" fill="var(--ks-kinpaku)" rx="3" opacity="1.00"/>
+        <text x="509" y="29" text-anchor="middle" font-size="14" fill="var(--ks-champagne)" font-family="Arial,Helvetica,sans-serif" font-weight="700">$82.9B</text>
+        <text x="509" y="11" text-anchor="middle" font-size="11" fill="var(--ks-patina)" font-family="Arial,Helvetica,sans-serif" font-weight="700">+2%</text>
+        <text x="509" y="178" text-anchor="middle" font-size="11.5" fill="var(--ks-faint)" font-family="Arial,Helvetica,sans-serif">1Q26</text>
+        <line x1="30" y1="158" x2="550" y2="158" stroke="var(--ks-rule-strong)" stroke-width="1"/>
+      </svg>
+      
+      
+    </div><div class="chart-eyebrow">LAST 5 QUARTERS</div><table class="qtrend-table"><thead><tr><th class="qtrend-rowlbl"></th><th class="right">1Q25</th><th class="right">2Q25</th><th class="right">3Q25</th><th class="right">4Q25</th><th class="right">1Q26</th></tr></thead><tbody><tr><td class="qtrend-rowlbl">Revenue</td><td class="mono right">$70.1B</td><td class="mono right">$76.4B</td><td class="mono right">$77.7B</td><td class="mono right">$81.3B</td><td class="mono right">$82.9B</td></tr><tr><td class="qtrend-rowlbl">QoQ</td><td class="mono right"></td><td class="mono right pos">+9.1%</td><td class="mono right pos">+1.6%</td><td class="mono right pos">+4.6%</td><td class="mono right pos">+2.0%</td></tr><tr><td class="qtrend-rowlbl">Gross Margin</td><td class="mono right">68.7%</td><td class="mono right">68.6%</td><td class="mono right">69.0%</td><td class="mono right">68.0%</td><td class="mono right">67.6%</td></tr></tbody></table><div class="chart-sources"><span class="chart-source-label">Source:</span> <a class="chart-source-link" href="https://finance.yahoo.com/quote/MSFT/financials" target="_blank" rel="noopener">yfinance / Yahoo Finance (quarterly income statement)</a> &nbsp;&middot;&nbsp; calendar-quarter labels on fiscal period-ends; gross margin = gross profit / revenue. Most recent quarter (1Q26): 18.3% YoY revenue growth.</div></div><ul class="earn-bullets"><li><strong>AI / Product:</strong> AI was the dominant theme. The AI run-rate surpassed $37B (+~123% YoY), and Azure's reacceleration to 40% was driven substantially by AI inference and training demand.</li><li><strong>Demand:</strong> Demand was broadly positive: Azure consumption growth reaccelerated and was described as constrained more by capacity/supply than by demand, supporting the heavy capex. Microsoft Cloud crossing $50B and P&BP growing 17% pointed to durable enterprise spend, while More Personal Computing was roughly flat (-1%) on a soft PC/legacy backdrop.</li></ul></div>
 
   <!-- ⑧ ARR GROWTH CHART -->
   
@@ -564,18 +684,24 @@
   <!-- ⑨ KEY RISKS -->
   <div class="section" id="risks"><div class="sec-label">Key Risks &amp; Debates</div><ul class="risk-list"><li><span class='risk-label'>Capital intensity:</span> ~$190B calendar-2026 capex (~$35B above consensus) risks depreciation outrunning AI revenue and compressing operating leverage.</li><li><span class='risk-label'>Memory/component inflation:</span> ~$25B of the capex increase is price, not capacity, a sign of cost pressure across the AI supply chain.</li><li><span class='risk-label'>Monetization proof:</span> M365 Copilot is only ~3.3% penetrated; the full per-seat-to-consumption monetization curve is unproven.</li><li><span class='risk-label'>OpenAI relationship:</span> the restructured deal removes exclusivity and adds OpenAI as a partial competitor as Microsoft builds its own MAI models.</li><li><span class='risk-label'>Pricing-model shift:</span> moving Copilot toward consumption pricing adds revenue-timing variability.</li><li><span class='risk-label'>Legacy drag:</span> More Personal Computing is flat-to-down on a soft PC backdrop.</li><li><span class='risk-label'>Valuation:</span> at 10.1x EV/Rev the recovery path is tied to sustained Azure/Copilot acceleration.</li></ul></div>
 
-  <!-- ⑩ COMPARABLE COMPANIES -->
+  <!-- ⑩ COMPARABLE COMPANIES (Ramp demand signal folded in below the comps table) -->
   <div class="section" id="comps"><div class="sec-label">Comparable Companies</div>
     <table class="comps-table">
       <thead><tr><th class="comp-name-col">Company</th><th>Ticker</th><th>Type</th><th class="right">EV / Rev<span class="th-unit">LTM</span></th><th class="right">Rev Growth<span class="th-unit">YoY</span></th><th class="right">Gross Margin</th><th>Note</th></tr></thead>
-      <tbody><tr class="subj"><td class="comp-name">Microsoft</td><td class="mono comp-ticker"><a class="comp-source-link" href="https://finance.yahoo.com/quote/MSFT" target="_blank" rel="noopener">MSFT</a></td><td class="comp-type-cell">Subject</td><td class="mono right comp-ev">10.1x</td><td class="mono right">18.3%</td><td class="mono right">68.3%</td><td class="note-cell">Azure +40% and a >$37B AI run-rate on premium software margin, offset by the ~$190B capex overhang</td></tr><tr><td class="comp-name">Alphabet</td><td class="mono comp-ticker"><a class="comp-source-link" href="https://finance.yahoo.com/quote/GOOGL" target="_blank" rel="noopener">GOOGL</a></td><td class="comp-type-cell">Cloud/AI peer</td><td class="mono right comp-ev">4.9x</td><td class="mono right">21.8%</td><td class="mono right">60.4%</td><td class="note-cell">Closest cloud+AI comparable; faster growth at roughly half Microsoft's EV/Rev</td></tr><tr><td class="comp-name">Amazon</td><td class="mono comp-ticker"><a class="comp-source-link" href="https://finance.yahoo.com/quote/AMZN" target="_blank" rel="noopener">AMZN</a></td><td class="comp-type-cell">Cloud peer</td><td class="mono right comp-ev">3.7x</td><td class="mono right">16.6%</td><td class="mono right">50.6%</td><td class="note-cell">AWS is the cloud share leader Azure is closing on; lowest EV/Rev of the group on retail mix</td></tr><tr><td class="comp-name">Oracle</td><td class="mono comp-ticker"><a class="comp-source-link" href="https://finance.yahoo.com/quote/ORCL" target="_blank" rel="noopener">ORCL</a></td><td class="comp-type-cell">Enterprise software</td><td class="mono right comp-ev">12.3x</td><td class="mono right">21.7%</td><td class="mono right">67.1%</td><td class="note-cell">OCI re-rated Oracle to a premium to Microsoft on its AI-cloud backlog</td></tr><tr><td class="comp-name">Salesforce</td><td class="mono comp-ticker"><a class="comp-source-link" href="https://finance.yahoo.com/quote/CRM" target="_blank" rel="noopener">CRM</a></td><td class="comp-type-cell">Enterprise SaaS</td><td class="mono right comp-ev">4.4x</td><td class="mono right">13.3%</td><td class="mono right">77.6%</td><td class="note-cell">Apps peer (Agentforce vs Copilot); slowest growth, value multiple</td></tr><tr><td class="comp-name">Nvidia</td><td class="mono comp-ticker"><a class="comp-source-link" href="https://finance.yahoo.com/quote/NVDA" target="_blank" rel="noopener">NVDA</a></td><td class="comp-type-cell">AI compute</td><td class="mono right comp-ev">20.4x</td><td class="mono right">85.2%</td><td class="mono right">74.1%</td><td class="note-cell">The AI-infra supplier behind Microsoft's biggest capex line; ~2x the group's EV/Rev</td></tr></tbody>
-    </table><div class="chart-sources"><span class="chart-source-label">Sources:</span> Public-ticker multiples pulled live from <a class="chart-source-link" href="https://finance.yahoo.com" target="_blank" rel="noopener">yfinance / Yahoo Finance</a>, as of the 2026-06-03 market close; EV/Rev recomputed from last close × shares + net debt.</div></div>
+      <tbody><tr class="subj"><td class="comp-name">Microsoft</td><td class="mono comp-ticker"><a class="comp-source-link" href="https://finance.yahoo.com/quote/MSFT" target="_blank" rel="noopener">MSFT</a></td><td class="comp-type-cell">Subject</td><td class="mono right comp-ev">9.8x</td><td class="mono right">18.3%</td><td class="mono right">68.3%</td><td class="note-cell">Azure +40% and a >$37B AI run-rate on premium software margin, offset by the ~$190B capex overhang</td></tr><tr><td class="comp-name">Alphabet</td><td class="mono comp-ticker"><a class="comp-source-link" href="https://finance.yahoo.com/quote/GOOGL" target="_blank" rel="noopener">GOOGL</a></td><td class="comp-type-cell">Cloud/AI peer</td><td class="mono right comp-ev">5.0x</td><td class="mono right">21.8%</td><td class="mono right">60.4%</td><td class="note-cell">Closest cloud+AI comparable; faster growth at roughly half Microsoft's EV/Rev</td></tr><tr><td class="comp-name">Amazon</td><td class="mono comp-ticker"><a class="comp-source-link" href="https://finance.yahoo.com/quote/AMZN" target="_blank" rel="noopener">AMZN</a></td><td class="comp-type-cell">Cloud peer</td><td class="mono right comp-ev">3.7x</td><td class="mono right">16.6%</td><td class="mono right">50.6%</td><td class="note-cell">AWS is the cloud share leader Azure is closing on; lowest EV/Rev of the group on retail mix</td></tr><tr><td class="comp-name">Oracle</td><td class="mono comp-ticker"><a class="comp-source-link" href="https://finance.yahoo.com/quote/ORCL" target="_blank" rel="noopener">ORCL</a></td><td class="comp-type-cell">Enterprise software</td><td class="mono right comp-ev">11.4x</td><td class="mono right">21.7%</td><td class="mono right">67.1%</td><td class="note-cell">OCI re-rated Oracle to a premium to Microsoft on its AI-cloud backlog</td></tr><tr><td class="comp-name">Salesforce</td><td class="mono comp-ticker"><a class="comp-source-link" href="https://finance.yahoo.com/quote/CRM" target="_blank" rel="noopener">CRM</a></td><td class="comp-type-cell">Enterprise SaaS</td><td class="mono right comp-ev">4.2x</td><td class="mono right">13.3%</td><td class="mono right">77.6%</td><td class="note-cell">Apps peer (Agentforce vs Copilot); slowest growth, value multiple</td></tr><tr><td class="comp-name">Nvidia</td><td class="mono comp-ticker"><a class="comp-source-link" href="https://finance.yahoo.com/quote/NVDA" target="_blank" rel="noopener">NVDA</a></td><td class="comp-type-cell">AI compute</td><td class="mono right comp-ev">19.8x</td><td class="mono right">85.2%</td><td class="mono right">74.1%</td><td class="note-cell">The AI-infra supplier behind Microsoft's biggest capex line; ~2x the group's EV/Rev</td></tr></tbody>
+    </table><div class="chart-sources"><span class="chart-source-label">Sources:</span> Public-ticker multiples pulled live from <a class="chart-source-link" href="https://finance.yahoo.com" target="_blank" rel="noopener">yfinance / Yahoo Finance</a>, as of the 2026-06-08 market close; EV/Rev recomputed from last close × shares + net debt. Rev Growth (YoY) and Gross Margin reflect each company's most recent reported quarter / LTM, so their as-of periods differ by company and from the price close above.</div><div class="demand-subhead">Demand Signal<span> &middot; corporate-card spend &amp; adoption, Ramp Data</span></div><p class="demand-headline">Microsoft's GitHub dominates DevOps card spend, 88% adoption, 43% of category spend (8x the #2), and it wins three-quarters of new adopters. A durable demand moat under the developer franchise that Copilot now monetizes.</p><div class="metrics-grid"><div class="metric-card"><div class="metric-label">Category</div><div class="metric-value">DevOps</div><div class="metric-sub">GitHub (Microsoft)</div></div><div class="metric-card"><div class="metric-label">Adoption Rate</div><div class="metric-value green">87.9%</div><div class="metric-sub pos">#1 in category</div></div><div class="metric-card"><div class="metric-label">Spend Share</div><div class="metric-value green">43.2%</div><div class="metric-sub pos">#1, 8x the #2</div></div><div class="metric-card"><div class="metric-label">New-Adopter Share</div><div class="metric-value green">75.4%</div><div class="metric-sub pos">#1, wins new devs</div></div></div><table class="comps-table"><thead><tr><th class="comp-name-col">Vendor</th><th class="right">Adoption</th><th class="right">Spend Share</th><th class="right">Adoption YoY</th><th>Note</th></tr></thead><tbody><tr class="subj"><td class="comp-name">GitHub (Microsoft)</td><td class="mono right">87.9%</td><td class="mono right">43.2%</td><td class="mono right" style="color:var(--ks-patina)">+1.9%</td><td class="note-cell">dominant, still growing</td></tr><tr><td class="comp-name">Postman</td><td class="mono right">13.6%</td><td class="mono right">5.1%</td><td class="mono right" style="color:var(--ks-vermilion)">-2.0%</td><td class="note-cell">API tooling</td></tr><tr><td class="comp-name">Supabase</td><td class="mono right">11.3%</td><td class="mono right">3.8%</td><td class="mono right" style="color:var(--ks-patina)">+5.9%</td><td class="note-cell">fastest grower</td></tr><tr><td class="comp-name">MongoDB</td><td class="mono right">9.0%</td><td class="mono right">26.5%</td><td class="mono right" style="color:var(--ks-vermilion)">-0.6%</td><td class="note-cell">high spend, narrow adoption</td></tr><tr><td class="comp-name">CircleCI</td><td class="mono right">5.7%</td><td class="mono right">9.3%</td><td class="mono right" style="color:var(--ks-vermilion)">-2.4%</td><td class="note-cell">CI incumbent, eroding</td></tr></tbody></table><div class="chart-sources"><span class="chart-source-label">Source:</span> <a href="https://ramp.com/data" target="_blank" rel="noopener">Ramp Data</a> &middot; data as of 2026-04. Proxied via GitHub (DevOps), Microsoft's most card-billed product; Azure and M365 are largely committed-contract and under-captured here. Ramp's panel is corporate-card spend across 50k+ businesses and skews SMB / mid-market, so it under-captures committed enterprise contracts.</div></div>
 
-  <!-- ⑩b COMPETITORS (if no comps table) -->
+  <!-- ⑩a SWOT ANALYSIS (how the subject stands out vs the comp set) -->
+  
+
+  <!-- ⑩b GARTNER MAGIC QUADRANT (optional embedded map) -->
+  
+
+  <!-- ⑩c COMPETITORS (if no comps table) -->
   
 
   <!-- ⑩c PRIMARY FILINGS (SEC EDGAR) -->
-  <div class="section" id="filings"><div class="sec-label">Primary Filings (SEC EDGAR)</div><div class="filings-wrap"><a class="filing-row" href="https://www.sec.gov/Archives/edgar/data/789019/000119312526224155/d125909d8k.htm" target="_blank" rel="noopener"><span class="filing-form">8-K</span><span class="filing-meta">filed 2026-05-14 &nbsp;·&nbsp; period 2026-05-13</span><span class="filing-go">View on EDGAR &rsaquo;</span></a><a class="filing-row" href="https://www.sec.gov/Archives/edgar/data/789019/000119312526191507/msft-20260331.htm" target="_blank" rel="noopener"><span class="filing-form">10-Q</span><span class="filing-meta">filed 2026-04-29 &nbsp;·&nbsp; period 2026-03-31</span><span class="filing-go">View on EDGAR &rsaquo;</span></a><a class="filing-row" href="https://www.sec.gov/Archives/edgar/data/789019/000119312526191457/msft-20260429.htm" target="_blank" rel="noopener"><span class="filing-form">8-K</span><span class="filing-meta">filed 2026-04-29 &nbsp;·&nbsp; period 2026-04-29</span><span class="filing-go">View on EDGAR &rsaquo;</span></a><a class="filing-row" href="https://www.sec.gov/Archives/edgar/data/789019/000119312526027207/msft-20251231.htm" target="_blank" rel="noopener"><span class="filing-form">10-Q</span><span class="filing-meta">filed 2026-01-28 &nbsp;·&nbsp; period 2025-12-31</span><span class="filing-go">View on EDGAR &rsaquo;</span></a><a class="filing-row" href="https://www.sec.gov/Archives/edgar/data/789019/000095017025100235/msft-20250630.htm" target="_blank" rel="noopener"><span class="filing-form">10-K</span><span class="filing-meta">filed 2025-07-30 &nbsp;·&nbsp; period 2025-06-30</span><span class="filing-go">View on EDGAR &rsaquo;</span></a><a class="filing-row" href="https://www.sec.gov/Archives/edgar/data/789019/000095017024087843/msft-20240630.htm" target="_blank" rel="noopener"><span class="filing-form">10-K</span><span class="filing-meta">filed 2024-07-30 &nbsp;·&nbsp; period 2024-06-30</span><span class="filing-go">View on EDGAR &rsaquo;</span></a></div><div class="chart-sources"><span class="chart-source-label">Source:</span> <a class="chart-source-link" href="https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000789019&type=&dateb=&owner=include&count=40" target="_blank" rel="noopener">SEC EDGAR</a> &nbsp;·&nbsp; CIK 0000789019 &nbsp;·&nbsp; primary filings of record.</div></div>
+  <div class="section" id="filings"><div class="sec-label">Primary Filings (SEC EDGAR)</div><div class="filings-wrap"><a class="filing-row" href="https://www.sec.gov/Archives/edgar/data/789019/000119312526258667/d26760d8k.htm" target="_blank" rel="noopener"><span class="filing-form">8-K</span><span class="filing-meta">filed 2026-06-05 &nbsp;·&nbsp; period 2026-06-02</span><span class="filing-go">View on EDGAR &rsaquo;</span></a><a class="filing-row" href="https://www.sec.gov/Archives/edgar/data/789019/000119312526224155/d125909d8k.htm" target="_blank" rel="noopener"><span class="filing-form">8-K</span><span class="filing-meta">filed 2026-05-14 &nbsp;·&nbsp; period 2026-05-13</span><span class="filing-go">View on EDGAR &rsaquo;</span></a><a class="filing-row" href="https://www.sec.gov/Archives/edgar/data/789019/000119312526191507/msft-20260331.htm" target="_blank" rel="noopener"><span class="filing-form">10-Q</span><span class="filing-meta">filed 2026-04-29 &nbsp;·&nbsp; period 2026-03-31</span><span class="filing-go">View on EDGAR &rsaquo;</span></a><a class="filing-row" href="https://www.sec.gov/Archives/edgar/data/789019/000119312526027207/msft-20251231.htm" target="_blank" rel="noopener"><span class="filing-form">10-Q</span><span class="filing-meta">filed 2026-01-28 &nbsp;·&nbsp; period 2025-12-31</span><span class="filing-go">View on EDGAR &rsaquo;</span></a><a class="filing-row" href="https://www.sec.gov/Archives/edgar/data/789019/000095017025100235/msft-20250630.htm" target="_blank" rel="noopener"><span class="filing-form">10-K</span><span class="filing-meta">filed 2025-07-30 &nbsp;·&nbsp; period 2025-06-30</span><span class="filing-go">View on EDGAR &rsaquo;</span></a><a class="filing-row" href="https://www.sec.gov/Archives/edgar/data/789019/000095017024087843/msft-20240630.htm" target="_blank" rel="noopener"><span class="filing-form">10-K</span><span class="filing-meta">filed 2024-07-30 &nbsp;·&nbsp; period 2024-06-30</span><span class="filing-go">View on EDGAR &rsaquo;</span></a></div><div class="chart-sources"><span class="chart-source-label">Source:</span> <a class="chart-source-link" href="https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000789019&type=&dateb=&owner=include&count=40" target="_blank" rel="noopener">SEC EDGAR</a> &nbsp;·&nbsp; CIK 0000789019 &nbsp;·&nbsp; primary filings of record.</div></div>
 
   <!-- ⑪ FUNDING TIMELINE -->
   

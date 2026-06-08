@@ -3,17 +3,65 @@
   "name": "Microsoft Corporation",
   "ticker": "MSFT",
   "website": "https://www.microsoft.com",
-  "verticals": ["Cloud / AI Infrastructure", "Enterprise Software", "Productivity SaaS", "Gaming"],
+  "verticals": [
+    "Cloud / AI Infrastructure",
+    "Enterprise Software",
+    "Productivity SaaS",
+    "Gaming"
+  ],
   "shortDescription": "The world's largest software company and a leading hyperscale cloud + AI platform: Azure, Microsoft 365, and Copilot, plus OpenAI's largest commercial partner.",
   "businessModel": "Three engines. (1) Recurring software subscriptions — Microsoft 365 commercial/consumer, Dynamics, LinkedIn, plus per-seat AI add-ons (M365 Copilot, GitHub Copilot). (2) Consumption cloud — Azure compute, storage, AI inference/training and data services, now the primary growth driver. (3) Transactional/device and advertising — Windows OEM, Surface, search/news ads, Xbox content/services/hardware. AI is sold as premium per-seat SKUs (~$30/user/mo) and as metered Azure AI/OpenAI consumption, with management signaling a shift toward more consumption-based pricing. High-margin software anchors gross margin, partly offset by lower-margin Azure AI infrastructure and rising capex depreciation.",
   "marketContext": "Microsoft sits at the center of the generative-AI platform shift. Azure is taking cloud share on AI workloads, reaccelerating to 40% in FQ3 2026 after several decelerating quarters, with an AI revenue run-rate above $37B (+~123% YoY). The defining tension is capital intensity: ~$190B of calendar-2026 capex, well above consensus, driven by capacity and sharp memory/component inflation — raising bear-case concerns about depreciation drag. Strategically, the April 2026 OpenAI restructuring removed Azure exclusivity and IP revenue-share while extending IP licensing to 2032, and the MAI Superintelligence Team (formed Nov 2025 under Mustafa Suleyman) launched seven in-house models at Build 2026 — a push toward AI self-sufficiency.",
-  "competitors": ["Amazon Web Services (cloud)", "Google / Alphabet (Google Cloud, Workspace, Gemini)", "Salesforce (CRM, Agentforce)", "Oracle (OCI, databases)", "OpenAI (partner and emerging competitor)", "Anthropic (frontier models; also Azure-hosted)", "ServiceNow, SAP, Workday (enterprise SaaS)", "Apple, Sony, Nintendo (devices and gaming)"],
-  "customers": ["Global enterprises and governments (Azure + M365 commercial)", "Small and medium businesses (M365, Dynamics)", "Developers (GitHub, Visual Studio, Azure AI)", "Consumers (Windows, M365 consumer, Xbox, Copilot)", "OpenAI and other AI labs (Azure compute)"],
+  "competitors": [
+    "Amazon Web Services (cloud)",
+    "Google / Alphabet (Google Cloud, Workspace, Gemini)",
+    "Salesforce (CRM, Agentforce)",
+    "Oracle (OCI, databases)",
+    "OpenAI (partner and emerging competitor)",
+    "Anthropic (frontier models; also Azure-hosted)",
+    "ServiceNow, SAP, Workday (enterprise SaaS)",
+    "Apple, Sony, Nintendo (devices and gaming)"
+  ],
+  "customers": [
+    "Global enterprises and governments (Azure + M365 commercial)",
+    "Small and medium businesses (M365, Dynamics)",
+    "Developers (GitHub, Visual Studio, Azure AI)",
+    "Consumers (Windows, M365 consumer, Xbox, Copilot)",
+    "OpenAI and other AI labs (Azure compute)"
+  ],
   "leadership": [
-    {"name": "Satya Nadella", "title": "Chairman and Chief Executive Officer", "since": "CEO since 2014; Chairman since 2021", "background": "Joined Microsoft in 1992; led the Server & Tools / Cloud and Enterprise group before becoming CEO. Architect of the cloud-first, AI-first transformation.", "source": "Microsoft News / Leadership", "sourceUrl": "https://news.microsoft.com/source/leadership/"},
-    {"name": "Amy Hood", "title": "EVP and Chief Financial Officer", "since": "CFO since 2013", "background": "Joined Microsoft in 2002; held finance roles across the Business Division before becoming CFO. Credited with capital discipline through the cloud era.", "source": "Microsoft News / Leadership", "sourceUrl": "https://news.microsoft.com/source/leadership/"},
-    {"name": "Mustafa Suleyman", "title": "EVP and CEO of Microsoft AI; lead of the MAI Superintelligence Team", "since": "Joined March 2024; team formed Nov 2025", "background": "Co-founder of DeepMind and Inflection AI; leads consumer AI (Copilot) and the in-house MAI model effort unveiled at Build 2026.", "source": "Microsoft AI", "sourceUrl": "https://microsoft.ai/news/building-a-hillclimbing-machine-launching-seven-new-mai-models/"},
-    {"name": "Brad Smith", "title": "Vice Chair and President", "since": "President since 2015; Vice Chair since 2021", "background": "Chief legal, policy and government-affairs leader; long-tenured executive overseeing regulatory, AI policy, and corporate responsibility.", "source": "Microsoft News / Leadership", "sourceUrl": "https://news.microsoft.com/source/leadership/"}
+    {
+      "name": "Satya Nadella",
+      "title": "Chairman and Chief Executive Officer",
+      "since": "CEO since 2014; Chairman since 2021",
+      "background": "Joined Microsoft in 1992; led the Server & Tools / Cloud and Enterprise group before becoming CEO. Architect of the cloud-first, AI-first transformation.",
+      "source": "Microsoft News / Leadership",
+      "sourceUrl": "https://news.microsoft.com/source/leadership/"
+    },
+    {
+      "name": "Amy Hood",
+      "title": "EVP and Chief Financial Officer",
+      "since": "CFO since 2013",
+      "background": "Joined Microsoft in 2002; held finance roles across the Business Division before becoming CFO. Credited with capital discipline through the cloud era.",
+      "source": "Microsoft News / Leadership",
+      "sourceUrl": "https://news.microsoft.com/source/leadership/"
+    },
+    {
+      "name": "Mustafa Suleyman",
+      "title": "EVP and CEO of Microsoft AI; lead of the MAI Superintelligence Team",
+      "since": "Joined March 2024; team formed Nov 2025",
+      "background": "Co-founder of DeepMind and Inflection AI; leads consumer AI (Copilot) and the in-house MAI model effort unveiled at Build 2026.",
+      "source": "Microsoft AI",
+      "sourceUrl": "https://microsoft.ai/news/building-a-hillclimbing-machine-launching-seven-new-mai-models/"
+    },
+    {
+      "name": "Brad Smith",
+      "title": "Vice Chair and President",
+      "since": "President since 2015; Vice Chair since 2021",
+      "background": "Chief legal, policy and government-affairs leader; long-tenured executive overseeing regulatory, AI policy, and corporate responsibility.",
+      "source": "Microsoft News / Leadership",
+      "sourceUrl": "https://news.microsoft.com/source/leadership/"
+    }
   ],
   "revenue": "$318.3B (LTM)",
   "growth": "+18% YoY (FQ3 2026)",
@@ -33,14 +81,62 @@
     ],
     "productModel": "Recurring subscriptions (M365 commercial/consumer, Dynamics, LinkedIn, plus M365 Copilot and GitHub Copilot per-seat AI) form the high-margin base. Consumption cloud — Azure compute, storage, and AI inference/training — is the primary growth driver, billed on usage. Transactional/device/advertising covers Windows OEM, Surface, search/news ads, and Xbox. AI monetizes both as premium per-seat SKUs (~$30/user/month) and metered Azure AI/OpenAI consumption, with management moving toward more consumption-based pricing over time.",
     "recentNews": [
-      {"date": "2026-04-29", "headline": "Microsoft FQ3 2026 beats as Azure reaccelerates to 40%; AI run-rate tops $37B", "whyItMatters": "Azure +40% (+39% cc) beat the 37-38% guide and reversed several quarters of deceleration; AI run-rate surpassed $37B (+~123% YoY) and Microsoft Cloud crossed $50B for the first time at $54.5B. The print reframed the AI demand debate in Microsoft's favor.", "source": "CNBC", "sourceUrl": "https://www.cnbc.com/2026/04/29/microsoft-msft-q3-earnings-report-2026.html"},
-      {"date": "2026-04-29", "headline": "Microsoft guides to ~$190B calendar-2026 capex; stock falls on spending shock", "whyItMatters": "The ~$190B outlook came in ~$35B above the ~$155B consensus, with management attributing ~$25B to memory/component inflation rather than added capacity. Shares fell ~3% after hours on fears depreciation could outrun AI revenue.", "source": "Yahoo Finance", "sourceUrl": "https://finance.yahoo.com/markets/stocks/articles/microsoft-spending-billions-ai-investors-153500229.html"},
-      {"date": "2026-04-29", "headline": "Microsoft 365 Copilot paid seats surpass 20 million", "whyItMatters": "M365 Copilot paid seats reached 20M+, a ~33% sequential jump from ~15M in January, with seat adds +250% YoY. It confirms accelerating enterprise AI adoption, though ~3.3% penetration shows substantial runway and an unproven full monetization curve.", "source": "GeekWire", "sourceUrl": "https://www.geekwire.com/2026/microsoft-tops-wall-street-expectations-reports-accelerating-azure-growth-and-37b-ai-run-rate/"},
-      {"date": "2026-04-27", "headline": "Microsoft and OpenAI restructure their agreement", "whyItMatters": "The restructured deal removes Azure exclusivity and IP revenue-share payments while extending Microsoft's IP licensing through 2032; OpenAI's 20% revenue share to Microsoft continues through 2030 but is now capped. It improves Microsoft's long-term margin profile and frees it to build its own frontier models.", "source": "GeekWire", "sourceUrl": "https://www.geekwire.com/2026/microsoft-tops-wall-street-expectations-reports-accelerating-azure-growth-and-37b-ai-run-rate/"},
-      {"date": "2026-03-15", "headline": "Microsoft reorganizes Copilot and consumer-AI org under Mustafa Suleyman", "whyItMatters": "The reorg consolidated Copilot and consumer-AI efforts to accelerate product velocity and prepare for in-house model integration, signaling intent to own more of the AI stack rather than rely solely on OpenAI.", "source": "TradingKey", "sourceUrl": "https://www.tradingkey.com/analysis/stocks/us-stocks/261829603-msft-q3-earnings-preview-azure-copilot-capex-tradingkey"},
-      {"date": "2026-05-19", "headline": "At Build 2026, Microsoft unveils seven in-house MAI models, led by MAI-Thinking-1", "whyItMatters": "The MAI Superintelligence Team launched seven models trained from scratch (no distillation), including Microsoft's first reasoning model (MAI-Thinking-1), a 5B MAI-Code-1-Flash for VS Code/GitHub Copilot, and MAI-Image-2.5 — a strategic push toward self-sufficiency and lower long-term inference costs versus OpenAI dependence.", "source": "GeekWire", "sourceUrl": "https://www.geekwire.com/2026/microsoft-unveils-seven-homegrown-ai-models-in-bid-for-long-term-self-sufficiency/"},
-      {"date": "2026-05-12", "headline": "Microsoft signals shift toward consumption-based pricing for AI products", "whyItMatters": "Management commentary that consumption-based pricing for Copilot and AI services is coming sooner than expected — a model shift that could expand the monetizable surface beyond fixed per-seat SKUs but adds revenue-timing variability.", "source": "Directions on Microsoft", "sourceUrl": "https://www.directionsonmicrosoft.com/microsofts-q3-fy26-take-aways-consumption-pricing-is-coming-sooner-rather-than-later/"},
-      {"date": "2026-04-30", "headline": "Investors question whether AI spend will pay off despite the beat", "whyItMatters": "Even after a strong quarter, the debate centers on whether near-doubling capex within two years generates sufficient returns before depreciation pressures margins, keeping MSFT's path tied to sustained Azure/Copilot acceleration.", "source": "Yahoo Finance", "sourceUrl": "https://finance.yahoo.com/markets/stocks/articles/microsoft-spending-billions-ai-investors-153500229.html"}
+      {
+        "date": "2026-04-29",
+        "headline": "Microsoft FQ3 2026 beats as Azure reaccelerates to 40%; AI run-rate tops $37B",
+        "whyItMatters": "Azure +40% (+39% cc) beat the 37-38% guide and reversed several quarters of deceleration; AI run-rate surpassed $37B (+~123% YoY) and Microsoft Cloud crossed $50B for the first time at $54.5B. The print reframed the AI demand debate in Microsoft's favor.",
+        "source": "CNBC",
+        "sourceUrl": "https://www.cnbc.com/2026/04/29/microsoft-msft-q3-earnings-report-2026.html"
+      },
+      {
+        "date": "2026-04-29",
+        "headline": "Microsoft guides to ~$190B calendar-2026 capex; stock falls on spending shock",
+        "whyItMatters": "The ~$190B outlook came in ~$35B above the ~$155B consensus, with management attributing ~$25B to memory/component inflation rather than added capacity. Shares fell ~3% after hours on fears depreciation could outrun AI revenue.",
+        "source": "Yahoo Finance",
+        "sourceUrl": "https://finance.yahoo.com/markets/stocks/articles/microsoft-spending-billions-ai-investors-153500229.html"
+      },
+      {
+        "date": "2026-04-29",
+        "headline": "Microsoft 365 Copilot paid seats surpass 20 million",
+        "whyItMatters": "M365 Copilot paid seats reached 20M+, a ~33% sequential jump from ~15M in January, with seat adds +250% YoY. It confirms accelerating enterprise AI adoption, though ~3.3% penetration shows substantial runway and an unproven full monetization curve.",
+        "source": "GeekWire",
+        "sourceUrl": "https://www.geekwire.com/2026/microsoft-tops-wall-street-expectations-reports-accelerating-azure-growth-and-37b-ai-run-rate/"
+      },
+      {
+        "date": "2026-04-27",
+        "headline": "Microsoft and OpenAI restructure their agreement",
+        "whyItMatters": "The restructured deal removes Azure exclusivity and IP revenue-share payments while extending Microsoft's IP licensing through 2032; OpenAI's 20% revenue share to Microsoft continues through 2030 but is now capped. It improves Microsoft's long-term margin profile and frees it to build its own frontier models.",
+        "source": "GeekWire",
+        "sourceUrl": "https://www.geekwire.com/2026/microsoft-tops-wall-street-expectations-reports-accelerating-azure-growth-and-37b-ai-run-rate/"
+      },
+      {
+        "date": "2026-03-15",
+        "headline": "Microsoft reorganizes Copilot and consumer-AI org under Mustafa Suleyman",
+        "whyItMatters": "The reorg consolidated Copilot and consumer-AI efforts to accelerate product velocity and prepare for in-house model integration, signaling intent to own more of the AI stack rather than rely solely on OpenAI.",
+        "source": "TradingKey",
+        "sourceUrl": "https://www.tradingkey.com/analysis/stocks/us-stocks/261829603-msft-q3-earnings-preview-azure-copilot-capex-tradingkey"
+      },
+      {
+        "date": "2026-05-19",
+        "headline": "At Build 2026, Microsoft unveils seven in-house MAI models, led by MAI-Thinking-1",
+        "whyItMatters": "The MAI Superintelligence Team launched seven models trained from scratch (no distillation), including Microsoft's first reasoning model (MAI-Thinking-1), a 5B MAI-Code-1-Flash for VS Code/GitHub Copilot, and MAI-Image-2.5 — a strategic push toward self-sufficiency and lower long-term inference costs versus OpenAI dependence.",
+        "source": "GeekWire",
+        "sourceUrl": "https://www.geekwire.com/2026/microsoft-unveils-seven-homegrown-ai-models-in-bid-for-long-term-self-sufficiency/"
+      },
+      {
+        "date": "2026-05-12",
+        "headline": "Microsoft signals shift toward consumption-based pricing for AI products",
+        "whyItMatters": "Management commentary that consumption-based pricing for Copilot and AI services is coming sooner than expected — a model shift that could expand the monetizable surface beyond fixed per-seat SKUs but adds revenue-timing variability.",
+        "source": "Directions on Microsoft",
+        "sourceUrl": "https://www.directionsonmicrosoft.com/microsofts-q3-fy26-take-aways-consumption-pricing-is-coming-sooner-rather-than-later/"
+      },
+      {
+        "date": "2026-04-30",
+        "headline": "Investors question whether AI spend will pay off despite the beat",
+        "whyItMatters": "Even after a strong quarter, the debate centers on whether near-doubling capex within two years generates sufficient returns before depreciation pressures margins, keeping MSFT's path tied to sustained Azure/Copilot acceleration.",
+        "source": "Yahoo Finance",
+        "sourceUrl": "https://finance.yahoo.com/markets/stocks/articles/microsoft-spending-billions-ai-investors-153500229.html"
+      }
     ],
     "earningsTakeaways": {
       "quarter": "FQ3 2026 (ended March 31, 2026); most recent reported",
@@ -71,12 +167,60 @@
       "Valuation: at 10.1x EV/Rev the recovery path is tied to sustained Azure/Copilot acceleration."
     ],
     "comps": [
-      {"name": "Microsoft", "ticker": "MSFT", "type": "Subject", "evRevenue": "10.1x LTM", "revenueGrowth": "18.3% YoY", "grossMargin": "68.3%", "note": "Azure +40% and a >$37B AI run-rate on premium software margin, offset by the ~$190B capex overhang"},
-      {"name": "Alphabet", "ticker": "GOOGL", "type": "Cloud/AI peer", "evRevenue": "4.9x LTM", "revenueGrowth": "21.8% YoY", "grossMargin": "60.4%", "note": "Closest cloud+AI comparable; faster growth at roughly half Microsoft's EV/Rev"},
-      {"name": "Amazon", "ticker": "AMZN", "type": "Cloud peer", "evRevenue": "3.7x LTM", "revenueGrowth": "16.6% YoY", "grossMargin": "50.6%", "note": "AWS is the cloud share leader Azure is closing on; lowest EV/Rev of the group on retail mix"},
-      {"name": "Oracle", "ticker": "ORCL", "type": "Enterprise software", "evRevenue": "12.3x LTM", "revenueGrowth": "21.7% YoY", "grossMargin": "67.1%", "note": "OCI re-rated Oracle to a premium to Microsoft on its AI-cloud backlog"},
-      {"name": "Salesforce", "ticker": "CRM", "type": "Enterprise SaaS", "evRevenue": "4.4x LTM", "revenueGrowth": "13.3% YoY", "grossMargin": "77.6%", "note": "Apps peer (Agentforce vs Copilot); slowest growth, value multiple"},
-      {"name": "Nvidia", "ticker": "NVDA", "type": "AI compute", "evRevenue": "20.4x LTM", "revenueGrowth": "85.2% YoY", "grossMargin": "74.1%", "note": "The AI-infra supplier behind Microsoft's biggest capex line; ~2x the group's EV/Rev"}
+      {
+        "name": "Microsoft",
+        "ticker": "MSFT",
+        "type": "Subject",
+        "evRevenue": "10.1x LTM",
+        "revenueGrowth": "18.3% YoY",
+        "grossMargin": "68.3%",
+        "note": "Azure +40% and a >$37B AI run-rate on premium software margin, offset by the ~$190B capex overhang"
+      },
+      {
+        "name": "Alphabet",
+        "ticker": "GOOGL",
+        "type": "Cloud/AI peer",
+        "evRevenue": "4.9x LTM",
+        "revenueGrowth": "21.8% YoY",
+        "grossMargin": "60.4%",
+        "note": "Closest cloud+AI comparable; faster growth at roughly half Microsoft's EV/Rev"
+      },
+      {
+        "name": "Amazon",
+        "ticker": "AMZN",
+        "type": "Cloud peer",
+        "evRevenue": "3.7x LTM",
+        "revenueGrowth": "16.6% YoY",
+        "grossMargin": "50.6%",
+        "note": "AWS is the cloud share leader Azure is closing on; lowest EV/Rev of the group on retail mix"
+      },
+      {
+        "name": "Oracle",
+        "ticker": "ORCL",
+        "type": "Enterprise software",
+        "evRevenue": "12.3x LTM",
+        "revenueGrowth": "21.7% YoY",
+        "grossMargin": "67.1%",
+        "note": "OCI re-rated Oracle to a premium to Microsoft on its AI-cloud backlog"
+      },
+      {
+        "name": "Salesforce",
+        "ticker": "CRM",
+        "type": "Enterprise SaaS",
+        "evRevenue": "4.4x LTM",
+        "revenueGrowth": "13.3% YoY",
+        "grossMargin": "77.6%",
+        "note": "Apps peer (Agentforce vs Copilot); slowest growth, value multiple"
+      },
+      {
+        "name": "Nvidia",
+        "ticker": "NVDA",
+        "type": "AI compute",
+        "evRevenue": "20.4x LTM",
+        "revenueGrowth": "85.2% YoY",
+        "grossMargin": "74.1%",
+        "note": "The AI-infra supplier behind Microsoft's biggest capex line; ~2x the group's EV/Rev"
+      }
     ],
     "slideBullets": [
       "Microsoft FQ3'26: revenue $82.9B (+18%), EPS $4.27, Microsoft Cloud $54.5B (first quarter >$50B), Azure reaccelerating to +40%.",
@@ -89,6 +233,85 @@
       "How quickly does the ~$190B capex convert to revenue and FCF, and what does the depreciation schedule do to operating margin over FY27-28?",
       "What is the true M365 Copilot monetization curve as pricing shifts toward consumption — net revenue per seat and attach rate trajectory?",
       "Post-restructuring, how does the OpenAI relationship evolve as both partner and competitor, and what does in-house MAI do to inference costs?"
-    ]
+    ],
+    "rampDemandSignal": {
+      "available": true,
+      "asOf": "2026-04",
+      "source": "Ramp Data",
+      "sourceUrl": "https://ramp.com/data",
+      "headline": "Microsoft's GitHub dominates DevOps card spend — 88% adoption, 43% of category spend (8x the #2), and it wins three-quarters of new adopters. A durable demand moat under the developer franchise that Copilot now monetizes.",
+      "cards": [
+        {
+          "label": "Category",
+          "value": "DevOps",
+          "sub": "GitHub (Microsoft)",
+          "pos": false
+        },
+        {
+          "label": "Adoption Rate",
+          "value": "87.9%",
+          "sub": "#1 in category",
+          "pos": true
+        },
+        {
+          "label": "Spend Share",
+          "value": "43.2%",
+          "sub": "#1, 8x the #2",
+          "pos": true
+        },
+        {
+          "label": "New-Adopter Share",
+          "value": "75.4%",
+          "sub": "#1 — wins new devs",
+          "pos": true
+        }
+      ],
+      "leaderboard": {
+        "category": "DevOps",
+        "rows": [
+          {
+            "vendor": "GitHub (Microsoft)",
+            "adoption": "87.9%",
+            "spendShare": "43.2%",
+            "growthYoY": "+1.9%",
+            "note": "dominant, still growing",
+            "isSubject": true
+          },
+          {
+            "vendor": "Postman",
+            "adoption": "13.6%",
+            "spendShare": "5.1%",
+            "growthYoY": "-2.0%",
+            "note": "API tooling",
+            "isSubject": false
+          },
+          {
+            "vendor": "Supabase",
+            "adoption": "11.3%",
+            "spendShare": "3.8%",
+            "growthYoY": "+5.9%",
+            "note": "fastest grower",
+            "isSubject": false
+          },
+          {
+            "vendor": "MongoDB",
+            "adoption": "9.0%",
+            "spendShare": "26.5%",
+            "growthYoY": "-0.6%",
+            "note": "high spend, narrow adoption",
+            "isSubject": false
+          },
+          {
+            "vendor": "CircleCI",
+            "adoption": "5.7%",
+            "spendShare": "9.3%",
+            "growthYoY": "-2.4%",
+            "note": "CI incumbent, eroding",
+            "isSubject": false
+          }
+        ]
+      },
+      "note": "Proxied via GitHub (DevOps), Microsoft's most card-billed product; Azure and M365 are largely committed-contract and under-captured here. Ramp's panel is corporate-card spend across 50k+ businesses and skews SMB / mid-market, so it under-captures committed enterprise contracts."
+    }
   }
 }
