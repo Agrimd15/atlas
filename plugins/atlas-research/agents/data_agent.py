@@ -319,7 +319,7 @@ def get_sec_filings(ticker: str, forms=("10-K", "10-Q", "8-K"), per_form: int = 
 
 # ── Quarterly trend: last N quarters, live & dated ────────────────────────────
 
-def quarterly_trend(ticker: str, n: int = 4) -> dict:
+def quarterly_trend(ticker: str, n: int = 5) -> dict:
     """
     The last `n` reported quarters of revenue and gross margin, pulled LIVE from
     yfinance's quarterly income statement and stamped with each quarter's fiscal
@@ -391,6 +391,7 @@ def quarterly_trend(ticker: str, n: int = 4) -> dict:
             "periodEnd":     d.isoformat(),
             "label":         f"{cal_q}Q{d.year % 100:02d}",
             "revenue":       _b(rev),
+            "revenueNum":    rev,
             "grossMargin":   _pct(gm),
             "qoqGrowth":     _pct(qoq),
             "yoyGrowth":     _pct(yoy),

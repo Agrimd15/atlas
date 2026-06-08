@@ -164,8 +164,17 @@ Read all 4 JSON files and produce a `brief` object with: `runDate`, `businessOve
 `recentNews` (date, headline, whyItMatters, source, sourceUrl), `earningsTakeaways` (quarter,
 reportDate, keyMetrics, aiCommentary, demandCommentary, **`sources`**), `keyRisks`, `comps` (name,
 ticker, evRevenue, revenueGrowth, note — **multiples MUST come from the Data Agent's live `data.json`,
-never from memory**; the deliverable agent re-pulls them live at render time), `swot`, `slideBullets`
-(5), `diligenceQuestions` (3).
+never from memory**; the deliverable agent re-pulls them live at render time), `revenueHistory`,
+`swot`, `slideBullets` (5), `diligenceQuestions` (3).
+
+**Revenue on both a quarterly and annual basis (`brief.revenueHistory`).** Populate `revenueHistory`
+as a list of **annual** revenue points — `{year, value, label, source}`, `value` in $B (e.g.
+`{"year": "FY2026", "value": 41.45, "label": "$41.5B", "source": …}`) — with 3–4 fiscal years plus an
+`LTM` point. This drives the **annual revenue bar chart**. Separately, the deliverable agent pulls the
+**last ~5 quarters live from yfinance** at render time for the **quarterly revenue chart + table**
+(public tickers only — private cos show annual only). So every public brief shows revenue on both a
+quarterly *and* an annual basis with no manual quarterly entry; just make sure `revenueHistory` is
+present so the annual chart renders.
 
 **SWOT (`brief.swot`, renders next to the comps table).** A detailed 2×2 showing how the target stands
 out from the comp set: `{standoutSummary, strengths, weaknesses, opportunities, threats, sources}`.
