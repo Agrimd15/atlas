@@ -30,7 +30,7 @@ cp .env.example .env      # add FMP_API_KEY if you have one
 ```
 
 ## 3. Make the coverage yours
-This repo ships 2 demo companies (Decagon, Broadcom). To start clean:
+This repo ships a handful of sample companies under `data-dumps/` (the public demo set is whatever you list in `DEMO_IDS` - see step 5). To start clean:
 ```bash
 rm -rf data-dumps/*/      # removes sample companies, keeps the folder
 ```
@@ -48,7 +48,7 @@ generate an HTML + PDF brief in the run folder. Every number is pulled live and 
 Edit `DEMO_IDS` at the top of [`site/build.mjs`](site/build.mjs) - only these companies appear on the
 public `/` view; everything else stays behind the password at `/full`.
 ```js
-const DEMO_IDS = ['decagon', 'AVGO'];   // folder ids: ticker for public cos, kebab-slug for private
+const DEMO_IDS = ['CRM', 'EGAN', 'NTSK'];   // folder ids: ticker for public cos, kebab-slug for private
 ```
 
 ## 6. Build & preview locally
