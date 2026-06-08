@@ -163,6 +163,12 @@ It also runs three QA passes and prints a report: a layout/overflow check; a **s
 
 **Notion mirror runs automatically.** At the end of every brief generation, `deliverable_agent.py` calls `agents/notion_sync.py` to upsert this company's row into the Notion coverage DB. It's a silent no-op unless `NOTION_TOKEN` + `NOTION_DB_ID` are set in `.env`, and it never fails the brief (a Notion error prints a `⚠️` and is swallowed). No manual step is needed — see "Mirroring coverage to Notion" below for the column setup. The brief link in the row resolves once Step 5 deploys the run to the web.
 
+**Notion mirror via MCP (mandatory — the primary path in cloud/phone sessions).** The token-based `notion_sync.py` above is a no-op whenever `NOTION_TOKEN`/`NOTION_DB_ID` are unset, which is the *usual* case in a cloud sandbox — so the row silently never gets written. Therefore: **in any session where a Notion MCP is connected, you (Claude) MUST upsert this company's row into the `atlas tracker` database yourself via the Notion MCP at the end of every run** — do not skip it and do not assume the token sync covered it. This is part of the standard pipeline, not an optional extra. Procedure:
+  1. **Upsert, never duplicate.** Search the database for an existing row whose **Company Name** matches; if one exists, update it in place, otherwise create a new page. One row per company.
+  2. **Target.** Database "🚀 atlas tracker", data source `c2b483d1-4dd7-41df-a6f8-42475576b9ff`. Schema: `Company Name` (title), `Description` (text), `Stage` (select: `Public`/`Seed`/`Series A`), `Valuation` (text), `Last Updated` (date), `report` (url). Match by property name to whatever the live schema shows — re-fetch the data source first if unsure, since columns can change.
+  3. **Field mapping (all from the live run, never memory):** `Description` = the profile's one-line `shortDescription` (prefix `• `, match the existing rows' style); `Stage` = `Public` for listed names, else the latest round; `Valuation` = a live snapshot line from the Data Agent pull (market cap + EV + EV/Rev LTM + forward P/E + beta + 52-wk range + analyst consensus/target, e.g. the format used in the existing Micron row); `Last Updated` = the run date; `report` = `https://atlas-private.vercel.app/full/briefs/<FOLDER_ID>/<run-date>.html` (the same URL convention the other rows use).
+  4. **Confirm it landed** and report the row URL in your run summary. If no Notion MCP is connected *and* no token creds are set, say so plainly in the summary rather than leaving the omission silent.
+
 **Step 5 - Ship to `main` (standing instruction).** Atlas runs should land on `main`, not sit in a draft. After the brief is generated and QA is clean: commit the run on the working branch, push it, and open the PR **ready-for-review (NOT a draft)** so the repo's auto-merge workflow can take it in. If auto-merge does not merge it (e.g. it's disabled or the PR stays open) and `mergeable_state` is `clean`, **merge it into `main` yourself** (squash). Only hold off and ask first if QA is blocking/unresolved, there's a merge conflict, or the diff touches code/config beyond `data-dumps/` (a brief that's just a new `data-dumps/<ID>/` run is safe to land automatically). This overrides the default "open as draft and wait" behavior for Atlas research runs.
 
 ---
@@ -227,7 +233,11 @@ do the following automatically — do not make the user issue extra commands:
    missing PDF as a failure.
 4. **Skip Ramp demand signals gracefully.** The `ramp-data:*` MCP tools won't be connected in cloud.
    Omit `rampDemandSignal` rather than blocking the run — every other section still renders.
-5. **Ship so it's readable on the phone.** Follow Step 5 (commit → push → land on `main` → deploy).
+5. **Mirror to Notion via the MCP yourself.** In cloud, `notion_sync.py` almost always no-ops (no
+   token), so the row is *not* written automatically. The Notion MCP, however, is typically connected
+   — so upsert the company's row into the `atlas tracker` DB through the MCP as described in "Notion
+   mirror via MCP" under Step 4. This is required, not optional; confirm the row and report its URL.
+6. **Ship so it's readable on the phone.** Follow Step 5 (commit → push → land on `main` → deploy).
    The cleanest way to *read* the brief on a phone is the deployed coverage site, not a local file in
    the sandbox.
 

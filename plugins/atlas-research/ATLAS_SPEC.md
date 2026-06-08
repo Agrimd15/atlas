@@ -239,10 +239,17 @@ block is missing or incomplete**, and a metric **contradiction always blocks**. 
 doesn't tie before treating a brief as client-ready. (PDF generation needs local Chrome; without it
 the HTML still renders.)
 
-**Notion mirror (optional, automatic).** At the end of this step `deliverable_agent.py` calls
-`notion_sync.py` to upsert this company's row into a Notion coverage DB. It is a **silent no-op unless
+**Notion mirror (automatic via token, mandatory via MCP).** At the end of this step `deliverable_agent.py`
+calls `notion_sync.py` to upsert this company's row into a Notion coverage DB. It is a **silent no-op unless
 `NOTION_TOKEN` + `NOTION_DB_ID` are set**, and it never fails the brief (a Notion error prints a `⚠️`
-and is swallowed). No manual step — see the optional Notion step in `/setup` to turn it on.
+and is swallowed) — which means in a cloud/phone session the row usually is *not* written. So whenever a
+**Notion MCP is connected, you (Claude) MUST upsert the row yourself via the MCP** (this is the primary
+path in cloud): search the `atlas tracker` DB (data source `c2b483d1-4dd7-41df-a6f8-42475576b9ff`) for an
+existing **Company Name** match and update it, else create one — one row per company, never a duplicate.
+Fill `Description` (one-line summary), `Stage` (`Public`/round), `Valuation` (live market-cap/EV/multiples
+snapshot from the Data Agent), `Last Updated` (run date), and `report`
+(`https://atlas-private.vercel.app/full/briefs/<FOLDER_ID>/<run-date>.html`). Confirm the row and report
+its URL. See the optional token setup in `/setup` to also enable the automatic path.
 
 **Step 5 — Report back**
 Confirm `FOLDER_ID`, public/private, the run date, the `marketCloseAsOf` close all multiples reflect
