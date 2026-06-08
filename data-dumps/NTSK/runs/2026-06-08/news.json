@@ -1,0 +1,44 @@
+[
+  {
+    "date": "2026-06-07",
+    "headline": "Netskope CEO Sanjay Beri appears on CNBC 'Fortt Knox' to discuss fiscal Q1 2027 earnings",
+    "whyItMatters": "First post-print CEO commentary after the June 3 Q1 FY27 report; signals management is actively defending the story into the post-earnings stock weakness.",
+    "source": "CNBC",
+    "sourceUrl": "https://www.cnbc.com/video/2026/06/07/sanjay-beri-netskope-ceo-fortt-knox-earnings.html"
+  },
+  {
+    "date": "2026-06-03",
+    "headline": "Netskope Reports Q1 FY2027: ARR $845M (+29% YoY), Revenue $202M (+28% YoY)",
+    "whyItMatters": "ARR growth deceleration from 34% to 29% YoY is the key investor debate \u2014 is this normal maturation toward a $1B ARR steady state, or the start of a more pronounced deceleration against a more competitive landscape?",
+    "source": "SEC EDGAR",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2063196/000119312526255439/ck0002063196-20260603.htm"
+  },
+  {
+    "date": "2025-12-11",
+    "headline": "Netskope First Post-IPO Earnings: FY2026 Guidance of $701-703M Beats Street Estimates",
+    "whyItMatters": "Beating analyst consensus of ~$690M on inaugural public guidance signals execution credibility; the guidance raise reflects AI-driven enterprise security budget expansion.",
+    "source": "Bloomberg",
+    "sourceUrl": "https://www.bloomberg.com/news/articles/2025-12-11/netskope-s-full-year-guidance-initiation-beats-estimates"
+  },
+  {
+    "date": "2025-09-18",
+    "headline": "Netskope Climbs 21% After $908M IPO on NASDAQ (NTSK); Lightspeed Books $1B+ Return",
+    "whyItMatters": "The largest cybersecurity IPO of 2025 validated institutional demand for SASE/SSE infrastructure plays; the post-IPO selloff to $12 from $22.49 first-day close sets up the current valuation debate.",
+    "source": "Bloomberg",
+    "sourceUrl": "https://www.bloomberg.com/news/articles/2025-09-18/cybersecurity-firm-netskope-climbs-21-after-908-million-ipo"
+  },
+  {
+    "date": "2025-09-16",
+    "headline": "Netskope IPO In Demand as AI Era Heightens Cyber Threats; Deal ~20x Oversubscribed",
+    "whyItMatters": "AI adoption expanding enterprise attack surfaces is the core secular demand driver; the 20x oversubscription reflects the structural thesis rather than company-specific factors.",
+    "source": "Bloomberg",
+    "sourceUrl": "https://www.bloomberg.com/news/articles/2025-09-16/netskope-ipo-in-demand-as-ai-era-heightens-cyber-threats"
+  },
+  {
+    "date": "2025-09-08",
+    "headline": "Netskope Files for $813M IPO; H1 FY2026 Revenue Grew 31% to $328.5M",
+    "whyItMatters": "S-1 filing disclosed first public look at financials: 31% revenue growth, narrowing net loss, 118% NRR, and 4,317 customers \u2014 metrics that positioned NTSK as a high-quality compounder at IPO.",
+    "source": "Bloomberg",
+    "sourceUrl": "https://www.bloomberg.com/news/articles/2025-09-08/cybersecurity-firm-netskope-seeks-to-raise-813-million-in-ipo"
+  }
+]

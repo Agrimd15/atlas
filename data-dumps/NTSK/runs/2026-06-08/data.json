@@ -1,0 +1,216 @@
+{
+  "ticker": "NTSK",
+  "runDate": "2026-06-08",
+  "marketCloseAsOf": "2026-06-05",
+  "freshnessNote": "All multiples reflect the 2026-06-05 market close.",
+  "sources": [
+    "yfinance / Yahoo Finance",
+    "FMP /stable/profile",
+    "SEC EDGAR"
+  ],
+  "trading": {
+    "priceAsOf": "2026-06-05",
+    "stockPrice": "$10",
+    "marketCap": "$2.4B",
+    "enterpriseValue": "$2.1B",
+    "totalRevenueLTM": "$753M",
+    "revenueGrowthYoY": "27.8%",
+    "grossMargin": "69.3%",
+    "operatingMarginGAAP": "-53.9%",
+    "ebitdaMargin": "-90.2%",
+    "fcfPerShare": 264194256,
+    "totalDebt": "$747M",
+    "totalCash": "$1.1B",
+    "evRevenueLTM": "2.7x",
+    "evBasis": "recomputed: last close \u00d7 shares + net debt",
+    "forwardPE": 675.0,
+    "priceToSalesLTM": 5.2,
+    "52wHigh": 27.99,
+    "52wLow": 7.665,
+    "dayChange": "-0.3%",
+    "volume": 2553950,
+    "avgVolume": 4878261,
+    "analystTargetPrice": 16.05556,
+    "analystTargetHigh": 28.0,
+    "analystTargetLow": 13.0,
+    "analystRating": "strong_buy",
+    "numberOfAnalysts": 18,
+    "shortName": "Netskope, Inc.",
+    "sector": "Technology",
+    "industry": "Software - Infrastructure",
+    "sharesOutstanding": 251821667
+  },
+  "quarterlyTrend": {
+    "ticker": "NTSK",
+    "quarters": [
+      {
+        "periodEnd": "2026-04-30",
+        "label": "2Q26",
+        "revenue": "$202M",
+        "revenueNum": 201592000.0,
+        "grossMargin": "73.5%",
+        "qoqGrowth": "2.7%",
+        "yoyGrowth": "27.8%"
+      },
+      {
+        "periodEnd": "2026-01-31",
+        "label": "1Q26",
+        "revenue": "$196M",
+        "revenueNum": 196330000.0,
+        "grossMargin": "73.0%",
+        "qoqGrowth": "6.6%",
+        "yoyGrowth": null
+      },
+      {
+        "periodEnd": "2025-10-31",
+        "label": "4Q25",
+        "revenue": "$184M",
+        "revenueNum": 184173000.0,
+        "grossMargin": "57.9%",
+        "qoqGrowth": "7.9%",
+        "yoyGrowth": null
+      },
+      {
+        "periodEnd": "2025-07-31",
+        "label": "3Q25",
+        "revenue": "$171M",
+        "revenueNum": 170758000.0,
+        "grossMargin": "72.2%",
+        "qoqGrowth": "8.3%",
+        "yoyGrowth": null
+      },
+      {
+        "periodEnd": "2025-04-30",
+        "label": "2Q25",
+        "revenue": "$158M",
+        "revenueNum": 157736000.0,
+        "grossMargin": "69.4%",
+        "qoqGrowth": null,
+        "yoyGrowth": null
+      }
+    ],
+    "basis": "calendar-quarter labels on fiscal period-ends; gross margin = gross profit / revenue",
+    "source": "yfinance / Yahoo Finance (quarterly income statement)",
+    "sourceUrl": "https://finance.yahoo.com/quote/NTSK/financials"
+  },
+  "profile": {},
+  "comps": [
+    {
+      "ticker": "ZS",
+      "name": "Zscaler, Inc.",
+      "priceAsOf": "2026-06-05",
+      "marketCap": "$21.1B",
+      "evRevenueLTM": "6.1x",
+      "revenueGrowth": "25.4%",
+      "grossMargin": "76.7%",
+      "analystRating": "buy",
+      "source": "yfinance / Yahoo Finance",
+      "sourceUrl": "https://finance.yahoo.com/quote/ZS"
+    },
+    {
+      "ticker": "NET",
+      "name": "Cloudflare, Inc.",
+      "priceAsOf": "2026-06-05",
+      "marketCap": "$79.9B",
+      "evRevenueLTM": "34.0x",
+      "revenueGrowth": "33.5%",
+      "grossMargin": "73.3%",
+      "analystRating": "buy",
+      "source": "yfinance / Yahoo Finance",
+      "sourceUrl": "https://finance.yahoo.com/quote/NET"
+    },
+    {
+      "ticker": "CRWD",
+      "name": "CrowdStrike Holdings, Inc.",
+      "priceAsOf": "2026-06-05",
+      "marketCap": "$170.8B",
+      "evRevenueLTM": "32.8x",
+      "revenueGrowth": "25.6%",
+      "grossMargin": "75.1%",
+      "analystRating": "buy",
+      "source": "yfinance / Yahoo Finance",
+      "sourceUrl": "https://finance.yahoo.com/quote/CRWD"
+    },
+    {
+      "ticker": "PANW",
+      "name": "Palo Alto Networks, Inc.",
+      "priceAsOf": "2026-06-05",
+      "marketCap": "$221.7B",
+      "evRevenueLTM": "20.8x",
+      "revenueGrowth": "31.1%",
+      "grossMargin": "72.0%",
+      "analystRating": "buy",
+      "source": "yfinance / Yahoo Finance",
+      "sourceUrl": "https://finance.yahoo.com/quote/PANW"
+    },
+    {
+      "ticker": "FTNT",
+      "name": "Fortinet, Inc.",
+      "priceAsOf": "2026-06-05",
+      "marketCap": "$106.0B",
+      "evRevenueLTM": "14.5x",
+      "revenueGrowth": "20.1%",
+      "grossMargin": "80.3%",
+      "analystRating": "hold",
+      "source": "yfinance / Yahoo Finance",
+      "sourceUrl": "https://finance.yahoo.com/quote/FTNT"
+    },
+    {
+      "ticker": "S",
+      "name": "SentinelOne, Inc.",
+      "priceAsOf": "2026-06-05",
+      "marketCap": "$5.3B",
+      "evRevenueLTM": "4.5x",
+      "revenueGrowth": "20.8%",
+      "grossMargin": "73.2%",
+      "analystRating": "buy",
+      "source": "yfinance / Yahoo Finance",
+      "sourceUrl": "https://finance.yahoo.com/quote/S"
+    }
+  ],
+  "secFilings": {
+    "company": "Netskope Inc",
+    "cik": "0002063196",
+    "fiscalYearEnd": "0131",
+    "filings": [
+      {
+        "form": "10-Q",
+        "filingDate": "2026-06-03",
+        "reportDate": "2026-04-30",
+        "url": "https://www.sec.gov/Archives/edgar/data/2063196/000119312526255732/ck0002063196-20260430.htm",
+        "source": "SEC EDGAR (primary filing)"
+      },
+      {
+        "form": "8-K",
+        "filingDate": "2026-06-03",
+        "reportDate": "2026-06-03",
+        "url": "https://www.sec.gov/Archives/edgar/data/2063196/000119312526255439/ck0002063196-20260603.htm",
+        "source": "SEC EDGAR (primary filing)"
+      },
+      {
+        "form": "10-K",
+        "filingDate": "2026-03-31",
+        "reportDate": "2026-01-31",
+        "url": "https://www.sec.gov/Archives/edgar/data/2063196/000119312526135011/ck0002063196-20260131.htm",
+        "source": "SEC EDGAR (primary filing)"
+      },
+      {
+        "form": "8-K",
+        "filingDate": "2026-03-11",
+        "reportDate": "2026-03-11",
+        "url": "https://www.sec.gov/Archives/edgar/data/2063196/000119312526102142/ck0002063196-20260311.htm",
+        "source": "SEC EDGAR (primary filing)"
+      },
+      {
+        "form": "10-Q",
+        "filingDate": "2025-12-11",
+        "reportDate": "2025-10-31",
+        "url": "https://www.sec.gov/Archives/edgar/data/2063196/000119312525316190/ck0002063196-20251031.htm",
+        "source": "SEC EDGAR (primary filing)"
+      }
+    ],
+    "source": "SEC EDGAR",
+    "sourceUrl": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0002063196&type=&dateb=&owner=include&count=40"
+  },
+  "rampDemandSignal": null
+}
