@@ -184,6 +184,7 @@ It also runs three QA passes and prints a report: a layout/overflow check; a **s
 | `agents/sources.py` | Canonical trusted-source registry (Tier 1/2 publications + curated X accounts). |
 | `site/build.mjs` | Builds the static coverage site from `data-dumps/`. Run: `node site/build.mjs`. Choose public-demo companies via `DEMO_IDS` at the top. |
 | `viewer/` | Optional local viewer: a single-file browser app (`atlas.html`) + a small FastAPI backend. Run: `viewer/start.sh`. |
+| `agents/notion_sync.py` | Optional: mirror a run into a Notion database — upserts one row per company (description, competitors, founders, public/private, stage/series, revenue, valuation) with a link back to the published brief. Run: `python3 agents/notion_sync.py FOLDER_ID [--body] [--dry-run]`. Needs `NOTION_TOKEN`, `NOTION_DB_ID`, `ATLAS_SITE_URL` in `.env`; see "Mirroring coverage to Notion" below. |
 
 ---
 
@@ -207,6 +208,44 @@ PDF rendering uses your local Google Chrome / Chromium - no install or credentia
 `middleware.js`. To deploy: import this repo into Vercel, **leave the Root Directory at the repo
 root**, Framework = Other (build command + output come from `vercel.json`). Add `SITE_PASSWORD` to
 gate `/full`. HTTPS + security headers are configured out of the box.
+
+---
+
+## Mirroring coverage to Notion (optional)
+
+`agents/notion_sync.py` pushes a finished run into a Notion database so a team can browse coverage
+from Notion, each row linking back to the brief on the coverage site. It's optional and additive —
+nothing else depends on it. One row per company, **upserted** on the company name, so re-running a
+name updates its row instead of duplicating it. Columns are matched by name (case-insensitive) and
+formatted to the column's real type, so it adapts to whatever the database already has. When present
+it fills these columns (aliases in parentheses):
+
+| Column | Filled with |
+|---|---|
+| `Company Name` (title) | Company name |
+| `Description` | One-line business summary (`shortDescription`) |
+| `Competitors` · `Founders` · `Ticker` · `Website` | From the profile |
+| `Type` (`Public/Private`, `Ownership`) | `Public` / `Private` |
+| `Stage` (`Series`, `Series/IPO`, `Round`) | `Public` for listed names, else the latest round (`Seed`, `Series A`, …) |
+| `Revenue` (`LTM Revenue`) | LTM revenue for public; latest reported figure for private (blank if undisclosed) |
+| `Valuation` (`Market Cap`, `Last Valuation`) | Market cap for public; last reported post-money for private (blank if undisclosed) |
+| `Brief`/`Atlas`/`Report`/`Link` (any URL column) | Link to the published brief |
+| `Last Updated` (date) | Run date |
+
+Undisclosed private revenue/valuation is left blank, never guessed. Keep `Revenue`/`Valuation` as
+**text** and `Type`/`Stage` as text or **select** — a number-typed column can't hold "$42.8B" and is skipped.
+
+One-time setup:
+1. Create an internal integration at notion.so/my-integrations, copy its secret into `.env` as `NOTION_TOKEN`.
+2. In the database, ••• → Connections → add the integration (gives it read/write).
+3. Add the columns you want from the table above — at minimum a **URL** column for the link, plus
+   `Type`, `Stage`, `Revenue`, `Valuation` (text/select) and a `Last Updated` date column.
+4. Put the database id (the 32-char hash in its URL) in `.env` as `NOTION_DB_ID`, and set
+   `ATLAS_SITE_URL` to your deployed site so links resolve.
+
+Run after a brief is generated: `python3 agents/notion_sync.py FOLDER_ID` (add `--body` to also write
+a summary into the new page, `--dry-run` to preview the payload without a token). To make it part of
+every run, call it as an extra step after Step 4.
 
 ---
 
