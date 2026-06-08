@@ -622,6 +622,24 @@ def build_html(profile: dict) -> str:
     ticker      = profile.get("ticker", "")
     date        = b.get("runDate") or profile.get("lastRunDate") or datetime.date.today().isoformat()
     date_fmt    = datetime.datetime.strptime(date, "%Y-%m-%d").strftime("%B %d, %Y") if date else ""
+
+    # Version-history control: each dated run folder is a prior version, so expose them as a
+    # disclosure menu in the header — "last updated" at a glance, with links to past versions
+    # for context/source tracking. Native <details> so it needs no JS and prints cleanly.
+    _vh = profile.get("_versionHistory") or []
+    if len(_vh) >= 2:
+        _vh_items = "".join(
+            (f'<span class="verhist-item current">{v["date_fmt"]} &middot; current</span>'
+             if v["current"] else
+             f'<a class="verhist-item" href="{v["href"]}">{v["date_fmt"]}</a>')
+            for v in _vh)
+        version_html = (
+            '<details class="verhist"><summary class="verhist-btn">'
+            f'&#x21bb; Updated {date_fmt} &middot; {len(_vh)} versions</summary>'
+            f'<div class="verhist-menu"><div class="verhist-head">Version history</div>{_vh_items}</div>'
+            '</details>')
+    else:
+        version_html = f'Atlas &nbsp;&middot;&nbsp; Updated {date_fmt}'
     website     = profile.get("website", "")
     verticals   = profile.get("verticals", [])
     notes_raw   = profile.get("notes", "")
@@ -1355,6 +1373,25 @@ def build_html(profile: dict) -> str:
                   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; }}
   .header-meta {{ font-size: 11.5px; color: var(--ks-faint); }}
   .header-meta a {{ color: var(--ks-kinpaku-pale); }}
+  /* ── Version history (header disclosure) ── */
+  .verhist {{ position: relative; display: inline-block; }}
+  .verhist > summary {{ cursor: pointer; list-style: none; color: var(--ks-faint);
+                        font-size: 11.5px; user-select: none; white-space: nowrap; }}
+  .verhist > summary::-webkit-details-marker {{ display: none; }}
+  .verhist > summary:hover, .verhist[open] > summary {{ color: var(--ks-champagne); }}
+  .verhist-menu {{ position: absolute; right: 0; top: 100%; margin-top: 6px; z-index: 30;
+                   background: var(--ks-raised); border: 1px solid var(--ks-rule);
+                   border-radius: 6px; box-shadow: 0 8px 28px rgba(0,0,0,0.14);
+                   padding: 6px; min-width: 190px; text-align: left; }}
+  .verhist-head {{ font-size: 9px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+                   color: var(--ks-faint); padding: 3px 10px 6px; border-bottom: 1px solid var(--ks-rule);
+                   margin-bottom: 4px; }}
+  .verhist-item {{ display: block; padding: 5px 10px; border-radius: 4px; font-size: 11.5px;
+                   color: var(--ks-body); white-space: nowrap; }}
+  a.verhist-item:hover {{ background: var(--ks-graphite-2); color: var(--ks-champagne); }}
+  .verhist-item.current {{ color: var(--ks-faint); font-weight: 700; }}
+  @media print {{ .verhist-menu {{ display: none !important; }}
+                  .verhist > summary {{ color: var(--ks-faint); cursor: default; }} }}
   .verticals {{ margin-top: 10px; display: flex; flex-wrap: wrap; gap: 6px; }}
   .vertical-tag {{ background: var(--ks-graphite); border: 1px solid var(--ks-rule);
                    color: var(--ks-muted); font-size: 10px; padding: 2px 9px; border-radius: 3px;
@@ -1861,7 +1898,7 @@ def build_html(profile: dict) -> str:
       </div>
       <div class="header-meta" style="text-align:right">
         {'<a href="' + website + '" target="_blank">' + website.replace("https://","").rstrip("/") + '</a><br>' if website else ''}
-        Atlas &nbsp;·&nbsp; {date_fmt}
+        {version_html}
       </div>
     </div>
     {'<div class="verticals">' + "".join(f'<span class="vertical-tag">{v}</span>' for v in verticals[:4]) + '</div>' if verticals else ''}
@@ -2401,6 +2438,37 @@ def audit_brief(html_path, profile, strict=False):
 
 # ── Main ─────────────────────────────────────────────────────────────────────
 
+def _collect_version_history(folder_id: str, current_date: str, detail: str = "brief"):
+    """List the dated runs that carry a rendered brief, newest first, for the header
+    version-history control. Each dated run folder IS a prior version, so this turns the
+    coverage database's own history into a visible 'what changed and when' trail. Returns
+    [{date, date_fmt, href, current}]; href is relative so it resolves from the current
+    brief's folder (siblings under runs/)."""
+    runs_dir = DATA_DUMPS / folder_id / "runs"
+    if not runs_dir.is_dir():
+        return []
+    suffix = f"_{detail}" if detail != "brief" else ""
+    out = []
+    for d in sorted((p for p in runs_dir.iterdir() if p.is_dir()),
+                    key=lambda p: p.name, reverse=True):
+        if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", d.name):
+            continue
+        is_cur = (d.name == current_date)
+        # current run links to its own (suffix-aware) file; priors link to the standard brief
+        fname = (f"{folder_id}_brief_{d.name}{suffix}.html" if is_cur
+                 else f"{folder_id}_brief_{d.name}.html")
+        if not is_cur and not (d / fname).exists():
+            continue
+        try:
+            df = datetime.datetime.strptime(d.name, "%Y-%m-%d").strftime("%b %d, %Y")
+        except ValueError:
+            df = d.name
+        out.append({"date": d.name, "date_fmt": df,
+                    "href": fname if is_cur else f"../{d.name}/{fname}",
+                    "current": is_cur})
+    return out
+
+
 def run(ticker: str, detail: str = "brief", audit: bool = True, strict: bool = False):
     folder_id = ticker.strip()
     profile   = load_profile(folder_id)
@@ -2417,6 +2485,7 @@ def run(ticker: str, detail: str = "brief", audit: bool = True, strict: bool = F
     out_dir   = DATA_DUMPS / folder_id / "runs" / run_date
     out_dir.mkdir(parents=True, exist_ok=True)
     profile["_run_dir"] = str(out_dir)
+    profile["_versionHistory"] = _collect_version_history(folder_id, run_date, detail)
 
     html = build_html(profile)
 
