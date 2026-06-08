@@ -195,13 +195,41 @@ It also runs three QA passes and prints a report: a layout/overflow check; a **s
 ## Environment Setup
 
 ```bash
-pip3 install yfinance requests
+pip3 install -r requirements.txt   # yfinance + requests (same as: pip3 install yfinance requests)
 
 # Optional: free FMP key for live comps (yfinance works without one)
 cp .env.example .env          # then add FMP_API_KEY=...
 ```
 
 PDF rendering uses your local Google Chrome / Chromium - no install or credentials needed.
+
+---
+
+## Running Atlas in a cloud / mobile session (self-bootstrap)
+
+A cloud sandbox (the Claude app on a phone, or any web/headless session) starts **without the
+Python deps, without a local Chrome, and without the `ramp-data` MCP connected** — and the
+`atlas-research` plugin that defines the `/atlas` slash command is usually **not loaded** there. So a
+cloud run must bootstrap itself instead of assuming the local setup. When you (Claude) detect you are
+running a research request in an environment where `import yfinance` fails or `/atlas` is unavailable,
+do the following automatically — do not make the user issue extra commands:
+
+1. **Trigger by company name, not the slash command.** The plugin may be absent, but this `CLAUDE.md`
+   loads from the repo, so a bare company name (e.g. "Snowflake") already invokes the Execution
+   Protocol above. Treat it as a run request exactly as on desktop.
+2. **Install deps first.** Run `pip3 install -r requirements.txt` (falls back to
+   `pip3 install yfinance requests`) before the Data Agent step. If outbound network is blocked and
+   the install fails, say so plainly and stop — do **not** fall back to remembered numbers (that
+   violates the Data Freshness Mandate).
+3. **PDF is optional, HTML is the deliverable.** `deliverable_agent.py` already searches for
+   Playwright's headless Chromium and, finding no browser, prints `⚠️ No Chrome … HTML only` and
+   continues. A cloud run is expected to produce the self-contained **HTML** brief; don't treat a
+   missing PDF as a failure.
+4. **Skip Ramp demand signals gracefully.** The `ramp-data:*` MCP tools won't be connected in cloud.
+   Omit `rampDemandSignal` rather than blocking the run — every other section still renders.
+5. **Ship so it's readable on the phone.** Follow Step 5 (commit → push → land on `main` → deploy).
+   The cleanest way to *read* the brief on a phone is the deployed coverage site, not a local file in
+   the sandbox.
 
 ---
 
