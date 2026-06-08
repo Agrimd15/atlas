@@ -193,10 +193,9 @@ a Tier 1/2 article). The source auditor flags any section that ships without one
 Overview. **All three are mandatory** — QA raises a BLOCKING error if `explainer` is missing or any
 level is empty.
 
-**Period + consistency.** Always set `earningsTakeaways.quarter` and `reportDate`. Give every
-`keyMetrics` value its own window when it differs from that default. Make each figure tie to itself
-everywhere it appears; never let a quarterly flow equal the annual one. The metric auditor blocks on
-contradictions.
+**Period + consistency.** Apply the Metric Clarity & Consistency Mandate above: every figure
+period-tagged, `quarter`/`reportDate` set, each number ties to itself everywhere. The metric auditor
+blocks on contradictions.
 
 **Step 3 — Write profile.json**
 Write/overwrite `data-dumps/FOLDER_ID/profile.json` (in the user's project) with ALL fields including
