@@ -214,6 +214,11 @@ block is missing or incomplete**, and a metric **contradiction always blocks**. 
 doesn't tie before treating a brief as client-ready. (PDF generation needs local Chrome; without it
 the HTML still renders.)
 
+**Notion mirror (optional, automatic).** At the end of this step `deliverable_agent.py` calls
+`notion_sync.py` to upsert this company's row into a Notion coverage DB. It is a **silent no-op unless
+`NOTION_TOKEN` + `NOTION_DB_ID` are set**, and it never fails the brief (a Notion error prints a `⚠️`
+and is swallowed). No manual step — see the optional Notion step in `/setup` to turn it on.
+
 **Step 5 — Report back**
 Confirm `FOLDER_ID`, public/private, the run date, the `marketCloseAsOf` close all multiples reflect
 (or note a private co with no market close), and the local **PDF + HTML paths** under

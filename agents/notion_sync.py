@@ -29,6 +29,7 @@ Run:
 
 import json
 import os
+import re
 import sys
 import urllib.error
 import urllib.request
@@ -48,7 +49,18 @@ _DATA_ROOT = Path(os.environ["ATLAS_DATA_ROOT"]) if os.environ.get("ATLAS_DATA_R
 DATA_DUMPS = _DATA_ROOT / "data-dumps"
 
 NOTION_TOKEN   = os.environ.get("NOTION_TOKEN", "").strip()
-NOTION_DB_ID   = os.environ.get("NOTION_DB_ID", "").strip()
+
+
+def _clean_db_id(raw):
+    """Tolerate a pasted database URL, slug prefix, or ?v=… view suffix — pull out the id.
+    Accepts a bare 32-char hex id or a dashed 8-4-4-4-12 UUID; returns the last one found."""
+    raw = (raw or "").strip().split("?", 1)[0]   # drop any ?v=… view query
+    matches = re.findall(r"[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}"
+                         r"|[0-9a-fA-F]{32}", raw)
+    return matches[-1] if matches else raw
+
+
+NOTION_DB_ID   = _clean_db_id(os.environ.get("NOTION_DB_ID", ""))
 ATLAS_SITE_URL = os.environ.get("ATLAS_SITE_URL", "").rstrip("/")
 NOTION_VERSION = "2022-06-28"
 API = "https://api.notion.com/v1"
@@ -80,6 +92,16 @@ def latest_run_date(folder_id, profile):
         if dates:
             return dates[-1]
     return profile.get("lastRunDate")
+
+
+def description_bullets(profile, max_n=2):
+    """1-2 bullet lines for the Description column. Splits shortDescription into
+    sentences, keeps the first max_n, and renders each as a `• ` line."""
+    raw = (profile.get("shortDescription") or "").strip()
+    if not raw:
+        return ""
+    parts = [p.strip() for p in re.split(r"(?<=[.!?])\s+", raw) if p.strip()][:max_n]
+    return "\n".join(f"• {p}" for p in parts)
 
 
 def founders_from(profile):
@@ -166,7 +188,7 @@ def gather(folder_id):
     return {
         "name": profile.get("name") or folder_id,
         "ticker": profile.get("ticker"),
-        "description": (profile.get("shortDescription") or "").strip(),
+        "description": description_bullets(profile),
         "competitors": [c if isinstance(c, str) else str(c) for c in comps],
         "founders": founders_from(profile),
         "website": profile.get("website"),
@@ -184,6 +206,19 @@ def gather(folder_id):
 # We look up each target column by name (case-insensitive) and format the value to
 # match the column's REAL type, so the sync works whether "Competitors" is a text
 # field or a multi-select, etc. Unknown columns are skipped silently.
+def _parse_money(s):
+    """Turn a formatted money string into a raw USD number for Number columns.
+    '$152.1B (mkt cap)' → 152100000000.0, '$850M' → 850000000.0. None if no figure."""
+    if s is None:
+        return None
+    m = re.search(r"\$?\s*([0-9][0-9,]*\.?[0-9]*)\s*([KMBT])?", str(s), re.I)
+    if not m:
+        return None
+    num = float(m.group(1).replace(",", ""))
+    mult = {"k": 1e3, "m": 1e6, "b": 1e9, "t": 1e12}.get((m.group(2) or "").lower(), 1)
+    return num * mult
+
+
 def _format_value(prop_type, value):
     if value in (None, "", []):
         return None
@@ -195,10 +230,8 @@ def _format_value(prop_type, value):
     if prop_type == "url":
         return {"url": str(value)}
     if prop_type == "number":
-        try:
-            return {"number": float(value)}
-        except (TypeError, ValueError):
-            return None
+        num = value if isinstance(value, (int, float)) else _parse_money(value)
+        return {"number": num} if num is not None else None
     if prop_type == "select":
         v = value[0] if isinstance(value, list) else value
         return {"select": {"name": str(v)[:100]}}
@@ -310,6 +343,37 @@ def find_page(title_name, name):
     return results[0]["id"] if results else None
 
 
+def is_configured():
+    """True when both credentials are present — used to auto-skip when unset."""
+    return bool(NOTION_TOKEN and NOTION_DB_ID)
+
+
+def sync(folder_id, write_body=False):
+    """Upsert one company into the Notion DB. Raises SystemExit on API/config errors.
+    Returns a one-line status string."""
+    missing = [k for k, v in (("NOTION_TOKEN", NOTION_TOKEN), ("NOTION_DB_ID", NOTION_DB_ID)) if not v]
+    if missing:
+        raise SystemExit(f"✗ Missing env: {', '.join(missing)} — see the setup notes in this file's docstring.")
+
+    data = gather(folder_id)
+    db = _api("GET", f"/databases/{NOTION_DB_ID}")
+    schema = db.get("properties", {})
+    props, title_name = build_properties(schema, data)
+    if not title_name:
+        raise SystemExit("✗ That database has no title (Name) column — can't match rows.")
+
+    page_id = find_page(title_name, data["name"])
+    link = data["url"] or "no link — set ATLAS_SITE_URL"
+    if page_id:
+        _api("PATCH", f"/pages/{page_id}", {"properties": props})
+        return f"✓ Updated “{data['name']}” in Notion  ({link})"
+    payload = {"parent": {"database_id": NOTION_DB_ID}, "properties": props}
+    if write_body:
+        payload["children"] = summary_blocks(data)
+    _api("POST", "/pages", payload)
+    return f"✓ Created “{data['name']}” in Notion  ({link})"
+
+
 def main():
     args = [a for a in sys.argv[1:] if not a.startswith("--")]
     flags = {a for a in sys.argv[1:] if a.startswith("--")}
@@ -319,33 +383,13 @@ def main():
     write_body = "--body" in flags
     dry = "--dry-run" in flags
 
-    missing = [k for k, v in (("NOTION_TOKEN", NOTION_TOKEN), ("NOTION_DB_ID", NOTION_DB_ID)) if not v]
-    if missing and not dry:
-        raise SystemExit(f"✗ Missing env: {', '.join(missing)} — see the setup notes in this file's docstring.")
-
-    data = gather(folder_id)
-
     if dry:
+        data = gather(folder_id)
         print(f"DRY RUN — would upsert “{data['name']}” into Notion DB {NOTION_DB_ID or '(unset)'}")
         print(json.dumps({k: v for k, v in data.items() if k != "_profile"}, indent=2))
         return
 
-    db = _api("GET", f"/databases/{NOTION_DB_ID}")
-    schema = db.get("properties", {})
-    props, title_name = build_properties(schema, data)
-    if not title_name:
-        raise SystemExit("✗ That database has no title (Name) column — can't match rows.")
-
-    page_id = find_page(title_name, data["name"])
-    if page_id:
-        _api("PATCH", f"/pages/{page_id}", {"properties": props})
-        print(f"✓ Updated “{data['name']}” in Notion  ({data['url'] or 'no link — set ATLAS_SITE_URL'})")
-    else:
-        payload = {"parent": {"database_id": NOTION_DB_ID}, "properties": props}
-        if write_body:
-            payload["children"] = summary_blocks(data)
-        _api("POST", "/pages", payload)
-        print(f"✓ Created “{data['name']}” in Notion  ({data['url'] or 'no link — set ATLAS_SITE_URL'})")
+    print(sync(folder_id, write_body=write_body))
 
 
 if __name__ == "__main__":

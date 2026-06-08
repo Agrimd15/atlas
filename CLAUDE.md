@@ -159,6 +159,8 @@ Run `python3 agents/deliverable_agent.py FOLDER_ID`. This writes a self-containe
 
 It also runs three QA passes and prints a report: a layout/overflow check; a **source-integrity audit** (`agents/source_audit.py`) that live-checks every link, flags untrusted/Tier-3 domains and shallow homepage links, and lists any section shipping without a source; and a **metric consistency & clarity audit** (`agents/metric_audit.py`) that cross-checks every dollar figure, flags any metric that doesn't tie to itself across sections, catches quarterly-equals-annual collisions, and flags undated headline figures. The completeness check also raises a **BLOCKING error if the required `explainer` block (plain / technical / simple) is missing or incomplete**, and a metric **contradiction always blocks** (a number that doesn't tie is a factual defect). `--strict` additionally makes source + metric + completeness *warnings* blocking (the brief is still written; a non-zero exit means "review before shipping"). Always read the `🔗 QA sources` and `🧮 QA metrics` lines and fix broken/untrusted/missing sources and any number that doesn't tie before treating a brief as client-ready.
 
+**Notion mirror runs automatically.** At the end of every brief generation, `deliverable_agent.py` calls `agents/notion_sync.py` to upsert this company's row into the Notion coverage DB. It's a silent no-op unless `NOTION_TOKEN` + `NOTION_DB_ID` are set in `.env`, and it never fails the brief (a Notion error prints a `⚠️` and is swallowed). No manual step is needed — see "Mirroring coverage to Notion" below for the column setup. The brief link in the row resolves once Step 5 deploys the run to the web.
+
 **Step 5 - Ship to `main` (standing instruction).** Atlas runs should land on `main`, not sit in a draft. After the brief is generated and QA is clean: commit the run on the working branch, push it, and open the PR **ready-for-review (NOT a draft)** so the repo's auto-merge workflow can take it in. If auto-merge does not merge it (e.g. it's disabled or the PR stays open) and `mergeable_state` is `clean`, **merge it into `main` yourself** (squash). Only hold off and ask first if QA is blocking/unresolved, there's a merge conflict, or the diff touches code/config beyond `data-dumps/` (a brief that's just a new `data-dumps/<ID>/` run is safe to land automatically). This overrides the default "open as draft and wait" behavior for Atlas research runs.
 
 ---
@@ -184,7 +186,7 @@ It also runs three QA passes and prints a report: a layout/overflow check; a **s
 | `agents/sources.py` | Canonical trusted-source registry (Tier 1/2 publications + curated X accounts). |
 | `site/build.mjs` | Builds the static coverage site from `data-dumps/`. Run: `node site/build.mjs`. Choose public-demo companies via `DEMO_IDS` at the top. |
 | `viewer/` | Optional local viewer: a single-file browser app (`atlas.html`) + a small FastAPI backend. Run: `viewer/start.sh`. |
-| `agents/notion_sync.py` | Optional: mirror a run into a Notion database — upserts one row per company (description, competitors, founders, public/private, stage/series, revenue, valuation) with a link back to the published brief. Run: `python3 agents/notion_sync.py FOLDER_ID [--body] [--dry-run]`. Needs `NOTION_TOKEN`, `NOTION_DB_ID`, `ATLAS_SITE_URL` in `.env`; see "Mirroring coverage to Notion" below. |
+| `agents/notion_sync.py` | Mirror a run into a Notion database — upserts one row per company (description, competitors, founders, public/private, stage/series, revenue, valuation) with a link back to the published brief. **Runs automatically at the end of `deliverable_agent.py`** (no-op unless creds are set). Standalone: `python3 agents/notion_sync.py FOLDER_ID [--body] [--dry-run]`. Needs `NOTION_TOKEN`, `NOTION_DB_ID`, `ATLAS_SITE_URL` in `.env`; see "Mirroring coverage to Notion" below. |
 
 ---
 
@@ -243,9 +245,10 @@ One-time setup:
 4. Put the database id (the 32-char hash in its URL) in `.env` as `NOTION_DB_ID`, and set
    `ATLAS_SITE_URL` to your deployed site so links resolve.
 
-Run after a brief is generated: `python3 agents/notion_sync.py FOLDER_ID` (add `--body` to also write
-a summary into the new page, `--dry-run` to preview the payload without a token). To make it part of
-every run, call it as an extra step after Step 4.
+**This is automatic.** `deliverable_agent.py` (Step 4) calls the sync at the end of every run, so
+once `NOTION_TOKEN` + `NOTION_DB_ID` are in `.env` every brief mirrors itself with no extra step. To
+run it standalone (e.g. backfill, or preview): `python3 agents/notion_sync.py FOLDER_ID` (add `--body`
+to also write a summary into the new page, `--dry-run` to preview the payload without a token).
 
 ---
 

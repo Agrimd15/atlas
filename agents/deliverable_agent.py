@@ -2572,7 +2572,27 @@ def run(ticker: str, detail: str = "brief", audit: bool = True, strict: bool = F
     # Final QA pass: catch layout overflow / thin comps before the brief is shipped.
     run.last_blocking = audit_brief(html_path, profile, strict=strict) if audit else 0
 
+    # Auto-mirror the run into Notion (no-op unless NOTION_TOKEN + NOTION_DB_ID are set).
+    _sync_notion(folder_id)
+
     return pdf_path or html_path
+
+
+def _sync_notion(folder_id):
+    """Best-effort: push this run into the Notion coverage DB if it's configured.
+    Never raises — a Notion hiccup must not fail an otherwise-good brief."""
+    try:
+        from notion_sync import is_configured, sync
+    except Exception:
+        return
+    if not is_configured():
+        return
+    try:
+        print(sync(folder_id))
+    except SystemExit as e:
+        print(f"⚠️  Notion sync skipped: {e}")
+    except Exception as e:
+        print(f"⚠️  Notion sync failed ({e}) — brief is unaffected.")
 
 
 if __name__ == "__main__":
