@@ -137,7 +137,12 @@ function emitView(outDir, list, opts = {}) {
   for (const c of list) {
     for (const r of c.runs) {
       ensureDir(path.join(outDir, 'briefs', c.id));
-      fs.copyFileSync(r.srcHtml, path.join(outDir, 'briefs', c.id, `${r.date}.html`));
+      // The brief's version-history links are written relative to the runs/<date>/ database
+      // layout (../<date>/<id>_brief_<date>.html). On the site every version sits flat in
+      // briefs/<id>/, so a sibling version is just <date>.html — rewrite the links to match.
+      const html = fs.readFileSync(r.srcHtml, 'utf8')
+        .replace(/href="\.\.\/(\d{4}-\d{2}-\d{2})\/[^"]*\.html"/g, 'href="$1.html"');
+      fs.writeFileSync(path.join(outDir, 'briefs', c.id, `${r.date}.html`), html);
       if (r.srcPdf) fs.copyFileSync(r.srcPdf, path.join(outDir, 'briefs', c.id, `${r.date}.pdf`));
     }
   }
