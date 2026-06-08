@@ -70,6 +70,25 @@
                   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; }
   .header-meta { font-size: 11.5px; color: var(--ks-faint); }
   .header-meta a { color: var(--ks-kinpaku-pale); }
+  /* ── Version history (header disclosure) ── */
+  .verhist { position: relative; display: inline-block; }
+  .verhist > summary { cursor: pointer; list-style: none; color: var(--ks-faint);
+                        font-size: 11.5px; user-select: none; white-space: nowrap; }
+  .verhist > summary::-webkit-details-marker { display: none; }
+  .verhist > summary:hover, .verhist[open] > summary { color: var(--ks-champagne); }
+  .verhist-menu { position: absolute; right: 0; top: 100%; margin-top: 6px; z-index: 30;
+                   background: var(--ks-raised); border: 1px solid var(--ks-rule);
+                   border-radius: 6px; box-shadow: 0 8px 28px rgba(0,0,0,0.14);
+                   padding: 6px; min-width: 190px; text-align: left; }
+  .verhist-head { font-size: 9px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+                   color: var(--ks-faint); padding: 3px 10px 6px; border-bottom: 1px solid var(--ks-rule);
+                   margin-bottom: 4px; }
+  .verhist-item { display: block; padding: 5px 10px; border-radius: 4px; font-size: 11.5px;
+                   color: var(--ks-body); white-space: nowrap; }
+  a.verhist-item:hover { background: var(--ks-graphite-2); color: var(--ks-champagne); }
+  .verhist-item.current { color: var(--ks-faint); font-weight: 700; }
+  @media print { .verhist-menu { display: none !important; }
+                  .verhist > summary { color: var(--ks-faint); cursor: default; } }
   .verticals { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 6px; }
   .vertical-tag { background: var(--ks-graphite); border: 1px solid var(--ks-rule);
                    color: var(--ks-muted); font-size: 10px; padding: 2px 9px; border-radius: 3px;
@@ -576,7 +595,7 @@
       </div>
       <div class="header-meta" style="text-align:right">
         <a href="https://www.netskope.com" target="_blank">www.netskope.com</a><br>
-        Atlas &nbsp;·&nbsp; June 08, 2026
+        <details class="verhist"><summary class="verhist-btn">&#x21bb; Updated June 08, 2026 &middot; 2 versions</summary><div class="verhist-menu"><div class="verhist-head">Version history</div><span class="verhist-item current">Jun 08, 2026 &middot; current</span><a class="verhist-item" href="../2026-06-03/NTSK_brief_2026-06-03.html">Jun 03, 2026</a></div></details>
       </div>
     </div>
     <div class="verticals"><span class="vertical-tag">Cybersecurity</span><span class="vertical-tag">SASE</span><span class="vertical-tag">SSE</span><span class="vertical-tag">Cloud Security</span></div>
