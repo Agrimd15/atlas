@@ -23,6 +23,14 @@ case "$payload" in
   *) exit 0 ;;
 esac
 
+# Never publish a brief that failed QA with a BLOCKING issue (contradicting
+# metric, missing required explainer, etc.). The deliverable agent prints
+# "blocking issue(s)" when that happens — respect the "human review before
+# publishing" rule and leave it for a person to fix.
+case "$payload" in
+  *"blocking issue"*) exit 0 ;;
+esac
+
 repo="${CLAUDE_PROJECT_DIR:-$(git rev-parse --show-toplevel 2>/dev/null)}"
 [ -n "$repo" ] && cd "$repo" 2>/dev/null || exit 0
 
