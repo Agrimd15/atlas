@@ -1101,7 +1101,34 @@ def build_html(profile: dict) -> str:
         cards = "".join(
             f'<div class="explain-card explain-{i}"><div class="explain-label">{lbl}</div>{_explain_body(txt)}</div>'
             for i, (lbl, txt) in enumerate(levels) if txt)
-        explainer_html = f'<div class="explain-grid">{cards}</div>' if cards else ""
+        grid_html = f'<div class="explain-grid">{cards}</div>' if cards else ""
+
+        # ── Optional jargon glossary: decode the acronyms/technical terms the brief leans on
+        # (e.g. SSE, SASE, CASB). Included only when the product is jargon-heavy; omitted for
+        # self-explanatory businesses. Each item: {term, expansion?, definition}. Also tolerates
+        # a {TERM: definition} dict or "TERM — definition" strings for back-compat.
+        glossary = explainer.get("glossary") or profile.get("glossary") or []
+        if isinstance(glossary, dict):
+            glossary = [{"term": k, "definition": v} for k, v in glossary.items()]
+        g_items = []
+        for g in (glossary if isinstance(glossary, list) else []):
+            if isinstance(g, str):
+                m = re.match(r'\s*([^—:–\-]{1,48}?)\s*[—:–-]\s*(.+)', g)
+                g = {"term": m.group(1), "definition": m.group(2)} if m else {}
+            if not isinstance(g, dict):
+                continue
+            term = clean(str(g.get("term", ""))).strip()
+            definition = clean(str(g.get("definition") or g.get("def") or g.get("meaning") or "")).strip()
+            expansion = clean(str(g.get("expansion") or g.get("expands") or g.get("full") or "")).strip()
+            if not term or not definition:
+                continue
+            exp_html = f' <span class="gloss-exp">{expansion}</span>' if expansion else ""
+            g_items.append(f'<div class="gloss-item"><dt class="gloss-term">{term}{exp_html}</dt>'
+                           f'<dd class="gloss-def">{definition}</dd></div>')
+        glossary_html = ('<div class="gloss-block"><div class="gloss-head">Key terms, decoded</div>'
+                         f'<dl class="gloss-list">{"".join(g_items)}</dl></div>') if g_items else ""
+
+        explainer_html = f'{grid_html}{glossary_html}' if (cards or g_items) else ""
 
     # ── Differentiation vs peers (how the subject company is different) ──
     diff = profile.get("differentiation") or []
@@ -1472,6 +1499,21 @@ def build_html(profile: dict) -> str:
                              border-radius: 50%; background: var(--ks-kinpaku); }}
   .explain-1 .explain-list li:before {{ background: var(--ks-accent); }}
   .explain-2 .explain-list li:before {{ background: var(--ks-patina); }}
+
+  /* ── Jargon glossary inside the explainer: "Key terms, decoded" ── */
+  .gloss-block {{ background: var(--ks-raised); border: 1px solid var(--ks-rule); border-radius: 5px;
+                  border-left: 3px solid var(--ks-kinpaku); padding: 14px 16px; margin-bottom: 24px; }}
+  .gloss-head {{ font-size: 10px; font-weight: 700; letter-spacing: 0.13em; text-transform: uppercase;
+                 color: var(--ks-kinpaku); margin-bottom: 10px;
+                 font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; }}
+  .gloss-list {{ display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 24px; margin: 0; }}
+  @media (max-width: 820px) {{ .gloss-list {{ grid-template-columns: 1fr; }} }}
+  .gloss-item {{ margin: 0; padding: 7px 0; border-top: 1px solid var(--ks-rule); }}
+  .gloss-item:first-child, .gloss-list > .gloss-item:nth-child(2) {{ border-top: 0; }}
+  .gloss-term {{ font-size: 13px; font-weight: 700; color: var(--ks-champagne);
+                 font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; }}
+  .gloss-exp {{ font-weight: 400; font-style: italic; font-size: 12px; color: var(--ks-faint); }}
+  .gloss-def {{ font-size: 13px; line-height: 1.5; color: var(--ks-body); margin: 2px 0 0 0; }}
 
   /* ── Differentiation table ── */
   .diff-table {{ width: 100%; border-collapse: collapse; font-size: 14px; }}
@@ -2381,6 +2423,35 @@ def _audit_completeness(profile):
     elif missing_levels:
         issues.append(("error", "explainer is missing required level(s): "
                                  f"{', '.join(missing_levels)} (all of plain/technical/simple are required)"))
+    # Jargon nudge: if the explainer leans on specialized acronyms (SSE, SASE, CASB, ZTNA…)
+    # that a layperson won't know, and none of them are expanded inline or in a glossary,
+    # suggest one. Advisory only — a glossary is optional, included when the product is
+    # jargon-heavy. This is what makes the agent "realize" decoding is needed for this report.
+    if explainer:
+        glossary = explainer.get("glossary") or profile.get("glossary") or []
+        if isinstance(glossary, dict):
+            glossary = [{"term": k} for k in glossary]
+        defined = {re.sub(r"[^A-Za-z0-9]", "", str(g.get("term", ""))).upper()
+                   for g in glossary if isinstance(g, dict) and g.get("term")}
+        # Common business/finance/tech acronyms a banker reader already knows — never flag these.
+        COMMON_ACRONYMS = {
+            "AI","ML","LLM","API","SAAS","PAAS","IAAS","ARR","MRR","NRR","GRR","RPO","ARPU",
+            "YOY","QOQ","LTM","NTM","CAGR","GAAP","EBITDA","FCF","EPS","TAM","SAM","SOM","KPI",
+            "ROI","ROIC","IRR","EV","PS","PE","CEO","CFO","CTO","COO","CISO","IPO","SPAC","M&A",
+            "B2B","B2C","SMB","DTC","CRM","ERP","HR","IT","RD","SEC","FY","CY","USD","US","UK",
+            "EU","GPU","CPU","SKU","OEM","SaaS",
+        }
+        def _flat(v):
+            return " ".join(map(str, v)) if isinstance(v, list) else str(v or "")
+        blob = " ".join(_flat(explainer.get(k)) for k in ("plain", "technical", "simple"))
+        candidates = set(re.findall(r"\b[A-Z][A-Z0-9]{1,5}\b", blob))
+        inline_expanded = set(re.findall(r"\(([A-Z][A-Z0-9]{1,5})\)", blob))  # "Security Service Edge (SSE)"
+        undefined = sorted(t for t in candidates
+                           if t not in COMMON_ACRONYMS and t not in defined and t not in inline_expanded)
+        if len(undefined) >= 3 and not defined:
+            issues.append(("warn", "explainer uses specialized terms a lay reader won't know and has no "
+                           f"glossary: {', '.join(undefined[:6])} — add explainer.glossary "
+                           "[{term, expansion, definition}] to decode the jargon"))
     return issues
 
 
