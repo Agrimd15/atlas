@@ -5,7 +5,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 -c 'import yfinance, requests' 2>/dev/null || { pip3 install -q -r \"$CLAUDE_PLUGIN_ROOT/requirements.txt\" 2>/dev/null || pip3 install -q --user --break-system-packages -r \"$CLAUDE_PLUGIN_ROOT/requirements.txt\" 2>/dev/null; python3 -c 'import yfinance, requests' 2>/dev/null || echo \"[atlas-research] Could not auto-install Python deps (yfinance, requests) - briefs will fail until they are present. Fix manually: pip3 install --break-system-packages -r '$CLAUDE_PLUGIN_ROOT/requirements.txt'\"; }"
+            "command": "python3 -c 'import yfinance, requests' 2>/dev/null || pip3 install -q -r \"${CLAUDE_PLUGIN_ROOT}/requirements.txt\" >/dev/null 2>&1 || true"
           }
         ]
       }

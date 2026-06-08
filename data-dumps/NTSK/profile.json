@@ -468,6 +468,38 @@
     ],
     "simple": [
       "Think of Netskope as a smart airport-security checkpoint that lives in the cloud: every time an employee opens a website or cloud app, their traffic passes through Netskope's scanners, which wave through the safe stuff and stop threats and leaks \u2014 so the company doesn't need a pile of separate security machines."
+    ],
+    "glossary": [
+      {
+        "term": "SASE",
+        "expansion": "Secure Access Service Edge",
+        "definition": "Bundling networking and security into one cloud service, so remote staff connect to apps safely without routing their traffic back through a corporate data center."
+      },
+      {
+        "term": "SSE",
+        "expansion": "Security Service Edge",
+        "definition": "The security half of SASE \u2014 the cloud gateway that inspects and filters employees' traffic to websites and cloud apps."
+      },
+      {
+        "term": "CASB",
+        "expansion": "Cloud Access Security Broker",
+        "definition": "A control point that governs how employees use cloud apps like Salesforce or Google Drive \u2014 who can do what, and what data is allowed to leave."
+      },
+      {
+        "term": "ZTNA",
+        "expansion": "Zero Trust Network Access",
+        "definition": "Granting access app-by-app only after verifying the user and device, instead of trusting anyone already inside the network \u2014 the modern replacement for VPNs."
+      },
+      {
+        "term": "DLP",
+        "expansion": "Data Loss Prevention",
+        "definition": "Scanning traffic for sensitive data (customer records, source code, financials) and blocking it from being uploaded or shared where it shouldn't go."
+      },
+      {
+        "term": "NRR",
+        "expansion": "Net Revenue Retention",
+        "definition": "How much more (or less) existing customers spend a year later, after upgrades and churn. Above 100% means the customer base grows revenue on its own; Netskope's is 118%."
+      }
     ]
   }
 }
