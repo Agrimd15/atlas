@@ -27,6 +27,22 @@ follow the **Execution Protocol** below automatically. Do not ask for confirmati
   `data-dumps/`. Git-history-as-database and the Vercel coverage site are the user's own (clone-based)
   concern and out of scope for the plugin.
 
+### Running in a cloud / headless session
+
+A cloud sandbox (the Claude app on a phone, a web session, or any headless run) starts **without a
+local Chrome and without the `ramp-data` MCP connected**, and may have **no Python deps** yet. Run the
+pipeline anyway — degrade gracefully, don't stall:
+
+1. **Deps.** The plugin's SessionStart hook auto-installs `yfinance` + `requests`; if that hasn't run,
+   `pip3 install -r "${CLAUDE_PLUGIN_ROOT}/requirements.txt"` before the Data Agent step. If outbound
+   network is blocked and the install fails, say so plainly and stop — do **not** fall back to
+   remembered numbers (that violates the Data Freshness Mandate).
+2. **PDF is optional, HTML is the deliverable.** `deliverable_agent.py` searches for Playwright's
+   headless Chromium and, finding no browser, prints `⚠️ No Chrome … HTML only` and continues. A
+   missing PDF is not a failure.
+3. **Skip Ramp gracefully.** The `ramp-data:*` MCP tools won't be connected in cloud — omit
+   `rampDemandSignal` rather than blocking the run; every other section still renders.
+
 ---
 
 ## Core Rules
