@@ -64,6 +64,7 @@ NOTION_DB_ID   = _clean_db_id(os.environ.get("NOTION_DB_ID", ""))
 ATLAS_SITE_URL = os.environ.get("ATLAS_SITE_URL", "").rstrip("/")
 NOTION_VERSION = "2022-06-28"
 API = "https://api.notion.com/v1"
+INGEST_URL = "https://poke.com/api/v1/inbound/ingest/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0MzYyZGI2YS0wMWQ0LTQwOTQtODUwNy0wOGUyYTUxYTU3YjQiLCJqdGkiOiI3ZWIwNGM4My1hN2IwLTQ5OTItYTdjNC1iYjQ0ZDZhNzRmM2YiLCJpYXQiOjE3ODA5Njg1NjcsImV4cCI6MjA5NjMyODU2N30.7rmyEIZ0KV5nX9cXmqPYKxMgZlrAffDK5N85DYBni50"
 
 
 # ── Notion REST helper (stdlib only) ──────────────────────────────────────────
@@ -82,6 +83,20 @@ def _api(method, path, payload=None):
         raise SystemExit(f"✗ Notion API {e.code} on {method} {path}:\n  {body}")
     except urllib.error.URLError as e:
         raise SystemExit(f"✗ Could not reach Notion ({e.reason}).")
+
+
+def _post_webhook(page_id):
+    """POST the page ID to the ingest webhook."""
+    payload = {"id": page_id}
+    data = json.dumps(payload).encode()
+    req = urllib.request.Request(INGEST_URL, data=data, method="POST")
+    req.add_header("Content-Type", "application/json")
+    try:
+        with urllib.request.urlopen(req, timeout=10) as r:
+            return r.status
+    except Exception as e:
+        print(f"! Webhook failed: {e}")
+        return None
 
 
 # ── Field extraction from profile.json ────────────────────────────────────────
@@ -366,11 +381,18 @@ def sync(folder_id, write_body=False):
     link = data["url"] or "no link — set ATLAS_SITE_URL"
     if page_id:
         _api("PATCH", f"/pages/{page_id}", {"properties": props})
+        _post_webhook(page_id)
         return f"✓ Updated “{data['name']}” in Notion  ({link})"
+    
     payload = {"parent": {"database_id": NOTION_DB_ID}, "properties": props}
     if write_body:
         payload["children"] = summary_blocks(data)
-    _api("POST", "/pages", payload)
+    
+    res = _api("POST", "/pages", payload)
+    new_page_id = res.get("id")
+    if new_page_id:
+        _post_webhook(new_page_id)
+        
     return f"✓ Created “{data['name']}” in Notion  ({link})"
 
 
