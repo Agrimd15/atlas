@@ -81,10 +81,16 @@ def _enrich_comps_live(comps: list) -> list:
         if q.get("evRevenueLTM"):
             merged["evRevenue"] = f"{q['evRevenueLTM']} LTM"
             merged["asOf"]      = q.get("priceAsOf") or ""   # the real close date
+        if q.get("evRevenueNum") is not None:
+            merged["_evNum"] = q["evRevenueNum"]             # numeric, for sorting/median
         if q.get("revenueGrowthYoY"):
             merged["revenueGrowth"] = f"{q['revenueGrowthYoY']} YoY"
         if q.get("grossMargin"):
             merged["grossMargin"] = q["grossMargin"]
+        if q.get("fcfMarginLTM"):
+            merged["fcfMargin"] = q["fcfMarginLTM"]
+        if q.get("ruleOf40") is not None:
+            merged["ruleOf40"] = str(q["ruleOf40"])
         if q.get("marketCap"):
             merged["marketCap"] = q["marketCap"]
         merged["source"]    = f"yfinance, close of {q.get('priceAsOf','n/a')} ({q.get('evBasis','')})"
@@ -260,8 +266,11 @@ def to_bullets(text, max_bullets: int = 0) -> str:
 
 def build_bar_chart(series: list, eyebrow: str = "REVENUE TRAJECTORY",
                     accent: str = "var(--ks-kinpaku)", growth_color: str = "var(--ks-patina)",
-                    caption: str = "") -> str:
-    """Larger, legible inline SVG bar chart. series items: {value, label, year, source?, sourceUrl?}."""
+                    caption: str = "", growth_labels: list | None = None) -> str:
+    """Larger, legible inline SVG bar chart. series items: {value, label, year, source?, sourceUrl?}.
+    Growth labels above bars default to bar-over-prior-bar % change (YoY for an annual
+    series); pass `growth_labels` (parallel to series, None entries omitted) to show a
+    different basis — e.g. YoY on a quarterly series, where bar-over-bar would be QoQ."""
     if not series or len(series) < 2:
         return ""
     max_val = max(r["value"] for r in series)
@@ -277,11 +286,14 @@ def build_bar_chart(series: list, eyebrow: str = "REVENUE TRAJECTORY",
         x = pad + i * (bar_w + gap)
         y = base_y - bar_h
         opacity = 0.55 + 0.45 * (i / max(1, len(series) - 1))
-        growth = ""
-        if i > 0 and series[i-1]["value"]:
+        g_txt = None
+        if growth_labels is not None:
+            g_txt = growth_labels[i] if i < len(growth_labels) else None
+        elif i > 0 and series[i-1]["value"]:
             pct = int(round(((r["value"] - series[i-1]["value"]) / series[i-1]["value"]) * 100))
-            sign = "+" if pct >= 0 else ""
-            growth = f'<text x="{x + bar_w//2}" y="{y - 27}" text-anchor="middle" font-size="11" fill="{growth_color}" font-family="Arial,Helvetica,sans-serif" font-weight="700">{sign}{pct}%</text>'
+            g_txt = f"{'+' if pct >= 0 else ''}{pct}%"
+        growth = (f'<text x="{x + bar_w//2}" y="{y - 27}" text-anchor="middle" font-size="11" fill="{growth_color}" '
+                  f'font-family="Arial,Helvetica,sans-serif" font-weight="700">{g_txt}</text>') if g_txt else ""
         bars += f"""
         <rect x="{x}" y="{y}" width="{bar_w}" height="{bar_h}" fill="{accent}" rx="3" opacity="{opacity:.2f}"/>
         <text x="{x + bar_w//2}" y="{y - 9}" text-anchor="middle" font-size="14" fill="var(--ks-champagne)" font-family="Arial,Helvetica,sans-serif" font-weight="700">{r.get("label","")}</text>
@@ -337,14 +349,20 @@ def build_quarterly_trend(ticker: str) -> str:
     qs = list(reversed(qs))                                  # oldest -> newest
 
     # Bar chart from the SAME quarters (revenue in $B), so visual + table always tie.
+    # Growth labels above the bars are YoY (vs the same quarter a year earlier) — the
+    # seasonality-proof basis a reader assumes; QoQ lives in the matrix below.
     chart_html = ""
-    chart_series = [
-        {"value": q["revenueNum"] / 1e9, "label": q.get("revenue", ""), "year": q.get("label", "")}
-        for q in qs if q.get("revenueNum")
-    ]
+    chart_series, yoy_labels = [], []
+    for q in qs:
+        if not q.get("revenueNum"):
+            continue
+        chart_series.append({"value": q["revenueNum"] / 1e9,
+                             "label": q.get("revenue", ""), "year": q.get("label", "")})
+        yoy = q.get("yoyGrowth") or ""
+        yoy_labels.append((("+" + yoy) if yoy[:1].isdigit() else yoy) + " YoY" if yoy else None)
     if len(chart_series) >= 2:
         chart_html = build_bar_chart(chart_series, eyebrow="QUARTERLY REVENUE ($B)",
-                                     accent="var(--ks-kinpaku)")
+                                     accent="var(--ks-kinpaku)", growth_labels=yoy_labels)
 
     heads = "".join(f'<th class="right">{q.get("label","")}</th>' for q in qs)
 
@@ -363,7 +381,8 @@ def build_quarterly_trend(ticker: str) -> str:
             cells += f'<td class="{cls}">{v}</td>'
         return f'<tr><td class="qtrend-rowlbl">{label}</td>{cells}</tr>'
 
-    rows = _row("Revenue", "revenue") + _row("QoQ", "qoqGrowth", signed=True) + _row("Gross Margin", "grossMargin")
+    rows = (_row("Revenue", "revenue") + _row("YoY", "yoyGrowth", signed=True)
+            + _row("QoQ", "qoqGrowth", signed=True) + _row("Gross Margin", "grossMargin"))
 
     latest = qs[-1]
     yoy = latest.get("yoyGrowth")
@@ -451,6 +470,54 @@ def build_biz_flow(profile: dict, b: dict) -> str:
         {out_html}
       </div>
     </div>"""
+
+
+def build_comps_scatter(rows: list) -> str:
+    """Growth (x) vs EV/Rev (y) scatter for the public comp set — the picture that shows
+    whether the subject's multiple is earned by its growth. Subject in crimson, peers in
+    navy, labeled with tickers. Returns '' with fewer than 3 plottable names."""
+    pts = []
+    for r in rows:
+        ev = r.get("ev_num")
+        if ev is None:
+            m = re.match(r"([\d.]+)\s*x", str(r.get("ev") or ""))
+            ev = float(m.group(1)) if m else None
+        m = re.search(r"-?[\d.]+", str(r.get("rg") or ""))
+        g = float(m.group(0)) if m else None
+        if ev is None or g is None:
+            continue
+        pts.append((g, ev, r.get("ticker") or r.get("name", ""), bool(r.get("is_subject"))))
+    if len(pts) < 3:
+        return ""
+    W, H, P = 560, 300, 46
+    xs, ys = [p[0] for p in pts], [p[1] for p in pts]
+    x0, x1 = min(xs), max(xs)
+    x_pad = max(2.0, (x1 - x0) * 0.15)
+    x0, x1 = x0 - x_pad, x1 + x_pad
+    y1 = max(ys) * 1.18 or 1.0
+    def X(v): return P + (v - x0) / (x1 - x0) * (W - 2 * P)
+    def Y(v): return H - P - v / y1 * (H - 2 * P)
+    dots = ""
+    for g, ev, lbl, subj in pts:
+        fill = "var(--ks-accent)" if subj else "var(--ks-kinpaku)"
+        dots += (f'<circle cx="{X(g):.1f}" cy="{Y(ev):.1f}" r="{6 if subj else 4.5}" fill="{fill}" opacity="0.9"/>'
+                 f'<text x="{X(g):.1f}" y="{Y(ev) - 9:.1f}" text-anchor="middle" font-size="10" font-weight="700" '
+                 f'fill="{fill}" font-family="Arial,Helvetica,sans-serif">{lbl}</text>')
+    ax = (f'<line x1="{P}" y1="{H - P}" x2="{W - P}" y2="{H - P}" stroke="var(--ks-rule-strong)" stroke-width="1"/>'
+          f'<line x1="{P}" y1="{P - 12}" x2="{P}" y2="{H - P}" stroke="var(--ks-rule-strong)" stroke-width="1"/>')
+    ticks = ""
+    for v in (x0 + x_pad, (x0 + x1) / 2, x1 - x_pad):
+        ticks += (f'<text x="{X(v):.1f}" y="{H - P + 16}" text-anchor="middle" font-size="9.5" '
+                  f'fill="var(--ks-faint)" font-family="Arial,Helvetica,sans-serif">{v:.0f}%</text>')
+    for v in (y1 / 3, 2 * y1 / 3, y1):
+        ticks += (f'<text x="{P - 8}" y="{Y(v) + 3:.1f}" text-anchor="end" font-size="9.5" '
+                  f'fill="var(--ks-faint)" font-family="Arial,Helvetica,sans-serif">{v:.0f}x</text>')
+    labels = (f'<text x="{W / 2}" y="{H - 6}" text-anchor="middle" font-size="9" letter-spacing="1.5" '
+              f'fill="var(--ks-faint)" font-family="Arial,Helvetica,sans-serif">REVENUE GROWTH (YOY)</text>'
+              f'<text x="13" y="{H / 2}" transform="rotate(-90 13 {H / 2})" text-anchor="middle" font-size="9" '
+              f'letter-spacing="1.5" fill="var(--ks-faint)" font-family="Arial,Helvetica,sans-serif">EV / REVENUE (LTM)</text>')
+    return (f'<div class="chart-wrap scatter-wrap"><div class="chart-eyebrow">GROWTH VS MULTIPLE</div>'
+            f'<svg width="{W}" height="{H}" viewBox="0 0 {W} {H}" style="max-width:100%">{ax}{ticks}{dots}{labels}</svg></div>')
 
 
 def build_funding_timeline(funding_rounds: list) -> str:
@@ -695,6 +762,33 @@ def build_html(profile: dict) -> str:
     et      = b.get("earningsTakeaways", {})
     metrics = et.get("keyMetrics", {}) or {}
 
+    # ── Live-quote reconciliation (Metric Clarity Mandate) ──
+    # Market-derived figures stored in keyMetrics at research time (EV/Rev, market cap)
+    # go stale the next trading day, while the hero bar and comps table re-pull live at
+    # render time — so the same multiple could print two values in one brief (4.3x in
+    # the grid vs 4.2x in the hero). Overwrite the stored copy with the SAME live pull
+    # the hero uses, stamped with its close date, so one number tells one story.
+    ticker_sym = (profile.get("ticker") or "").strip()
+    live_q = {}
+    if ticker_sym and re.fullmatch(_TICKER_RE, ticker_sym):
+        try:
+            from data_agent import live_quote
+            _q = live_quote(ticker_sym)
+            live_q = {} if "error" in _q else _q
+        except Exception:
+            live_q = {}
+    if live_q:
+        _asof = live_q.get("priceAsOf") or ""
+        for _k in list(metrics.keys()):
+            _kn = re.sub(r"[^a-z0-9]", "", _k.lower())
+            if ("evrev" in _kn or "evtorev" in _kn) and live_q.get("evRevenueLTM"):
+                metrics[_k] = (f"{live_q['evRevenueLTM']} (LTM, as of {_asof} close)"
+                               if _asof else f"{live_q['evRevenueLTM']} (LTM)")
+            elif "marketcap" in _kn and live_q.get("marketCap"):
+                metrics[_k] = (f"{live_q['marketCap']} (as of {_asof} close)"
+                               if _asof else live_q["marketCap"])
+    profile["_liveQuote"] = live_q          # the QA multiple-drift check reads this
+
     # ── Stat value/label helpers ──
     METRIC_LABELS = {
         "revenue": "Revenue", "revenueGrowth": "Rev Growth",
@@ -821,24 +915,20 @@ def build_html(profile: dict) -> str:
     # Institutional: stat values read navy (set in CSS); keep map navy for any inline use.
     color_map = {"gold": "var(--ks-kinpaku)", "muted": "var(--ks-kinpaku)", "faint": "var(--ks-faint)"}
     hero_items = []   # (label, value, sub, color)
-    ticker_sym = (profile.get("ticker") or "").strip()
 
-    # Live, dated trading multiples for the subject (public tickers only)
-    if ticker_sym and re.fullmatch(_TICKER_RE, ticker_sym):
-        try:
-            from data_agent import live_quote
-            q = live_quote(ticker_sym)
-        except Exception:
-            q = {}
-        if q and "error" not in q:
-            asof = q.get("priceAsOf") or ""
-            asof_sub = f"{asof} close" if asof else ""
-            if q.get("marketCap"):
-                hero_items.append(("Market Cap", q["marketCap"], asof_sub, "gold"))
-            if q.get("evRevenueLTM"):
-                hero_items.append(("EV / Revenue", q["evRevenueLTM"], (f"LTM · {asof} close" if asof else "LTM"), "gold"))
-            if q.get("closePrice") is not None:
-                hero_items.append(("Share Price", f"${q['closePrice']:,.2f}", asof_sub, "muted"))
+    # Live, dated trading multiples for the subject (the reconciliation pull above).
+    # The shared close date prints ONCE in the as-of anchor band under the strip, so
+    # per-card subs carry only what differs (basis like LTM) — not the same date ×3.
+    hero_asof = ""
+    if live_q:
+        q = live_q
+        hero_asof = q.get("priceAsOf") or ""
+        if q.get("marketCap"):
+            hero_items.append(("Market Cap", q["marketCap"], "", "gold"))
+        if q.get("evRevenueLTM"):
+            hero_items.append(("EV / Revenue", q["evRevenueLTM"], "LTM", "gold"))
+        if q.get("closePrice") is not None:
+            hero_items.append(("Share Price", f"${q['closePrice']:,.2f}", "", "muted"))
 
     # Headline operating KPIs from the latest quarter (curated order, short values)
     HERO_KEYS = [
@@ -889,6 +979,47 @@ def build_html(profile: dict) -> str:
         hero_cards += (f'<div class="hero-card"><div class="hero-label">{label}</div>'
                        f'<div class="{val_cls}" style="color:{color_map.get(clr,"var(--ks-champagne)")}">{val}</div>{sub_html}</div>')
     hero_html = f'<div class="hero-stats">{hero_cards}</div>' if hero_cards else ""
+    # One as-of anchor for the whole strip; figures on a different window are labeled
+    # individually (per the Metric Clarity Mandate), so only the exception carries a tag.
+    if hero_html and hero_asof:
+        hero_html += (f'<div class="asof-band">All trading data as of the <strong>{hero_asof}</strong> US market close '
+                      f'(yfinance; EV/Rev recomputed from last close × shares + net debt). '
+                      f'Figures covering a different window are labeled individually.</div>')
+
+    # ── "What matters" band: thesis · key debate · next catalyst ──
+    # The MD's first 30 seconds. Reads brief.whatMatters {thesis, debate, catalyst} when
+    # the analyst wrote one; otherwise composed from what's already sourced: the SWOT
+    # standout line (thesis), the first key risk (debate), and the live next earnings
+    # date or stated guidance (catalyst). Never invents content — empty rows are dropped.
+    wm = (b.get("whatMatters") or profile.get("whatMatters") or {})
+    swot_for_wm = b.get("swot") or profile.get("swot") or {}
+    wm_thesis = clean(str(wm.get("thesis") or swot_for_wm.get("standoutSummary") or swot_for_wm.get("summary") or ""))
+    wm_debate = clean(str(wm.get("debate") or wm.get("keyDebate") or ""))
+    if not wm_debate and (b.get("keyRisks") or []):
+        wm_debate = clean(str((b.get("keyRisks") or [])[0]))
+    wm_catalyst = clean(str(wm.get("catalyst") or ""))
+    if not wm_catalyst and ticker_sym and re.fullmatch(_TICKER_RE, ticker_sym):
+        try:
+            from data_agent import next_earnings_date
+            _ned = next_earnings_date(ticker_sym)
+        except Exception:
+            _ned = None
+        if _ned:
+            wm_catalyst = f"Next earnings report: {_ned}"
+    if not wm_catalyst:
+        for _k, _v in metrics.items():
+            if re.search(r"guid", _k, re.I) and not _is_empty(_v):
+                wm_catalyst = f"Guidance: {clean(str(_v))}"
+                break
+    wm_rows = [(lbl, txt) for lbl, txt in (("Thesis", wm_thesis), ("Key debate", wm_debate),
+                                           ("Next catalyst", wm_catalyst)) if txt]
+    what_matters_html = ""
+    if wm_rows:
+        _wm_rows_html = "".join(
+            f'<div class="wm-row"><span class="wm-label">{lbl}</span>'
+            f'<span class="wm-text">{txt}</span></div>' for lbl, txt in wm_rows)
+        what_matters_html = (f'<div class="what-matters"><div class="wm-head">What Matters</div>'
+                             f'{_wm_rows_html}</div>')
 
     # ── Visuals ──
     arr_chart_html     = build_arr_chart(rev_history)
@@ -982,32 +1113,94 @@ def build_html(profile: dict) -> str:
                 "name": c.get("name",""),
                 "ticker": _cell(c.get("ticker","")),
                 "type": _cell(c.get("type","")),
-                "ev": ev, "rg": rg, "gm": _cell(c.get("grossMargin","")),
+                "mc": _cell(c.get("marketCap","")),
+                "ev": ev, "ev_num": c.get("_evNum"),
+                "rg": rg, "gm": _cell(c.get("grossMargin","")),
+                "fcf": _cell(c.get("fcfMargin","")),
+                "r40": _cell(c.get("ruleOf40","")),
                 "note": _cell(c.get("note","")),
                 "sourceUrl": c.get("sourceUrl",""),
                 "is_subject": c.get("type","").strip().lower() == "subject",
             })
-        cols = {k: any(r[k] for r in norm) for k in ("ticker","type","ev","rg","gm","note")}
+
+        # Subject pinned on top; peers ranked by EV/Rev descending so the multiple
+        # column reads as an ordering, not a lottery.
+        def _ev_key(r):
+            if r["ev_num"] is not None:
+                return r["ev_num"]
+            m = re.match(r"([\d.]+)\s*x", r["ev"] or "")
+            return float(m.group(1)) if m else -1.0
+        norm.sort(key=lambda r: (not r["is_subject"], -_ev_key(r)))
+
+        # Peer medians (ex-subject) per numeric column + the premium/discount takeaway —
+        # the line that turns a table of multiples into a view.
+        def _num(s):
+            m = re.search(r"-?[\d.]+", str(s or ""))
+            return float(m.group(0)) if m else None
+        def _median(vals):
+            vals = sorted(v for v in vals if v is not None)
+            if not vals:
+                return None
+            mid = len(vals) // 2
+            return vals[mid] if len(vals) % 2 else (vals[mid - 1] + vals[mid]) / 2
+        peers = [r for r in norm if not r["is_subject"]]
+        med = {
+            "ev":  _median([(_ev_key(r) if _ev_key(r) >= 0 else None) for r in peers]),
+            "rg":  _median([_num(r["rg"]) for r in peers]),
+            "gm":  _median([_num(r["gm"]) for r in peers]),
+            "fcf": _median([_num(r["fcf"]) for r in peers]),
+            "r40": _median([_num(r["r40"]) for r in peers]),
+        }
+        subj_row = next((r for r in norm if r["is_subject"]), None)
+        prem_line = ""
+        subj_ev = _ev_key(subj_row) if subj_row else -1.0
+        if subj_row and subj_ev >= 0 and med["ev"]:
+            d = (subj_ev / med["ev"] - 1) * 100
+            rel = "premium to" if d >= 0 else "discount to"
+            prem_line = (f' <strong>{subj_row["name"]} trades at {subj_ev:.1f}x vs a {med["ev"]:.1f}x '
+                         f'peer median — a {abs(d):.0f}% {rel} the median.</strong>')
+
+        cols = {k: any(r[k] for r in norm) for k in ("ticker","type","mc","ev","rg","gm","fcf","r40")}
+        has_note = any(r["note"] for r in norm)
         head = '<th class="comp-name-col">Company</th>'
         if cols["ticker"]: head += '<th>Ticker</th>'
         if cols["type"]:   head += '<th>Type</th>'
+        if cols["mc"]:     head += '<th class="right">Mkt Cap</th>'
         if cols["ev"]:     head += '<th class="right">EV / Rev<span class="th-unit">LTM</span></th>'
         if cols["rg"]:     head += '<th class="right">Rev Growth<span class="th-unit">YoY</span></th>'
         if cols["gm"]:     head += '<th class="right">Gross Margin</th>'
-        if cols["note"]:   head += '<th>Note</th>'
+        if cols["fcf"]:    head += '<th class="right">FCF Margin<span class="th-unit">LTM</span></th>'
+        if cols["r40"]:    head += '<th class="right">Rule of 40<span class="th-unit">growth + FCF</span></th>'
         comps_rows = ""
         for r in norm:
             row_cls = ' class="subj"' if r["is_subject"] else ""
             tkr_cell = (f'<a class="comp-source-link" href="{r["sourceUrl"]}" target="_blank" rel="noopener">{r["ticker"]}</a>'
                         if r["sourceUrl"] and r["ticker"] else r["ticker"])
-            cells = f'<td class="comp-name">{r["name"]}</td>'
+            # The note rides under the company name (small, grey) so the numeric grid
+            # stays tight enough for the added FCF / Rule-of-40 columns.
+            note_sub = f'<div class="comp-note-sub">{r["note"]}</div>' if (has_note and r["note"]) else ""
+            cells = f'<td class="comp-name">{r["name"]}{note_sub}</td>'
             if cols["ticker"]: cells += f'<td class="mono comp-ticker">{tkr_cell}</td>'
             if cols["type"]:   cells += f'<td class="comp-type-cell">{r["type"]}</td>'
+            if cols["mc"]:     cells += f'<td class="mono right">{r["mc"]}</td>'
             if cols["ev"]:     cells += f'<td class="mono right comp-ev">{r["ev"]}</td>'
             if cols["rg"]:     cells += f'<td class="mono right">{r["rg"]}</td>'
             if cols["gm"]:     cells += f'<td class="mono right">{r["gm"]}</td>'
-            if cols["note"]:   cells += f'<td class="note-cell">{r["note"]}</td>'
+            if cols["fcf"]:    cells += f'<td class="mono right">{r["fcf"]}</td>'
+            if cols["r40"]:    cells += f'<td class="mono right">{r["r40"]}</td>'
             comps_rows += f"<tr{row_cls}>{cells}</tr>"
+        # Median row (computed ex-subject, labeled as such).
+        if peers and any(med.values()):
+            mcells = '<td class="comp-name">Peer median <span class="comp-median-tag">ex-subject</span></td>'
+            if cols["ticker"]: mcells += '<td></td>'
+            if cols["type"]:   mcells += '<td></td>'
+            if cols["mc"]:     mcells += '<td></td>'
+            if cols["ev"]:     mcells += f'<td class="mono right">{med["ev"]:.1f}x</td>' if med["ev"] is not None else '<td></td>'
+            if cols["rg"]:     mcells += f'<td class="mono right">{med["rg"]:.1f}%</td>' if med["rg"] is not None else '<td></td>'
+            if cols["gm"]:     mcells += f'<td class="mono right">{med["gm"]:.1f}%</td>' if med["gm"] is not None else '<td></td>'
+            if cols["fcf"]:    mcells += f'<td class="mono right">{med["fcf"]:.1f}%</td>' if med["fcf"] is not None else '<td></td>'
+            if cols["r40"]:    mcells += f'<td class="mono right">{med["r40"]:.0f}</td>' if med["r40"] is not None else '<td></td>'
+            comps_rows += f'<tr class="median-row">{mcells}</tr>'
         comps_source_html = ""
         if comps_rows:
             if len(live_asof_dates) == 1:
@@ -1020,18 +1213,21 @@ def build_html(profile: dict) -> str:
                 caption = ("Public-ticker multiples pulled live from "
                            '<a class="chart-source-link" href="https://finance.yahoo.com" target="_blank" rel="noopener">yfinance / Yahoo Finance</a>, '
                            f"{asof_str}; EV/Rev recomputed from last close × shares + net debt. "
-                           "Rev Growth (YoY) and Gross Margin reflect each company's most recent reported "
-                           "quarter / LTM, so their as-of periods differ by company and from the price close above.")
+                           "Rev Growth (YoY), Gross Margin, and FCF Margin reflect each company's most recent "
+                           "reported quarter / LTM, so their as-of periods differ by company and from the price "
+                           "close above. Rule of 40 = revenue growth + FCF margin."
+                           + prem_line)
             else:
                 caption = "Private comps: multiples are estimates from cited research sources, not market-priced."
             comps_source_html = (
                 '<div class="chart-sources"><span class="chart-source-label">Sources:</span> '
                 f'{caption}</div>')
+        scatter_html = build_comps_scatter(norm) if live_asof_dates else ""
         comps_html = f"""
     <table class="comps-table">
       <thead><tr>{head}</tr></thead>
       <tbody>{comps_rows}</tbody>
-    </table>{comps_source_html}""" if comps_rows else ""
+    </table>{scatter_html}{comps_source_html}""" if comps_rows else ""
 
     # ── Risks ──  Only bold a label when there's a genuine short "Label: body";
     # otherwise render the whole risk as plain text. (The old split(':') echoed the
@@ -1107,20 +1303,37 @@ def build_html(profile: dict) -> str:
     explainer = profile.get("explainer") or {}
     explainer_html = ""
     if explainer:
-        def _explain_body(val):
+        def _explain_items(val):
             if isinstance(val, list):
                 items = [clean(str(x)).rstrip(".") for x in val if str(x).strip()]
             else:
                 t = clean(str(val))
                 items = [s.strip().rstrip(".") for s in re.split(r'(?<=[a-z0-9\)%])\.\s+(?=[A-Z])', t) if len(s.strip()) > 12]
+            return items
+
+        def _explain_body(val):
+            # Cap at 5 bullets so a card scans instead of scrolling; the QA pass
+            # separately nudges when bullets run long (one idea per bullet).
+            items = _explain_items(val)[:5]
             return ("<ul class='explain-list'>" + "".join(f"<li>{x}.</li>" for x in items) + "</ul>") if items else ""
-        levels = [("Plain English", explainer.get("plain", "")),
-                  ("The technical version", explainer.get("technical", "")),
-                  ("Explained simply", explainer.get("simple", ""))]
+
+        # The lede: one sentence anyone can repeat. Prefer the curated one-liner
+        # (shortDescription); fall back to the first "explained simply" bullet.
+        lede_txt = clean(str(short_desc or "")).strip()
+        if not lede_txt:
+            simple_items = _explain_items(explainer.get("simple", ""))
+            lede_txt = (simple_items[0] + ".") if simple_items else ""
+        lede_html = (f'<div class="explain-lede"><span class="explain-lede-label">In one sentence</span>'
+                     f'<span class="explain-lede-text">{lede_txt}</span></div>') if lede_txt else ""
+
+        levels = [("Plain English",         "What it does, who pays",   explainer.get("plain", "")),
+                  ("The technical version", "How it actually works",    explainer.get("technical", "")),
+                  ("Explained simply",      "The analogy",              explainer.get("simple", ""))]
         cards = "".join(
-            f'<div class="explain-card explain-{i}"><div class="explain-label">{lbl}</div>{_explain_body(txt)}</div>'
-            for i, (lbl, txt) in enumerate(levels) if txt)
-        grid_html = f'<div class="explain-grid">{cards}</div>' if cards else ""
+            f'<div class="explain-card explain-{i}"><div class="explain-label">{lbl}</div>'
+            f'<div class="explain-sublabel">{sub}</div>{_explain_body(txt)}</div>'
+            for i, (lbl, sub, txt) in enumerate(levels) if txt)
+        grid_html = f'{lede_html}<div class="explain-grid">{cards}</div>' if cards else lede_html
 
         # ── Optional jargon glossary: decode the acronyms/technical terms the brief leans on
         # (e.g. SSE, SASE, CASB). Included only when the product is jargon-heavy; omitted for
@@ -1470,6 +1683,24 @@ def build_html(profile: dict) -> str:
   @media (max-width: 820px) {{ .hero-card {{ flex-basis: 33.333%; }} }}
   @media (max-width: 520px) {{ .hero-card {{ flex-basis: 50%; }} }}
 
+  /* ── As-of anchor: ONE dated line for the whole trading strip ── */
+  .asof-band {{ background: var(--ks-graphite); border-bottom: 1px solid var(--ks-rule);
+                padding: 6px 18px; font-size: 10px; color: var(--ks-faint);
+                font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; letter-spacing: 0.03em; }}
+  .asof-band strong {{ color: var(--ks-muted); }}
+
+  /* ── "What matters" band: thesis · key debate · next catalyst ── */
+  .what-matters {{ border-bottom: 1px solid var(--ks-rule); padding: 16px 40px 14px;
+                   background: var(--ks-lacquer); border-left: 3px solid var(--ks-kinpaku); }}
+  .wm-head {{ font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; font-size: 10px;
+              font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;
+              color: var(--ks-accent); margin-bottom: 9px; }}
+  .wm-row {{ display: flex; gap: 14px; padding: 4px 0; align-items: baseline; }}
+  .wm-label {{ flex: 0 0 96px; font-size: 9.5px; font-weight: 700; letter-spacing: 0.1em;
+               text-transform: uppercase; color: var(--ks-kinpaku); white-space: nowrap;
+               font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; padding-top: 2px; }}
+  .wm-text {{ font-size: 13.5px; line-height: 1.55; color: var(--ks-body); }}
+
   /* ── TOC ── */
   .toc {{ background: var(--ks-graphite); border-bottom: 1px solid var(--ks-rule-strong);
           padding: 9px 40px; display: flex; flex-wrap: wrap; gap: 5px;
@@ -1498,7 +1729,14 @@ def build_html(profile: dict) -> str:
   .diagram-caption {{ font-size: 11px; color: var(--ks-faint); margin-bottom: 10px; line-height: 1.4;
                       font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; }}
 
-  /* ── "Understand the business" explainer (plain / technical / simple) ── */
+  /* ── "Understand the business" explainer (lede + plain / technical / simple) ── */
+  .explain-lede {{ margin-bottom: 16px; padding: 14px 18px; background: var(--ks-graphite);
+                   border-left: 3px solid var(--ks-accent); border-radius: 0 6px 6px 0; }}
+  .explain-lede-label {{ display: block; font-size: 9.5px; font-weight: 700; letter-spacing: 0.15em;
+                         text-transform: uppercase; color: var(--ks-accent); margin-bottom: 5px;
+                         font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; }}
+  .explain-lede-text {{ font-family: var(--ks-serif); font-size: 17.5px; line-height: 1.5;
+                        color: var(--ks-champagne); }}
   .explain-grid {{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 24px; }}
   @media (max-width: 820px) {{ .explain-grid {{ grid-template-columns: 1fr; }} }}
   .explain-card {{ background: var(--ks-raised); border: 1px solid var(--ks-rule); border-radius: 5px;
@@ -1506,8 +1744,10 @@ def build_html(profile: dict) -> str:
   .explain-1 {{ border-top-color: var(--ks-accent); }}
   .explain-2 {{ border-top-color: var(--ks-patina); }}
   .explain-label {{ font-size: 10px; font-weight: 700; letter-spacing: 0.13em; text-transform: uppercase;
-                    color: var(--ks-kinpaku); margin-bottom: 9px;
+                    color: var(--ks-kinpaku); margin-bottom: 2px;
                     font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; }}
+  .explain-sublabel {{ font-size: 10.5px; color: var(--ks-faint); margin-bottom: 8px;
+                       font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; }}
   .explain-1 .explain-label {{ color: var(--ks-accent); }}
   .explain-2 .explain-label {{ color: var(--ks-patina); }}
   .explain-text {{ font-size: 14px; line-height: 1.6; color: var(--ks-body); }}
@@ -1732,7 +1972,9 @@ def build_html(profile: dict) -> str:
                   padding: 1px 6px; border-radius: 3px; vertical-align: middle; }}
 
   /* ── body-p (single paragraph, no bullets) ── */
-  .body-p {{ color: var(--ks-body); font-size: 15.5px; line-height: 1.7; }}
+  /* prose measure: full-width lines are unreadable at 1400px — cap at ~75ch */
+  .body-p {{ color: var(--ks-body); font-size: 15.5px; line-height: 1.7; max-width: 920px; }}
+  .body-list {{ max-width: 920px; }}
 
   /* ── SEC filings ── */
   .filings-wrap {{ display: flex; flex-direction: column; }}
@@ -1843,6 +2085,14 @@ def build_html(profile: dict) -> str:
   .subject-row td {{ background: rgba(179,18,43,0.05); font-weight: 700; color: var(--ks-champagne); }}
   .subject-row td:first-child {{ border-left: 3px solid var(--ks-kinpaku); padding-left: 8px; color: var(--ks-kinpaku); }}
   .note-cell {{ color: var(--ks-faint); font-size: 11px; }}
+  /* note rides under the company name so the numeric grid stays tight */
+  .comp-note-sub {{ font-size: 10px; font-weight: 400; color: var(--ks-faint); line-height: 1.4;
+                    margin-top: 2px; max-width: 340px; white-space: normal; }}
+  .comps-table tr.median-row td {{ background: var(--ks-graphite); border-top: 1.5px solid var(--ks-rule-strong);
+                                   font-weight: 700; color: var(--ks-champagne); font-size: 12.5px; }}
+  .comp-median-tag {{ font-size: 9px; font-weight: 400; color: var(--ks-faint);
+                      text-transform: uppercase; letter-spacing: 0.06em; margin-left: 4px; }}
+  .scatter-wrap {{ margin-top: 18px; }}
 
   /* ── Slide bullets ── */
   .slide-list {{ list-style: none; padding: 0; counter-reset: slides; }}
@@ -1895,7 +2145,10 @@ def build_html(profile: dict) -> str:
     body {{ background: #fff; font-size: 10.5pt; line-height: 1.45; }}
     a {{ color: inherit; }}
     .toc {{ display: none; }}                              /* interactive nav only */
+    #slidekit {{ display: none; }}                         /* working artifact, not note content */
     .wrapper {{ max-width: none; border: none; }}
+    .what-matters {{ break-inside: avoid; padding-left: 12px; }}
+    .wm-row {{ break-inside: avoid; }}
 
     /* edge-to-edge: the page margin (set by the DevTools render / @page) provides
        the side gutters, so sections sit flush to the printable area */
@@ -1966,11 +2219,14 @@ def build_html(profile: dict) -> str:
     {'<div class="trading-bar"><strong>Trading</strong>' + " &nbsp;|&nbsp; ".join(p.strip() for p in trading_line.split("|")) + '</div>' if trading_line else ''}
   </div>
 
-  <!-- ② HERO STATS: 5 KPIs at a glance -->
+  <!-- ② HERO STATS: 5 KPIs at a glance (+ the one as-of anchor line) -->
   {hero_html}
 
   <!-- ③ TOC -->
   <div class="toc">{toc_html}</div>
+
+  <!-- ③a WHAT MATTERS: thesis · key debate · next catalyst (the MD's first 30 seconds) -->
+  {what_matters_html}
 
   <!-- ④ BUSINESS OVERVIEW: explainer (3 levels) + bullets + value-chain diagram -->
   {'<div class="section" id="overview"><div class="sec-label">Business Overview</div>' + explainer_html + '<div class="two-col"><div>' + to_bullets(b.get("businessOverview") or short_desc, max_bullets=max_ov_bullets) + '</div><div><div class="diagram-caption">How the business works, left to right: who buys, what the platform provides, and the payoff.</div>' + biz_flow_html + '</div></div>' + _source_row(b.get("businessOverviewSources") or []) + '</div>' if (b.get("businessOverview") or short_desc) else ''}
@@ -2029,7 +2285,7 @@ def build_html(profile: dict) -> str:
   <!-- ⑯ SLIDE KIT -->
   <div class="section" id="slidekit">
     <div class="sec-label">Slide Kit</div>
-    <div class="sec-meta">Logo, stats, and copy-paste artifacts</div>
+    <div class="sec-meta">Logo, stats, and copy-paste artifacts (web view only — excluded from the PDF)</div>
     {slide_kit_html}
   </div>
 
@@ -2358,6 +2614,61 @@ def _audit_layout(chrome, html_path):
         return []
 
 
+def _audit_multiple_drift(profile):
+    """Tie the EV/Rev multiple across the WHOLE brief against the live quote the render
+    used (stashed as profile['_liveQuote']). The metrics grid is auto-reconciled at
+    render time, but prose — slide bullets, SWOT points, comp notes, commentary — is
+    written at research time and can quietly go stale (the '4.3x in the bullet, 4.2x in
+    the hero' defect). Forward/NTM/FY-dated multiples are ignored; only an undated
+    LTM-style claim is compared. Returns [(level, message)] — warnings, since prose
+    needs a human rewrite, not an auto-fix."""
+    q = (profile or {}).get("_liveQuote") or {}
+    live = q.get("evRevenueNum")
+    if not live:
+        return []
+    b = profile.get("brief") or {}
+    texts = []
+    for fld in ("businessOverview", "productModel"):
+        if b.get(fld):
+            texts.append((fld, str(b[fld])))
+    for i, s in enumerate(b.get("slideBullets") or []):
+        texts.append((f"slide bullet {i+1}", str(s)))
+    swot = b.get("swot") or profile.get("swot") or {}
+    if swot.get("standoutSummary"):
+        texts.append(("swot standout", str(swot["standoutSummary"])))
+    for quad in ("strengths", "weaknesses", "opportunities", "threats"):
+        for it in (swot.get(quad) or []):
+            texts.append((f"swot {quad}", str(it)))
+    for c in (b.get("comps") or []):
+        if c.get("note"):
+            texts.append((f"comp note ({c.get('name','?')})", str(c["note"])))
+    et = b.get("earningsTakeaways") or {}
+    if isinstance(et, dict):
+        for fld in ("aiCommentary", "demandCommentary", "analystTake"):
+            if et.get(fld):
+                texts.append((f"earnings {fld}", str(et[fld])))
+
+    issues = []
+    pat = re.compile(r"(\d+(?:\.\d+)?)\s*x\b", re.I)
+    for loc, t in texts:
+        for m in pat.finditer(t):
+            window = t[max(0, m.start() - 44):m.end() + 28].lower()
+            if not re.search(r"ev\s*/\s*rev|ev/revenue|ev[\s-]to[\s-]revenue", window):
+                continue
+            # Forward/estimated markers excuse a token only when they sit RIGHT next to
+            # it ("~12x forward earnings") — a "forward" later in the sentence must not
+            # shield an undated LTM claim earlier in it.
+            near = t[max(0, m.start() - 24):m.end() + 14].lower()
+            if re.search(r"fwd|forward|ntm|fy\s?\d|estimate|target", near):
+                continue
+            v = float(m.group(1))
+            if abs(v - live) > max(0.05, 0.015 * live):
+                issues.append(("warn",
+                    f"EV/Rev drift: {loc} says {v:g}x but the live multiple is {live:g}x "
+                    f"(as of {q.get('priceAsOf','')} close) — refresh the wording or date the claim"))
+    return issues
+
+
 def _audit_completeness(profile):
     """Data-quality checks on the assembled brief. Returns a list of (level, message),
     level in {'error','warn'}. A public name with a thin comp table is the headline case."""
@@ -2402,6 +2713,16 @@ def _audit_completeness(profile):
     elif missing_levels:
         issues.append(("error", "explainer is missing required level(s): "
                                  f"{', '.join(missing_levels)} (all of plain/technical/simple are required)"))
+    # Brevity nudge: the explainer is the product's differentiator and must SCAN — a
+    # bullet that runs past ~220 chars is a paragraph wearing a bullet costume.
+    if explainer:
+        def _level_items(v):
+            return v if isinstance(v, list) else (re.split(r"(?<=[.!?])\s+", str(v)) if v else [])
+        long_levels = sorted({k for k in ("plain", "technical", "simple")
+                              for it in _level_items(explainer.get(k)) if len(str(it)) > 220})
+        if long_levels:
+            issues.append(("warn", f"explainer bullets run long in: {', '.join(long_levels)} — "
+                                   "one idea per bullet (≤ ~20 words) so the cards scan"))
     # Jargon nudge: if the explainer leans on specialized acronyms (SSE, SASE, CASB, ZTNA…)
     # that a layperson won't know, and none of them are expanded inline or in a glossary,
     # suggest one. Advisory only — a glossary is optional, included when the product is
@@ -2443,7 +2764,7 @@ def audit_brief(html_path, profile, strict=False):
     'nothing was produced'."""
     chrome = _find_chrome()
     layout = _audit_layout(chrome, html_path) if chrome else []
-    data   = _audit_completeness(profile)
+    data   = _audit_completeness(profile) + _audit_multiple_drift(profile)
     try:
         src_issues, src_summary = audit_sources(profile, live=True)
     except Exception as e:

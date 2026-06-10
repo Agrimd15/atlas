@@ -175,6 +175,15 @@ def live_quote(ticker: str, stock=None, info=None) -> dict:
 
     ev_rev = (ev / rev) if (ev and rev) else None
 
+    # FCF margin + Rule of 40 (growth + FCF margin): the comp-quality screen an MD
+    # reads the comps table for. Computed from the same live pull so they tie.
+    fcf = info.get("freeCashflow")
+    fcf_margin = (fcf / rev) if (fcf and rev) else None
+    growth = info.get("revenueGrowth")
+    rule40 = None
+    if fcf_margin is not None and growth is not None and fcf_margin == fcf_margin and growth == growth:
+        rule40 = round((growth + fcf_margin) * 100)
+
     out = {
         "ticker":            ticker,
         "name":              info.get("shortName", ticker),
@@ -184,8 +193,11 @@ def live_quote(ticker: str, stock=None, info=None) -> dict:
         "enterpriseValue":   _b(ev),
         "totalRevenueLTM":   _b(rev),
         "evRevenueLTM":      _x(ev_rev),
-        "revenueGrowthYoY":  _pct(info.get("revenueGrowth")),
+        "evRevenueNum":      round(ev_rev, 2) if (ev_rev and ev_rev == ev_rev) else None,
+        "revenueGrowthYoY":  _pct(growth),
         "grossMargin":       _pct(info.get("grossMargins")),
+        "fcfMarginLTM":      _pct(fcf_margin),
+        "ruleOf40":          rule40,
         "analystRating":     info.get("recommendationKey"),
         "evBasis":           ev_basis,
         "source":            "yfinance / Yahoo Finance",
@@ -193,6 +205,21 @@ def live_quote(ticker: str, stock=None, info=None) -> dict:
     }
     _QUOTE_CACHE[ticker] = out
     return dict(out)
+
+
+def next_earnings_date(ticker: str) -> str | None:
+    """Next scheduled earnings date (ISO) from yfinance's calendar — the one catalyst
+    every reader asks for. Returns None quietly on any failure or for private names."""
+    if yf is None:
+        return None
+    try:
+        cal = yf.Ticker(ticker.upper().strip()).calendar or {}
+        dates = cal.get("Earnings Date") or []
+        today = datetime.date.today()
+        future = sorted(d for d in dates if isinstance(d, datetime.date) and d >= today)
+        return future[0].isoformat() if future else None
+    except Exception:
+        return None
 
 
 # ── yfinance: full trading + financials snapshot ──────────────────────────────
