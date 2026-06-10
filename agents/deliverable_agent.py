@@ -2709,11 +2709,12 @@ def _audit_multiple_drift(profile):
             window = t[max(0, m.start() - 44):m.end() + 28].lower()
             if not re.search(r"ev\s*/\s*rev|ev/revenue|ev[\s-]to[\s-]revenue", window):
                 continue
-            # Forward/estimated markers excuse a token only when they sit RIGHT next to
-            # it ("~12x forward earnings") — a "forward" later in the sentence must not
-            # shield an undated LTM claim earlier in it.
-            near = t[max(0, m.start() - 24):m.end() + 14].lower()
-            if re.search(r"fwd|forward|ntm|fy\s?\d|estimate|target", near):
+            # Forward/estimated markers — or an explicit as-of date — excuse a token
+            # only when they sit RIGHT next to it ("~12x forward earnings", "19x
+            # EV/Rev (as of the 2026-06-05 close)"); a "forward" later in the
+            # sentence must not shield an undated LTM claim earlier in it.
+            near = t[max(0, m.start() - 24):m.end() + 24].lower()
+            if re.search(r"fwd|forward|ntm|fy\s?\d|estimate|target|as of", near):
                 continue
             v = float(m.group(1))
             if abs(v - live) > max(0.05, 0.015 * live):

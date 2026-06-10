@@ -47,6 +47,11 @@ def _concept_from_label(label: str):
         return None
     # specific first
     if "knowledgehubarr" in k or k.endswith("arr") or k == "arr" or "arrrunrate" in k:
+        # Segment/product ARR (Agentforce ARR, Knowledge-Hub ARR…) is a different
+        # concept from company ARR — same rule as segment revenue below.
+        if k not in ("arr", "arrrunrate") and re.search(
+                r"(commercial|government|gov|product|segment|cloud|ai|agent|knowledgehub|netnew)", k):
+            return "arr_" + k
         return "arr"
     if "rpo" in k or "remainingperformance" in k:
         return "rpo"
@@ -240,7 +245,9 @@ def _collect_facts(profile: dict):
             facts.append(_Fact(concept, money, ptype, plabel,
                                f"metrics grid · {label}", vs, True))
 
-    # 2) revenueHistory — dated annual/quarterly points (value already in $M).
+    # 2) revenueHistory — dated annual points. Per the spec the `value` is in $B
+    #    (e.g. 41.45 → $41.45B); facts are kept in $M, so convert. The label string
+    #    is the cross-check: if it parses to ~1000× the raw value, the value was $B.
     for r in (profile.get("revenueHistory") or []):
         yr = str(r.get("year") or "")
         lbl = str(r.get("label") or "")
@@ -248,7 +255,11 @@ def _collect_facts(profile: dict):
         ptype, plabel = _period_of(yr + " " + lbl)
         v = r.get("value")
         if isinstance(v, (int, float)):
-            facts.append(_Fact(concept, float(v), ptype or "annual", plabel or yr,
+            v_m = float(v) * 1000.0                       # $B (spec) -> $M
+            lbl_m = _lead_money(lbl)
+            if lbl_m is not None and _money_eq(lbl_m, float(v)):
+                v_m = float(v)                            # legacy profile stored $M
+            facts.append(_Fact(concept, v_m, ptype or "annual", plabel or yr,
                                f"revenue history · {yr}", lbl or yr, True))
 
     # 3) subject comp row — live LTM multiples/growth (kept for completeness; money only).
@@ -352,12 +363,32 @@ def audit_metrics(profile: dict):
             f"{_fmt_m(lo_f.value)} in {lo_f.loc} vs {_fmt_m(hi_f.value)} in {hi_f.loc} "
             f"— the same metric must match everywhere it appears"))
 
+    # ── 1b) Prose vs structured: the headline case ("$202M in the grid, $210M in a
+    # slide bullet"). Prose attribution is fuzzier (could be a peer's or prior-year
+    # figure), so a mismatch is a WARN, not a blocker — and peer-attributed figures
+    # are excluded up front.
+    competitors = _competitor_names(profile)
+    for f in money_facts:
+        if f.structured or f.ptype == "guidance":
+            continue
+        head = f.raw.split("$")[0]
+        if any(cn and cn in (f.loc + " " + head).lower() for cn in competitors):
+            continue
+        pkey = (f.plabel or f.ptype or "").lower()
+        anchors = groups.get((f.concept, pkey))
+        if anchors and not any(_money_eq(f.value, s.value) for s in anchors):
+            s0 = anchors[0]
+            per = f" ({pkey})" if pkey else ""
+            issues.append(("warn",
+                f"{_concept_name(f.concept)}{per} in prose doesn't tie: "
+                f"{_fmt_m(f.value)} in {f.loc} vs {_fmt_m(s0.value)} in {s0.loc} "
+                f"— verify, or label the basis if it legitimately differs"))
+
     # ── 2) Collision: a FLOW metric shown with the same value as both a quarter AND a year ──
     # This is the classic mislabel the user flagged ("Q3 rev $200M / total rev $200M"): a
     # quarterly flow can't equal the annual flow. Runs on structured facts PLUS prose flow
     # facts (a peer's number is excluded), since the mistake often lives in the narrative.
     # Prose flow figures below $1M are dropped to avoid stray parses ("$0", a share price).
-    competitors = _competitor_names(profile)
     flow_facts = [f for f in struct if f.concept in _FLOW_CONCEPTS]
     for f in money_facts:
         if f.structured or f.concept not in _FLOW_CONCEPTS or f.value is None or f.value < 1.0:

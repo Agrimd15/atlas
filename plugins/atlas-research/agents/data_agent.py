@@ -163,6 +163,19 @@ def live_quote(ticker: str, stock=None, info=None) -> dict:
     cash   = info.get("totalCash") or 0
     rev    = info.get("totalRevenue")
 
+    # Vendor fallback: everything above hangs off Yahoo's unofficial feed, which has
+    # already shipped NaN bars and can rate-limit. If the primary pull came up empty
+    # AND an FMP key is configured, backstop price/shares from FMP /stable/quote —
+    # honestly labeled, since FMP's quote is "latest", not a stamped close.
+    if (not close or not shares) and FMP_KEY:
+        fq = fmp_get("quote", {"symbol": ticker})
+        fq = fq[0] if isinstance(fq, list) and fq else (fq if isinstance(fq, dict) else None)
+        if isinstance(fq, dict):
+            if not close and fq.get("price"):
+                close = float(fq["price"])
+                close_date = close_date or datetime.date.today().isoformat()
+            shares = shares or fq.get("sharesOutstanding")
+
     # Market cap & EV anchored to the stamped close, recomputed when inputs exist
     if close and shares:
         market_cap = close * shares

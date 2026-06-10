@@ -6,7 +6,13 @@
   "founded": "2025",
   "headquarters": "San Francisco, CA",
   "employeeCount": "~11-50 (LinkedIn company size range)",
-  "verticals": ["AI", "Vertical SaaS", "Manufacturing", "Industrials", "Agentic AI"],
+  "verticals": [
+    "AI",
+    "Vertical SaaS",
+    "Manufacturing",
+    "Industrials",
+    "Agentic AI"
+  ],
   "shortDescription": "Forgepoint builds AI back-office 'workers' for American manufacturers, starting with an AI Inside Sales Rep that turns RFQs into margin-checked quotes in hours instead of days. Founded 2025 in San Francisco; backed by a16z Speedrun and Company Ventures. No priced round or revenue disclosed.",
   "businessModel": "Forgepoint sells AI 'workers' (software agents) to American manufacturers on a SaaS basis, leading with an AI Inside Sales Rep that automates the RFQ-to-quote workflow and expanding into purchasing, invoicing, AR, and sales coordination. The product layers on top of a customer's existing ERP/CRM with a done-for-you integration in under 30 days, pulling live pricing rather than replacing the system of record.",
   "marketContext": "Targets the under-digitized manufacturing back office - steel, metal supply, metalworks, and industrial OEMs still running quoting on Excel, email, and PDFs with multi-day turnarounds. The wedge is speed-to-quote as a win-rate lever; the why-now is agentic AI plus a re-shoring tailwind for American manufacturing. No clean public comparable exists for a seed-stage AI-agent vendor.",
@@ -18,8 +24,14 @@
     "Paradigm (AI agents)",
     "Legacy manufacturing-ops software incumbents"
   ],
-  "customers": ["American manufacturers (steel / metal supply / metalworks / industrial OEMs); early design-partner stage, customer count not disclosed"],
-  "investors": ["Andreessen Horowitz (a16z Speedrun)", "Company Ventures", "Angels from Brex, Xwing, Betterment"],
+  "customers": [
+    "American manufacturers (steel / metal supply / metalworks / industrial OEMs); early design-partner stage, customer count not disclosed"
+  ],
+  "investors": [
+    "Andreessen Horowitz (a16z Speedrun)",
+    "Company Ventures",
+    "Angels from Brex, Xwing, Betterment"
+  ],
   "totalRaised": null,
   "lastKnownValuation": "Not disclosed in trusted sources (no priced round publicly reported as of 2026-06-04)",
   "ipoReadiness": "Not applicable - very early. Founded 2025, seed-stage, ~11-50 employees. IPO is many years and multiple rounds away; the near-term path is product-market fit and a priced seed / Series A.",
@@ -30,8 +42,14 @@
       "amount": null,
       "amountFormatted": "Undisclosed",
       "postMoneyValuationFormatted": "Undisclosed",
-      "leadInvestors": ["Andreessen Horowitz (a16z Speedrun)"],
-      "allInvestors": ["Andreessen Horowitz (a16z Speedrun)", "Company Ventures", "Angels from Brex, Xwing, Betterment"],
+      "leadInvestors": [
+        "Andreessen Horowitz (a16z Speedrun)"
+      ],
+      "allInvestors": [
+        "Andreessen Horowitz (a16z Speedrun)",
+        "Company Ventures",
+        "Angels from Brex, Xwing, Betterment"
+      ],
       "source": "PitchBook",
       "sourceUrl": "https://pitchbook.com/profiles/company/941431-96"
     }
@@ -61,14 +79,29 @@
     "runDate": "2026-06-04",
     "businessOverview": "Forgepoint is a San Francisco AI startup, founded in 2025, building agentic 'AI workers' for the American manufacturing back office. Its lead product is an AI Inside Sales Rep that ingests inbound RFQs (email, PDF part drawings, Excel, CAD/STP files), clarifies specs, builds the bill of materials, pulls real-time pricing from the customer's ERP, applies customer-specific discounts and margin rules, routes for approval, and finalizes the quote - compressing a turnaround that typically takes days into a few hours. The thesis: a large, under-digitized manufacturing base still runs quoting, purchasing, and invoicing on spreadsheets, email, and manual data entry, and agentic AI is the first viable way to reclaim the speed lost to overseas competitors. The company is backed by a16z Speedrun and Company Ventures with angels from Brex, Xwing, and Betterment. It is SOC 2 Type II certified and claims sub-30-day deployments. No priced funding round, valuation, or revenue figure has been disclosed in trusted sources, and there is effectively no Tier 1/2 press coverage yet - this is a pre-narrative, seed-stage name where founder-market fit and an under-served end market are the entire story.",
     "businessOverviewSources": [
-      {"name": "Forgepoint (company website)", "url": "https://forgepoint.ai/"},
-      {"name": "Jack Strauss - LinkedIn", "url": "https://www.linkedin.com/in/jack-strauss/"},
-      {"name": "PitchBook - Forgepoint profile", "url": "https://pitchbook.com/profiles/company/941431-96"}
+      {
+        "name": "Forgepoint (company website)",
+        "url": "https://forgepoint.ai/"
+      },
+      {
+        "name": "Jack Strauss - LinkedIn",
+        "url": "https://www.linkedin.com/in/jack-strauss/"
+      },
+      {
+        "name": "PitchBook - Forgepoint profile",
+        "url": "https://pitchbook.com/profiles/company/941431-96"
+      }
     ],
     "productModel": "Forgepoint sells AI 'workers' - software agents that take over discrete manufacturing back-office workflows - on a SaaS basis, landing with the quoting agent and expanding into purchasing, invoicing, AR, and sales coordination. The architectural bet is 'AI First, End to End' layered on top of legacy systems: keep the customer's existing ERP, pricing sheets, and workflows, and have Forgepoint sync in real time rather than rip-and-replace the system of record. The agent reads messy real-world inputs and connects to a broad library of ERP/CRM connectors (SAP, NetSuite, Epicor, Sage, Infor, Acumatica, Syspro) to read live pricing, then routes margin-checked, approval-gated quotes and runs automated, engagement-aware follow-up. A done-for-you integration goes live in under 30 days, and the platform is SOC 2 Type II certified to clear enterprise/industrial security review. Pricing and contract structure are not publicly disclosed.",
     "productModelSources": [
-      {"name": "Forgepoint - Product", "url": "https://forgepoint.ai/product"},
-      {"name": "Forgepoint - Careers / manifesto", "url": "https://forgepoint.ai/careers"}
+      {
+        "name": "Forgepoint - Product",
+        "url": "https://forgepoint.ai/product"
+      },
+      {
+        "name": "Forgepoint - Careers / manifesto",
+        "url": "https://forgepoint.ai/careers"
+      }
     ],
     "recentNews": [
       {
@@ -100,8 +133,14 @@
       "aiCommentary": "Product direction centers on agentic 'AI workers' that own end-to-end back-office workflows rather than co-pilot a human. The wedge agent (quoting) ingests RFQs across email, PDF, Excel, and CAD, builds the BOM, applies the shop's own margin and discount rules, routes for approval, and runs engagement-aware follow-up; adjacent agents target purchasing, invoicing, and sales coordination. The design choice to layer on top of legacy ERPs - making AI the interface over the existing system of record rather than displacing it - is the key lever for lowering integration friction with shops still on Excel and email.",
       "demandCommentary": "Forgepoint publicly frames itself as supply-constrained ('more customer demand than we can serve') and advertises onboarding scarcity. It reports - on a company-reported, unaudited basis - quote turnaround cut roughly 91% (days to hours) and 80+ rep-hours saved per month. These are early design-partner-stage figures with no third-party validation; revenue, ARR, customer count, and round economics are all undisclosed. For a banker, the signal is founder-market fit (CEO ex-Northrop Grumman/Bain/Xwing; CTO ex-Brex Head of Engineering) plus a credible under-served end market, not yet a financial track record.",
       "sources": [
-        {"name": "Forgepoint - Product", "url": "https://forgepoint.ai/product"},
-        {"name": "Forgepoint - Careers", "url": "https://forgepoint.ai/careers"}
+        {
+          "name": "Forgepoint - Product",
+          "url": "https://forgepoint.ai/product"
+        },
+        {
+          "name": "Forgepoint - Careers",
+          "url": "https://forgepoint.ai/careers"
+        }
       ]
     },
     "keyRisks": [
@@ -112,14 +151,56 @@
       "Key-person and thin-team risk: a ~11-50 person seed company concentrated around two founders; the company homepage cites 'Y Combinator' while other sources emphasize a16z Speedrun, a minor signal that the public record is still unsettled."
     ],
     "keyRisksSources": [
-      {"name": "Forgepoint (company website)", "url": "https://forgepoint.ai/"},
-      {"name": "PitchBook - Forgepoint profile", "url": "https://pitchbook.com/profiles/company/941431-96"}
+      {
+        "name": "Forgepoint (company website)",
+        "url": "https://forgepoint.ai/"
+      },
+      {
+        "name": "PitchBook - Forgepoint profile",
+        "url": "https://pitchbook.com/profiles/company/941431-96"
+      }
     ],
     "comps": [
-      {"name": "PTC Inc.", "ticker": "PTC", "type": "Adjacent (industrial/PLM software)", "evRevenue": "5.7x LTM", "revenueGrowth": "21.7% YoY", "note": "Industrial/PLM incumbent - end-market reference, not a direct comp", "source": "yfinance / Yahoo Finance", "sourceUrl": "https://finance.yahoo.com/quote/PTC"},
-      {"name": "Samsara Inc.", "ticker": "IOT", "type": "Adjacent (connected operations)", "evRevenue": "7.9x LTM", "revenueGrowth": "28.3% YoY", "note": "Physical-operations SaaS - reference, not a direct comp", "source": "yfinance / Yahoo Finance", "sourceUrl": "https://finance.yahoo.com/quote/IOT"},
-      {"name": "Autodesk, Inc.", "ticker": "ADSK", "type": "Adjacent (design/mfg software)", "evRevenue": "6.4x LTM", "revenueGrowth": "18.4% YoY", "note": "Design/mfg incumbent - reference, not a direct comp", "source": "yfinance / Yahoo Finance", "sourceUrl": "https://finance.yahoo.com/quote/ADSK"},
-      {"name": "Procore Technologies", "ticker": "PCOR", "type": "Adjacent (vertical SaaS)", "evRevenue": "5.2x LTM", "revenueGrowth": "15.7% YoY", "note": "Vertical-SaaS reference, not a direct comp", "source": "yfinance / Yahoo Finance", "sourceUrl": "https://finance.yahoo.com/quote/PCOR"}
+      {
+        "name": "PTC Inc.",
+        "ticker": "PTC",
+        "type": "Adjacent (industrial/PLM software)",
+        "evRevenue": "5.7x LTM",
+        "revenueGrowth": "21.7% YoY",
+        "note": "Industrial/PLM incumbent - end-market reference, not a direct comp",
+        "source": "yfinance / Yahoo Finance",
+        "sourceUrl": "https://finance.yahoo.com/quote/PTC"
+      },
+      {
+        "name": "Samsara Inc.",
+        "ticker": "IOT",
+        "type": "Adjacent (connected operations)",
+        "evRevenue": "7.9x LTM",
+        "revenueGrowth": "28.3% YoY",
+        "note": "Physical-operations SaaS - reference, not a direct comp",
+        "source": "yfinance / Yahoo Finance",
+        "sourceUrl": "https://finance.yahoo.com/quote/IOT"
+      },
+      {
+        "name": "Autodesk, Inc.",
+        "ticker": "ADSK",
+        "type": "Adjacent (design/mfg software)",
+        "evRevenue": "6.4x LTM",
+        "revenueGrowth": "18.4% YoY",
+        "note": "Design/mfg incumbent - reference, not a direct comp",
+        "source": "yfinance / Yahoo Finance",
+        "sourceUrl": "https://finance.yahoo.com/quote/ADSK"
+      },
+      {
+        "name": "Procore Technologies",
+        "ticker": "PCOR",
+        "type": "Adjacent (vertical SaaS)",
+        "evRevenue": "5.2x LTM",
+        "revenueGrowth": "15.7% YoY",
+        "note": "Vertical-SaaS reference, not a direct comp",
+        "source": "yfinance / Yahoo Finance",
+        "sourceUrl": "https://finance.yahoo.com/quote/PCOR"
+      }
     ],
     "compsNote": "Forgepoint is private and pre-revenue, so it has no market-priced multiple. The names above are public industrial/vertical-software adjacents pulled live (2026-06-03 close) purely to frame end-market multiples; they are not direct comparables. Closest private peers (Paperless Parts, Xometry, 11x, Artisan) are private or non-comparable in scale.",
     "slideBullets": [
@@ -133,6 +214,42 @@
       "What are the actual seed round size, post-money valuation, lead, and cap-table terms - and what is current ARR, customer count, logo concentration, and net revenue retention behind the 'more demand than we can serve' framing?",
       "How defensible is the ERP-integration layer in practice across SAP/Epicor/Infor/Syspro variants - is onboarding productized and software-margin, or services-heavy - and what is gross margin and payback per customer at the current stage?",
       "In a crowded agentic-AI field (11x, Artisan, Paradigm) and against entrenched manufacturing-quoting incumbents (Paperless Parts, Xometry), what is the durable moat - proprietary pricing data, switching costs, or distribution - and what is the realistic 18-month path to a priced Series A?"
+    ]
+  },
+  "explainer": {
+    "plain": [
+      "Forgepoint sells AI 'workers' to American manufacturers, starting with an AI inside sales rep",
+      "The AI reads incoming RFQs and drafts margin-checked quotes in hours instead of days",
+      "It layers on top of the customer's existing ERP/CRM rather than replacing it",
+      "Sold as a SaaS subscription; expanding into purchasing, invoicing, and AR"
+    ],
+    "technical": [
+      "Agentic software that ingests RFQs from email, PDF drawings, Excel, and CAD/STP files",
+      "Builds the bill of materials and pulls real-time pricing from the customer's ERP",
+      "Applies customer-specific discounts and margin rules before a human approves the quote",
+      "Founded 2025; backed by a16z Speedrun and Company Ventures; no priced round disclosed"
+    ],
+    "simple": [
+      "Imagine a tireless sales assistant who reads every quote request the moment it lands",
+      "It checks the price list, the customer's discount, and the profit margin, then drafts the reply",
+      "The shop owner just reviews and hits send"
+    ],
+    "glossary": [
+      {
+        "term": "RFQ",
+        "expansion": "Request for Quote",
+        "definition": "A buyer's ask for a price on specific parts — the document the AI turns into a quote."
+      },
+      {
+        "term": "ERP",
+        "expansion": "Enterprise Resource Planning",
+        "definition": "The system of record where a manufacturer keeps pricing, inventory, and orders."
+      },
+      {
+        "term": "BOM",
+        "expansion": "Bill of Materials",
+        "definition": "The parts-and-quantities list a quote is priced from."
+      }
     ]
   }
 }
