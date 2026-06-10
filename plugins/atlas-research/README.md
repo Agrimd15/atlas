@@ -35,9 +35,16 @@ history becomes the coverage database over time.
 ## What's bundled
 
 `/atlas` + `/setup` commands · the `atlas` skill (auto-triggers on a company name) · `agents/*.py`
-(live data, rendering, source + metric QA) · `.mcp.json` (`ramp-data`, no key) · `hooks/hooks.json`
-(auto-installs deps) · **`ATLAS_SPEC.md`** (the authoritative operating protocol — the single source
-of truth the commands and skill defer to).
+(live data, rendering, source + metric QA) · `.mcp.json` (`ramp-data`, no key) · `hooks/`
+(auto-installs deps and checks for plugin updates at session start) · **`ATLAS_SPEC.md`** (the
+authoritative operating protocol — the single source of truth the commands and skill defer to).
+
+## Staying up to date
+
+Every session start the plugin checks whether its install is behind origin and prints a one-line
+prompt with the exact `git pull` to run (you can also just ask Claude to update it). Prefer it
+hands-off? `export ATLAS_PLUGIN_AUTOUPDATE=1` and the hook fast-forwards automatically when the
+install is clean. Offline or non-git installs skip the check silently.
 
 ## Out of scope
 

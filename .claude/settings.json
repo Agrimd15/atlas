@@ -5,7 +5,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 -c 'import yfinance, requests' 2>/dev/null || { pip3 install -q -r \"$CLAUDE_PROJECT_DIR/requirements.txt\" 2>/dev/null || pip3 install -q --user --break-system-packages -r \"$CLAUDE_PROJECT_DIR/requirements.txt\" 2>/dev/null; python3 -c 'import yfinance, requests' 2>/dev/null || echo \"[atlas] Could not auto-install Python deps (yfinance, requests) - briefs will fail until they are present. Fix manually: pip3 install --break-system-packages -r '$CLAUDE_PROJECT_DIR/requirements.txt'\"; }"
+            "command": "python3 -c 'import requests, yfinance; v = tuple(int(\"\".join(ch for ch in p if ch.isdigit()) or 0) for p in yfinance.__version__.split(\".\")[:3]); assert v >= (0, 2, 40)' 2>/dev/null || { pip3 install -q -r \"$CLAUDE_PROJECT_DIR/requirements.txt\" 2>/dev/null || pip3 install -q --user --break-system-packages -r \"$CLAUDE_PROJECT_DIR/requirements.txt\" 2>/dev/null; python3 -c 'import requests, yfinance; v = tuple(int(\"\".join(ch for ch in p if ch.isdigit()) or 0) for p in yfinance.__version__.split(\".\")[:3]); assert v >= (0, 2, 40)' 2>/dev/null || echo \"[atlas] Python deps missing or stale: need requests + yfinance>=0.2.40 (older yfinance gets HTTP 429 from Yahoo, so every multiple comes back empty). Fix manually: pip3 install --upgrade --break-system-packages -r '$CLAUDE_PROJECT_DIR/requirements.txt'\"; }"
           }
         ]
       }

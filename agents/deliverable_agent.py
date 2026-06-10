@@ -180,6 +180,18 @@ def clean(text: str) -> str:
     text = re.sub(r'\s+', ' ', text)               # tighten whitespace
     return text.strip().strip(',').strip()
 
+def _risk_text(r) -> str:
+    """A keyRisks item is canonically a 'Label: detail' string, but the research schema
+    sometimes emits {risk, detail, source} dicts — flatten either shape to the string
+    form instead of crashing (clean() on a dict was a TypeError)."""
+    if isinstance(r, dict):
+        label  = str(r.get("risk") or r.get("point") or r.get("label") or r.get("title") or "").strip()
+        detail = str(r.get("detail") or r.get("description") or r.get("why") or "").strip()
+        if label and detail:
+            return f"{label.rstrip(':')}: {detail}"
+        return label or detail
+    return str(r or "")
+
 def _source_row(item_or_list, label_singular="Source"):
     """Render a compact 'Source(s): Pub · Pub' row (linked when a URL is present), reused
     by Recent News and the synthesized prose sections so every fact shows where it came
@@ -1034,7 +1046,7 @@ def build_html(profile: dict) -> str:
     wm_thesis = clean(str(wm.get("thesis") or swot_for_wm.get("standoutSummary") or swot_for_wm.get("summary") or ""))
     wm_debate = clean(str(wm.get("debate") or wm.get("keyDebate") or ""))
     if not wm_debate and (b.get("keyRisks") or []):
-        wm_debate = clean(str((b.get("keyRisks") or [])[0]))
+        wm_debate = clean(_risk_text((b.get("keyRisks") or [])[0]))
     wm_catalyst = clean(str(wm.get("catalyst") or ""))
     if not wm_catalyst and ticker_sym and re.fullmatch(_TICKER_RE, ticker_sym):
         try:
@@ -1108,7 +1120,7 @@ def build_html(profile: dict) -> str:
             "raise": _cell(c.get("lastRaise","")),
             "note": _cell(c.get("note","")),
             "sourceUrl": c.get("sourceUrl",""),
-            "is_subject": c.get("type","").strip().lower() == "subject",
+            "is_subject": c.get("type","").strip().lower().startswith("subject"),
         } for c in raw_comps_in]
         cols = {k: any(r[k] for r in norm) for k in ("type","val","raise","note")}
         head = '<th class="comp-name-col">Company</th>'
@@ -1138,6 +1150,17 @@ def build_html(profile: dict) -> str:
       <tbody>{prows}</tbody>
     </table>{comps_source_html}""" if prows else ""
     else:
+        # The subject must sit in the comp set (pinned row, crimson dot on the scatter,
+        # premium/discount line). Match it by type OR ticker — `type` is free text, so
+        # "Subject — consumer hardware" still counts — and if the brief's comps list only
+        # names peers (common), inject a subject row; the live enrichment fills it.
+        subj_ticker = (profile.get("ticker") or "").strip().upper()
+        def _is_subj_comp(c):
+            t = (c.get("type") or "").strip().lower()
+            return t.startswith("subject") or bool(
+                subj_ticker and (c.get("ticker") or "").strip().upper() == subj_ticker)
+        if subj_ticker and raw_comps_in and not any(_is_subj_comp(c) for c in raw_comps_in):
+            raw_comps_in = [{"name": name, "ticker": subj_ticker, "type": "Subject"}] + raw_comps_in
         raw_comps = _enrich_comps_live(raw_comps_in)
         norm = []
         live_asof_dates = set()
@@ -1158,7 +1181,7 @@ def build_html(profile: dict) -> str:
                 "r40": _cell(c.get("ruleOf40","")),
                 "note": _cell(c.get("note","")),
                 "sourceUrl": c.get("sourceUrl",""),
-                "is_subject": c.get("type","").strip().lower() == "subject",
+                "is_subject": _is_subj_comp(c),
             })
 
         # Subject pinned on top; peers ranked by EV/Rev descending so the multiple
@@ -1273,7 +1296,7 @@ def build_html(profile: dict) -> str:
     risks = b.get("keyRisks") or []
     risks_items_html = ""
     for r in risks:
-        rc = clean(r)
+        rc = clean(_risk_text(r))
         head, sep, tail = rc.partition(":")
         if sep and tail.strip() and len(head) <= 40 and "." not in head:
             risks_items_html += f"<li><span class='risk-label'>{head.strip()}:</span> {tail.strip()}</li>"

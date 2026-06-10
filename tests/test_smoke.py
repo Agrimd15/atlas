@@ -69,6 +69,20 @@ def test_segment_revenue_is_not_a_contradiction():
     assert not any(lvl == "error" for lvl, _ in issues), issues
 
 
+def test_product_segment_revenue_is_not_a_contradiction():
+    """'iPhone revenue' vs total revenue (AAPL run) — any qualifier keys its own concept,
+    not just the ones an allowlist happened to anticipate."""
+    p = _profile(metrics={"revenue": "$94.9B (+8% YoY)",
+                          "iPhoneRevenue": "$44.6B (+5% YoY)",
+                          "servicesRevenue": "$27.4B (+12% YoY)"})
+    issues, _ = audit_metrics(p)
+    assert not any(lvl == "error" for lvl, _ in issues), issues
+    # ...while a pure period qualifier still maps to total revenue and still ties
+    p2 = _profile(metrics={"revenue": "$200M", "quarterlyRevenue": "$230M"})
+    issues2, _ = audit_metrics(p2)
+    assert any(lvl == "error" and "doesn't tie" in m for lvl, m in issues2), issues2
+
+
 def test_quarter_equals_annual_collision_warns():
     p = _profile(metrics={"revenue": "$200M"},
                  bullets=["Full-year FY2025 revenue was $200M"])
@@ -131,6 +145,40 @@ def test_drift_qa_flags_stale_prose_multiple(monkeypatch):
     p2 = _profile(bullets=["Trades at ~12x forward EV/Rev estimates"])
     p2["_liveQuote"] = dict(_FAKE_QUOTE)
     assert not da._audit_multiple_drift(p2)
+
+
+def test_dict_shaped_key_risks_render(monkeypatch):
+    """The research schema sometimes emits keyRisks as {risk, detail, source} dicts —
+    the renderer must flatten them to 'Label: detail', not TypeError in clean()."""
+    monkeypatch.setitem(data_agent._QUOTE_CACHE, "TST", dict(_FAKE_QUOTE))
+    p = _profile()
+    p["brief"]["keyRisks"] = [
+        {"risk": "Concentration", "detail": "Top customer is 30% of revenue.",
+         "source": "10-K"},
+        "Churn: SMB cohort retention is slipping.",
+    ]
+    html = da.build_html(p)
+    assert "Concentration:" in html and "Top customer is 30% of revenue." in html
+    assert "Churn:" in html
+
+
+def test_subject_injected_into_comps_and_scatter(monkeypatch):
+    """A comps list that only names peers must still show the subject — pinned row in
+    the table and the crimson dot on the growth-vs-multiple scatter (AAPL bug)."""
+    peer_q = dict(_FAKE_QUOTE, ticker="PEER", name="PeerCo", evRevenueLTM="6.0x",
+                  evRevenueNum=6.0, revenueGrowthYoY="10.0%",
+                  sourceUrl="https://finance.yahoo.com/quote/PEER")
+    peer2_q = dict(peer_q, ticker="PEEB", name="PeerBCo", evRevenueLTM="8.0x",
+                   evRevenueNum=8.0, revenueGrowthYoY="15.0%")
+    monkeypatch.setitem(data_agent._QUOTE_CACHE, "TST", dict(_FAKE_QUOTE))
+    monkeypatch.setitem(data_agent._QUOTE_CACHE, "PEER", peer_q)
+    monkeypatch.setitem(data_agent._QUOTE_CACHE, "PEEB", peer2_q)
+    p = _profile(comps=[{"name": "PeerCo", "ticker": "PEER", "note": "closest peer"},
+                        {"name": "PeerBCo", "ticker": "PEEB", "note": "scaled peer"}])
+    html = da.build_html(p)
+    assert 'class="subj"' in html                      # subject row pinned in the table
+    assert "GROWTH VS MULTIPLE" in html                # scatter rendered (needs 3+ points)
+    assert html.count(">TST<") >= 1                    # subject labeled on the scatter
 
 
 def test_missing_explainer_blocks():

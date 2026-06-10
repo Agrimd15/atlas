@@ -84,14 +84,17 @@ def _concept_from_label(label: str):
     if "revenuegrowth" in k:
         return "revenue_growth"
     if "revenue" in k or k == "rev":
-        # Segment/geo revenue (US commercial, government, product, intl…) is a DIFFERENT
-        # concept from total revenue — $595M US commercial vs $1.63B total is not a
-        # contradiction. Key each qualified revenue label as its own concept.
-        if re.search(r"(commercial|government|gov|international|intl|product|subscription|"
-                     r"services|software|segment|cloud|license|ai|^us|domestic|americas|"
-                     r"europe|emea|apac|uk)", k):
-            return "revenue_" + k
-        return "revenue"
+        # Segment/product/geo revenue (US commercial, iPhone, subscription, intl…) is a
+        # DIFFERENT concept from total revenue — $44.6B iPhone vs $94.9B total is not a
+        # contradiction. Rather than enumerate qualifiers (an allowlist missed "iPhone"),
+        # strip the metric word and the period/total words; ANY leftover is a qualifier
+        # that keys its own concept. Pure period qualifiers (ltm/annual/q3/fy26) still
+        # map to plain "revenue" so the period logic can compare those figures.
+        leftover = re.sub(r"revenues?|^rev$", "", k)
+        leftover = re.sub(r"total|net(?!new)|ltm|ttm|annualized|annual|quarterly|"
+                          r"guidance|guided|reported|fy\d{0,4}|q[1-4]|cy\d{2,4}|\d{4}|yoy",
+                          "", leftover)
+        return ("revenue_" + k) if leftover else "revenue"
     return None
 
 # Prose concept keywords -> canonical concept (longest phrase wins). Used only to label a
@@ -281,6 +284,10 @@ def _collect_facts(profile: dict):
     for i, s in enumerate(b.get("slideBullets") or []):
         prose_blocks.append((f"slide bullet {i+1}", str(s)))
     for i, s in enumerate(b.get("keyRisks") or []):
+        # A risk may be a dict ({risk, detail, source}) — scan its text fields, not the repr.
+        if isinstance(s, dict):
+            s = " ".join(str(v) for kk, v in s.items()
+                         if isinstance(v, (str, int, float)) and "url" not in kk.lower())
         prose_blocks.append((f"key risk {i+1}", str(s)))
     for n in (b.get("recentNews") or []):
         prose_blocks.append(("news", f"{n.get('headline','')} {n.get('whyItMatters','')}"))
