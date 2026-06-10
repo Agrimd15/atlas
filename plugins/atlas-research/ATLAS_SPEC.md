@@ -98,6 +98,12 @@ same thing everywhere it appears**.
    *over* a period; a quarter's value should be ~¼ of the year's, never identical.
 5. **Don't conflate the subject with peers.** A peer's ARR/revenue in the narrative is not the
    subject's number — keep them clearly attributed.
+6. **Market multiples are live-only — never hard-type them into prose.** EV/Rev and market cap stored
+   in `keyMetrics` are auto-overwritten at render time with the same live pull the hero bar and comps
+   table use. Don't embed a raw multiple in slide bullets, SWOT points, or comp notes — it goes stale
+   the next trading day; describe it qualitatively ("the cheapest EV/Rev in its peer set, live
+   multiple in the comps table") or date the claim. The render QA compares every undated
+   EV/Rev-style "N.Nx" in prose against the live multiple and warns on drift.
 
 `${CLAUDE_PLUGIN_ROOT}/agents/metric_audit.py` enforces 3–4 at render time (run inside
 `deliverable_agent.py`): a **contradiction** (same metric + period, two values) is a BLOCKING error;
@@ -190,7 +196,15 @@ as a list of **annual** revenue points — `{year, value, label, source}`, `valu
 **last ~5 quarters live from yfinance** at render time for the **quarterly revenue chart + table**
 (public tickers only — private cos show annual only). So every public brief shows revenue on both a
 quarterly *and* an annual basis with no manual quarterly entry; just make sure `revenueHistory` is
-present so the annual chart renders.
+present so the annual chart renders. **For US filers, source the annual points from `data.json`'s
+`secFacts` (SEC XBRL as-reported figures pulled by `data_agent.get_xbrl_facts`) rather than Yahoo
+aggregates** — they are the company's own filed numbers (source: "SEC EDGAR (as reported)").
+
+**Street & balance-sheet context renders automatically (public tickers).** The brief adds a live
+context strip under the hero: analyst consensus target/upside/rating count, forward P/E, the 52-week
+EV/Rev band (price effect only — labeled), short interest % of float, net cash/(debt), SBC as % of
+LTM revenue, and 1M/YTD/1Y performance vs QQQ. All from the same render-time pulls (`live_quote`,
+`sbc_pct_revenue`, `relative_performance`) — never write these into `keyMetrics` by hand.
 
 **SWOT (`brief.swot`, renders next to the comps table).** A detailed 2×2 showing how the target stands
 out from the comp set: `{standoutSummary, strengths, weaknesses, opportunities, threats, sources}`.
@@ -217,6 +231,17 @@ a Tier 1/2 article). The source auditor flags any section that ships without one
 ("Explained simply" — an ELI5/analogy). These render as the three explainer cards atop the Business
 Overview. **All three are mandatory** — QA raises a BLOCKING error if `explainer` is missing or any
 level is empty.
+
+**Explainer bullets must SCAN (this block is the product's differentiator).** Write each level as 3–4
+bullets, **one idea per bullet, ≤ ~20 words each**; QA warns on any bullet over ~220 characters and
+the renderer caps display at 5 per card. The brief opens the block with an "In one sentence" lede
+pulled from `shortDescription`, so make that a sentence a reader could repeat at dinner.
+
+**"What matters" band (`brief.whatMatters`, optional but encouraged).** The first thing an MD reads,
+rendered under the nav: `{thesis, debate, catalyst}`. When absent, the renderer composes it from
+`swot.standoutSummary` (thesis), the first `keyRisks` item (debate), and the live next-earnings date
+or a stated guidance metric (catalyst). Write the explicit object when the composed default wouldn't
+be the call you'd actually make.
 
 **Period + consistency.** Apply the Metric Clarity & Consistency Mandate above: every figure
 period-tagged, `quarter`/`reportDate` set, each number ties to itself everywhere. The metric auditor
