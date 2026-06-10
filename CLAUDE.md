@@ -1,5 +1,16 @@
 # Atlas - Company Research Tool
 
+## ⏸️ Auto run routine PAUSED for 2026-06-10 (self-expiring)
+
+Per the user's instruction on 2026-06-10: **do not execute any scheduled / automatic / routine-triggered
+Atlas run today.** If this session was started by a schedule, trigger, or routine (i.e. not a direct,
+live request typed by the user) and today's date is **2026-06-10**, stop immediately — skip the
+Execution Protocol, the refresh-coverage sweep, and any auto-publish step — and end the session with a
+one-line note that today's auto run was paused at the user's request.
+
+Manual, user-initiated requests are unaffected. This pause applies to 2026-06-10 only and expires on
+its own: on any later date, ignore this block (and feel free to delete it as housekeeping).
+
 ## What This Is
 Atlas turns a single company name or ticker into a banker-grade research brief. You (Claude Code)
 act as a tech investment-banking analyst: dispatch parallel research agents, synthesize, and ship a
