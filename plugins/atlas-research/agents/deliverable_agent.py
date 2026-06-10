@@ -402,11 +402,14 @@ def build_quarterly_trend(ticker: str) -> str:
 
 def build_biz_flow(profile: dict, b: dict) -> str:
     """Three-column value chain: Customers (+ what they need) → Platform (modules)
-    → Value Delivered (+ the concrete payoff). Driven by an explicit profile['bizFlow']
-    object when present, so the diagram explains the business A-to-Z rather than just
-    listing names; falls back to a keyword-derived version for older profiles."""
+    → Value Delivered (+ the concrete payoff). Rendered ONLY from an explicit
+    profile['bizFlow'] written by the analyst — the old keyword-guessed fallback
+    produced generic boxes that read as filler, and a guessed diagram is worse than
+    none. Returns '' when no bizFlow exists."""
     name = profile.get("name", "")
     flow = profile.get("bizFlow") or {}
+    if not flow or not flow.get("valueDelivered"):
+        return ""
 
     # ── Customers column: each node can carry a "need" sub-line ──
     cust_src = flow.get("customers")
@@ -431,26 +434,13 @@ def build_biz_flow(profile: dict, b: dict) -> str:
     mod_html = "".join(f'<div class="biz-mod">{m}</div>' for m in modules)
 
     # ── Value Delivered column: each node can carry a "detail" sub-line ──
-    val_src = flow.get("valueDelivered")
-    if val_src:
-        out_html = "".join(
-            (f'<div class="biz-node biz-out"><div class="biz-node-name">{o.get("label","")}</div>'
-             + (f'<div class="biz-node-sub">{o.get("detail","")}</div>' if o.get("detail") else "")
-             + '</div>') if isinstance(o, dict) else
-            f'<div class="biz-node biz-out"><div class="biz-node-name">{o}</div></div>'
-            for o in val_src[:5]
-        )
-    else:
-        biz_text = (profile.get("businessModel","") + " " + (b.get("productModel") or "")).lower()
-        output_map = [
-            ("defense","Defense Autonomous Systems"), ("autonom","Validated Autonomy Software"),
-            ("simulat","Compressed Dev Cycles"), ("cybersec","Threat Detection & Response"),
-            ("cloud","Cloud Infrastructure"), ("fintech","Financial Intelligence"),
-            ("health","Clinical Decision Support"), ("data","Data & Analytics Platform"),
-            ("market","Go-To-Market Acceleration"),
-        ]
-        outputs = [label for kw, label in output_map if kw in biz_text][:3] or ["Software Products", "Platform APIs", "Enterprise Workflows"]
-        out_html = "".join(f'<div class="biz-node biz-out"><div class="biz-node-name">{o}</div></div>' for o in outputs)
+    out_html = "".join(
+        (f'<div class="biz-node biz-out"><div class="biz-node-name">{o.get("label","")}</div>'
+         + (f'<div class="biz-node-sub">{o.get("detail","")}</div>' if o.get("detail") else "")
+         + '</div>') if isinstance(o, dict) else
+        f'<div class="biz-node biz-out"><div class="biz-node-name">{o}</div></div>'
+        for o in flow["valueDelivered"][:5]
+    )
 
     return f"""
     <div class="biz-flow">
@@ -985,6 +975,54 @@ def build_html(profile: dict) -> str:
         hero_html += (f'<div class="asof-band">All trading data as of the <strong>{hero_asof}</strong> US market close '
                       f'(yfinance; EV/Rev recomputed from last close × shares + net debt). '
                       f'Figures covering a different window are labeled individually.</div>')
+
+    # ── Street & balance-sheet context strip (public tickers, all live) ──
+    # The second read after the hero: consensus target + upside, forward P/E, where the
+    # multiple sits in its 52-week band, short interest, net cash, SBC drag, and
+    # performance vs the software-heavy benchmark. Each card degrades silently.
+    ctx_items = []
+    if live_q:
+        if live_q.get("analystTarget"):
+            up = live_q.get("analystUpside") or ""
+            up = (("+" + up) if up[:1].isdigit() else up) + " vs close" if up else ""
+            bits = [x for x in (up, live_q.get("analystRating"),
+                                f"{live_q['numberOfAnalysts']} analysts" if live_q.get("numberOfAnalysts") else "") if x]
+            ctx_items.append(("Analyst Target", live_q["analystTarget"], " · ".join(bits)))
+        if live_q.get("forwardPE"):
+            ctx_items.append(("Forward P/E", f"{live_q['forwardPE']}x", "consensus fwd EPS"))
+        if live_q.get("evRevRange52w"):
+            ctx_items.append(("EV/Rev 52-wk Band", live_q["evRevRange52w"],
+                              "price effect only; today's shares, net debt + LTM rev"))
+        if live_q.get("shortPctFloat"):
+            ctx_items.append(("Short Interest", live_q["shortPctFloat"], "% of float"))
+        if live_q.get("netCash"):
+            lbl = "Net Cash" if not str(live_q["netCash"]).startswith("-") else "Net Debt"
+            ctx_items.append((lbl, str(live_q["netCash"]).lstrip("-"), "cash − total debt"))
+        try:
+            from data_agent import sbc_pct_revenue, relative_performance
+            _sbc = sbc_pct_revenue(ticker_sym, live_q.get("totalRevenueNum"))
+            if _sbc:
+                ctx_items.append(("SBC % of Rev", _sbc, "LTM, the dilution drag"))
+            _rp = relative_performance(ticker_sym)
+            if _rp:
+                p = _rp["periods"]
+                def _pp(k):
+                    v = p.get(k, {}).get("spreadPp")
+                    return f"{v:+.0f}pp" if v is not None else ""
+                if _pp("1Y"):
+                    ctx_items.append((f"vs {_rp['benchmark']}", f"{_pp('1Y')} 1Y",
+                                      f"1M {_pp('1M')} · YTD {_pp('YTD')}"))
+        except Exception:
+            pass
+    ctx_html = ""
+    if ctx_items:
+        cards = "".join(
+            f'<div class="ctx-card"><div class="ctx-label">{l}</div>'
+            f'<div class="ctx-value">{v}</div>'
+            + (f'<div class="ctx-sub">{s}</div>' if s else "") + '</div>'
+            for l, v, s in ctx_items[:7])
+        ctx_html = f'<div class="ctx-strip">{cards}</div>'
+    hero_html += ctx_html
 
     # ── "What matters" band: thesis · key debate · next catalyst ──
     # The MD's first 30 seconds. Reads brief.whatMatters {thesis, debate, catalyst} when
@@ -1683,6 +1721,21 @@ def build_html(profile: dict) -> str:
   @media (max-width: 820px) {{ .hero-card {{ flex-basis: 33.333%; }} }}
   @media (max-width: 520px) {{ .hero-card {{ flex-basis: 50%; }} }}
 
+  /* ── Street & balance-sheet context strip (under the as-of band) ── */
+  .ctx-strip {{ display: flex; flex-wrap: wrap; background: var(--ks-raised);
+                border-bottom: 1px solid var(--ks-rule); }}
+  .ctx-card {{ flex: 1 1 0; min-width: 130px; padding: 10px 16px;
+               border-right: 1px solid var(--ks-rule); }}
+  .ctx-card:last-child {{ border-right: none; }}
+  .ctx-label {{ font-size: 8.5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em;
+                color: var(--ks-faint); margin-bottom: 4px; white-space: nowrap;
+                font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; }}
+  .ctx-value {{ font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; font-size: 1.0rem;
+                font-weight: 700; color: var(--ks-muted); white-space: nowrap; }}
+  .ctx-sub {{ font-size: 9.5px; color: var(--ks-faint); margin-top: 3px; line-height: 1.3;
+              font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; }}
+  @media (max-width: 820px) {{ .ctx-card {{ flex-basis: 33.333%; }} }}
+
   /* ── As-of anchor: ONE dated line for the whole trading strip ── */
   .asof-band {{ background: var(--ks-graphite); border-bottom: 1px solid var(--ks-rule);
                 padding: 6px 18px; font-size: 10px; color: var(--ks-faint);
@@ -2155,6 +2208,7 @@ def build_html(profile: dict) -> str:
     .header, .toc, .section, .footer {{ padding-left: 0; padding-right: 0; }}
 
     /* Keep atomic blocks whole — never sliced by a page break */
+    .ctx-card, .ctx-strip,
     .hero-card, .metric-card, .explain-card, .exec-card, .tl-card, .news-item,
     .biz-flow, .chart-wrap, .kit-grid, .filing-row,
     .body-list li, .earn-bullets li, .risk-list li, .explain-list li,
@@ -2228,8 +2282,8 @@ def build_html(profile: dict) -> str:
   <!-- ③a WHAT MATTERS: thesis · key debate · next catalyst (the MD's first 30 seconds) -->
   {what_matters_html}
 
-  <!-- ④ BUSINESS OVERVIEW: explainer (3 levels) + bullets + value-chain diagram -->
-  {'<div class="section" id="overview"><div class="sec-label">Business Overview</div>' + explainer_html + '<div class="two-col"><div>' + to_bullets(b.get("businessOverview") or short_desc, max_bullets=max_ov_bullets) + '</div><div><div class="diagram-caption">How the business works, left to right: who buys, what the platform provides, and the payoff.</div>' + biz_flow_html + '</div></div>' + _source_row(b.get("businessOverviewSources") or []) + '</div>' if (b.get("businessOverview") or short_desc) else ''}
+  <!-- ④ BUSINESS OVERVIEW: explainer (3 levels) + bullets + value-chain diagram (only when an explicit bizFlow exists) -->
+  {'<div class="section" id="overview"><div class="sec-label">Business Overview</div>' + explainer_html + ('<div class="two-col"><div>' + to_bullets(b.get("businessOverview") or short_desc, max_bullets=max_ov_bullets) + '</div><div><div class="diagram-caption">How the business works, left to right: who buys, what the platform provides, and the payoff.</div>' + biz_flow_html + '</div></div>' if biz_flow_html else to_bullets(b.get("businessOverview") or short_desc, max_bullets=max_ov_bullets)) + _source_row(b.get("businessOverviewSources") or []) + '</div>' if (b.get("businessOverview") or short_desc) else ''}
 
   <!-- ④a HOW BROADCOM IS DIFFERENT (vs peers) -->
   {differentiation_html}

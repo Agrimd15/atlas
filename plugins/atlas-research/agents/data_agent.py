@@ -184,6 +184,22 @@ def live_quote(ticker: str, stock=None, info=None) -> dict:
     if fcf_margin is not None and growth is not None and fcf_margin == fcf_margin and growth == growth:
         rule40 = round((growth + fcf_margin) * 100)
 
+    # Street + balance-sheet context, all from the same info fetch (free): consensus
+    # target/upside, forward P/E, short interest, net cash. The 52-week EV/Rev band
+    # holds today's shares, net debt, and LTM revenue constant (price effect only) —
+    # an honest approximation, labeled as such where rendered.
+    target = info.get("targetMeanPrice")
+    upside = (target / close - 1) if (target and close) else None
+    net_cash = (cash - debt) if (cash or debt) else None
+    hi, lo = info.get("fiftyTwoWeekHigh"), info.get("fiftyTwoWeekLow")
+    ev_rev_range = None
+    if hi and lo and shares and rev:
+        ev_lo = (lo * shares + debt - cash) / rev
+        ev_hi = (hi * shares + debt - cash) / rev
+        if ev_lo == ev_lo and ev_hi == ev_hi:
+            ev_rev_range = f"{ev_lo:.1f}x–{ev_hi:.1f}x"
+    fwd_pe = info.get("forwardPE")
+
     out = {
         "ticker":            ticker,
         "name":              info.get("shortName", ticker),
@@ -192,19 +208,126 @@ def live_quote(ticker: str, stock=None, info=None) -> dict:
         "marketCap":         _b(market_cap),
         "enterpriseValue":   _b(ev),
         "totalRevenueLTM":   _b(rev),
+        "totalRevenueNum":   rev,
         "evRevenueLTM":      _x(ev_rev),
         "evRevenueNum":      round(ev_rev, 2) if (ev_rev and ev_rev == ev_rev) else None,
+        "evRevRange52w":     ev_rev_range,
         "revenueGrowthYoY":  _pct(growth),
         "grossMargin":       _pct(info.get("grossMargins")),
         "fcfMarginLTM":      _pct(fcf_margin),
         "ruleOf40":          rule40,
         "analystRating":     info.get("recommendationKey"),
+        "analystTarget":     f"${target:,.2f}" if target else None,
+        "analystUpside":     _pct(upside),
+        "numberOfAnalysts":  info.get("numberOfAnalystOpinions"),
+        "forwardPE":         round(fwd_pe, 1) if (fwd_pe and fwd_pe == fwd_pe) else None,
+        "shortPctFloat":     _pct(info.get("shortPercentOfFloat")),
+        "netCash":           (f"-{_b(abs(net_cash))}" if net_cash < 0 else _b(net_cash)) if net_cash is not None else None,
         "evBasis":           ev_basis,
         "source":            "yfinance / Yahoo Finance",
         "sourceUrl":         f"https://finance.yahoo.com/quote/{ticker}",
     }
     _QUOTE_CACHE[ticker] = out
     return dict(out)
+
+
+def sbc_pct_revenue(ticker: str, total_revenue=None) -> str | None:
+    """Stock-based comp as % of LTM revenue (the dilution screen) from the last four
+    quarterly cash-flow statements. Returns a formatted % or None, never raises."""
+    if yf is None:
+        return None
+    try:
+        t = yf.Ticker(ticker.upper().strip())
+        cf = t.quarterly_cashflow
+        if cf is None or getattr(cf, "empty", True):
+            return None
+        if "Stock Based Compensation" not in cf.index:
+            return None
+        vals = [float(v) for v in cf.loc["Stock Based Compensation"].iloc[:4]
+                if v is not None and v == v]
+        rev = total_revenue or t.info.get("totalRevenue")
+        if not vals or not rev:
+            return None
+        return _pct(sum(vals) / rev)
+    except Exception:
+        return None
+
+
+def relative_performance(ticker: str, bench: str = "QQQ") -> dict:
+    """1M / YTD / 1Y price change vs a benchmark, with the spread in percentage points —
+    the 'is this working?' row. Returns {} quietly on any failure."""
+    if yf is None:
+        return {}
+    try:
+        hs = yf.Ticker(ticker.upper().strip()).history(period="1y")["Close"].dropna()
+        hb = yf.Ticker(bench).history(period="1y")["Close"].dropna()
+        if hs.empty or hb.empty:
+            return {}
+        def _chg(h, days=None, ytd=False):
+            if ytd:
+                sub = h[h.index.year == h.index[-1].year]
+                start = sub.iloc[0] if len(sub) else h.iloc[0]
+            else:
+                start = h.iloc[-min(days, len(h))]
+            return float(h.iloc[-1] / start - 1)
+        periods = {}
+        for label, kw in (("1M", {"days": 21}), ("YTD", {"ytd": True}), ("1Y", {"days": len(hs)})):
+            a, b = _chg(hs, **kw), _chg(hb, **kw)
+            periods[label] = {"stock": _pct(a), "bench": _pct(b), "spreadPp": round((a - b) * 100, 1)}
+        return {"benchmark": bench, "periods": periods, "asOf": hs.index[-1].date().isoformat(),
+                "source": "yfinance / Yahoo Finance"}
+    except Exception:
+        return {}
+
+
+def get_xbrl_facts(ticker: str) -> dict:
+    """As-reported revenue and net income from SEC XBRL companyfacts — primary-of-record
+    figures straight from the filings, the highest-trust source for revenueHistory.
+    Returns {} on any failure (non-US filers, no CIK, network)."""
+    cik = _sec_ticker_to_cik(ticker)
+    if not cik:
+        return {}
+    try:
+        r = requests.get(f"https://data.sec.gov/api/xbrl/companyfacts/CIK{cik}.json",
+                         headers={"User-Agent": SEC_UA}, timeout=25)
+        if not r.ok:
+            return {}
+        gaap = (r.json().get("facts") or {}).get("us-gaap") or {}
+        def _series(concepts, form):
+            for con in concepts:
+                rows = ((gaap.get(con) or {}).get("units") or {}).get("USD") or []
+                picked = {}
+                for e in rows:
+                    if e.get("form") != form or not e.get("end") or e.get("val") is None:
+                        continue
+                    # keep annual spans for 10-K (~12mo), quarterly spans for 10-Q (~3mo)
+                    if e.get("start"):
+                        span = (datetime.date.fromisoformat(e["end"])
+                                - datetime.date.fromisoformat(e["start"])).days
+                        if form == "10-K" and not 300 < span < 400:
+                            continue
+                        if form == "10-Q" and not 60 < span < 120:
+                            continue
+                    picked[e["end"]] = {"end": e["end"], "value": e["val"],
+                                        "valueFormatted": _b(e["val"]), "fy": e.get("fy"),
+                                        "fp": e.get("fp"), "filed": e.get("filed"), "concept": con}
+                if picked:
+                    return sorted(picked.values(), key=lambda x: x["end"])
+            return []
+        rev_concepts = ("RevenueFromContractWithCustomerExcludingAssessedTax", "Revenues",
+                        "SalesRevenueNet")
+        facts = {
+            "annualRevenue":    _series(rev_concepts, "10-K")[-4:],
+            "quarterlyRevenue": _series(rev_concepts, "10-Q")[-5:],
+            "annualNetIncome":  _series(("NetIncomeLoss",), "10-K")[-4:],
+        }
+        if not any(facts.values()):
+            return {}
+        facts.update({"cik": cik, "source": "SEC EDGAR XBRL companyfacts (as reported)",
+                      "sourceUrl": f"https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK={cik}&type=10-K"})
+        return facts
+    except Exception:
+        return {}
 
 
 def next_earnings_date(ticker: str) -> str | None:
@@ -534,6 +657,8 @@ def run(ticker: str, comps_tickers: list[str] | None = None, ramp_demand_signal:
     comps        = get_comps(comps_tickers) if comps_tickers else []
     sec_filings  = get_sec_filings(ticker)
     qtrend       = quarterly_trend(ticker)
+    sec_facts    = get_xbrl_facts(ticker)          # as-reported, primary-of-record
+    rel_perf     = relative_performance(ticker)
 
     # Freshness audit: gather every close date used, surface the anchor, and flag
     # any ticker whose last close lags the rest (halt, holiday, delisting, stale feed).
@@ -562,6 +687,10 @@ def run(ticker: str, comps_tickers: list[str] | None = None, ramp_demand_signal:
         "profile":           fmp_profile,
         "comps":             comps,
         "secFilings":        sec_filings,
+        # As-reported XBRL figures: prefer these over Yahoo aggregates when writing
+        # revenueHistory for US filers — they are the company's own filed numbers.
+        "secFacts":          sec_facts,
+        "relativePerformance": rel_perf,
         # Populated by the Data Agent subagent via ramp-data MCP tools (Claude Code only).
         # See RAMP_DATA_TOOLS and RAMP_DEMAND_SIGNAL_SCHEMA above for expected shape.
         "rampDemandSignal":  ramp_demand_signal,
