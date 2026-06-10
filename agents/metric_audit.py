@@ -79,6 +79,13 @@ def _concept_from_label(label: str):
     if "revenuegrowth" in k:
         return "revenue_growth"
     if "revenue" in k or k == "rev":
+        # Segment/geo revenue (US commercial, government, product, intl…) is a DIFFERENT
+        # concept from total revenue — $595M US commercial vs $1.63B total is not a
+        # contradiction. Key each qualified revenue label as its own concept.
+        if re.search(r"(commercial|government|gov|international|intl|product|subscription|"
+                     r"services|software|segment|cloud|license|ai|^us|domestic|americas|"
+                     r"europe|emea|apac|uk)", k):
+            return "revenue_" + k
         return "revenue"
     return None
 
