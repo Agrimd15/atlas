@@ -27,6 +27,7 @@ Returns (issues, summary): issues is a list of (level, message), level in {'erro
 """
 
 import re
+from collections import defaultdict
 
 # ── Concept taxonomy ────────────────────────────────────────────────────────────
 # Canonical metric concepts. Two figures only "conflict" if they map to the SAME concept,
@@ -153,9 +154,9 @@ def _money_to_millions(num_str: str, unit: str):
         return None
     u = (unit or "").lower()
     if not u:
-        # A bare "$2,900,000,000" style or a unit-less "$12" (share price) — only treat as
-        # millions-scale when it's clearly large; otherwise return the raw dollars-in-millions.
-        return v / 1_000_000 if v >= 100_000 else v / 1_000_000
+        # No unit ("$2,900,000,000" or a "$12" share price): the value is raw dollars,
+        # so convert to millions directly.
+        return v / 1_000_000
     return v * _MULT.get(u, 1)
 
 
@@ -324,7 +325,6 @@ def audit_metrics(profile: dict):
     struct = [f for f in money_facts if f.structured]
 
     # ── 1) Conflict: same concept + same period, different value (structured) ──
-    from collections import defaultdict
     groups = defaultdict(list)
     for f in struct:
         if f.ptype == "guidance":

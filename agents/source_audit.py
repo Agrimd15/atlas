@@ -66,12 +66,19 @@ def _registered_domain(host: str) -> str:
     return ".".join(parts[-2:]) if len(parts) >= 2 else host
 
 
+# Section URLs the workflow explicitly blesses as THE citation (CLAUDE.md: Ramp Data
+# "is free and citable as source: ramp.com/data") — never flag these as shallow.
+_SHALLOW_OK = {"ramp.com/data"}
+
+
 def _is_shallow(url: str) -> bool:
     """True if the URL is a bare homepage / section landing page rather than a specific
     article — i.e. no real path and no query that would identify a document."""
     try:
         p = urlparse(url)
     except Exception:
+        return False
+    if f"{_norm_domain(url)}/{(p.path or '').strip('/')}" in _SHALLOW_OK:
         return False
     path = (p.path or "").strip("/")
     if p.query:                       # ?id=... etc. identifies a document

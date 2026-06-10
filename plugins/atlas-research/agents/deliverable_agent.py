@@ -11,7 +11,13 @@ the HTML via the locally-installed headless Chrome. No network or credentials re
 """
 
 import sys, os, json, re, datetime, subprocess, shutil, time, base64, socket, urllib.request, urllib.error
+from concurrent.futures import ThreadPoolExecutor
+from contextlib import contextmanager
 from pathlib import Path
+
+# A plausible public exchange ticker — gates every live yfinance/EDGAR pull so private-co
+# slugs ("applied-intuition") and placeholder values never trigger a network fetch.
+_TICKER_RE = r"[A-Za-z.\-]{1,6}"
 
 try:                                   # source-integrity QA (broken/untrusted/shallow links + coverage)
     from source_audit import audit_sources
@@ -47,14 +53,27 @@ def _enrich_comps_live(comps: list) -> list:
         return comps
 
     skip_words = {"private", "n/a", "acquired", "delisted"}
+
+    def _clean_ticker(c):
+        ticker_clean = re.sub(r'[^a-z]', '', (c.get("ticker") or "").strip().lower())  # letters only
+        if not ticker_clean or len(ticker_clean) > 5 or ticker_clean in skip_words:
+            return None
+        return ticker_clean.upper()
+
+    # Prefetch all quotes in parallel (each is ~2 slow Yahoo round-trips); live_quote
+    # caches per ticker, so the subject row reuses the hero-stats pull for free.
+    tickers = sorted({t for t in (_clean_ticker(c) for c in comps) if t})
+    if tickers:
+        with ThreadPoolExecutor(max_workers=min(8, len(tickers))) as pool:
+            pool.map(live_quote, tickers)
+
     enriched = []
     for c in comps:
-        ticker = (c.get("ticker") or "").strip()
-        ticker_clean = re.sub(r'[^a-z]', '', ticker.lower())  # letters only
-        if not ticker_clean or len(ticker_clean) > 5 or ticker_clean in skip_words:
+        ticker = _clean_ticker(c)
+        if not ticker:
             enriched.append(c)
             continue
-        q = live_quote(ticker_clean.upper())
+        q = live_quote(ticker)
         if "error" in q:
             enriched.append(c)
             continue
@@ -305,7 +324,7 @@ def build_quarterly_trend(ticker: str) -> str:
     the most recent reported quarter. Returns '' for private companies or when
     quarterly data is unavailable, so it degrades silently and never breaks a brief.
     """
-    if not ticker or not re.fullmatch(r"[A-Za-z.\-]{1,6}", ticker):
+    if not ticker or not re.fullmatch(_TICKER_RE, ticker):
         return ""
     try:
         from data_agent import quarterly_trend
@@ -805,7 +824,7 @@ def build_html(profile: dict) -> str:
     ticker_sym = (profile.get("ticker") or "").strip()
 
     # Live, dated trading multiples for the subject (public tickers only)
-    if ticker_sym and re.fullmatch(r"[A-Za-z.\-]{1,6}", ticker_sym):
+    if ticker_sym and re.fullmatch(_TICKER_RE, ticker_sym):
         try:
             from data_agent import live_quote
             q = live_quote(ticker_sym)
@@ -1059,7 +1078,7 @@ def build_html(profile: dict) -> str:
 
     # ── SEC primary filings (live from EDGAR, no key) ──
     filings_html = ""
-    if ticker_sym and re.fullmatch(r"[A-Za-z.\-]{1,6}", ticker_sym):
+    if ticker_sym and re.fullmatch(_TICKER_RE, ticker_sym):
         try:
             from data_agent import get_sec_filings
             secf = get_sec_filings(ticker_sym)
@@ -2134,10 +2153,14 @@ def _ws_recv(sock):
     return json.loads(msg.decode("utf-8"))
 
 
-def _render_pdf_cdp(chrome, html_path, pdf_path, header_html, footer_html):
-    """Drive Chrome over the DevTools protocol so the PDF carries a real per-page
-    header/footer + 'Page X / Y' in the margins (the one thing --print-to-pdf cannot
-    do). Returns True on success; raises on any failure so the caller can fall back."""
+@contextmanager
+def _chrome_page(chrome, html_path):
+    """Launch headless Chrome, attach to its page target over the DevTools websocket,
+    navigate to the rendered brief, and wait for the load event. Yields the connected
+    socket (ready for printToPDF / Runtime.evaluate); always tears down the socket and
+    the Chrome process. Raises on any setup failure so callers can fall back.
+    Shared by the PDF renderer and the layout auditor — one DevTools bring-up, not two
+    copies of it."""
     port = _free_port()
     proc = subprocess.Popen(
         [chrome, "--headless=new", "--disable-gpu", "--no-first-run",
@@ -2163,6 +2186,8 @@ def _render_pdf_cdp(chrome, html_path, pdf_path, header_html, footer_html):
             raise RuntimeError("DevTools endpoint not ready")
 
         m = re.match(r"ws://([^:/]+):(\d+)(/.*)", ws_url)
+        if not m:
+            raise RuntimeError(f"unexpected DevTools URL: {ws_url}")
         host, wport, path = m.group(1), int(m.group(2)), m.group(3)
         sock = socket.create_connection((host, wport), timeout=10)
         sock.settimeout(30)
@@ -2183,7 +2208,25 @@ def _render_pdf_cdp(chrome, html_path, pdf_path, header_html, footer_html):
             if _ws_recv(sock).get("method") == "Page.loadEventFired":
                 break
         time.sleep(0.5)                                 # let web fonts settle
+        yield sock
+    finally:
+        try:
+            if sock:
+                sock.close()
+        except Exception:
+            pass
+        proc.terminate()
+        try:
+            proc.wait(timeout=5)
+        except Exception:
+            proc.kill()
 
+
+def _render_pdf_cdp(chrome, html_path, pdf_path, header_html, footer_html):
+    """Drive Chrome over the DevTools protocol so the PDF carries a real per-page
+    header/footer + 'Page X / Y' in the margins (the one thing --print-to-pdf cannot
+    do). Returns True on success; raises on any failure so the caller can fall back."""
+    with _chrome_page(chrome, html_path) as sock:
         _ws_send(sock, {"id": 3, "method": "Page.printToPDF", "params": {
             "printBackground": True, "preferCSSPageSize": False,
             "paperWidth": 8.5, "paperHeight": 11,
@@ -2197,22 +2240,12 @@ def _render_pdf_cdp(chrome, html_path, pdf_path, header_html, footer_html):
             if msg.get("id") == 3:
                 if "error" in msg:
                     raise RuntimeError(msg["error"])
-                data_b64 = msg["result"]["data"]; break
+                data_b64 = msg["result"]["data"]
+                break
         if not data_b64:
             raise RuntimeError("no printToPDF result")
         pdf_path.write_bytes(base64.b64decode(data_b64))
         return True
-    finally:
-        try:
-            if sock:
-                sock.close()
-        except Exception:
-            pass
-        proc.terminate()
-        try:
-            proc.wait(timeout=5)
-        except Exception:
-            proc.kill()
 
 
 def render_pdf(html_path: Path, profile=None):
@@ -2309,74 +2342,20 @@ def _audit_layout(chrome, html_path):
     """Render the finished HTML in headless Chrome and report any element whose content
     overflows its box. Returns a list of issue dicts ([] = clean). Best-effort: returns
     [] if Chrome/DevTools is unavailable, so a flaky browser never blocks a render."""
-    port = _free_port()
-    proc = subprocess.Popen(
-        [chrome, "--headless=new", "--disable-gpu", "--no-first-run",
-         "--no-default-browser-check", *_CHROME_SAFE_FLAGS,
-         f"--remote-debugging-port={port}", "about:blank"],
-        stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
-    )
-    sock = None
     try:
-        ws_url = None
-        for _ in range(50):
-            try:
-                raw = urllib.request.urlopen(f"http://127.0.0.1:{port}/json", timeout=1).read()
-                for t in json.loads(raw):
-                    if t.get("type") == "page" and t.get("webSocketDebuggerUrl"):
-                        ws_url = t["webSocketDebuggerUrl"]; break
-                if ws_url:
-                    break
-            except Exception:
-                pass
-            time.sleep(0.1)
-        if not ws_url:
-            return []
-        m = re.match(r"ws://([^:/]+):(\d+)(/.*)", ws_url)
-        host, wport, path = m.group(1), int(m.group(2)), m.group(3)
-        sock = socket.create_connection((host, wport), timeout=10); sock.settimeout(30)
-        key = base64.b64encode(os.urandom(16)).decode()
-        sock.sendall((f"GET {path} HTTP/1.1\r\nHost: {host}:{wport}\r\nUpgrade: websocket\r\n"
-                      f"Connection: Upgrade\r\nSec-WebSocket-Key: {key}\r\n"
-                      f"Sec-WebSocket-Version: 13\r\n\r\n").encode())
-        resp = b""
-        while b"\r\n\r\n" not in resp:
-            resp += sock.recv(1024)
-        if b"101" not in resp.split(b"\r\n", 1)[0]:
-            return []
-        _ws_send(sock, {"id": 1, "method": "Page.enable"})
-        _ws_send(sock, {"id": 2, "method": "Page.navigate",
-                        "params": {"url": html_path.resolve().as_uri()}})
-        for _ in range(300):
-            if _ws_recv(sock).get("method") == "Page.loadEventFired":
-                break
-        time.sleep(0.5)                                  # let web fonts settle
-        _ws_send(sock, {"id": 3, "method": "Runtime.evaluate",
-                        "params": {"expression": _OVERFLOW_JS, "returnByValue": True}})
-        for _ in range(300):
-            msg = _ws_recv(sock)
-            if msg.get("id") == 3:
-                if "error" in msg:
-                    return []
-                val = (((msg.get("result") or {}).get("result") or {}).get("value")) or "[]"
-                try:
+        with _chrome_page(chrome, html_path) as sock:
+            _ws_send(sock, {"id": 3, "method": "Runtime.evaluate",
+                            "params": {"expression": _OVERFLOW_JS, "returnByValue": True}})
+            for _ in range(300):
+                msg = _ws_recv(sock)
+                if msg.get("id") == 3:
+                    if "error" in msg:
+                        return []
+                    val = (((msg.get("result") or {}).get("result") or {}).get("value")) or "[]"
                     return json.loads(val)
-                except Exception:
-                    return []
-        return []
+            return []
     except Exception:
         return []
-    finally:
-        try:
-            if sock:
-                sock.close()
-        except Exception:
-            pass
-        proc.terminate()
-        try:
-            proc.wait(timeout=5)
-        except Exception:
-            proc.kill()
 
 
 def _audit_completeness(profile):

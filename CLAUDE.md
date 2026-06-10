@@ -91,28 +91,26 @@ atlas/
   CLAUDE.md                ← this file (operating spec)
   README.md · SETUP.md
   .env                     ← API keys (optional FMP) - never committed
-  /agents                  ← data_agent.py, research_agent.py, deliverable_agent.py, sources.py
-  /prompts                 ← prompt templates per agent
+  /agents                  ← data_agent.py, research_agent.py (incl. prompt templates), deliverable_agent.py, sources.py
   /design                  ← DESIGN.md (design language - all UI complies)
   /site                    ← static coverage site (build.mjs, template/, dist/)
   vercel.json · package.json · middleware.js   ← deploy config + password gate
-  /viewer                  ← optional local viewer (atlas.html + FastAPI backend)
   /data-dumps              ← the coverage database (one folder per company)
     /SNOW/
-      profile.json         ← latest run (the viewer reads this)
+      profile.json         ← latest run (the coverage site reads this)
       /runs/2026-05-31/
         research.json · news.json · transcript.json · data.json
         SNOW_brief_2026-05-31.html (+ .pdf)
 ```
 
 This repo IS the database. Git history shows how each company's profile evolved over time. The
-viewer (`atlas.html` / the published site) is just the lens. This public repo ships only the demo
+published coverage site is just the lens. This public repo ships only the demo
 companies; companies you research are gitignored by default (see `.gitignore`).
 
 ---
 
 ## Data Convention
-- `profile.json` - always reflects the latest research run. The viewer reads this.
+- `profile.json` - always reflects the latest research run. The coverage site reads this.
 - `runs/YYYY-MM-DD/` - full raw dump for each research run, never overwritten.
 - After every run, write/overwrite `profile.json` and create a new dated `runs/` folder.
 
@@ -154,7 +152,7 @@ Read all 4 JSON files and produce a `brief` object with: `runDate`, `businessOve
 **Period + consistency (per the Metric Clarity & Consistency Mandate):** always set `earningsTakeaways.quarter` (e.g. `"Q1 FY2027 (ended April 30, 2026)"`) and `reportDate` — they anchor the whole metrics grid. Give every `keyMetrics` value its own window when it differs from that default: `"68.1% (LTM)"`, `"118% (as of July 31, 2025)"`, `"Revenue $90.5-91.0M (FY2026 guidance)"`. Make sure each figure ties to itself everywhere it appears (metrics grid, `revenueHistory`, comp row, slide bullets, prose) — when two numbers differ it must be because the period or basis differs, and that difference must be labeled, not silent. Never let a quarterly revenue/EBITDA/FCF figure equal the annual one. The metric auditor in Step 4 blocks on contradictions.
 
 **Step 3 - Write profile.json**
-Write/overwrite `data-dumps/FOLDER_ID/profile.json` with ALL fields including the `brief` object **and the required top-level `explainer` block** (`plain` / `technical` / `simple`). profile.json is the single source of truth - the viewer reads it.
+Write/overwrite `data-dumps/FOLDER_ID/profile.json` with ALL fields including the `brief` object **and the required top-level `explainer` block** (`plain` / `technical` / `simple`). profile.json is the single source of truth - the coverage site reads it.
 
 **Step 4 - Generate the brief (HTML + PDF)**
 Run `python3 agents/deliverable_agent.py FOLDER_ID`. This writes a self-contained HTML brief and a print-faithful PDF (rendered via your local headless Chrome) to the run folder. **No email is sent - the deliverables are the files.** Report the local paths.
@@ -193,7 +191,6 @@ It also runs three QA passes and prints a report: a layout/overflow check; a **s
 | `agents/metric_audit.py` | Metric consistency & clarity QA: cross-checks every $ figure ties, catches quarter-equals-annual collisions, flags undated headline figures. Prints the `🧮 QA metrics` line. Run standalone: `python3 agents/metric_audit.py TICKER`. |
 | `agents/sources.py` | Canonical trusted-source registry (Tier 1/2 publications + curated X accounts). |
 | `site/build.mjs` | Builds the static coverage site from `data-dumps/`. Run: `node site/build.mjs`. Choose public-demo companies via `DEMO_IDS` at the top. |
-| `viewer/` | Optional local viewer: a single-file browser app (`atlas.html`) + a small FastAPI backend. Run: `viewer/start.sh`. |
 | `agents/notion_sync.py` | Mirror a run into a Notion database — upserts one row per company (description, competitors, founders, public/private, stage/series, revenue, valuation) with a link back to the published brief. **Runs automatically at the end of `deliverable_agent.py`** (no-op unless creds are set). Standalone: `python3 agents/notion_sync.py FOLDER_ID [--body] [--dry-run]`. Needs `NOTION_TOKEN`, `NOTION_DB_ID`, `ATLAS_SITE_URL` in `.env`; see "Mirroring coverage to Notion" below. |
 
 ---

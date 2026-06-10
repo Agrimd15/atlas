@@ -20,6 +20,7 @@ import os
 import json
 import datetime
 import requests
+from concurrent.futures import ThreadPoolExecutor
 
 # yfinance is required for live quotes, but importing this module must NEVER kill the
 # process: deliverable_agent imports live_quote inside try/except guards, and a bare
@@ -46,16 +47,16 @@ _SEC_TICKER_CACHE: dict = {}
 
 # ── Helpers ───────────────────────────────────────────────────────────────────
 
-def fmp_get(endpoint: str, params: dict = {}) -> list | dict | None:
+def fmp_get(endpoint: str, params: dict | None = None) -> list | dict | None:
     if not FMP_KEY:
         return None
     try:
         r = requests.get(
             f"{FMP_BASE}/{endpoint}",
-            params={"apikey": FMP_KEY, **params},
+            params={"apikey": FMP_KEY, **(params or {})},
             timeout=8,
         )
-        if r.ok and r.text.strip().startswith("[") or r.text.strip().startswith("{"):
+        if r.ok and r.text.strip().startswith(("[", "{")):
             return r.json()
     except Exception:
         pass
@@ -63,7 +64,7 @@ def fmp_get(endpoint: str, params: dict = {}) -> list | dict | None:
 
 
 def _b(val, decimals=1) -> str | None:
-    if val is None:
+    if val is None or val != val:                  # None or NaN — no honest value to print
         return None
     val = float(val)
     if abs(val) >= 1e12:
@@ -76,13 +77,13 @@ def _b(val, decimals=1) -> str | None:
 
 
 def _pct(val) -> str | None:
-    if val is None:
+    if val is None or val != val:
         return None
     return f"{float(val)*100:.1f}%"
 
 
 def _x(val) -> str | None:
-    if val is None:
+    if val is None or val != val:
         return None
     return f"{float(val):.1f}x"
 
@@ -117,13 +118,22 @@ def last_close(stock) -> tuple:
                 continue                                  # never use a future-dated bar
             if bar_date == today_et and not market_closed_today:
                 continue                                  # today's session still open — not a close
-            return float(hist["Close"].iloc[i]), bar_date.isoformat()
+            close_val = hist["Close"].iloc[i]
+            if close_val != close_val:                    # NaN bar (Yahoo sometimes ships the
+                continue                                  # latest session unpopulated) — skip it,
+            return float(close_val), bar_date.isoformat() # or every multiple becomes "nanx"
     except Exception:
         pass
     return None, None
 
 
-def live_quote(ticker: str) -> dict:
+# One quote pull per ticker per process: the subject's quote is needed by the hero
+# stats, the comps enrichment, and get_yf in the same render, and each uncached call
+# costs two slow Yahoo round-trips (info + price history). Errors are never cached.
+_QUOTE_CACHE: dict = {}
+
+
+def live_quote(ticker: str, stock=None, info=None) -> dict:
     """
     Single source of truth for a ticker's trading multiples, anchored to the
     actual last market close. EV/Revenue is RECOMPUTED from the close price
@@ -132,14 +142,18 @@ def live_quote(ticker: str) -> dict:
     defensible. Every field carries its source. Returns {'error': ...} on failure.
 
     Used by both data_agent and deliverable_agent so the brief and the comps
-    table can never diverge or fall back to model-memory numbers.
+    table can never diverge or fall back to model-memory numbers. Pass an already-
+    constructed `stock`/`info` to reuse a fetch the caller has done anyway.
     """
     if yf is None:
         return {"ticker": ticker, "error": _YF_IMPORT_ERROR}
     ticker = ticker.upper().strip()
+    cached = _QUOTE_CACHE.get(ticker)
+    if cached is not None:
+        return dict(cached)
     try:
-        stock = yf.Ticker(ticker)
-        info = stock.info
+        stock = stock or yf.Ticker(ticker)
+        info = info or stock.info
     except Exception as e:
         return {"ticker": ticker, "error": f"yfinance lookup failed: {e}"}
 
@@ -161,7 +175,7 @@ def live_quote(ticker: str) -> dict:
 
     ev_rev = (ev / rev) if (ev and rev) else None
 
-    return {
+    out = {
         "ticker":            ticker,
         "name":              info.get("shortName", ticker),
         "priceAsOf":         close_date,                       # actual close the multiple reflects
@@ -172,10 +186,13 @@ def live_quote(ticker: str) -> dict:
         "evRevenueLTM":      _x(ev_rev),
         "revenueGrowthYoY":  _pct(info.get("revenueGrowth")),
         "grossMargin":       _pct(info.get("grossMargins")),
+        "analystRating":     info.get("recommendationKey"),
         "evBasis":           ev_basis,
         "source":            "yfinance / Yahoo Finance",
         "sourceUrl":         f"https://finance.yahoo.com/quote/{ticker}",
     }
+    _QUOTE_CACHE[ticker] = out
+    return dict(out)
 
 
 # ── yfinance: full trading + financials snapshot ──────────────────────────────
@@ -187,8 +204,9 @@ def get_yf(ticker: str) -> dict:
         stock = yf.Ticker(ticker)
         info  = stock.info
 
-        # Core multiples anchored to the actual last close (single source of truth)
-        q = live_quote(ticker)
+        # Core multiples anchored to the actual last close (single source of truth);
+        # hand over the Ticker/info just fetched so the quote doesn't re-pull them.
+        q = live_quote(ticker, stock=stock, info=info)
         close = q.get("closePrice")
 
         return {
@@ -453,17 +471,18 @@ RAMP_DEMAND_SIGNAL_SCHEMA = {
 def get_comps(tickers: list[str]) -> list:
     """Every comp pulled in the same run via the shared live_quote helper, so
     all multiples share one consistent last-close anchor (or visibly flag if
-    a ticker's data is stale relative to the rest)."""
+    a ticker's data is stale relative to the rest). Quotes are fetched in
+    parallel — each is ~2 slow Yahoo round-trips, so a 6-name comp set would
+    otherwise dominate the run time."""
+    if not tickers:
+        return []
+    with ThreadPoolExecutor(max_workers=min(8, len(tickers))) as pool:
+        quotes = list(pool.map(live_quote, tickers))
     out = []
-    for t in tickers:
-        q = live_quote(t)
+    for t, q in zip(tickers, quotes):
         if "error" in q:
             out.append({"ticker": t.upper(), "error": q["error"]})
             continue
-        try:
-            rating = yf.Ticker(q["ticker"]).info.get("recommendationKey")
-        except Exception:
-            rating = None
         out.append({
             "ticker":        q["ticker"],
             "name":          q["name"],
@@ -472,7 +491,7 @@ def get_comps(tickers: list[str]) -> list:
             "evRevenueLTM":  q["evRevenueLTM"],
             "revenueGrowth": q["revenueGrowthYoY"],
             "grossMargin":   q["grossMargin"],
-            "analystRating": rating,
+            "analystRating": q["analystRating"],
             "source":        q["source"],
             "sourceUrl":     q["sourceUrl"],
         })
@@ -481,7 +500,7 @@ def get_comps(tickers: list[str]) -> list:
 
 # ── Main ─────────────────────────────────────────────────────────────────────
 
-def run(ticker: str, comps_tickers: list[str] = [], ramp_demand_signal: dict = None) -> dict:
+def run(ticker: str, comps_tickers: list[str] | None = None, ramp_demand_signal: dict | None = None) -> dict:
     ticker = ticker.upper().strip()
     yf_data      = get_yf(ticker)
     fmp_profile  = get_fmp_profile(ticker)

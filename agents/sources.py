@@ -46,7 +46,7 @@ TIER_2 = {
     "sacra.com":            "Sacra",         # private co revenue estimates
     "meritech.com":         "Meritech Capital (SaaS comps)",
     "bvp.com":              "Bessemer Venture Partners (State of Cloud)",
-    "ramp.com/data":        "Ramp Data (B2B vendor spend signals, 50k+ businesses)",
+    "ramp.com":             "Ramp Data (B2B vendor spend signals, 50k+ businesses)",   # cited as ramp.com/data
 }
 
 # ── Tier 3: Acceptable context sources ────────────────────────────────────────
@@ -123,12 +123,11 @@ ALL_TRUSTED_DOMAINS = list(TIER_1.keys()) + list(TIER_2.keys())
 
 def site_query(domains: list = None) -> str:
     """Build a 'site:X OR site:Y' query string."""
-    d = domains or list(TIER_1.keys())
-    return " OR ".join(f"site:{d}" for d in d)
+    return " OR ".join(f"site:{d}" for d in (domains or list(TIER_1.keys())))
 
 # Pre-built query strings for agent use
 SITE_QUERY_T1 = site_query(list(TIER_1.keys()))
-SITE_QUERY_T1_T2 = site_query(list(TIER_1.keys()) + list(TIER_2.keys()))
+SITE_QUERY_T1_T2 = site_query(ALL_TRUSTED_DOMAINS)
 
 NEWS_SITE_QUERY = (
     "site:wsj.com OR site:bloomberg.com OR site:ft.com OR site:reuters.com "

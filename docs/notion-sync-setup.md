@@ -33,6 +33,40 @@ must be **Text**.
 > `Valuation` ↔ `Market Cap` ↔ `Last Valuation`. The brief link goes to any **URL** column
 > (preferring one named `Brief`, `Atlas`, `Report`, or `Link`). Columns you don't create are simply skipped.
 
+### Or create the database via the Notion API
+
+If you're an agent creating this programmatically, POST to
+`https://api.notion.com/v1/databases` with header `Notion-Version: 2022-06-28`
+and a `parent` of `{ "type": "page_id", "page_id": "<a page the integration can edit>" }`.
+Property schema (`Revenue`/`Valuation` as `rich_text`, not `number`):
+
+```jsonc
+{
+  "parent": { "type": "page_id", "page_id": "<PARENT_PAGE_ID>" },
+  "title": [{ "type": "text", "text": { "content": "Atlas Coverage" } }],
+  "properties": {
+    "Company Name": { "title": {} },
+    "Description":  { "rich_text": {} },
+    "Competitors":  { "rich_text": {} },
+    "Founders":     { "rich_text": {} },
+    "Ticker":       { "rich_text": {} },
+    "Website":      { "url": {} },
+    "Type":   { "select": { "options": [ { "name": "Public" }, { "name": "Private" } ] } },
+    "Stage":  { "select": { "options": [
+      { "name": "Public" }, { "name": "Seed" }, { "name": "Series A" },
+      { "name": "Series B" }, { "name": "Series C" }, { "name": "Series D+" }
+    ] } },
+    "Revenue":      { "rich_text": {} },
+    "Valuation":    { "rich_text": {} },
+    "Brief":        { "url": {} },
+    "Last Updated": { "date": {} }
+  }
+}
+```
+
+The response's `id` (a 32-char hash, dashed) is your `NOTION_DB_ID`, and the database is
+already connected to the integration that created it (verify under **•••** → Connections).
+
 ---
 
 ## 2. Create a Notion integration

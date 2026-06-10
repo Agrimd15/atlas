@@ -1,5 +1,8 @@
 # Rename: public repo `atlas` → `alfred-tools`
 
+**Status:** ✅ Completed — `sync-to-public.yml` now targets `Agrimd15/alfred-tools` and the
+README is reframed as the Alfred Tools umbrella. Kept as the design record of the cutover.
+
 **Goal:** Reposition the public repo as `alfred-tools` — the home for *all* Alfred analyst
 tools — while keeping **Atlas** as the (first) tool inside it. This is a repo-identity reframe,
 **not** a rename of the Atlas tool.
