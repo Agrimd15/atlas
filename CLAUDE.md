@@ -1,13 +1,21 @@
 # Atlas - Company Research Tool
 
-## ⏸️ Auto run routine PAUSED — 5-report budget exhausted; do not execute scheduled runs; ask the user before resuming
+## ▶️ Auto run routine UNPAUSED — daily budget: 5 reports per day
 
-The 5-report budget granted on 2026-06-10 was fully consumed by the 2026-06-11 scheduled run, which
-published 5 new briefs (CRWV, AVGO, APP, FIG, databricks). Scheduled / automatic / routine-triggered
-Atlas runs are therefore **paused**: do not execute them. Ask the user before resuming, and only the
-user can grant a new budget (which would replace this block with an UNPAUSED block carrying the new count).
+Per the user's instruction on 2026-06-11, scheduled / automatic / routine-triggered Atlas runs are
+enabled with a budget that **resets every day**. Live counter: **0 remaining for 2026-06-11** (the
+2026-06-11 scheduled run already published 5 briefs: CRWV, AVGO, APP, FIG, databricks).
 
-Manual, user-initiated requests are unaffected and may proceed normally.
+Bookkeeping (mandatory for schedule/trigger-started sessions), in order, before running:
+1. **Roll the day.** If the date in the counter line above is not today, reset the line to
+   "5 remaining for <today's date>" — the new day starts with a fresh budget of 5.
+2. **Respect the cap.** If the counter reads **0** remaining for today, do not run the pipeline:
+   end the session with a one-line note that today's 5-report budget is exhausted (it resets
+   tomorrow automatically — no pause block needed, no user action required).
+3. **Decrement on publish.** Each time the session publishes a finished report (brief), reduce the
+   counter by the number of reports published and commit that edit together with the run.
+
+Manual, user-initiated requests are unaffected and never count against the budget.
 
 ## What This Is
 Atlas turns a single company name or ticker into a banker-grade research brief. You (Claude Code)
