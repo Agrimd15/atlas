@@ -1,0 +1,97 @@
+name: Pull upstream alfred-tools updates
+
+# Ships WITH alfred-tools so that private clones of this repo stay current
+# automatically: once a day it pulls the latest code from the public
+# Agrimd15/alfred-tools and opens a PR in YOUR repo with the changes.
+#
+# - Never runs in Agrimd15/alfred-tools itself (the `if:` guard below).
+# - Code only: your coverage (`data-dumps/`), your `.gitignore`, `archive/`,
+#   and your workflows (`.github/`) are never touched.
+# - Lands as a PR, never a direct push, so every update gets your review —
+#   CLAUDE.md can carry instance-specific state (e.g. the auto-run budget
+#   block), so check it before merging.
+# - Skips quietly when an update PR is already open or nothing changed.
+#
+# Heads-up: GitHub disables scheduled workflows after ~60 days without repo
+# activity — re-enable from the Actions tab if your repo went quiet.
+
+on:
+  schedule:
+    - cron: '23 10 * * *'   # daily, 10:23 UTC
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  pull:
+    if: github.repository != 'Agrimd15/alfred-tools'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout this repo
+        uses: actions/checkout@v4
+        with:
+          path: self
+
+      - name: Skip if an update PR is already open
+        id: gate
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cd self
+          OPEN=$(gh pr list --state open --json headRefName \
+                 --jq '[.[] | select(.headRefName | startswith("sync/upstream-"))] | length')
+          echo "open=$OPEN" >> "$GITHUB_OUTPUT"
+          if [ "$OPEN" != "0" ]; then
+            echo "An upstream-update PR is already open — merge or close it first. Skipping."
+          fi
+
+      - name: Checkout upstream alfred-tools
+        if: steps.gate.outputs.open == '0'
+        uses: actions/checkout@v4
+        with:
+          repository: Agrimd15/alfred-tools
+          path: upstream
+
+      # --delete makes upstream removals propagate (retired modules disappear
+      # here too). Excluded paths are never copied OR deleted, so everything
+      # instance-specific survives untouched.
+      - name: Apply upstream code
+        if: steps.gate.outputs.open == '0'
+        run: |
+          rsync -av --delete \
+            --exclude='.git/' \
+            --exclude='.github/' \
+            --exclude='.gitignore' \
+            --exclude='data-dumps/' \
+            --exclude='archive/' \
+            --exclude='.env' \
+            --exclude='__pycache__/' \
+            --exclude='*.pyc' \
+            --exclude='.DS_Store' \
+            --exclude='site/dist/' \
+            --exclude='.vercel' \
+            upstream/ self/
+
+      - name: Open update PR
+        if: steps.gate.outputs.open == '0'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cd self
+          git add -A
+          if git diff --staged --quiet; then
+            echo "Already up to date with upstream — nothing to do."
+            exit 0
+          fi
+          STAMP=$(date -u +%Y-%m-%d)
+          BRANCH="sync/upstream-$(date -u +%Y%m%d-%H%M)"
+          git config user.name "alfred-tools updater"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$BRANCH"
+          git commit -m "sync: pull upstream alfred-tools updates ($STAMP)"
+          git push -u origin "$BRANCH"
+          gh pr create \
+            --title "Upstream alfred-tools updates ($STAMP)" \
+            --body "Daily automated pull from [Agrimd15/alfred-tools](https://github.com/Agrimd15/alfred-tools). Code only — your \`data-dumps/\`, \`.gitignore\`, \`archive/\`, and workflows were not touched. Review before merging: \`CLAUDE.md\` can carry instance-specific state (e.g. the auto-run budget block)."
