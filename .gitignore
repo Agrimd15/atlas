@@ -2,7 +2,20 @@
 __pycache__/
 *.pyc
 .DS_Store
+
+# Build output + local Vercel state
 site/dist/
 .vercel
-# Private instance: track ALL coverage (this repo is private). Upstream (public
-# atlas) ignores non-demo companies; keep THIS .gitignore on `git pull upstream main`.
+
+# Coverage data: this repo ships only the demo companies. Companies you research
+# are ignored by default, so your private coverage never lands in a public repo.
+# The allowlist below is regenerated from DEMO_IDS (site/build.mjs) by
+# alfred-private's sync-to-public workflow — don't hand-edit it here.
+data-dumps/*
+!data-dumps/.gitkeep
+!data-dumps/NTSK
+!data-dumps/CRWV
+!data-dumps/AVGO
+!data-dumps/APP
+!data-dumps/FIG
+!data-dumps/databricks
