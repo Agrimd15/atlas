@@ -90,7 +90,7 @@ up your tools, then you just type company names and read the briefs.
 | `.claude-plugin/` | The marketplace manifest (this repo doubles as the plugin marketplace) |
 | `site/` | Your coverage website (a public demo plus a password-protected full library) |
 | `data-dumps/` | Your research library, one folder per company |
-| `docs/` | Sync model, rename plan, and the plugin design record |
+| `docs/` | The sync model between the Alfred repos + Notion mirror setup |
 | `SETUP.md`, `CLAUDE.md` | The setup guide and the operating manual |
 
 ## A few ground rules

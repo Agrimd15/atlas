@@ -1,65 +1,106 @@
-# Sync model: alfred-private ⇄ alfred-tools
+# Sync model: how the Alfred repos stay in lockstep
 
-Two repos, one boundary. Code flows both ways; **private coverage data never leaves private.**
+Three repos, four automations, one firm boundary.
 
 ```
-  alfred-private  (private)                         alfred-tools  (public)
-  ─────────────────────────                         ──────────────────────
-  • ALL coverage (data-dumps/)                       • canonical published tool
-  • your working source                              • demo data only (DEMO_IDS)
-                                                      • what others fork / install
-
-      │                                                        │
-      │  ── private → public (AUTOMATED) ──────────────▶       │
-      │     sync-to-public.yml on every push to main           │
-      │     copies CODE (excl data-dumps) + DEMO data only     │
-      │                                                        │
-      │  ◀────────────── public → private (MANUAL) ───         │
-      │     git fetch upstream && git merge upstream/main      │
-      │     pulls CODE only — data-dumps is never touched      │
+ alfred-private (private)                    alfred-tools (public)
+ ────────────────────────                    ─────────────────────
+ • your working source                       • canonical published toolkit
+ • ALL coverage (data-dumps/)                • plugin marketplace
+ • archive/ of retired coverage             • demo data only (DEMO_IDS)
+                                             • what others clone / install
+     │                                                  │
+     │ ①  private → public  (AUTO, every push to main)  │
+     │ ─────────────────────────────────────────────▶   │
+     │    sync-to-public.yml: code (no archive/),       │
+     │    demo data only, regenerated .gitignore        │
+     │                                                  │
+     │ ②  public → private  (AUTO, daily, lands as PR)  │
+     │  ◀─────────────────────────────────────────────  │
+     │    pull-from-public.yml: code only, and only     │
+     │    when public has non-sync-bot commits          │
+     │                                                  │
+     │                                                  │ ③  upstream → private clones
+     │                                                  │    (AUTO, daily, lands as PR)
+     │                                                  ▼
+     │                                       someone else's private clone
+     │                                       (pull-upstream.yml ships in
+     │                                        alfred-tools itself)
+     │
+     │ ④  tool surface → landing page  (AUTO, issue)
+     ▼
+ alfred-analyst (private) — alfred-analyst.com landing page
 ```
 
 ## The one firm rule
 
-**`data-dumps/` is the boundary and is never part of the two-way sync.**
-- private → public sends **code + demo companies only** (never full coverage).
-- public → private pulls **code only** — your private `data-dumps/` is never overwritten or
-  deleted by a sync.
+**`data-dumps/` is the boundary.** Private coverage never leaves alfred-private:
+- ① sends code + the current `DEMO_IDS` companies only — and prunes ex-demo
+  folders, so the public set always equals the demo set exactly.
+- ② and ③ pull **code only** — a sync can never overwrite or delete anyone's
+  `data-dumps/`, `archive/`, `.gitignore`, or workflows.
+- `archive/` is private-instance-only: the public repo ships current demos, not
+  retired coverage.
 
-This boundary has been breached once before (public PR #2: `Revert: remove researched companies
-(MRVL, PL, amdahl-ai) from public repo`). Keep it sacred.
+Two guards keep the boundary: the demo-only copy in ①, plus the public repo's
+`.gitignore` (a demo allowlist, **generated from DEMO_IDS** on every sync so it
+can't drift or be hand-overwritten — it was once, which is why it's generated now).
 
-## Direction 1 — private → public (automated)
+## ① private → public — `sync-to-public.yml` (here)
 
-Workflow: `.github/workflows/sync-to-public.yml`, runs on every push to `main`.
-- rsyncs code, excluding `data-dumps/`, `.env`, `site/dist/`, etc.
-- then copies *only* the demo companies' data-dumps (parsed from `DEMO_IDS` in `site/build.mjs`).
-- skips the commit if nothing changed (this is also what makes the loop impossible).
+Runs on every push to `main`. rsyncs code (excluding `data-dumps/`, `archive/`,
+`.github/workflows/`, `.gitignore`, `.env`, `site/dist/`), then mirrors exactly
+the `DEMO_IDS` companies (parsed from `site/build.mjs`) into the public
+`data-dumps/` — adding new demos, pruning ones that left the set — and finally
+regenerates the public `.gitignore` allowlist. Skips the commit when nothing
+changed, which is also what makes the ①/② loop impossible.
 
-**Requires** the `ATLAS_PUBLIC_PAT` secret in alfred-private — a fine-grained PAT with
-**Contents: Read & Write** scoped to `Agrimd15/alfred-tools`. Without it the job fails at checkout.
+**Requires** the `ATLAS_PUBLIC_PAT` secret — a fine-grained PAT with
+**Contents: Read & Write** on `Agrimd15/alfred-tools`.
 
-## Direction 2 — public → private (manual, git-native)
+## ② public → private — `pull-from-public.yml` (here)
 
-When you've edited code directly in the public repo, pull it into private:
+Daily (and on demand via workflow_dispatch). If the public repo has commits in
+the lookback window **not authored by the sync bot** (someone merged a community
+PR or hotfixed the public clone), it rsyncs the public code over private —
+same exclusions, both directions — and opens a **ready PR** for review. Three
+loop-safeties: public is normally an exact mirror (no diff); the non-sync-bot
+gate; and it lands as a PR, never a push. Needs no extra secret (the default
+token opens PRs in this repo; the public repo is world-readable).
 
-```bash
-cd ~/Documents/GitHub/atlas-private      # (folder name unchanged; repo is alfred-private)
-git fetch upstream
-git merge upstream/main                   # or: git rebase upstream/main
-```
+## ③ upstream → private clones — `pull-upstream.yml` (ships in alfred-tools)
 
-`upstream` points at `https://github.com/Agrimd15/alfred-tools.git`. Because the two repos share
-history, this merges cleanly. You control the merge, so `data-dumps/` can't be silently clobbered —
-resolve any conflict the normal way and commit.
+Lives in the **public repo's** `.github/workflows/`, so anyone who clones
+alfred-tools as their own private instance gets it for free: once a day it
+pulls the latest upstream code and opens a PR in *their* repo. Guarded with
+`if: github.repository != 'Agrimd15/alfred-tools'` so it never runs upstream.
+Their `CLAUDE.md` can carry instance state (the auto-run budget block), so the
+PR body says to review that before merging. Note GitHub pauses scheduled
+workflows after ~60 days of repo inactivity.
 
-Why manual instead of a workflow: a public→private *automation* would need a token that can write
-to your private repo living in the public repo, and would lean entirely on one `--exclude=data-dumps/`
-line staying correct. A hand-run `git merge` removes both risks for the cost of one command. If
-editing-in-public ever becomes routine, revisit automating this (with a tested data-dumps guard).
+The forward sync ① excludes `.github/workflows/` in both copy and delete, so
+this file is owned and edited **in alfred-tools directly**, never overwritten
+by a sync.
 
-## Why your repo is the publisher, not a consumer
+## ④ tool surface → landing page — `notify-landing-page.yml` (here)
 
-Other people fork **public alfred-tools** and pull updates from it (or install it as a plugin).
-*Your* alfred-private is upstream of public — it feeds public. So you publish down (Direction 1) and
-occasionally pull code back up (Direction 2); you don't "fork from" public the way consumers do.
+alfred-analyst.com (the separate private `Agrimd15/alfred-analyst` repo) shows
+the tool cards, install command, and command descriptions. On any push to
+`main` that touches `plugins/**` or `.claude-plugin/**`, this files (or
+refreshes — one open issue, never a pile) an issue on alfred-analyst listing
+what changed, so the landing page is updated deliberately rather than drifting.
+The page itself is marketing copy, so the update stays a human edit.
+
+**Requires** the `ALFRED_ANALYST_PAT` secret — a fine-grained PAT with
+**Issues: Read & Write** on `Agrimd15/alfred-analyst`. Without it the job
+prints a notice and succeeds.
+
+## Breach history (why the guards exist)
+
+- Public PR #2 reverted researched companies (MRVL, PL, amdahl-ai) that leaked
+  into the public repo.
+- The public `.gitignore` was later overwritten with the private instance's
+  "track ALL coverage" version, disabling the second guard — and 8 ex-demo
+  folders plus `archive/` accumulated publicly until the 2026-06 cleanup
+  (public PR #4). The allowlist is generated on every sync now, and the demo
+  copy prunes.

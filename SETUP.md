@@ -19,10 +19,11 @@ all of the below interactively. Here's the manual version.
 
 ## 1. Clone
 ```bash
-git clone https://github.com/<you>/atlas.git
-cd atlas
+git clone https://github.com/Agrimd15/alfred-tools.git
+cd alfred-tools
 pip3 install yfinance requests
 ```
+Pushing this to a **private repo of your own** is recommended — your coverage database stays yours.
 
 ## 2. Configure (optional)
 ```bash
@@ -48,7 +49,7 @@ generate an HTML + PDF brief in the run folder. Every number is pulled live and 
 Edit `DEMO_IDS` at the top of [`site/build.mjs`](site/build.mjs) - only these companies appear on the
 public `/` view; everything else stays behind the password at `/full`.
 ```js
-const DEMO_IDS = ['CRM', 'EGAN', 'NTSK'];   // folder ids: ticker for public cos, kebab-slug for private
+const DEMO_IDS = ['NTSK', 'CRWV', 'AVGO'];   // folder ids: ticker for public cos, kebab-slug for private
 ```
 
 ## 6. Build & preview locally
@@ -67,7 +68,19 @@ python3 -m http.server 4321 --directory site/dist   # → http://localhost:4321
 
 Every push to `main` redeploys. To add a company later: `/atlas TICKER` → `git push` → live in ~1 minute.
 
-## 8. Custom domain (optional)
+## 8. Staying up to date (automatic)
+The repo ships `.github/workflows/pull-upstream.yml`: once a day your clone checks the public
+[alfred-tools](https://github.com/Agrimd15/alfred-tools) for new code and opens a PR in **your**
+repo with the update — your `data-dumps/`, `.gitignore`, and workflows are never touched. Review
+and merge (check `CLAUDE.md` for instance-specific state first). Manual alternative anytime:
+```bash
+git remote add upstream https://github.com/Agrimd15/alfred-tools.git   # once
+git fetch upstream && git merge upstream/main
+```
+> GitHub pauses scheduled workflows after ~60 days without repo activity — re-enable from the
+> Actions tab if your repo went quiet.
+
+## 9. Custom domain (optional)
 Vercel → Project → **Settings → Domains** → add your domain, then add the DNS record Vercel shows at
 your registrar. SSL is automatic.
 
