@@ -1,0 +1,534 @@
+{
+  "name": "Databricks",
+  "ticker": "",
+  "exchange": "",
+  "stage": "private",
+  "website": "https://www.databricks.com",
+  "verticals": [
+    "Data & AI Platform (Lakehouse)",
+    "Data Engineering & Warehousing",
+    "Machine Learning / GenAI",
+    "Cloud / Infra",
+    "Enterprise Software"
+  ],
+  "shortDescription": "Databricks is the private data-and-AI company behind the 'lakehouse' — one platform unifying a company's data engineering, warehousing, analytics, and AI so teams build everything from dashboards to AI agents on a single copy of their data. >$5.4B revenue run-rate (>65% YoY); $134B last round.",
+  "businessModel": "Consumption-based (usage) pricing, not seats: customers pay for the compute they consume — metered in Databricks Units (DBUs) — on top of the underlying cloud's storage/compute, across AWS, Azure (sold first-party as 'Azure Databricks') and Google Cloud. The platform layers a lakehouse foundation (Delta Lake open storage + Unity Catalog governance), Databricks SQL warehousing, the Mosaic AI stack (model building, fine-tuning, RAG, vector search, serving, and Agent Bricks for production agents), and Lakebase (serverless Postgres from the Neon acquisition). Net revenue retention exceeds 140% via a land-and-expand motion as customers move more workloads onto the platform.",
+  "marketContext": "Databricks is the lead challenger to Snowflake in the data-platform wars — attacking from the open data-lake/AI side while Snowflake defends the managed-warehouse core, with both now converging on each other's turf (open Iceberg tables, native AI). Founded in 2013 by the UC Berkeley creators of Apache Spark, it is the most consequential pre-IPO name in data infrastructure: >$5.4B revenue run-rate growing >65% YoY while free-cash-flow positive, valued at $134B (Series L, Feb 2026) and reportedly in talks for a new round at $165-175B. Over 20,000 organizations — including >60% of the Fortune 500 — run on Databricks. CEO Ali Ghodsi has signaled a likely IPO around 2027, calling 2026 'a terrible year' to list.",
+  "competitors": [
+    "Snowflake (SNOW) — the direct lakehouse-vs-warehouse rival",
+    "Microsoft Fabric / Azure Synapse",
+    "Google BigQuery",
+    "Amazon Redshift / SageMaker",
+    "MongoDB (MDB) — operational data, overlaps with Lakebase",
+    "Confluent / Starburst / Dremio / Cloudera"
+  ],
+  "customers": [
+    ">20,000 organizations, including >60% of the Fortune 500",
+    ">800 customers spending $1M+ annually; >70 spending $10M+",
+    "Financial services, healthcare/life sciences, retail/CPG, manufacturing, media, public sector"
+  ],
+  "investors": [
+    "Thrive Capital",
+    "Andreessen Horowitz (a16z)",
+    "Insight Partners",
+    "Fidelity Management & Research",
+    "J.P. Morgan Asset Management",
+    "MGX",
+    "WCM Investment Management",
+    "GIC",
+    "DST Global",
+    "T. Rowe Price",
+    "BlackRock · Blackstone · Coatue · Temasek · Ontario Teachers' · Nvidia"
+  ],
+  "totalRaised": 22.0,
+  "lastKnownValuation": "$134B post-money (Series L, ~$5B equity + ~$2B debt, completed February 2026; announced Dec 16, 2025). Reportedly in talks for a new round at $165-175B as of June 2026.",
+  "ipoReadiness": "Company describes itself as 'IPO-ready' (governance and financial structures in place), is free-cash-flow positive over the trailing 12 months, and runs a >$5.4B revenue run-rate. CEO Ali Ghodsi has called 2026 'a terrible year' to go public (citing crowded mega-IPOs) and signals a likely listing as early as 2027. Continued private mega-rounds and employee tender offers provide interim liquidity. No registration statement filed publicly as of June 2026.",
+  "fundingRounds": [
+    {
+      "round": "Series H",
+      "date": "2021-08",
+      "amountFormatted": "$1.6B",
+      "postMoneyValuationFormatted": "$38B",
+      "leadInvestors": [
+        "Morgan Stanley's Counterpoint Global"
+      ],
+      "source": "Crunchbase News",
+      "sourceUrl": "https://news.crunchbase.com/ai-robotics/databricks-funding-valuation-nvda/"
+    },
+    {
+      "round": "Series I",
+      "date": "2023-09",
+      "amountFormatted": ">$500M",
+      "postMoneyValuationFormatted": "$43B",
+      "leadInvestors": [
+        "T. Rowe Price",
+        "Nvidia",
+        "Capital One Ventures",
+        "Ontario Teachers'"
+      ],
+      "source": "Databricks Newsroom",
+      "sourceUrl": "https://www.databricks.com/company/newsroom/press-releases/databricks-raises-series-i-investment-43b-valuation"
+    },
+    {
+      "round": "Series J",
+      "date": "2024-12",
+      "amountFormatted": "$10B",
+      "postMoneyValuationFormatted": "$62B",
+      "leadInvestors": [
+        "Thrive Capital",
+        "Andreessen Horowitz",
+        "DST Global",
+        "GIC",
+        "Insight Partners",
+        "WCM"
+      ],
+      "source": "Databricks Newsroom",
+      "sourceUrl": "https://www.databricks.com/company/newsroom/press-releases/databricks-raising-10b-series-j-investment-62b-valuation"
+    },
+    {
+      "round": "Series K",
+      "date": "2025-08",
+      "amountFormatted": "~$1B",
+      "postMoneyValuationFormatted": ">$100B",
+      "leadInvestors": [
+        "Andreessen Horowitz",
+        "Insight Partners",
+        "MGX",
+        "Thrive Capital",
+        "WCM"
+      ],
+      "source": "Databricks Newsroom",
+      "sourceUrl": "https://www.databricks.com/company/newsroom/press-releases/databricks-raising-series-k-investment-100-billion-valuation"
+    },
+    {
+      "round": "Series L",
+      "date": "2025-12",
+      "amountFormatted": ">$4B equity (~$7B incl. debt)",
+      "postMoneyValuationFormatted": "$134B",
+      "leadInvestors": [
+        "Insight Partners",
+        "Fidelity Management & Research",
+        "J.P. Morgan Asset Management"
+      ],
+      "source": "Databricks Newsroom / TechCrunch",
+      "sourceUrl": "https://www.databricks.com/company/newsroom/press-releases/databricks-surpasses-4-8b-revenue-run-rate-growing-55-year-over-year"
+    }
+  ],
+  "revenueHistory": [
+    {
+      "year": "FY2024",
+      "value": 1.5,
+      "label": "$1.5B run-rate (Aug 2023)",
+      "source": "Databricks (Series I press release)",
+      "sourceUrl": "https://www.databricks.com/company/newsroom/press-releases/databricks-raises-series-i-investment-43b-valuation"
+    },
+    {
+      "year": "FY2025",
+      "value": 2.6,
+      "label": "$2.6B GAAP (ended Jan 2025)",
+      "source": "CNBC / CFO Dave Conte",
+      "sourceUrl": "https://www.cnbc.com/2025/06/11/databricks-says-annualized-revenue-to-reach-3point7-billion-by-next-month.html"
+    },
+    {
+      "year": "FY2026",
+      "value": 4.8,
+      "label": "$4.8B run-rate (Dec 2025)",
+      "source": "Databricks (Series L press release)",
+      "sourceUrl": "https://www.databricks.com/company/newsroom/press-releases/databricks-surpasses-4-8b-revenue-run-rate-growing-55-year-over-year"
+    },
+    {
+      "year": "LTM (Feb 2026)",
+      "value": 5.4,
+      "label": "$5.4B run-rate",
+      "source": "Databricks Newsroom",
+      "sourceUrl": "https://www.databricks.com/company/newsroom/press-releases/databricks-grows-65-yoy-surpasses-5-4-billion-revenue-run-rate"
+    }
+  ],
+  "leadership": [
+    {
+      "name": "Ali Ghodsi",
+      "title": "Co-Founder & Chief Executive Officer",
+      "background": "Co-creator of Apache Spark out of UC Berkeley; leads company vision and long-term strategy, and has publicly guided IPO timing toward ~2027.",
+      "source": "Databricks Leadership Team",
+      "sourceUrl": "https://www.databricks.com/company/leadership-team"
+    },
+    {
+      "name": "Andy Kofoid",
+      "title": "President, Global Field Operations",
+      "background": "Joined Databricks in August 2021 from Salesforce/DocuSign; owns the end-to-end customer journey from awareness to renewals.",
+      "source": "Databricks Newsroom",
+      "sourceUrl": "https://www.databricks.com/company/newsroom/press-releases/andy-kofoid-joins-databricks-as-president-of-global-field-operations"
+    },
+    {
+      "name": "Dave Conte",
+      "title": "Chief Financial Officer",
+      "background": "CFO since October 2019 (previously CFO of Splunk); led the Series I-L mega-rounds and the free-cash-flow-positive milestone.",
+      "source": "Databricks Newsroom",
+      "sourceUrl": "https://www.databricks.com/company/newsroom/press-releases/databricks-appoints-dave-conte-as-chief-financial-officer"
+    },
+    {
+      "name": "Matei Zaharia",
+      "title": "Co-Founder & Chief Technology Officer",
+      "background": "Original creator of Apache Spark and MLflow; UC Berkeley/Stanford; drives the technology and research roadmap.",
+      "source": "Databricks Leadership Team",
+      "sourceUrl": "https://www.databricks.com/company/leadership-team"
+    },
+    {
+      "name": "Reynold Xin",
+      "title": "Co-Founder & Chief Architect",
+      "background": "Top Apache Spark contributor; architect of the platform's core engine.",
+      "source": "Databricks Leadership Team",
+      "sourceUrl": "https://www.databricks.com/company/leadership-team"
+    },
+    {
+      "name": "Ion Stoica",
+      "title": "Co-Founder & Executive Chairman",
+      "background": "Co-founder of Databricks and Anyscale; UC Berkeley professor leading the Sky Computing Lab; foundational to Spark's research origins.",
+      "source": "Databricks Leadership Team",
+      "sourceUrl": "https://www.databricks.com/company/leadership-team"
+    }
+  ],
+  "employeeCount": "~14,500 (late 2025)",
+  "lastRunDate": "2026-06-11",
+  "brief": {
+    "runDate": "2026-06-11",
+    "businessOverview": "Databricks, founded in 2013 by the UC Berkeley creators of Apache Spark (Ali Ghodsi, Matei Zaharia, Ion Stoica, Reynold Xin and others), is the company behind the 'Data Intelligence Platform' — its branding of the lakehouse architecture that merges the cheap, open storage of a data lake with the structured query performance and governance of a data warehouse. Built on the open-source projects it created or stewards (Apache Spark, Delta Lake, MLflow, Unity Catalog) plus the open table format world it expanded into via Iceberg (the Tabular acquisition), the platform lets enterprises run data engineering, BI/SQL warehousing, streaming, and AI/ML on one governed copy of their data across AWS, Azure and Google Cloud. Since 2023 Databricks has pivoted hard into generative AI through its Mosaic AI stack (from the ~$1.3B MosaicML acquisition), letting customers build, fine-tune and serve LLM-powered applications and agents directly on their data, and added a serverless operational database (Lakebase) via the ~$1B Neon acquisition. It is the lead challenger to Snowflake in the data-platform wars and is headquartered in San Francisco. As of 2026 it remains private, with a revenue run-rate above $5.4B (>65% YoY) and a $134B post-money valuation, while reportedly in talks for a new round at $165-175B.",
+    "businessOverviewSources": [
+      {
+        "name": "Databricks Newsroom — $5.4B run-rate, >65% YoY (Feb 2026)",
+        "url": "https://www.databricks.com/company/newsroom/press-releases/databricks-grows-65-yoy-surpasses-5-4-billion-revenue-run-rate"
+      },
+      {
+        "name": "Databricks Newsroom — Series L / $4.8B run-rate (Dec 2025)",
+        "url": "https://www.databricks.com/company/newsroom/press-releases/databricks-surpasses-4-8b-revenue-run-rate-growing-55-year-over-year"
+      },
+      {
+        "name": "Sacra — Databricks profile",
+        "url": "https://sacra.com/c/databricks/"
+      }
+    ],
+    "productModel": "Databricks prices on consumption (usage), not seats: customers pay for the compute they consume — metered in Databricks Units (DBUs) — on top of the underlying cloud, across AWS, Azure (first-party 'Azure Databricks') and Google Cloud. The platform is layered: (1) the lakehouse foundation — Delta Lake open storage plus Unity Catalog governance over a customer's data lake; (2) Databricks SQL / Data Warehousing — serverless SQL analytics that crossed a >$1B run-rate in under four years; (3) Mosaic AI — model building, fine-tuning, RAG, vector search, model serving and Agent Bricks for production AI agents, including native access to Anthropic's Claude models via a five-year partnership; and (4) Lakebase — serverless Postgres (from Neon) as the operational/transactional database for AI agents, growing roughly 2x the pace of the warehousing business. Genie brings natural-language querying to enterprise data. Net revenue retention exceeds 140% via a land-and-expand motion; AI products alone now run above a $1.4B annualized run-rate.",
+    "productModelSources": [
+      {
+        "name": "Databricks & Anthropic partnership (Claude native)",
+        "url": "https://www.databricks.com/company/newsroom/press-releases/databricks-and-anthropic-sign-landmark-deal-bring-claude-models"
+      },
+      {
+        "name": "Databricks acquires Neon (Lakebase)",
+        "url": "https://www.databricks.com/company/newsroom/press-releases/databricks-agrees-acquire-neon-help-developers-deliver-ai-systems"
+      },
+      {
+        "name": "Databricks Newsroom — $5.4B run-rate (Genie / Lakebase)",
+        "url": "https://www.databricks.com/company/newsroom/press-releases/databricks-grows-65-yoy-surpasses-5-4-billion-revenue-run-rate"
+      }
+    ],
+    "recentNews": [
+      {
+        "date": "2026-06-08",
+        "headline": "Databricks in talks to raise at $165-175B valuation, The Information reports",
+        "whyItMatters": "A new round at this level would lift the valuation 23-31% above the $134B Series L in under six months, underscoring sustained late-stage demand for AI-data infrastructure — and pushing the eventual IPO 'price to beat' higher.",
+        "source": "The Information",
+        "sourceUrl": "https://www.theinformation.com/articles/databricks-talks-raise-165-billion-valuation"
+      },
+      {
+        "date": "2026-02-09",
+        "headline": "Databricks surpasses $5.4B revenue run-rate, grows >65% YoY; AI products at $1.4B",
+        "whyItMatters": "Acceleration (not deceleration) at this scale is rare — growth re-accelerated versus the >55% reported in December 2025 — and AI crossing a $1.4B run-rate validates the GenAI pivot as a real revenue line.",
+        "source": "Databricks Newsroom",
+        "sourceUrl": "https://www.databricks.com/company/newsroom/press-releases/databricks-grows-65-yoy-surpasses-5-4-billion-revenue-run-rate"
+      },
+      {
+        "date": "2025-12-16",
+        "headline": "Databricks raises >$4B Series L at $134B valuation; $4.8B run-rate, FCF-positive",
+        "whyItMatters": "The $134B mark is up 34% from the >$100B set just three months earlier, and the round added a marquee crossover syndicate (Insight, Fidelity, J.P. Morgan AM, plus BlackRock/Blackstone/Temasek/T. Rowe) — the kind of roster that typically precedes an IPO.",
+        "source": "Databricks Newsroom",
+        "sourceUrl": "https://www.databricks.com/company/newsroom/press-releases/databricks-surpasses-4-8b-revenue-run-rate-growing-55-year-over-year"
+      },
+      {
+        "date": "2025-08-19",
+        "headline": "Databricks raises Series K at >$100B valuation",
+        "whyItMatters": "First crossing of the $100B threshold (co-led by a16z, Insight, MGX, Thrive, WCM) made Databricks one of the most valuable private tech companies in the world and reset the comp set for the data-platform category.",
+        "source": "Databricks Newsroom",
+        "sourceUrl": "https://www.databricks.com/company/newsroom/press-releases/databricks-raising-series-k-investment-100-billion-valuation"
+      },
+      {
+        "date": "2025-05-14",
+        "headline": "Databricks to acquire Neon (serverless Postgres) for ~$1B",
+        "whyItMatters": "Adds an operational/transactional database (Lakebase) purpose-built for AI agents — extending Databricks from analytics into the live application data layer, a direct expansion of TAM.",
+        "source": "Databricks Newsroom",
+        "sourceUrl": "https://www.databricks.com/company/newsroom/press-releases/databricks-agrees-acquire-neon-help-developers-deliver-ai-systems"
+      },
+      {
+        "date": "2025-03-26",
+        "headline": "Databricks and Anthropic sign a five-year deal to bring Claude models native to the platform",
+        "whyItMatters": "Gives 10,000+ enterprises in-platform access to frontier Claude models governed by Unity Catalog without moving data — strengthening the 'bring AI to your data' pitch versus hyperscaler model marketplaces.",
+        "source": "Databricks Newsroom",
+        "sourceUrl": "https://www.databricks.com/company/newsroom/press-releases/databricks-and-anthropic-sign-landmark-deal-bring-claude-models"
+      }
+    ],
+    "earningsTakeaways": {
+      "quarter": "Traction Snapshot — as of Feb 2026",
+      "reportDate": "As of 2026-06-11",
+      "keyMetrics": {
+        "revenueRunRate": ">$5.4B annualized run-rate (>65% YoY, as of Feb 2026)",
+        "fy2025Revenue": "$2.6B (FY2025, ended Jan 31, 2025)",
+        "aiProducts": ">$1.4B annualized (as of Feb 2026)",
+        "sqlWarehousing": ">$1B annualized (crossed in under 4 years)",
+        "netRetention": ">140% (as of Feb 2026)",
+        "freeCashFlow": "Positive (LTM)",
+        "millionDollarCustomers": ">800 spending $1M+; >70 spending $10M+ (as of Feb 2026)",
+        "totalCustomers": ">20,000 orgs, incl. >60% of the Fortune 500",
+        "lastValuation": "$134B post-money (Series L, completed Feb 2026)",
+        "employees": "~14,500 (late 2025)"
+      },
+      "aiCommentary": "AI is now the fastest-growing part of the business: AI products crossed a >$1.4B annualized run-rate by February 2026 (from >$1B in December 2025). The Mosaic AI stack plus the five-year Anthropic partnership (Claude native in-platform), Agent Bricks for production agents, and Lakebase (serverless Postgres for agentic workloads, where >80% of databases were spun up by AI agents rather than humans) anchor the GenAI strategy, with Genie bringing natural-language querying to enterprise data.",
+      "demandCommentary": "A land-and-expand consumption model with >140% net retention drives durable growth; >800 customers now spend $1M+ and >70 spend $10M+ annually. The trajectory has accelerated through successive disclosures — $2.6B in GAAP revenue for the year ended January 2025, then run-rate milestones of $3.7B (July 2025), $4.8B (December 2025) and >$5.4B at >65% YoY (February 2026) — while turning free-cash-flow positive over the trailing 12 months.",
+      "sources": [
+        {
+          "name": "Databricks Newsroom — $5.4B run-rate (Feb 2026)",
+          "url": "https://www.databricks.com/company/newsroom/press-releases/databricks-grows-65-yoy-surpasses-5-4-billion-revenue-run-rate"
+        },
+        {
+          "name": "Databricks Newsroom — Series L / $4.8B (Dec 2025)",
+          "url": "https://www.databricks.com/company/newsroom/press-releases/databricks-surpasses-4-8b-revenue-run-rate-growing-55-year-over-year"
+        },
+        {
+          "name": "CNBC — $3.7B run-rate, $2.6B FY2025 revenue, >140% NRR",
+          "url": "https://www.cnbc.com/2025/06/11/databricks-says-annualized-revenue-to-reach-3point7-billion-by-next-month.html"
+        }
+      ]
+    },
+    "keyRisks": [
+      "Valuation vs. revenue (rich multiple): at a $134B valuation (and reportedly $165-175B in talks) on a >$5.4B run-rate, Databricks trades at roughly ~25-32x run-rate revenue — far richer than public data peers — leaving little room for a growth stumble before an IPO.",
+      "Hyperscaler competition: AWS (Redshift/SageMaker), Microsoft Fabric, and Google BigQuery bundle data + AI natively into the clouds Databricks runs on, and can subsidize or pre-install rival stacks — a structural channel and pricing threat.",
+      "Snowflake rivalry: the direct lakehouse-vs-warehouse competitor is converging on Databricks' turf (open Iceberg tables, Cortex AI, its own LLM features), pressuring differentiation and pricing in the core analytics market.",
+      "IPO timing & late-stage investor pressure: successive mega-rounds at ever-higher marks raise the bar the IPO must clear; Ghodsi points to ~2027, prolonging the liquidity overhang for employees and crossover backers.",
+      "AI-platform execution & monetization durability: the AI run-rate (>$1.4B) is growing fast but young, and consumption can be cut quickly in a downturn — proving Mosaic AI/Agent Bricks/Lakebase become durable, high-margin lines (not experimental spend) is unproven at scale.",
+      "Open-source commoditization: Databricks' moat is built on open projects it no longer solely controls (Spark, Delta Lake, and now Iceberg via Tabular) — open table formats and commoditized compute could let customers replicate core capabilities or migrate workloads more cheaply over time."
+    ],
+    "keyRisksSources": [
+      {
+        "name": "TechCrunch — Series L at $134B",
+        "url": "https://techcrunch.com/2025/12/16/databricks-raises-4b-at-134b-valuation-as-its-ai-business-heats-up/"
+      },
+      {
+        "name": "The Information — Databricks in talks at $165-175B",
+        "url": "https://www.theinformation.com/articles/databricks-talks-raise-165-billion-valuation"
+      },
+      {
+        "name": "Sacra — Databricks profile (competition / model)",
+        "url": "https://sacra.com/c/databricks/"
+      }
+    ],
+    "comps": [
+      {
+        "name": "Databricks",
+        "ticker": "",
+        "type": "Subject",
+        "evRevenue": "",
+        "revenueGrowth": ">65%",
+        "grossMargin": "",
+        "note": "subject (PRIVATE); $134B last round (Series L, Feb 2026), in talks at $165-175B — roughly ~25-32x its >$5.4B run-rate, a premium to every public data peer",
+        "source": "Databricks Newsroom",
+        "sourceUrl": "https://www.databricks.com/company/newsroom/press-releases/databricks-grows-65-yoy-surpasses-5-4-billion-revenue-run-rate"
+      },
+      {
+        "name": "Snowflake",
+        "ticker": "SNOW",
+        "evRevenue": "16.5x",
+        "revenueGrowth": "33.5%",
+        "grossMargin": "67.1%",
+        "note": "the direct lakehouse-vs-warehouse rival; public and growing ~30%, while private Databricks grows roughly 2x faster — both now converging on each other's turf (Iceberg, native AI)",
+        "source": "yfinance / Yahoo Finance",
+        "sourceUrl": "https://finance.yahoo.com/quote/SNOW"
+      },
+      {
+        "name": "Palantir",
+        "ticker": "PLTR",
+        "evRevenue": "55.7x",
+        "revenueGrowth": "84.7%",
+        "grossMargin": "84.1%",
+        "note": "an AI-platform comp on narrative and multiple, not architecture; its rich multiple frames how the public market prices enterprise-AI hyper-growth — a reference point for where Databricks could list",
+        "source": "yfinance / Yahoo Finance",
+        "sourceUrl": "https://finance.yahoo.com/quote/PLTR"
+      },
+      {
+        "name": "Datadog",
+        "ticker": "DDOG",
+        "evRevenue": "19.6x",
+        "revenueGrowth": "32.2%",
+        "grossMargin": "79.9%",
+        "note": "a consumption-pricing, land-and-expand SaaS comp (observability) often used to benchmark Databricks' usage-based model and >140% net retention",
+        "source": "yfinance / Yahoo Finance",
+        "sourceUrl": "https://finance.yahoo.com/quote/DDOG"
+      },
+      {
+        "name": "MongoDB",
+        "ticker": "MDB",
+        "evRevenue": "9.9x",
+        "revenueGrowth": "25.2%",
+        "grossMargin": "72.0%",
+        "note": "operational/document-database leader rather than an analytics platform, but increasingly overlapping with Databricks' new Lakebase (serverless Postgres for AI apps)",
+        "source": "yfinance / Yahoo Finance",
+        "sourceUrl": "https://finance.yahoo.com/quote/MDB"
+      }
+    ],
+    "swot": {
+      "standoutSummary": "Databricks is the only at-scale, multi-cloud, open lakehouse that has turned its open-source roots (Spark, Delta, Iceberg) into a >$5.4B-run-rate, FCF-positive franchise growing >65% — uniquely positioned to ride enterprise AI by bringing models to a customer's governed data rather than the reverse. Public proxy Snowflake trades at ~16.5x EV/Rev (2026-06-10 close); Databricks' last private round implies a richer ~25-32x run-rate mark.",
+      "strengths": [
+        {
+          "point": "Open lakehouse + multi-cloud reach",
+          "detail": "Runs natively on AWS, Azure (first-party) and GCP on open formats (Delta Lake, Iceberg), avoiding lock-in and spanning a customer's entire data + AI estate on one governed copy."
+        },
+        {
+          "point": "Hypergrowth at scale with FCF",
+          "detail": ">$5.4B run-rate growing >65% YoY while FCF-positive over the trailing 12 months — a rare combination of scale, acceleration and profitability."
+        },
+        {
+          "point": "AI distribution & data gravity",
+          "detail": "Mosaic AI + native Claude (Anthropic) + Agent Bricks + Lakebase let 20,000+ enterprises build AI on data they already store in Databricks; >140% net retention shows the engine compounding."
+        }
+      ],
+      "weaknesses": [
+        {
+          "point": "Rich private multiple",
+          "detail": "~25-32x run-rate revenue at $134B (more at $165-175B) leaves little margin for error and a demanding bar for the eventual IPO."
+        },
+        {
+          "point": "Consumption-model cyclicality",
+          "detail": "Usage-based revenue can be throttled quickly by customers in a downturn, making the run-rate more volatile than seat-based SaaS."
+        },
+        {
+          "point": "Liquidity overhang",
+          "detail": "No public stock and a delayed IPO (2027+) means employees and crossover investors face prolonged illiquidity, managed via periodic tender offers."
+        }
+      ],
+      "opportunities": [
+        {
+          "point": "Operational-data TAM (Lakebase)",
+          "detail": "The Neon-powered serverless Postgres extends Databricks from analytics into live application/agent data — a large new market growing ~2x the warehousing business."
+        },
+        {
+          "point": "Enterprise agentic AI",
+          "detail": "Agent Bricks + Genie position Databricks to be the platform of record for production AI agents over enterprise data as that workload explodes."
+        },
+        {
+          "point": "IPO optionality",
+          "detail": "A marquee crossover syndicate and 'IPO-ready' governance set up a high-profile listing (potentially 2027) that could re-rate the whole category."
+        }
+      ],
+      "threats": [
+        {
+          "point": "Hyperscaler bundling",
+          "detail": "AWS, Microsoft Fabric and Google BigQuery bundle competing data+AI stacks into the clouds Databricks depends on, and can compete on price and distribution."
+        },
+        {
+          "point": "Snowflake convergence",
+          "detail": "Snowflake is adopting open tables (Iceberg) and native AI (Cortex), eroding Databricks' openness and AI differentiation in the core market."
+        },
+        {
+          "point": "Open-source commoditization",
+          "detail": "The open formats that are Databricks' moat (Spark, Delta, Iceberg) also lower switching costs and let rivals replicate core capabilities."
+        }
+      ],
+      "sources": [
+        {
+          "name": "Databricks Newsroom — $5.4B run-rate",
+          "url": "https://www.databricks.com/company/newsroom/press-releases/databricks-grows-65-yoy-surpasses-5-4-billion-revenue-run-rate"
+        },
+        {
+          "name": "yfinance / Yahoo Finance — live public comps (2026-06-10 close)",
+          "url": "https://finance.yahoo.com/quote/SNOW"
+        }
+      ]
+    },
+    "slideBullets": [
+      "The most consequential pre-IPO name in data infrastructure: >$5.4B revenue run-rate growing >65% YoY (as of Feb 2026) while free-cash-flow positive — a rare scale-plus-acceleration-plus-profitability profile.",
+      "The lakehouse thesis: one open, multi-cloud platform (Delta Lake + Unity Catalog) unifies data engineering, SQL warehousing, and AI — so enterprises bring AI to their governed data instead of shipping data out.",
+      "AI is the fastest-growing line: AI products crossed a >$1.4B annualized run-rate, powered by Mosaic AI, native Anthropic Claude models, Agent Bricks, and the Neon-based Lakebase for agentic workloads.",
+      "Valuation has compounded fast: $62B (Series J, Dec 2024) → >$100B (Series K, Aug 2025) → $134B (Series L, Feb 2026), reportedly now in talks at $165-175B — implying ~25-32x run-rate revenue.",
+      "Key debate: is that mark justified by accelerating AI growth and >140% net retention, or is it a rich late-cycle valuation exposed to hyperscaler bundling and a Snowflake converging on its turf — with an IPO Ghodsi points toward ~2027?"
+    ],
+    "diligenceQuestions": [
+      "How durable and high-margin is the AI run-rate? Of the >$1.4B AI annualized revenue, how much is production workloads (Mosaic AI serving, Agent Bricks, Lakebase) versus experimental spend that can be cut, and what is the gross-margin profile of AI consumption versus core warehousing as inference scales?",
+      "What does an apples-to-apples public valuation look like? On GAAP revenue (not run-rate) and against Snowflake's ~16.5x EV/Rev (2026-06-10 close), what multiple does the $134B-$175B private mark imply, and what growth/margin trajectory must hold for an IPO to clear that bar without a down-round?",
+      "How defensible is the lakehouse against bundling and convergence? As AWS/Microsoft Fabric/Google BigQuery bundle data+AI and Snowflake adopts Iceberg + native AI, where is Databricks actually winning and losing competitive deals, and how much do the open formats (Spark, Delta, Iceberg) help retention versus lower switching costs for customers to leave?"
+    ],
+    "whatMatters": {
+      "thesis": "Databricks is the open, multi-cloud lakehouse compounding at >65% to a >$5.4B run-rate while FCF-positive — the default platform for enterprises building AI on their own governed data, and the most consequential pre-IPO name in data infrastructure.",
+      "debate": "Is a $134B (soon possibly $165-175B) valuation — roughly ~25-32x run-rate — justified by accelerating AI growth, or a rich late-cycle mark exposed to hyperscaler bundling and a Snowflake converging on its turf?",
+      "catalyst": "A new primary round reportedly in talks at $165-175B (as early as mid-2026), with an eventual IPO Ghodsi now points toward ~2027 (he called 2026 'a terrible year' to list)."
+    }
+  },
+  "explainer": {
+    "plain": [
+      "Databricks gives big companies one place to store all their data and build AI on it.",
+      "It blends a cheap 'data lake' with a fast 'warehouse' — the combo it calls a lakehouse.",
+      "Teams use it for dashboards, machine learning, and now AI chatbots and agents.",
+      "It's private, growing >65% a year at a >$5.4B run-rate, valued at $134B+."
+    ],
+    "technical": [
+      "Lakehouse = open data-lake storage (Delta Lake/Iceberg) with warehouse-grade SQL and governance (Unity Catalog).",
+      "Built on Apache Spark for distributed compute and MLflow for ML; runs on AWS, Azure, GCP.",
+      "Mosaic AI handles fine-tuning, RAG, vector search, serving and agents (Agent Bricks); Claude is native.",
+      "Consumption (DBU) pricing with >140% net retention; Lakebase adds serverless Postgres for agent workloads."
+    ],
+    "simple": [
+      "Think of a giant, organized digital warehouse where a company keeps every piece of its data.",
+      "Databricks is the warehouse plus the smart robots that find answers and build AI on those shelves.",
+      "Instead of shipping your data out to an AI, you bring the AI into your own warehouse."
+    ],
+    "glossary": [
+      {
+        "term": "Lakehouse",
+        "expansion": "",
+        "definition": "Databricks' architecture that combines a cheap data lake's open storage with a data warehouse's fast, governed querying — so you don't need two separate systems."
+      },
+      {
+        "term": "Data warehouse",
+        "expansion": "",
+        "definition": "A structured, optimized database for fast business analytics and reporting on cleaned, organized data."
+      },
+      {
+        "term": "Data lake",
+        "expansion": "",
+        "definition": "A low-cost store that holds raw data of any type (structured or not) at massive scale before it's organized."
+      },
+      {
+        "term": "Apache Spark",
+        "expansion": "",
+        "definition": "The open-source engine (created by Databricks' founders) that processes huge datasets in parallel across many machines."
+      },
+      {
+        "term": "Delta Lake",
+        "expansion": "",
+        "definition": "Databricks' open storage format that adds reliability (transactions, versioning) on top of a data lake."
+      },
+      {
+        "term": "Unity Catalog",
+        "expansion": "",
+        "definition": "Databricks' governance layer that controls who can access which data and AI assets across the platform."
+      },
+      {
+        "term": "ETL",
+        "expansion": "Extract, Transform, Load",
+        "definition": "Pulling data from sources, cleaning/reshaping it, and loading it where it can be analyzed."
+      },
+      {
+        "term": "Run-rate (ARR)",
+        "expansion": "Annualized Run-Rate / Annual Recurring Revenue",
+        "definition": "A yearly-revenue estimate from annualizing current recurring or consumption revenue — useful for a fast-growing private company between reports."
+      },
+      {
+        "term": "GenAI / LLM",
+        "expansion": "Generative AI / Large Language Model",
+        "definition": "AI models (like Claude) that generate text, code or answers — the foundation of the chatbots and agents Databricks helps companies build."
+      },
+      {
+        "term": "NRR",
+        "expansion": "Net Revenue Retention",
+        "definition": "How much more (or less) existing customers spend year over year; >100% means expansion beats churn — Databricks is >140%."
+      }
+    ]
+  }
+}

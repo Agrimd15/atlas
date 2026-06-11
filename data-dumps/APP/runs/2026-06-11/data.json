@@ -1,0 +1,337 @@
+{
+  "ticker": "APP",
+  "runDate": "2026-06-11",
+  "marketCloseAsOf": "2026-06-10",
+  "freshnessNote": "All multiples reflect the 2026-06-10 market close.",
+  "sources": [
+    "yfinance / Yahoo Finance",
+    "FMP /stable/profile",
+    "SEC EDGAR"
+  ],
+  "trading": {
+    "priceAsOf": "2026-06-10",
+    "stockPrice": "$493",
+    "marketCap": "$150.7B",
+    "enterpriseValue": "$151.8B",
+    "totalRevenueLTM": "$6.2B",
+    "revenueGrowthYoY": "59.0%",
+    "grossMargin": "88.4%",
+    "operatingMarginGAAP": "78.2%",
+    "ebitdaMargin": "79.0%",
+    "fcfPerShare": 3180097280,
+    "totalDebt": "$3.8B",
+    "totalCash": "$2.8B",
+    "evRevenueLTM": "24.6x",
+    "evBasis": "recomputed: last close \u00d7 shares + net debt",
+    "forwardPE": 22.5,
+    "priceToSalesLTM": 26.9,
+    "52wHigh": 745.61,
+    "52wLow": 320.0,
+    "dayChange": "-5.3%",
+    "volume": 4827965,
+    "avgVolume": 4585145,
+    "analystTargetPrice": 648.1,
+    "analystTargetHigh": 860.0,
+    "analystTargetLow": 340.0,
+    "analystRating": "strong_buy",
+    "numberOfAnalysts": 30,
+    "shortName": "Applovin Corporation",
+    "sector": "Communication Services",
+    "industry": "Advertising Agencies",
+    "sharesOutstanding": 305732000
+  },
+  "quarterlyTrend": {
+    "ticker": "APP",
+    "quarters": [
+      {
+        "periodEnd": "2026-03-31",
+        "label": "1Q26",
+        "revenue": "$1.8B",
+        "revenueNum": 1842449000.0,
+        "grossMargin": "88.9%",
+        "qoqGrowth": "11.1%",
+        "yoyGrowth": "59.0%"
+      },
+      {
+        "periodEnd": "2025-12-31",
+        "label": "4Q25",
+        "revenue": "$1.7B",
+        "revenueNum": 1657944000.0,
+        "grossMargin": "88.9%",
+        "qoqGrowth": "18.0%",
+        "yoyGrowth": null
+      },
+      {
+        "periodEnd": "2025-09-30",
+        "label": "3Q25",
+        "revenue": "$1.4B",
+        "revenueNum": 1405045000.0,
+        "grossMargin": "87.6%",
+        "qoqGrowth": "11.6%",
+        "yoyGrowth": null
+      },
+      {
+        "periodEnd": "2025-06-30",
+        "label": "2Q25",
+        "revenue": "$1.3B",
+        "revenueNum": 1258754000.0,
+        "grossMargin": "87.7%",
+        "qoqGrowth": "8.6%",
+        "yoyGrowth": null
+      },
+      {
+        "periodEnd": "2025-03-31",
+        "label": "1Q25",
+        "revenue": "$1.2B",
+        "revenueNum": 1158974000.0,
+        "grossMargin": "86.9%",
+        "qoqGrowth": null,
+        "yoyGrowth": null
+      }
+    ],
+    "basis": "calendar-quarter labels on fiscal period-ends; gross margin = gross profit / revenue",
+    "source": "yfinance / Yahoo Finance (quarterly income statement)",
+    "sourceUrl": "https://finance.yahoo.com/quote/APP/financials"
+  },
+  "profile": {},
+  "comps": [
+    {
+      "ticker": "TTD",
+      "name": "The Trade Desk, Inc.",
+      "priceAsOf": "2026-06-10",
+      "marketCap": "$8.2B",
+      "evRevenueLTM": "2.4x",
+      "revenueGrowth": "11.8%",
+      "grossMargin": "77.8%",
+      "analystRating": "buy",
+      "source": "yfinance / Yahoo Finance",
+      "sourceUrl": "https://finance.yahoo.com/quote/TTD"
+    },
+    {
+      "ticker": "RBLX",
+      "name": "Roblox Corporation",
+      "priceAsOf": "2026-06-10",
+      "marketCap": "$27.9B",
+      "evRevenueLTM": "5.0x",
+      "revenueGrowth": "39.3%",
+      "grossMargin": "24.1%",
+      "analystRating": "buy",
+      "source": "yfinance / Yahoo Finance",
+      "sourceUrl": "https://finance.yahoo.com/quote/RBLX"
+    },
+    {
+      "ticker": "U",
+      "name": "Unity Software Inc.",
+      "priceAsOf": "2026-06-10",
+      "marketCap": "$11.6B",
+      "evRevenueLTM": "6.1x",
+      "revenueGrowth": "16.8%",
+      "grossMargin": "74.7%",
+      "analystRating": "buy",
+      "source": "yfinance / Yahoo Finance",
+      "sourceUrl": "https://finance.yahoo.com/quote/U"
+    }
+  ],
+  "secFilings": {
+    "company": "AppLovin Corp",
+    "cik": "0001751008",
+    "fiscalYearEnd": "1231",
+    "filings": [
+      {
+        "form": "8-K",
+        "filingDate": "2026-06-05",
+        "reportDate": "2026-06-03",
+        "url": "https://www.sec.gov/Archives/edgar/data/1751008/000175100826000050/app-20260603.htm",
+        "source": "SEC EDGAR (primary filing)"
+      },
+      {
+        "form": "10-Q",
+        "filingDate": "2026-05-06",
+        "reportDate": "2026-03-31",
+        "url": "https://www.sec.gov/Archives/edgar/data/1751008/000175100826000044/app-20260331.htm",
+        "source": "SEC EDGAR (primary filing)"
+      },
+      {
+        "form": "8-K",
+        "filingDate": "2026-05-06",
+        "reportDate": "2026-05-06",
+        "url": "https://www.sec.gov/Archives/edgar/data/1751008/000175100826000042/app-20260506.htm",
+        "source": "SEC EDGAR (primary filing)"
+      },
+      {
+        "form": "10-K",
+        "filingDate": "2026-02-19",
+        "reportDate": "2025-12-31",
+        "url": "https://www.sec.gov/Archives/edgar/data/1751008/000175100826000010/app-20251231.htm",
+        "source": "SEC EDGAR (primary filing)"
+      },
+      {
+        "form": "10-Q",
+        "filingDate": "2025-11-05",
+        "reportDate": "2025-09-30",
+        "url": "https://www.sec.gov/Archives/edgar/data/1751008/000175100825000081/app-20250930.htm",
+        "source": "SEC EDGAR (primary filing)"
+      },
+      {
+        "form": "10-K",
+        "filingDate": "2025-02-27",
+        "reportDate": "2024-12-31",
+        "url": "https://www.sec.gov/Archives/edgar/data/1751008/000175100825000018/app-20241231.htm",
+        "source": "SEC EDGAR (primary filing)"
+      }
+    ],
+    "source": "SEC EDGAR",
+    "sourceUrl": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001751008&type=&dateb=&owner=include&count=40"
+  },
+  "secFacts": {
+    "annualRevenue": [
+      {
+        "end": "2022-12-31",
+        "value": 2817058000,
+        "valueFormatted": "$2.8B",
+        "fy": 2024,
+        "fp": "FY",
+        "filed": "2025-02-27",
+        "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"
+      },
+      {
+        "end": "2023-12-31",
+        "value": 1841762000,
+        "valueFormatted": "$1.8B",
+        "fy": 2025,
+        "fp": "FY",
+        "filed": "2026-02-19",
+        "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"
+      },
+      {
+        "end": "2024-12-31",
+        "value": 3224058000,
+        "valueFormatted": "$3.2B",
+        "fy": 2025,
+        "fp": "FY",
+        "filed": "2026-02-19",
+        "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"
+      },
+      {
+        "end": "2025-12-31",
+        "value": 5480717000,
+        "valueFormatted": "$5.5B",
+        "fy": 2025,
+        "fp": "FY",
+        "filed": "2026-02-19",
+        "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"
+      }
+    ],
+    "quarterlyRevenue": [
+      {
+        "end": "2024-09-30",
+        "value": 835186000,
+        "valueFormatted": "$835M",
+        "fy": 2025,
+        "fp": "Q3",
+        "filed": "2025-11-05",
+        "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"
+      },
+      {
+        "end": "2025-03-31",
+        "value": 1158974000,
+        "valueFormatted": "$1.2B",
+        "fy": 2026,
+        "fp": "Q1",
+        "filed": "2026-05-06",
+        "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"
+      },
+      {
+        "end": "2025-06-30",
+        "value": 1258754000,
+        "valueFormatted": "$1.3B",
+        "fy": 2025,
+        "fp": "Q2",
+        "filed": "2025-08-06",
+        "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"
+      },
+      {
+        "end": "2025-09-30",
+        "value": 1405045000,
+        "valueFormatted": "$1.4B",
+        "fy": 2025,
+        "fp": "Q3",
+        "filed": "2025-11-05",
+        "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"
+      },
+      {
+        "end": "2026-03-31",
+        "value": 1842449000,
+        "valueFormatted": "$1.8B",
+        "fy": 2026,
+        "fp": "Q1",
+        "filed": "2026-05-06",
+        "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"
+      }
+    ],
+    "annualNetIncome": [
+      {
+        "end": "2022-12-31",
+        "value": -192746000,
+        "valueFormatted": "$-193M",
+        "fy": 2024,
+        "fp": "FY",
+        "filed": "2025-02-27",
+        "concept": "NetIncomeLoss"
+      },
+      {
+        "end": "2023-12-31",
+        "value": 356711000,
+        "valueFormatted": "$357M",
+        "fy": 2025,
+        "fp": "FY",
+        "filed": "2026-02-19",
+        "concept": "NetIncomeLoss"
+      },
+      {
+        "end": "2024-12-31",
+        "value": 1579776000,
+        "valueFormatted": "$1.6B",
+        "fy": 2025,
+        "fp": "FY",
+        "filed": "2026-02-19",
+        "concept": "NetIncomeLoss"
+      },
+      {
+        "end": "2025-12-31",
+        "value": 3333751000,
+        "valueFormatted": "$3.3B",
+        "fy": 2025,
+        "fp": "FY",
+        "filed": "2026-02-19",
+        "concept": "NetIncomeLoss"
+      }
+    ],
+    "cik": "0001751008",
+    "source": "SEC EDGAR XBRL companyfacts (as reported)",
+    "sourceUrl": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001751008&type=10-K"
+  },
+  "relativePerformance": {
+    "benchmark": "QQQ",
+    "periods": {
+      "1M": {
+        "stock": "0.5%",
+        "bench": "-1.9%",
+        "spreadPp": 2.4
+      },
+      "YTD": {
+        "stock": "-20.3%",
+        "bench": "13.3%",
+        "spreadPp": -33.6
+      },
+      "1Y": {
+        "stock": "28.6%",
+        "bench": "30.9%",
+        "spreadPp": -2.4
+      }
+    },
+    "asOf": "2026-06-10",
+    "source": "yfinance / Yahoo Finance"
+  },
+  "rampDemandSignal": null
+}

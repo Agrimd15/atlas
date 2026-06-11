@@ -24,9 +24,10 @@ const TEMPLATE = path.join(__dirname, 'template', 'index.html');
 
 // Companies shown on the PUBLIC demo at the site root. Everything else is reachable
 // only via the gated /full view. Add more demo ids over time. (Folder ids: Broadcom = "AVGO".)
-// Fresh restart: prior coverage was moved to archive/ (preserved in git, off the live
-// site). Add demo ids back here as new companies are researched into data-dumps/.
-const DEMO_IDS = ['CRM', 'EGAN', 'NTSK', 'forgepoint-ai', 'standard-intelligence'];
+// Refreshed 2026-06-11: the public demo now features Netskope plus the latest coverage
+// (CoreWeave, Broadcom, AppLovin, Figma, Databricks). The prior demo names (CRM, EGAN,
+// forgepoint-ai, standard-intelligence) are archived off the live demo but remain in /full.
+const DEMO_IDS = ['NTSK', 'CRWV', 'AVGO', 'APP', 'FIG', 'databricks'];
 
 const readJSON = (p) => { try { return JSON.parse(fs.readFileSync(p, 'utf8')); } catch { return null; } };
 const ensureDir = (p) => fs.mkdirSync(p, { recursive: true });

@@ -1,0 +1,324 @@
+{
+  "ticker": "CRWV",
+  "runDate": "2026-06-11",
+  "marketCloseAsOf": "2026-06-10",
+  "freshnessNote": "All multiples reflect the 2026-06-10 market close.",
+  "sources": [
+    "yfinance / Yahoo Finance",
+    "FMP /stable/profile",
+    "SEC EDGAR"
+  ],
+  "trading": {
+    "priceAsOf": "2026-06-10",
+    "stockPrice": "$96",
+    "marketCap": "$42.8B",
+    "enterpriseValue": "$75.7B",
+    "totalRevenueLTM": "$6.2B",
+    "revenueGrowthYoY": "111.6%",
+    "grossMargin": "69.4%",
+    "operatingMarginGAAP": "-6.9%",
+    "ebitdaMargin": "48.6%",
+    "fcfPerShare": -8560327168,
+    "totalDebt": "$35.1B",
+    "totalCash": "$2.3B",
+    "evRevenueLTM": "12.2x",
+    "evBasis": "recomputed: last close \u00d7 shares + net debt",
+    "forwardPE": -118.0,
+    "priceToSalesLTM": 8.4,
+    "52wHigh": 187.0,
+    "52wLow": 63.8,
+    "dayChange": "-2.9%",
+    "volume": 16847472,
+    "avgVolume": 29080109,
+    "analystTargetPrice": 140.18182,
+    "analystTargetHigh": 303.0,
+    "analystTargetLow": 36.0,
+    "analystRating": "buy",
+    "numberOfAnalysts": 33,
+    "shortName": "CoreWeave, Inc.",
+    "sector": "Technology",
+    "industry": "Software - Infrastructure",
+    "sharesOutstanding": 447573939
+  },
+  "quarterlyTrend": {
+    "ticker": "CRWV",
+    "quarters": [
+      {
+        "periodEnd": "2026-03-31",
+        "label": "1Q26",
+        "revenue": "$2.1B",
+        "revenueNum": 2078000000.0,
+        "grossMargin": "65.5%",
+        "qoqGrowth": "32.2%",
+        "yoyGrowth": "111.6%"
+      },
+      {
+        "periodEnd": "2025-12-31",
+        "label": "4Q25",
+        "revenue": "$1.6B",
+        "revenueNum": 1571904000.0,
+        "grossMargin": "67.6%",
+        "qoqGrowth": "15.2%",
+        "yoyGrowth": null
+      },
+      {
+        "periodEnd": "2025-09-30",
+        "label": "3Q25",
+        "revenue": "$1.4B",
+        "revenueNum": 1364676000.0,
+        "grossMargin": "73.0%",
+        "qoqGrowth": "12.5%",
+        "yoyGrowth": null
+      },
+      {
+        "periodEnd": "2025-06-30",
+        "label": "2Q25",
+        "revenue": "$1.2B",
+        "revenueNum": 1212788000.0,
+        "grossMargin": "74.2%",
+        "qoqGrowth": "23.5%",
+        "yoyGrowth": null
+      },
+      {
+        "periodEnd": "2025-03-31",
+        "label": "1Q25",
+        "revenue": "$982M",
+        "revenueNum": 982000000.0,
+        "grossMargin": "73.3%",
+        "qoqGrowth": null,
+        "yoyGrowth": null
+      }
+    ],
+    "basis": "calendar-quarter labels on fiscal period-ends; gross margin = gross profit / revenue",
+    "source": "yfinance / Yahoo Finance (quarterly income statement)",
+    "sourceUrl": "https://finance.yahoo.com/quote/CRWV/financials"
+  },
+  "profile": {},
+  "comps": [
+    {
+      "ticker": "NBIS",
+      "name": "Nebius Group N.V.",
+      "priceAsOf": "2026-06-10",
+      "marketCap": "$46.7B",
+      "evRevenueLTM": "53.4x",
+      "revenueGrowth": "683.9%",
+      "grossMargin": "72.1%",
+      "analystRating": "buy",
+      "source": "yfinance / Yahoo Finance",
+      "sourceUrl": "https://finance.yahoo.com/quote/NBIS"
+    },
+    {
+      "ticker": "IREN",
+      "name": "IREN LIMITED",
+      "priceAsOf": "2026-06-10",
+      "marketCap": "$18.4B",
+      "evRevenueLTM": "26.6x",
+      "revenueGrowth": "-0.0%",
+      "grossMargin": "68.4%",
+      "analystRating": "buy",
+      "source": "yfinance / Yahoo Finance",
+      "sourceUrl": "https://finance.yahoo.com/quote/IREN"
+    },
+    {
+      "ticker": "APLD",
+      "name": "Applied Digital Corporation",
+      "priceAsOf": "2026-06-10",
+      "marketCap": "$11.1B",
+      "evRevenueLTM": "38.3x",
+      "revenueGrowth": "139.3%",
+      "grossMargin": "45.4%",
+      "analystRating": "strong_buy",
+      "source": "yfinance / Yahoo Finance",
+      "sourceUrl": "https://finance.yahoo.com/quote/APLD"
+    },
+    {
+      "ticker": "ORCL",
+      "name": "Oracle Corporation",
+      "priceAsOf": "2026-06-10",
+      "marketCap": "$578.8B",
+      "evRevenueLTM": "11.0x",
+      "revenueGrowth": "21.7%",
+      "grossMargin": "67.1%",
+      "analystRating": "buy",
+      "source": "yfinance / Yahoo Finance",
+      "sourceUrl": "https://finance.yahoo.com/quote/ORCL"
+    }
+  ],
+  "secFilings": {
+    "company": "CoreWeave, Inc.",
+    "cik": "0001769628",
+    "fiscalYearEnd": "1231",
+    "filings": [
+      {
+        "form": "8-K",
+        "filingDate": "2026-06-10",
+        "reportDate": "2026-06-08",
+        "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000270/crwv-20260608.htm",
+        "source": "SEC EDGAR (primary filing)"
+      },
+      {
+        "form": "8-K",
+        "filingDate": "2026-05-18",
+        "reportDate": "2026-05-15",
+        "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000236/crwv-20260515.htm",
+        "source": "SEC EDGAR (primary filing)"
+      },
+      {
+        "form": "10-Q",
+        "filingDate": "2026-05-08",
+        "reportDate": "2026-03-31",
+        "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000222/crwv-20260331.htm",
+        "source": "SEC EDGAR (primary filing)"
+      },
+      {
+        "form": "10-K",
+        "filingDate": "2026-03-02",
+        "reportDate": "2025-12-31",
+        "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/crwv-20251231.htm",
+        "source": "SEC EDGAR (primary filing)"
+      },
+      {
+        "form": "10-Q",
+        "filingDate": "2025-11-13",
+        "reportDate": "2025-09-30",
+        "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000062/crwv-20250930.htm",
+        "source": "SEC EDGAR (primary filing)"
+      }
+    ],
+    "source": "SEC EDGAR",
+    "sourceUrl": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001769628&type=&dateb=&owner=include&count=40"
+  },
+  "secFacts": {
+    "annualRevenue": [
+      {
+        "end": "2023-12-31",
+        "value": 229000000,
+        "valueFormatted": "$229M",
+        "fy": 2025,
+        "fp": "FY",
+        "filed": "2026-03-02",
+        "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"
+      },
+      {
+        "end": "2024-12-31",
+        "value": 1915000000,
+        "valueFormatted": "$1.9B",
+        "fy": 2025,
+        "fp": "FY",
+        "filed": "2026-03-02",
+        "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"
+      },
+      {
+        "end": "2025-12-31",
+        "value": 5131000000,
+        "valueFormatted": "$5.1B",
+        "fy": 2025,
+        "fp": "FY",
+        "filed": "2026-03-02",
+        "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"
+      }
+    ],
+    "quarterlyRevenue": [
+      {
+        "end": "2024-09-30",
+        "value": 583941000,
+        "valueFormatted": "$584M",
+        "fy": 2025,
+        "fp": "Q3",
+        "filed": "2025-11-13",
+        "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"
+      },
+      {
+        "end": "2025-03-31",
+        "value": 982000000,
+        "valueFormatted": "$982M",
+        "fy": 2026,
+        "fp": "Q1",
+        "filed": "2026-05-08",
+        "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"
+      },
+      {
+        "end": "2025-06-30",
+        "value": 1212788000,
+        "valueFormatted": "$1.2B",
+        "fy": 2025,
+        "fp": "Q2",
+        "filed": "2025-08-13",
+        "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"
+      },
+      {
+        "end": "2025-09-30",
+        "value": 1364676000,
+        "valueFormatted": "$1.4B",
+        "fy": 2025,
+        "fp": "Q3",
+        "filed": "2025-11-13",
+        "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"
+      },
+      {
+        "end": "2026-03-31",
+        "value": 2078000000,
+        "valueFormatted": "$2.1B",
+        "fy": 2026,
+        "fp": "Q1",
+        "filed": "2026-05-08",
+        "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"
+      }
+    ],
+    "annualNetIncome": [
+      {
+        "end": "2023-12-31",
+        "value": -594000000,
+        "valueFormatted": "$-594M",
+        "fy": 2025,
+        "fp": "FY",
+        "filed": "2026-03-02",
+        "concept": "NetIncomeLoss"
+      },
+      {
+        "end": "2024-12-31",
+        "value": -863000000,
+        "valueFormatted": "$-863M",
+        "fy": 2025,
+        "fp": "FY",
+        "filed": "2026-03-02",
+        "concept": "NetIncomeLoss"
+      },
+      {
+        "end": "2025-12-31",
+        "value": -1167000000,
+        "valueFormatted": "$-1.2B",
+        "fy": 2025,
+        "fp": "FY",
+        "filed": "2026-03-02",
+        "concept": "NetIncomeLoss"
+      }
+    ],
+    "cik": "0001769628",
+    "source": "SEC EDGAR XBRL companyfacts (as reported)",
+    "sourceUrl": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001769628&type=10-K"
+  },
+  "relativePerformance": {
+    "benchmark": "QQQ",
+    "periods": {
+      "1M": {
+        "stock": "-11.3%",
+        "bench": "-1.9%",
+        "spreadPp": -9.4
+      },
+      "YTD": {
+        "stock": "20.5%",
+        "bench": "13.3%",
+        "spreadPp": 7.3
+      },
+      "1Y": {
+        "stock": "-36.1%",
+        "bench": "30.9%",
+        "spreadPp": -67.1
+      }
+    },
+    "asOf": "2026-06-10",
+    "source": "yfinance / Yahoo Finance"
+  },
+  "rampDemandSignal": null
+}

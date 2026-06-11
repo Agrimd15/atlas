@@ -1,0 +1,393 @@
+{
+  "name": "AppLovin",
+  "ticker": "APP",
+  "exchange": "NASDAQ",
+  "stage": "public",
+  "website": "https://www.applovin.com",
+  "verticals": [
+    "Mobile / Performance Advertising",
+    "AI Advertising (AXON)",
+    "AdTech",
+    "E-commerce / Web Advertising",
+    "Connected TV (CTV)",
+    "Internet / TMT"
+  ],
+  "shortDescription": "AppLovin is a pure-play AI advertising platform whose AXON engine matches mobile, web, and e-commerce ads to the right users — after selling off its games business in 2025 to focus entirely on adtech. NASDAQ: APP; ~$6.2B LTM advertising revenue at ~85% adjusted-EBITDA margins.",
+  "businessModel": "A single AI-driven Advertising platform built around AXON, AppLovin's machine-learning recommendation and real-time bidding engine. The two pillars are AppDiscovery (the advertiser-facing engine that buys installs/conversions in real-time auctions) and MAX (the in-app bidding/mediation marketplace used by 100,000+ apps). AppLovin monetizes on a performance/take-rate basis — keeping the spread between what advertisers pay for installs/sales and what it pays publishers for inventory. Because the platform is almost entirely automated software, margins are extraordinary (~85% adjusted EBITDA). The growth vector is extending AXON beyond mobile gaming into web/e-commerce (the self-serve Axon Ads Manager) and connected TV (via Wurl).",
+  "marketContext": "AppLovin has completed one of the sharpest pivots in adtech — from a mobile-games publisher into a pure-play, AI-run advertising platform — and was added to the S&P 500 in September 2025. The bull case is a uniquely scarce combination of hyper-growth (~59% YoY), ~85% adjusted-EBITDA margins, and a large TAM-expansion opportunity as AXON moves into web/e-commerce and CTV. The defining overhang is a series of February-March 2025 short-seller reports (Fuzzy Panda, Culper, Muddy Waters) alleging the AXON engine extracts proprietary IDs, violates app-store terms, and overstates e-commerce incrementality — claims management denies but which, alongside related class actions, remain unresolved.",
+  "competitors": [
+    "Unity Software (U) — closest mobile-game ad mediation/UA rival (Unity Ads / ironSource)",
+    "The Trade Desk (TTD) — buy-side DSP for the open internet / CTV",
+    "Meta Platforms (META) — the scaled benchmark for AI-optimized performance advertising",
+    "Google (AdMob / Google Ads)",
+    "Roblox (RBLX) — in-app/gaming ad monetization",
+    "DoubleVerify (DV) — ad measurement / verification"
+  ],
+  "customers": [
+    "Performance advertisers — historically mobile-gaming studios, now broadening to web and e-commerce brands",
+    "100,000+ apps monetizing inventory through the MAX mediation marketplace",
+    "Early e-commerce/web advertisers onboarding via the self-serve Axon Ads Manager",
+    "CTV / streaming advertisers via the Wurl unit"
+  ],
+  "leadership": [
+    {
+      "name": "Adam Foroughi",
+      "title": "Co-Founder & Chief Executive Officer",
+      "background": "Co-founded AppLovin in 2012; led the pivot from mobile-games publisher to pure adtech platform and publicly led the rebuttal of the 2025 short-seller reports.",
+      "source": "AppLovin",
+      "sourceUrl": "https://www.applovin.com/leadership/adam-foroughi/"
+    },
+    {
+      "name": "Matthew A. Stumpf",
+      "title": "Chief Financial Officer",
+      "background": "Rose from VP of Finance to CFO; signs AppLovin's 2026 SEC certifications as principal financial officer. Succeeded Herald Chen, who moved off the CFO role to the board/advisory.",
+      "source": "AppLovin 10-Q certification (Ex. 31.2), SEC EDGAR",
+      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/0001751008/000175100826000044/exhibit3212026033110q.htm"
+    },
+    {
+      "name": "Vasily Shikin",
+      "title": "Chief Technology Officer",
+      "background": "CTO since January 2020 (VP of Engineering from 2012); oversees the AXON engine and platform engineering. Holds a Master's in Mathematics from Saint-Petersburg State University.",
+      "source": "AppLovin DEF 14A proxy (FY2026), SEC EDGAR",
+      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/0001751008/000175100826000028/app-20260420.htm"
+    },
+    {
+      "name": "Herald Chen",
+      "title": "Board Director (former President & CFO)",
+      "background": "Former President and CFO of AppLovin; transitioned out of the CFO seat and remains on the board as Matthew Stumpf assumed the CFO role.",
+      "source": "AppLovin DEF 14A proxy (FY2026), SEC EDGAR",
+      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/0001751008/000175100826000028/app-20260420.htm"
+    }
+  ],
+  "revenueHistory": [
+    {
+      "year": "FY2024 (advertising)",
+      "value": 3.22,
+      "label": "$3.22B",
+      "source": "SEC EDGAR (as reported, continuing operations)",
+      "sourceUrl": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001751008&type=10-K"
+    },
+    {
+      "year": "FY2025 (advertising)",
+      "value": 5.48,
+      "label": "$5.48B",
+      "source": "SEC EDGAR (as reported, FY2025 10-K, continuing operations)",
+      "sourceUrl": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001751008&type=10-K"
+    },
+    {
+      "year": "LTM (ended Mar 2026)",
+      "value": 6.2,
+      "label": "$6.2B",
+      "source": "yfinance / Yahoo Finance (live pull, 2026-06-10 close)",
+      "sourceUrl": "https://finance.yahoo.com/quote/APP/financials"
+    }
+  ],
+  "employeeCount": "~1,500-2,000 (a deliberately lean, automation-heavy organization after the mid-2025 games divestiture)",
+  "lastRunDate": "2026-06-11",
+  "brief": {
+    "runDate": "2026-06-11",
+    "businessOverview": "AppLovin Corporation (NASDAQ: APP) has completed one of the sharpest strategic pivots in adtech, transforming from a mobile-games publisher into a pure-play, AI-driven advertising platform. The engine behind the shift is AXON, AppLovin's machine-learning recommendation and bidding system, which powers AppDiscovery (advertiser demand) and the MAX in-app bidding/mediation marketplace. In 2025 the company shed its legacy games business: on May 7, 2025 it agreed to sell its mobile-gaming studios to London-based Tripledot Studios for $400M cash plus ~20% of Tripledot's equity (a deal valued around $800M), completing the divestiture on June 30, 2025 and exiting roughly 10 studios. With games gone, AppLovin now reports as essentially a single advertising business and is pushing AXON beyond gaming into e-commerce, web, and connected TV (via its Wurl unit). The company was added to the S&P 500 effective September 22, 2025. Led by co-founder and CEO Adam Foroughi from Palo Alto, AppLovin trades near $493 as of the 2026-06-10 close (~$150.7B market cap). The central debate is the unresolved short-seller controversy over AXON's data practices, set against a financial profile most adtech peers can only envy.",
+    "businessOverviewSources": [
+      {
+        "name": "AppLovin Completes Sale of Mobile Gaming Business to Tripledot (Business Wire)",
+        "url": "https://www.businesswire.com/news/home/20250701033978/en/AppLovin-Completes-Sale-of-Mobile-Gaming-Business-to-Tripledot-Studios"
+      },
+      {
+        "name": "CNBC — AppLovin, Robinhood to join the S&P 500",
+        "url": "https://www.cnbc.com/2025/09/05/applovin-robinhood-sp-500.html"
+      },
+      {
+        "name": "AppLovin 10-Q (period ended 2026-03-31), SEC EDGAR",
+        "url": "https://www.sec.gov/Archives/edgar/data/0001751008/000175100826000044/app-20260331.htm"
+      }
+    ],
+    "productModel": "AppLovin operates a single Advertising platform built around AXON, its AI recommendation and real-time bidding engine. AXON (now AXON 2.0) uses reinforcement learning to predict each user's value and optimize bids across millions of auctions per second, driving return on ad spend (ROAS) for advertisers. The two pillars are AppDiscovery — the advertiser-facing engine that buys installs/conversions in real-time auctions — and MAX, the in-app bidding and mediation marketplace used by 100,000+ apps to maximize publisher yield. AppLovin monetizes on a performance/take-rate basis: advertisers pay for installs and conversions, and AppLovin keeps the spread between advertiser payment and publisher payout. Because the platform is largely automated, the model is extraordinarily profitable (~85% adjusted EBITDA margin in Q1 2026). The strategic growth vector is taking AXON beyond gaming: a self-serve 'Axon Ads Manager' launched October 1, 2025 (referral-only at first, broader rollout through 1H 2026) lets web and e-commerce brands install an 'Axon Pixel' and tap the same AI optimization, while CTV/streaming inventory is addressed through Wurl.",
+    "productModelSources": [
+      {
+        "name": "AppLovin Q1 2026 earnings press release (Form 8-K Ex. 99.1), SEC EDGAR",
+        "url": "https://www.sec.gov/Archives/edgar/data/0001751008/000175100826000042/exhibit991-1q26earningspre.htm"
+      },
+      {
+        "name": "AppLovin 10-Q (period ended 2026-03-31), SEC EDGAR",
+        "url": "https://www.sec.gov/Archives/edgar/data/0001751008/000175100826000044/app-20260331.htm"
+      }
+    ],
+    "recentNews": [
+      {
+        "date": "2026-05-06",
+        "headline": "AppLovin Q1 2026 advertising revenue jumps 59% to $1.84B; Q2 guided higher",
+        "whyItMatters": "The first full clean quarter as an ad-only company beat guidance again, with ~85% adjusted-EBITDA margin and $1.29B free cash flow — validating the pivot and feeding the bull thesis on durable AI-driven growth.",
+        "source": "SEC EDGAR (Form 8-K Ex. 99.1)",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/0001751008/000175100826000042/exhibit991-1q26earningspre.htm"
+      },
+      {
+        "date": "2026-02-11",
+        "headline": "AppLovin reports FY2025: advertising revenue $5.48B, net income from continuing ops $3.43B (+116%), adj. EBITDA $4.51B (+87%)",
+        "whyItMatters": "Full-year 2025 results show the post-divestiture business compounding fast, with ~$3.95B full-year free cash flow and $2.58B of buybacks — the financial backbone of the S&P 500 inclusion and the re-rating.",
+        "source": "SEC EDGAR (Form 8-K Ex. 99.1)",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/0001751008/000175100826000005/exhibit991-4q25earningspre.htm"
+      },
+      {
+        "date": "2025-09-22",
+        "headline": "AppLovin joins the S&P 500",
+        "whyItMatters": "Inclusion (announced Sept 5, effective Sept 22) forced index-fund buying and cemented AppLovin's transition from speculative adtech name to large-cap; shares hit all-time highs on the news.",
+        "source": "CNBC",
+        "sourceUrl": "https://www.cnbc.com/2025/09/05/applovin-robinhood-sp-500.html"
+      },
+      {
+        "date": "2025-07-01",
+        "headline": "AppLovin completes sale of mobile gaming business to Tripledot Studios",
+        "whyItMatters": "Closing the ~$400M-cash + ~20%-equity divestiture (10 game studios) completed the pivot to a pure advertising platform and cleaned up the reported financials onto a continuing-operations basis.",
+        "source": "Business Wire",
+        "sourceUrl": "https://www.businesswire.com/news/home/20250701033978/en/AppLovin-Completes-Sale-of-Mobile-Gaming-Business-to-Tripledot-Studios"
+      },
+      {
+        "date": "2025-03-27",
+        "headline": "AppLovin shares plunge ~20% as Muddy Waters becomes third short-seller to attack its adtech",
+        "whyItMatters": "Muddy Waters (following Fuzzy Panda and Culper in February) alleged AXON 'systematically' violates app-store terms by extracting proprietary IDs and overstates e-commerce incrementality — wiping ~$20B of market value and creating the central debate around the name.",
+        "source": "CNBC",
+        "sourceUrl": "https://www.cnbc.com/2025/03/27/applovin-plunged-20percent-as-short-seller-muddy-waters-goes-after-company.html"
+      }
+    ],
+    "earningsTakeaways": {
+      "quarter": "Q1 2026 (ended March 31, 2026)",
+      "reportDate": "May 6, 2026",
+      "keyMetrics": {
+        "revenue": "$1.84B (+59% YoY, Q1 2026; all advertising)",
+        "adjustedEBITDA": "$1.56B (Q1 2026)",
+        "adjustedEBITDAMargin": "85% (Q1 2026)",
+        "netIncome": "$1.21B (Q1 2026)",
+        "freeCashFlow": "$1.29B (Q1 2026)",
+        "dilutedEPS": "$3.56 (Q1 2026)",
+        "buybacks": "$1.0B of shares repurchased/withheld (Q1 2026); ~$2.3B remaining on authorization",
+        "q2RevenueGuidance": "$1.915-1.945B (Q2 2026 guidance)",
+        "q2AdjEbitdaGuidance": "$1.615-1.645B / 84-85% margin (Q2 2026 guidance)"
+      },
+      "aiCommentary": "Growth is driven almost entirely by AXON — AppLovin's AI bidding/recommendation engine — which continues to lift revenue-per-install and pull in new advertiser categories. Management frames AppLovin as 'building the world's best advertising AI model' and points to AXON's automated optimization as the reason a fully ad-only company can sustain ~85% adjusted-EBITDA margins. The bull case is durable AI-driven growth plus prodigious free cash flow; the bear case is that AXON is a black box whose results are hard for outsiders to verify — the exact gap the 2025 short reports exploited.",
+      "demandCommentary": "Demand is broadening beyond mobile gaming: management cites continued early onboarding of web/e-commerce advertisers via the self-serve Axon Ads Manager (launched Oct 1, 2025, broader rollout through 1H 2026), with a high lead-to-active-campaign conversion rate, while CTV/streaming demand is addressed via Wurl. Q2 2026 guidance ($1.915-1.945B revenue) implies continued sequential acceleration. The key swing factor for the bull thesis is whether AXON works as well for web/e-commerce as it has in mobile gaming.",
+      "sources": [
+        {
+          "name": "AppLovin Q1 2026 earnings press release (Form 8-K Ex. 99.1), SEC EDGAR",
+          "url": "https://www.sec.gov/Archives/edgar/data/0001751008/000175100826000042/exhibit991-1q26earningspre.htm"
+        },
+        {
+          "name": "AppLovin 10-Q (period ended 2026-03-31), SEC EDGAR",
+          "url": "https://www.sec.gov/Archives/edgar/data/0001751008/000175100826000044/app-20260331.htm"
+        }
+      ]
+    },
+    "keyRisks": [
+      "Short-seller / data-practices overhang: Fuzzy Panda, Culper and Muddy Waters (Feb-Mar 2025) alleged AXON impermissibly extracts proprietary device/user IDs and violates Google Play / app-store terms, and that e-commerce incrementality and advertiser retention are overstated; AppLovin denies the claims, but they and related class actions remain unresolved.",
+      "Black-box AXON dependence: nearly all revenue and the ~85% margin flow through one proprietary AI engine whose inner workings AppLovin doesn't disclose — making the growth hard for outsiders to verify and exposing the company if the model's edge erodes or is replicated.",
+      "Platform-policy risk (Apple/Google): the business runs on top of iOS and Android; changes to privacy rules (ATT), attribution signals, or app-store policies could materially impair AXON's targeting and the take-rate model.",
+      "Concentration & advertiser churn: revenue is concentrated in performance advertisers (historically gaming); any pullback in ad budgets or the loss of a few large advertisers would hit results quickly.",
+      "E-commerce / web expansion execution: the bull case leans heavily on AXON working as well for web and e-commerce as in mobile gaming; self-serve (Axon Ads Manager) is still early and unproven at scale, and a miss would deflate the TAM-expansion narrative.",
+      "Valuation / multiple risk: at ~24.6x EV/Revenue (2026-06-10 close) the stock prices in sustained hyper-growth and pristine margins; any growth deceleration, margin slip, or escalation of the short-seller/regulatory narrative leaves little cushion."
+    ],
+    "keyRisksSources": [
+      {
+        "name": "CNBC — AppLovin plunged 20% as Muddy Waters goes after company",
+        "url": "https://www.cnbc.com/2025/03/27/applovin-plunged-20percent-as-short-seller-muddy-waters-goes-after-company.html"
+      },
+      {
+        "name": "AppLovin 10-Q (risk factors / period ended 2026-03-31), SEC EDGAR",
+        "url": "https://www.sec.gov/Archives/edgar/data/0001751008/000175100826000044/app-20260331.htm"
+      }
+    ],
+    "comps": [
+      {
+        "name": "AppLovin",
+        "ticker": "APP",
+        "type": "Subject",
+        "evRevenue": "24.6x",
+        "revenueGrowth": "59.0%",
+        "grossMargin": "88.4%",
+        "note": "subject; fully AI-run ad platform combining ~59% growth with ~85% adjusted-EBITDA margins — a scarce growth+profitability profile, with an unresolved short-seller overhang",
+        "source": "yfinance / Yahoo Finance",
+        "sourceUrl": "https://finance.yahoo.com/quote/APP"
+      },
+      {
+        "name": "The Trade Desk",
+        "ticker": "TTD",
+        "evRevenue": "2.4x",
+        "revenueGrowth": "11.8%",
+        "grossMargin": "77.8%",
+        "note": "the other AI-driven adtech bellwether — a buy-side DSP for the open internet/CTV; growing far slower and trading far cheaper, the classic 'value vs momentum adtech' pair",
+        "source": "yfinance / Yahoo Finance",
+        "sourceUrl": "https://finance.yahoo.com/quote/TTD"
+      },
+      {
+        "name": "Meta Platforms",
+        "ticker": "META",
+        "evRevenue": "",
+        "revenueGrowth": "",
+        "grossMargin": "",
+        "note": "the scaled benchmark for AI-optimized performance advertising; bulls frame AppLovin as a smaller, faster-growing version of Meta's ads machine",
+        "source": "yfinance / Yahoo Finance",
+        "sourceUrl": "https://finance.yahoo.com/quote/META"
+      },
+      {
+        "name": "Unity Software",
+        "ticker": "U",
+        "evRevenue": "6.1x",
+        "revenueGrowth": "16.8%",
+        "grossMargin": "74.7%",
+        "note": "closest direct rival in mobile-game ad mediation and user acquisition (Unity Ads / ironSource); AppLovin's AXON share gains have come substantially at Unity's expense",
+        "source": "yfinance / Yahoo Finance",
+        "sourceUrl": "https://finance.yahoo.com/quote/U"
+      },
+      {
+        "name": "Roblox",
+        "ticker": "RBLX",
+        "evRevenue": "5.0x",
+        "revenueGrowth": "39.3%",
+        "grossMargin": "24.1%",
+        "note": "large gaming/engagement platform building its own ads business; a demand-side peer and barometer for in-app/gaming ad monetization",
+        "source": "yfinance / Yahoo Finance",
+        "sourceUrl": "https://finance.yahoo.com/quote/RBLX"
+      }
+    ],
+    "swot": {
+      "standoutSummary": "AppLovin is the rare adtech name combining hyper-growth (~59% YoY) with ~85% adjusted-EBITDA margins and prodigious free cash flow — a fully AI-run ad platform that, unlike slower-growing The Trade Desk or scaled-but-mature Meta, is just beginning to expand AXON beyond gaming into web/e-commerce/CTV. The offset is the unresolved short-seller debate over how those results are produced.",
+      "strengths": [
+        {
+          "point": "AXON AI moat",
+          "detail": "A proprietary reinforcement-learning bidding/recommendation engine drives industry-leading revenue-per-install and is hard for rivals (Unity, others) to replicate."
+        },
+        {
+          "point": "Best-in-class margins & FCF",
+          "detail": "~85% Q1 2026 adjusted-EBITDA margin and $1.29B quarterly free cash flow fund large buybacks ($2.58B in FY2025) with no dependence on capital markets."
+        },
+        {
+          "point": "Clean, focused model",
+          "detail": "Post-divestiture, AppLovin is a single advertising business — simpler to value and fully aligned around the AXON platform."
+        }
+      ],
+      "weaknesses": [
+        {
+          "point": "Black-box / disclosure gap",
+          "detail": "AXON's mechanics are opaque, so the growth is hard for outsiders to verify — the exact gap short-sellers exploited."
+        },
+        {
+          "point": "Advertiser concentration",
+          "detail": "Revenue skews to performance advertisers (historically gaming), leaving results sensitive to a few large accounts and ad-budget swings."
+        },
+        {
+          "point": "Reputational overhang",
+          "detail": "Unresolved short-seller allegations and related class actions cloud the narrative regardless of fundamentals."
+        }
+      ],
+      "opportunities": [
+        {
+          "point": "E-commerce / web TAM",
+          "detail": "The self-serve Axon Ads Manager opens the large e-commerce/web ad market well beyond mobile gaming."
+        },
+        {
+          "point": "CTV / streaming",
+          "detail": "Wurl gives AppLovin a foothold in fast-growing connected-TV advertising."
+        },
+        {
+          "point": "Self-serve scaling",
+          "detail": "Broadening Axon Ads access through 1H 2026 could widen the advertiser pool dramatically with little incremental cost."
+        }
+      ],
+      "threats": [
+        {
+          "point": "Apple/Google policy",
+          "detail": "Privacy/attribution or app-store rule changes could degrade AXON's signal and the take-rate model."
+        },
+        {
+          "point": "Regulatory / legal",
+          "detail": "Short-seller data-practice claims could draw scrutiny or litigation that constrains targeting methods."
+        },
+        {
+          "point": "Valuation reset",
+          "detail": "At ~24.6x EV/Rev (2026-06-10 close), any growth or margin disappointment risks a sharp de-rating."
+        }
+      ],
+      "sources": [
+        {
+          "name": "AppLovin Q1 2026 earnings press release (8-K Ex. 99.1), SEC EDGAR",
+          "url": "https://www.sec.gov/Archives/edgar/data/0001751008/000175100826000042/exhibit991-1q26earningspre.htm"
+        },
+        {
+          "name": "yfinance / Yahoo Finance — live comps (2026-06-10 close)",
+          "url": "https://finance.yahoo.com/quote/APP"
+        }
+      ]
+    },
+    "slideBullets": [
+      "A scarce growth-plus-profitability profile: Q1 2026 advertising revenue grew 59% YoY to $1.84B at a ~85% adjusted-EBITDA margin, generating $1.29B of quarterly free cash flow.",
+      "AXON is the moat: a proprietary reinforcement-learning bidding engine (AppDiscovery + MAX mediation) optimizes advertiser ROAS across millions of auctions per second — the reason a fully automated ad platform sustains ~85% margins.",
+      "The pivot is complete: AppLovin sold its games studios to Tripledot (closed June 2025), joined the S&P 500 (Sept 2025), and now reports as a single advertising business.",
+      "TAM expansion is the next leg: the self-serve Axon Ads Manager is pushing AXON beyond mobile gaming into web/e-commerce (Axon Pixel) and CTV (Wurl) — the swing factor for the bull case.",
+      "The debate is trust, not growth: unresolved 2025 short-seller allegations (ID extraction, app-store policy, overstated incrementality) keep an overhang on a stock at ~24.6x EV/Revenue (as of the 2026-06-10 close)."
+    ],
+    "diligenceQuestions": [
+      "How incremental and durable are AXON's e-commerce/web conversions? What independent (holdout/lift) evidence supports the incrementality claims short-sellers disputed, what is real advertiser retention and churn outside gaming, and how quickly is self-serve Axon Ads converting from referral pilots to scaled, repeat spend?",
+      "How exposed is the take-rate model to Apple/Google platform policy and signal loss? What share of AXON's targeting depends on identifiers or data flows that an ATT-style change, an app-store enforcement action, or a privacy ruling could impair — and what is the contingency if a key signal disappears?",
+      "What does the unit economics look like as AppLovin scales beyond gaming? How do ROAS, take rate, and gross margin on web/e-commerce/CTV inventory compare to mobile-gaming installs, and does the ~85% adjusted-EBITDA margin hold as the advertiser mix diversifies?"
+    ],
+    "whatMatters": {
+      "thesis": "A fully AI-run ad platform growing ~59% with ~85% adjusted-EBITDA margins, now opening the far larger web/e-commerce ad market beyond gaming — a uniquely scarce combination of growth, profitability and optionality.",
+      "debate": "Are AXON's results real and durable, or do the 2025 short-seller allegations (ID extraction, app-store policy violations, overstated e-commerce incrementality) point to risk the market is discounting?",
+      "catalyst": "Q2 2026 results (guided to $1.915-1.945B revenue) and the breadth of the self-serve Axon Ads Manager rollout through 1H 2026 — the key test of whether the e-commerce expansion is working at scale."
+    }
+  },
+  "explainer": {
+    "plain": [
+      "AppLovin runs an AI that decides which ad to show which person inside mobile apps and websites.",
+      "Advertisers pay AppLovin when those ads produce installs or sales.",
+      "It sold off its mobile-games studios in 2025 to become a pure advertising company.",
+      "The AI (AXON) is so efficient that ~85 cents of every revenue dollar is profit before interest, tax and D&A."
+    ],
+    "technical": [
+      "AXON is a reinforcement-learning bidding/recommendation engine predicting each user's value in real time.",
+      "AppDiscovery buys conversions for advertisers; MAX is the in-app auction/mediation marketplace for publishers.",
+      "Revenue is a take-rate: AppLovin keeps the spread between advertiser payment and publisher payout.",
+      "Optimizes for advertiser ROAS, now extending from gaming to web/e-commerce (Axon Pixel) and CTV (Wurl)."
+    ],
+    "simple": [
+      "Think of a super-smart matchmaker that pairs each ad with the person most likely to act on it.",
+      "Advertisers only pay when the match works — an install or a purchase.",
+      "AppLovin quit making the games and now just runs the matchmaking machine for everyone."
+    ],
+    "glossary": [
+      {
+        "term": "ROAS",
+        "expansion": "Return on Ad Spend",
+        "definition": "How much revenue an advertiser earns for each dollar spent on ads — the core metric AppLovin's AI optimizes."
+      },
+      {
+        "term": "AXON",
+        "expansion": "",
+        "definition": "AppLovin's proprietary AI engine that predicts user value and decides what to bid and which ad to show, in real time."
+      },
+      {
+        "term": "DSP",
+        "expansion": "Demand-Side Platform",
+        "definition": "Software advertisers use to buy ad inventory automatically across many apps/sites — the category AppDiscovery competes in."
+      },
+      {
+        "term": "Mediation",
+        "expansion": "",
+        "definition": "Software (AppLovin's MAX) that runs a live auction across multiple ad networks so a publisher always sells each ad slot to the highest bidder."
+      },
+      {
+        "term": "eCPM",
+        "expansion": "effective Cost Per Mille (thousand impressions)",
+        "definition": "What a publisher earns per 1,000 ad views — a key yield metric mediation tries to maximize."
+      },
+      {
+        "term": "CTV",
+        "expansion": "Connected TV",
+        "definition": "Ads delivered through internet-streaming TV (smart TVs, streaming sticks) — AppLovin's expansion area via Wurl."
+      },
+      {
+        "term": "Attribution",
+        "expansion": "",
+        "definition": "Determining which ad actually caused an install or sale — central to AppLovin's pricing and to the short-seller dispute over how much of its conversions are truly incremental."
+      }
+    ]
+  }
+}

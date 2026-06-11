@@ -1,0 +1,337 @@
+{
+  "ticker": "SNOW",
+  "runDate": "2026-06-11",
+  "marketCloseAsOf": "2026-06-10",
+  "freshnessNote": "All multiples reflect the 2026-06-10 market close.",
+  "sources": [
+    "yfinance / Yahoo Finance",
+    "FMP /stable/profile",
+    "SEC EDGAR"
+  ],
+  "trading": {
+    "priceAsOf": "2026-06-10",
+    "stockPrice": "$240",
+    "marketCap": "$83.1B",
+    "enterpriseValue": "$83.0B",
+    "totalRevenueLTM": "$5.0B",
+    "revenueGrowthYoY": "33.5%",
+    "grossMargin": "67.1%",
+    "operatingMarginGAAP": "-22.2%",
+    "ebitdaMargin": "-22.4%",
+    "fcfPerShare": 1739497728,
+    "totalDebt": "$2.8B",
+    "totalCash": "$3.0B",
+    "evRevenueLTM": "16.5x",
+    "evBasis": "recomputed: last close \u00d7 shares + net debt",
+    "forwardPE": 89.4,
+    "priceToSalesLTM": 16.5,
+    "52wHigh": 284.99,
+    "52wLow": 118.3,
+    "dayChange": "0.1%",
+    "volume": 6144539,
+    "avgVolume": 8260643,
+    "analystTargetPrice": 291.28418,
+    "analystTargetHigh": 500.0,
+    "analystTargetLow": 110.0,
+    "analystRating": "strong_buy",
+    "numberOfAnalysts": 48,
+    "shortName": "Snowflake Inc.",
+    "sector": "Technology",
+    "industry": "Software - Application",
+    "sharesOutstanding": 346600000
+  },
+  "quarterlyTrend": {
+    "ticker": "SNOW",
+    "quarters": [
+      {
+        "periodEnd": "2026-04-30",
+        "label": "2Q26",
+        "revenue": "$1.4B",
+        "revenueNum": 1390951000.0,
+        "grossMargin": "66.6%",
+        "qoqGrowth": "8.3%",
+        "yoyGrowth": "33.5%"
+      },
+      {
+        "periodEnd": "2026-01-31",
+        "label": "1Q26",
+        "revenue": "$1.3B",
+        "revenueNum": 1283994000.0,
+        "grossMargin": "66.8%",
+        "qoqGrowth": "5.9%",
+        "yoyGrowth": null
+      },
+      {
+        "periodEnd": "2025-10-31",
+        "label": "4Q25",
+        "revenue": "$1.2B",
+        "revenueNum": 1212909000.0,
+        "grossMargin": "67.8%",
+        "qoqGrowth": "5.9%",
+        "yoyGrowth": null
+      },
+      {
+        "periodEnd": "2025-07-31",
+        "label": "3Q25",
+        "revenue": "$1.1B",
+        "revenueNum": 1144969000.0,
+        "grossMargin": "67.5%",
+        "qoqGrowth": "9.9%",
+        "yoyGrowth": null
+      },
+      {
+        "periodEnd": "2025-04-30",
+        "label": "2Q25",
+        "revenue": "$1.0B",
+        "revenueNum": 1042074000.0,
+        "grossMargin": "66.5%",
+        "qoqGrowth": null,
+        "yoyGrowth": null
+      }
+    ],
+    "basis": "calendar-quarter labels on fiscal period-ends; gross margin = gross profit / revenue",
+    "source": "yfinance / Yahoo Finance (quarterly income statement)",
+    "sourceUrl": "https://finance.yahoo.com/quote/SNOW/financials"
+  },
+  "profile": {},
+  "comps": [
+    {
+      "ticker": "MDB",
+      "name": "MongoDB, Inc.",
+      "priceAsOf": "2026-06-10",
+      "marketCap": "$28.0B",
+      "evRevenueLTM": "9.9x",
+      "revenueGrowth": "25.2%",
+      "grossMargin": "72.0%",
+      "analystRating": "buy",
+      "source": "yfinance / Yahoo Finance",
+      "sourceUrl": "https://finance.yahoo.com/quote/MDB"
+    },
+    {
+      "ticker": "DDOG",
+      "name": "Datadog, Inc.",
+      "priceAsOf": "2026-06-10",
+      "marketCap": "$75.3B",
+      "evRevenueLTM": "19.6x",
+      "revenueGrowth": "32.2%",
+      "grossMargin": "79.9%",
+      "analystRating": "strong_buy",
+      "source": "yfinance / Yahoo Finance",
+      "sourceUrl": "https://finance.yahoo.com/quote/DDOG"
+    },
+    {
+      "ticker": "PLTR",
+      "name": "Palantir Technologies Inc.",
+      "priceAsOf": "2026-06-10",
+      "marketCap": "$299.0B",
+      "evRevenueLTM": "55.7x",
+      "revenueGrowth": "84.7%",
+      "grossMargin": "84.1%",
+      "analystRating": "buy",
+      "source": "yfinance / Yahoo Finance",
+      "sourceUrl": "https://finance.yahoo.com/quote/PLTR"
+    }
+  ],
+  "secFilings": {
+    "company": "Snowflake Inc.",
+    "cik": "0001640147",
+    "fiscalYearEnd": "0131",
+    "filings": [
+      {
+        "form": "10-Q",
+        "filingDate": "2026-05-29",
+        "reportDate": "2026-04-30",
+        "url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014726000030/snow-20260430.htm",
+        "source": "SEC EDGAR (primary filing)"
+      },
+      {
+        "form": "8-K",
+        "filingDate": "2026-05-27",
+        "reportDate": "2026-05-27",
+        "url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014726000027/snow-20260527.htm",
+        "source": "SEC EDGAR (primary filing)"
+      },
+      {
+        "form": "8-K",
+        "filingDate": "2026-03-31",
+        "reportDate": "2026-03-31",
+        "url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014726000013/snow-20260331.htm",
+        "source": "SEC EDGAR (primary filing)"
+      },
+      {
+        "form": "10-K",
+        "filingDate": "2026-03-20",
+        "reportDate": "2026-01-31",
+        "url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014726000008/snow-20260131.htm",
+        "source": "SEC EDGAR (primary filing)"
+      },
+      {
+        "form": "10-Q",
+        "filingDate": "2025-12-05",
+        "reportDate": "2025-10-31",
+        "url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014725000211/snow-20251031.htm",
+        "source": "SEC EDGAR (primary filing)"
+      },
+      {
+        "form": "10-K",
+        "filingDate": "2025-03-21",
+        "reportDate": "2025-01-31",
+        "url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014725000052/snow-20250131.htm",
+        "source": "SEC EDGAR (primary filing)"
+      }
+    ],
+    "source": "SEC EDGAR",
+    "sourceUrl": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001640147&type=&dateb=&owner=include&count=40"
+  },
+  "secFacts": {
+    "annualRevenue": [
+      {
+        "end": "2023-01-31",
+        "value": 2065659000,
+        "valueFormatted": "$2.1B",
+        "fy": 2025,
+        "fp": "FY",
+        "filed": "2025-03-21",
+        "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"
+      },
+      {
+        "end": "2024-01-31",
+        "value": 2806489000,
+        "valueFormatted": "$2.8B",
+        "fy": 2026,
+        "fp": "FY",
+        "filed": "2026-03-20",
+        "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"
+      },
+      {
+        "end": "2025-01-31",
+        "value": 3626396000,
+        "valueFormatted": "$3.6B",
+        "fy": 2026,
+        "fp": "FY",
+        "filed": "2026-03-20",
+        "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"
+      },
+      {
+        "end": "2026-01-31",
+        "value": 4683946000,
+        "valueFormatted": "$4.7B",
+        "fy": 2026,
+        "fp": "FY",
+        "filed": "2026-03-20",
+        "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"
+      }
+    ],
+    "quarterlyRevenue": [
+      {
+        "end": "2024-10-31",
+        "value": 942094000,
+        "valueFormatted": "$942M",
+        "fy": 2026,
+        "fp": "Q3",
+        "filed": "2025-12-05",
+        "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"
+      },
+      {
+        "end": "2025-04-30",
+        "value": 1042074000,
+        "valueFormatted": "$1.0B",
+        "fy": 2027,
+        "fp": "Q1",
+        "filed": "2026-05-29",
+        "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"
+      },
+      {
+        "end": "2025-07-31",
+        "value": 1144969000,
+        "valueFormatted": "$1.1B",
+        "fy": 2026,
+        "fp": "Q2",
+        "filed": "2025-09-05",
+        "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"
+      },
+      {
+        "end": "2025-10-31",
+        "value": 1212909000,
+        "valueFormatted": "$1.2B",
+        "fy": 2026,
+        "fp": "Q3",
+        "filed": "2025-12-05",
+        "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"
+      },
+      {
+        "end": "2026-04-30",
+        "value": 1390951000,
+        "valueFormatted": "$1.4B",
+        "fy": 2027,
+        "fp": "Q1",
+        "filed": "2026-05-29",
+        "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"
+      }
+    ],
+    "annualNetIncome": [
+      {
+        "end": "2023-01-31",
+        "value": -796705000,
+        "valueFormatted": "$-797M",
+        "fy": 2025,
+        "fp": "FY",
+        "filed": "2025-03-21",
+        "concept": "NetIncomeLoss"
+      },
+      {
+        "end": "2024-01-31",
+        "value": -836097000,
+        "valueFormatted": "$-836M",
+        "fy": 2026,
+        "fp": "FY",
+        "filed": "2026-03-20",
+        "concept": "NetIncomeLoss"
+      },
+      {
+        "end": "2025-01-31",
+        "value": -1285640000,
+        "valueFormatted": "$-1.3B",
+        "fy": 2026,
+        "fp": "FY",
+        "filed": "2026-03-20",
+        "concept": "NetIncomeLoss"
+      },
+      {
+        "end": "2026-01-31",
+        "value": -1331616000,
+        "valueFormatted": "$-1.3B",
+        "fy": 2026,
+        "fp": "FY",
+        "filed": "2026-03-20",
+        "concept": "NetIncomeLoss"
+      }
+    ],
+    "cik": "0001640147",
+    "source": "SEC EDGAR XBRL companyfacts (as reported)",
+    "sourceUrl": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001640147&type=10-K"
+  },
+  "relativePerformance": {
+    "benchmark": "QQQ",
+    "periods": {
+      "1M": {
+        "stock": "57.8%",
+        "bench": "-1.9%",
+        "spreadPp": 59.8
+      },
+      "YTD": {
+        "stock": "10.7%",
+        "bench": "13.3%",
+        "spreadPp": -2.6
+      },
+      "1Y": {
+        "stock": "15.0%",
+        "bench": "30.9%",
+        "spreadPp": -15.9
+      }
+    },
+    "asOf": "2026-06-10",
+    "source": "yfinance / Yahoo Finance"
+  },
+  "rampDemandSignal": null
+}

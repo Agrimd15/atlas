@@ -1,0 +1,349 @@
+{
+  "ticker": "AVGO",
+  "runDate": "2026-06-11",
+  "marketCloseAsOf": "2026-06-10",
+  "freshnessNote": "All multiples reflect the 2026-06-10 market close.",
+  "sources": [
+    "yfinance / Yahoo Finance",
+    "FMP /stable/profile",
+    "SEC EDGAR"
+  ],
+  "trading": {
+    "priceAsOf": "2026-06-10",
+    "stockPrice": "$372",
+    "marketCap": "$1.8T",
+    "enterpriseValue": "$1.8T",
+    "totalRevenueLTM": "$75.5B",
+    "revenueGrowthYoY": "47.9%",
+    "grossMargin": "76.3%",
+    "operatingMarginGAAP": "49.0%",
+    "ebitdaMargin": "55.6%",
+    "fcfPerShare": 27212249088,
+    "totalDebt": "$64.9B",
+    "totalCash": "$19.6B",
+    "evRevenueLTM": "24.1x",
+    "evBasis": "recomputed: last close \u00d7 shares + net debt",
+    "forwardPE": 19.2,
+    "priceToSalesLTM": 23.5,
+    "52wHigh": 495.0,
+    "52wLow": 243.8,
+    "dayChange": "-5.1%",
+    "volume": 37424608,
+    "avgVolume": 24908461,
+    "analystTargetPrice": 522.06226,
+    "analystTargetHigh": 650.0,
+    "analystTargetLow": 215.88,
+    "analystRating": "strong_buy",
+    "numberOfAnalysts": 45,
+    "shortName": "Broadcom Inc.",
+    "sector": "Technology",
+    "industry": "Semiconductors",
+    "sharesOutstanding": 4757580198
+  },
+  "quarterlyTrend": {
+    "ticker": "AVGO",
+    "quarters": [
+      {
+        "periodEnd": "2026-04-30",
+        "label": "2Q26",
+        "revenue": "$22.2B",
+        "revenueNum": 22187000000.0,
+        "grossMargin": "69.5%",
+        "qoqGrowth": "14.9%",
+        "yoyGrowth": "47.9%"
+      },
+      {
+        "periodEnd": "2026-01-31",
+        "label": "1Q26",
+        "revenue": "$19.3B",
+        "revenueNum": 19311000000.0,
+        "grossMargin": "68.1%",
+        "qoqGrowth": "7.2%",
+        "yoyGrowth": null
+      },
+      {
+        "periodEnd": "2025-10-31",
+        "label": "4Q25",
+        "revenue": "$18.0B",
+        "revenueNum": 18015000000.0,
+        "grossMargin": "68.0%",
+        "qoqGrowth": "12.9%",
+        "yoyGrowth": null
+      },
+      {
+        "periodEnd": "2025-07-31",
+        "label": "3Q25",
+        "revenue": "$16.0B",
+        "revenueNum": 15952000000.0,
+        "grossMargin": "67.1%",
+        "qoqGrowth": "6.3%",
+        "yoyGrowth": null
+      },
+      {
+        "periodEnd": "2025-04-30",
+        "label": "2Q25",
+        "revenue": "$15.0B",
+        "revenueNum": 15004000000.0,
+        "grossMargin": "68.0%",
+        "qoqGrowth": null,
+        "yoyGrowth": null
+      }
+    ],
+    "basis": "calendar-quarter labels on fiscal period-ends; gross margin = gross profit / revenue",
+    "source": "yfinance / Yahoo Finance (quarterly income statement)",
+    "sourceUrl": "https://finance.yahoo.com/quote/AVGO/financials"
+  },
+  "profile": {},
+  "comps": [
+    {
+      "ticker": "NVDA",
+      "name": "NVIDIA Corporation",
+      "priceAsOf": "2026-06-10",
+      "marketCap": "$4.9T",
+      "evRevenueLTM": "19.0x",
+      "revenueGrowth": "85.2%",
+      "grossMargin": "74.1%",
+      "analystRating": "strong_buy",
+      "source": "yfinance / Yahoo Finance",
+      "sourceUrl": "https://finance.yahoo.com/quote/NVDA"
+    },
+    {
+      "ticker": "MRVL",
+      "name": "Marvell Technology, Inc.",
+      "priceAsOf": "2026-06-10",
+      "marketCap": "$221.2B",
+      "evRevenueLTM": "25.5x",
+      "revenueGrowth": "27.6%",
+      "grossMargin": "51.5%",
+      "analystRating": "strong_buy",
+      "source": "yfinance / Yahoo Finance",
+      "sourceUrl": "https://finance.yahoo.com/quote/MRVL"
+    },
+    {
+      "ticker": "AMD",
+      "name": "Advanced Micro Devices, Inc.",
+      "priceAsOf": "2026-06-10",
+      "marketCap": "$737.7B",
+      "evRevenueLTM": "19.5x",
+      "revenueGrowth": "37.8%",
+      "grossMargin": "53.1%",
+      "analystRating": "strong_buy",
+      "source": "yfinance / Yahoo Finance",
+      "sourceUrl": "https://finance.yahoo.com/quote/AMD"
+    },
+    {
+      "ticker": "QCOM",
+      "name": "QUALCOMM Incorporated",
+      "priceAsOf": "2026-06-10",
+      "marketCap": "$201.5B",
+      "evRevenueLTM": "4.7x",
+      "revenueGrowth": "-3.5%",
+      "grossMargin": "54.8%",
+      "analystRating": "hold",
+      "source": "yfinance / Yahoo Finance",
+      "sourceUrl": "https://finance.yahoo.com/quote/QCOM"
+    }
+  ],
+  "secFilings": {
+    "company": "Broadcom Inc.",
+    "cik": "0001730168",
+    "fiscalYearEnd": "1101",
+    "filings": [
+      {
+        "form": "10-Q",
+        "filingDate": "2026-06-09",
+        "reportDate": "2026-05-03",
+        "url": "https://www.sec.gov/Archives/edgar/data/1730168/000173016826000054/avgo-20260503.htm",
+        "source": "SEC EDGAR (primary filing)"
+      },
+      {
+        "form": "8-K",
+        "filingDate": "2026-06-03",
+        "reportDate": "2026-06-03",
+        "url": "https://www.sec.gov/Archives/edgar/data/1730168/000173016826000051/avgo-20260603.htm",
+        "source": "SEC EDGAR (primary filing)"
+      },
+      {
+        "form": "8-K",
+        "filingDate": "2026-04-21",
+        "reportDate": "2026-04-20",
+        "url": "https://www.sec.gov/Archives/edgar/data/1730168/000173016826000039/avgo-20260420.htm",
+        "source": "SEC EDGAR (primary filing)"
+      },
+      {
+        "form": "10-Q",
+        "filingDate": "2026-03-11",
+        "reportDate": "2026-02-01",
+        "url": "https://www.sec.gov/Archives/edgar/data/1730168/000173016826000016/avgo-20260201.htm",
+        "source": "SEC EDGAR (primary filing)"
+      },
+      {
+        "form": "10-K",
+        "filingDate": "2025-12-18",
+        "reportDate": "2025-11-02",
+        "url": "https://www.sec.gov/Archives/edgar/data/1730168/000173016825000121/avgo-20251102.htm",
+        "source": "SEC EDGAR (primary filing)"
+      },
+      {
+        "form": "10-K",
+        "filingDate": "2024-12-20",
+        "reportDate": "2024-11-03",
+        "url": "https://www.sec.gov/Archives/edgar/data/1730168/000173016824000139/avgo-20241103.htm",
+        "source": "SEC EDGAR (primary filing)"
+      }
+    ],
+    "source": "SEC EDGAR",
+    "sourceUrl": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001730168&type=&dateb=&owner=include&count=40"
+  },
+  "secFacts": {
+    "annualRevenue": [
+      {
+        "end": "2022-10-30",
+        "value": 33203000000,
+        "valueFormatted": "$33.2B",
+        "fy": 2024,
+        "fp": "FY",
+        "filed": "2024-12-20",
+        "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"
+      },
+      {
+        "end": "2023-10-29",
+        "value": 35819000000,
+        "valueFormatted": "$35.8B",
+        "fy": 2025,
+        "fp": "FY",
+        "filed": "2025-12-18",
+        "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"
+      },
+      {
+        "end": "2024-11-03",
+        "value": 51574000000,
+        "valueFormatted": "$51.6B",
+        "fy": 2025,
+        "fp": "FY",
+        "filed": "2025-12-18",
+        "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"
+      },
+      {
+        "end": "2025-11-02",
+        "value": 63887000000,
+        "valueFormatted": "$63.9B",
+        "fy": 2025,
+        "fp": "FY",
+        "filed": "2025-12-18",
+        "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"
+      }
+    ],
+    "quarterlyRevenue": [
+      {
+        "end": "2025-02-02",
+        "value": 14916000000,
+        "valueFormatted": "$14.9B",
+        "fy": 2026,
+        "fp": "Q1",
+        "filed": "2026-03-11",
+        "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"
+      },
+      {
+        "end": "2025-05-04",
+        "value": 15004000000,
+        "valueFormatted": "$15.0B",
+        "fy": 2026,
+        "fp": "Q2",
+        "filed": "2026-06-09",
+        "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"
+      },
+      {
+        "end": "2025-08-03",
+        "value": 15952000000,
+        "valueFormatted": "$16.0B",
+        "fy": 2025,
+        "fp": "Q3",
+        "filed": "2025-09-10",
+        "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"
+      },
+      {
+        "end": "2026-02-01",
+        "value": 19311000000,
+        "valueFormatted": "$19.3B",
+        "fy": 2026,
+        "fp": "Q1",
+        "filed": "2026-03-11",
+        "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"
+      },
+      {
+        "end": "2026-05-03",
+        "value": 22187000000,
+        "valueFormatted": "$22.2B",
+        "fy": 2026,
+        "fp": "Q2",
+        "filed": "2026-06-09",
+        "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"
+      }
+    ],
+    "annualNetIncome": [
+      {
+        "end": "2018-11-04",
+        "value": 12259000000,
+        "valueFormatted": "$12.3B",
+        "fy": 2018,
+        "fp": "FY",
+        "filed": "2018-12-21",
+        "concept": "NetIncomeLoss"
+      },
+      {
+        "end": "2022-10-30",
+        "value": 11495000000,
+        "valueFormatted": "$11.5B",
+        "fy": 2024,
+        "fp": "FY",
+        "filed": "2024-12-20",
+        "concept": "NetIncomeLoss"
+      },
+      {
+        "end": "2023-10-29",
+        "value": 14082000000,
+        "valueFormatted": "$14.1B",
+        "fy": 2024,
+        "fp": "FY",
+        "filed": "2024-12-20",
+        "concept": "NetIncomeLoss"
+      },
+      {
+        "end": "2024-11-03",
+        "value": 5895000000,
+        "valueFormatted": "$5.9B",
+        "fy": 2024,
+        "fp": "FY",
+        "filed": "2024-12-20",
+        "concept": "NetIncomeLoss"
+      }
+    ],
+    "cik": "0001730168",
+    "source": "SEC EDGAR XBRL companyfacts (as reported)",
+    "sourceUrl": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001730168&type=10-K"
+  },
+  "relativePerformance": {
+    "benchmark": "QQQ",
+    "periods": {
+      "1M": {
+        "stock": "-11.3%",
+        "bench": "-1.9%",
+        "spreadPp": -9.3
+      },
+      "YTD": {
+        "stock": "7.3%",
+        "bench": "13.3%",
+        "spreadPp": -6.0
+      },
+      "1Y": {
+        "stock": "48.3%",
+        "bench": "30.9%",
+        "spreadPp": 17.4
+      }
+    },
+    "asOf": "2026-06-10",
+    "source": "yfinance / Yahoo Finance"
+  },
+  "rampDemandSignal": null
+}
