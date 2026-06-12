@@ -82,6 +82,30 @@
   .demo-text { flex: 1; min-width: 220px; font-size: 12.5px; color: var(--muted); line-height: 1.5; }
   .demo-text b { color: var(--champagne); font-weight: 600; }
 
+  /* ── Sector filter chips ── */
+  .filters { display: flex; gap: 7px; flex-wrap: wrap; justify-content: center;
+             width: 100%; max-width: 940px; margin: 26px auto 0; }
+  .fchip { font-family: var(--mono); font-size: 10px; font-weight: 600; letter-spacing: 0.08em;
+           text-transform: uppercase; color: var(--muted); background: var(--raised);
+           border: 1px solid var(--rule); border-radius: 999px; padding: 6px 13px;
+           cursor: pointer; white-space: nowrap; -webkit-tap-highlight-color: transparent;
+           transition: border-color 140ms var(--ease), color 140ms var(--ease),
+                       background 140ms var(--ease), box-shadow 140ms var(--ease); }
+  .fchip:hover { border-color: var(--gold-rich); color: var(--champagne); }
+  .fchip:focus-visible { outline: 2px solid var(--gold-rich); outline-offset: 2px; }
+  .fchip.active { background: var(--gold); border-color: var(--gold); color: var(--lacquer-deep);
+                  box-shadow: 0 2px 8px rgba(19, 49, 92, 0.25); }
+  .fchip .n { color: var(--faint); font-weight: 400; margin-left: 5px; }
+  .fchip.active .n { color: rgba(255, 255, 255, 0.65); }
+  /* phones: one horizontally scrollable row instead of a tall wrap */
+  @media (max-width: 640px) {
+    .filters { flex-wrap: nowrap; justify-content: flex-start; overflow-x: auto;
+               padding: 2px 2px 8px; margin-top: 20px; -webkit-overflow-scrolling: touch;
+               scrollbar-width: none; }
+    .filters::-webkit-scrollbar { display: none; }
+    .fchip { padding: 8px 14px; }
+  }
+
   /* ── Results ── */
   .results { width: 100%; max-width: 940px; margin: 40px auto 0; }
   .results-head { display: flex; align-items: baseline; justify-content: space-between;
@@ -179,6 +203,8 @@
       <span class="demo-text"><b>This is a public demo</b> — a small sample of coverage. Atlas turns any company into a banker-grade brief; deploy your own to build a private coverage database.</span>
     </div>
 
+    <nav class="filters" id="filters" aria-label="Filter by sector"></nav>
+
     <main class="results">
       <div class="results-head"><span id="rh-label">Coverage</span><span id="rh-count"></span></div>
       <div id="grid" class="grid"></div>
@@ -215,6 +241,35 @@
     return p.replace(/[^/]*$/, '');
   })();
   let filtered = [];
+  let activeSector = null;   // null = All
+
+  // ── Sector filter chips (built from the manifest's per-company `sectors`) ──
+  function buildFilters() {
+    const wrap = $('#filters');
+    wrap.innerHTML = '';
+    const counts = new Map();
+    DATA.companies.forEach((c) => (c.sectors || []).forEach((s) =>
+      counts.set(s, (counts.get(s) || 0) + 1)));
+    if (!counts.size) return;
+    const chip = (label, sector, count) => {
+      const b = document.createElement('button');
+      b.type = 'button'; b.className = 'fchip' + (activeSector === sector ? ' active' : '');
+      b.appendChild(document.createTextNode(label));
+      if (count != null) { const n = document.createElement('span'); n.className = 'n'; n.textContent = count; b.appendChild(n); }
+      b.addEventListener('click', () => {
+        activeSector = (activeSector === sector) ? null : sector;   // click again to clear
+        wrap.querySelectorAll('.fchip').forEach((el) => el.classList.toggle('active',
+          el.dataset.sector === String(activeSector)));
+        render();
+      });
+      b.dataset.sector = String(sector);
+      return b;
+    };
+    wrap.appendChild(chip('All', null, DATA.count));
+    [...counts.entries()]
+      .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+      .forEach(([s, n]) => wrap.appendChild(chip(s, s, n)));
+  }
 
   // Phones get the brief as a full page (iOS Safari can't reliably scroll a
   // height-constrained iframe), and no autofocus (it pops the keyboard on load).
@@ -302,13 +357,14 @@
     const q = norm(qEl.value).trim();
     document.body.classList.toggle('searching', !!q);
     filtered = DATA.companies
+      .filter((c) => !activeSector || (c.sectors || []).includes(activeSector))
       .map((c) => ({ c, s: score(c, q) }))
       .filter((x) => x.s > 0)
       .sort((a, b) => b.s - a.s || String(b.c.latestRunDate||'').localeCompare(String(a.c.latestRunDate||'')))
       .map((x) => x.c);
 
-    $('#rh-label').textContent = q ? 'Matches' : 'Coverage';
-    $('#rh-count').textContent = q
+    $('#rh-label').textContent = q ? 'Matches' : (activeSector || 'Coverage');
+    $('#rh-count').textContent = (q || activeSector)
       ? filtered.length + ' / ' + DATA.count
       : DATA.count + ' compan' + (DATA.count === 1 ? 'y' : 'ies');
 
@@ -318,6 +374,9 @@
       emptyEl.innerHTML = q
         ? '<div class="big">No match in your coverage</div><div>Open Claude Code, run <code>' +
           q.replace(/</g, '&lt;') + '</code>, then push and it appears here within ~30s.</div>'
+        : activeSector
+        ? '<div class="big">Nothing tagged ' + activeSector.replace(/</g, '&lt;') +
+          '</div><div>No company in your coverage maps to this sector yet.</div>'
         : '<div class="big">No briefs yet</div><div>Run a company in Claude Code to populate your coverage.</div>';
     } else {
       grid.style.display = 'grid'; emptyEl.style.display = 'none';
@@ -370,7 +429,7 @@
     if (e.key === 'Enter' && filtered.length) open(filtered[0].id);
   });
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') { if (overlay.classList.contains('open')) close(); else { qEl.value = ''; render(); qEl.blur(); } }
+    if (e.key === 'Escape') { if (overlay.classList.contains('open')) close(); else { qEl.value = ''; activeSector = null; buildFilters(); render(); qEl.blur(); } }
     else if (e.key === '/' && document.activeElement !== qEl && !overlay.classList.contains('open')) { e.preventDefault(); qEl.focus(); }
   });
 
@@ -385,6 +444,7 @@
       }
       $('#foot').textContent = (d.demo ? 'Demo · ' : '') + 'Generated by Atlas · ' + d.count
         + ' compan' + (d.count === 1 ? 'y' : 'ies') + ' · data through ' + fmtDate(d.latestRunDate);
+      buildFilters();
       render();
       if (location.hash) fromHash();
       if (!isTouch) qEl.focus({ preventScroll: true });

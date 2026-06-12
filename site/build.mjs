@@ -29,6 +29,26 @@ const TEMPLATE = path.join(__dirname, 'template', 'index.html');
 // forgepoint-ai, standard-intelligence) are archived off the live demo but remain in /full.
 const DEMO_IDS = ['NTSK', 'CRWV', 'AVGO', 'APP', 'FIG', 'databricks'];
 
+// ── Sector buckets for the filter bar. Profile `verticals` are free-form (80+ unique
+// tags), so the site maps them into this canonical set and renders one chip per bucket.
+// Matching is keyword-based against each vertical string, so newly researched companies
+// bucket themselves with no manual tagging. A company can land in several buckets.
+const SECTORS = [
+  ['Semiconductors',       /semiconductor|\bdram\b|\bnand\b|\bhbm\b|silicon|\basic\b|\bxpu\b|chiplet|foundry|\beuv\b/i],
+  ['Cybersecurity',        /security|cyber|\bsase\b|\bsse\b|zero trust|\bsiem\b|\bpqc\b|endpoint/i],
+  ['Cloud / Infra',        /cloud|infra|data ?center|(?<!quantum )networking|\bcdn\b|\bedge\b|\bgpu\b|serverless|observability|monitoring|\bapm\b|hyperscaler|ethernet/i],
+  ['AI',                   /artificial intelligence|foundation model|agentic|ai agents|enterprise ai|generative ai|genai|machine learning|ai research|\bllm\b/i],
+  ['Data & Analytics',     /database|data (platform|cloud|warehouse|engineering)|analytics|lakehouse|dbaas|nosql|vector search|log management/i],
+  ['Enterprise Software',  /enterprise software|\bcrm\b|(?<!vertical )saas\b|productivity|design software|creative tools|knowledge management|customer (engagement|service)|sales automation|infrastructure software/i],
+  ['Vertical SaaS',        /vertical saas|restaurant|point of sale|\bsmb\b|manufacturing|industrials/i],
+  ['Internet / Consumer',  /internet|e-?commerce|\bcommerce\b|adtech|advertis|\bctv\b|consumer|marketplace/i],
+  ['Fintech / Payments',   /payments|fintech/i],
+  ['Defense / Gov',        /defense|gov tech|national security/i],
+  ['Deep Tech',            /quantum|deep tech|robotics/i],
+];
+const sectorsFor = (verticals) =>
+  SECTORS.filter(([, re]) => verticals.some((v) => re.test(v))).map(([name]) => name);
+
 const readJSON = (p) => { try { return JSON.parse(fs.readFileSync(p, 'utf8')); } catch { return null; } };
 const ensureDir = (p) => fs.mkdirSync(p, { recursive: true });
 
@@ -118,6 +138,7 @@ for (const id of ids.sort()) {
     isPublic: !!(profile.ticker && /^[A-Z.]{1,6}$/.test(profile.ticker)),
     shortDescription: blurbFor(profile),
     verticals: Array.isArray(profile.verticals) ? profile.verticals : [],
+    sectors: sectorsFor(Array.isArray(profile.verticals) ? profile.verticals : []),
     website: profile.website || null,
     domain: cleanDomain(profile),
     faviconUrl: explicitFavicon(profile),
