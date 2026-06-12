@@ -3,8 +3,7 @@
 ## ▶️ Auto run routine UNPAUSED — daily budget: 5 reports per day
 
 Per the user's instruction on 2026-06-11, scheduled / automatic / routine-triggered Atlas runs are
-enabled with a budget that **resets every day**. Live counter: **0 remaining for 2026-06-11** (the
-2026-06-11 scheduled run already published 5 briefs: CRWV, AVGO, APP, FIG, databricks).
+enabled with a budget that **resets every day**. Live counter: **0 remaining for 2026-06-12** (published 1 brief today: MU refresh; previous day 2026-06-11 published 5 briefs: CRWV, AVGO, APP, FIG, databricks).
 
 Bookkeeping (mandatory for schedule/trigger-started sessions), in order, before running:
 1. **Roll the day.** If the date in the counter line above is not today, reset the line to
