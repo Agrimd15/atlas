@@ -1,18 +1,29 @@
 # Atlas - Company Research Tool
 
-## ▶️ Auto run routine UNPAUSED — daily budget: 5 reports per day
+## ▶️ Auto run routine UNPAUSED — daily budget: 10 reports per day (max 3 on Opus)
 
-Per the user's instruction on 2026-06-11, scheduled / automatic / routine-triggered Atlas runs are
-enabled with a budget that **resets every day**. Live counter: **0 remaining for 2026-06-12** (published 1 brief today: MU refresh; previous day 2026-06-11 published 5 briefs: CRWV, AVGO, APP, FIG, databricks).
+Per the user's instruction on 2026-06-12, scheduled / automatic / routine-triggered Atlas runs are
+enabled with a budget that **resets every day**. Live counter: **0 remaining for 2026-06-12** (published 1 brief today: MU refresh; previous day 2026-06-11 published 5 briefs: CRWV, AVGO, APP, FIG, databricks). New 10/day tiered budget takes effect with the 2026-06-13 roll.
+
+**Model tiering (usage-limit policy, set 2026-06-12 on Max 5x):** at most **3** briefs per day may be
+produced by the Opus-tier main loop — reserve those for complex/high-stakes names (semis, private
+companies, anything mid-controversy). All other briefs MUST be delegated to **Sonnet subagents**
+(Agent tool, `model: "sonnet"`, one subagent per company running the full Execution Protocol).
+Refreshes of existing coverage are always Sonnet-tier. This keeps a 10-brief night inside the Max 5x
+weekly Opus allowance; quality-critical synthesis stays on Opus where it matters.
 
 Bookkeeping (mandatory for schedule/trigger-started sessions), in order, before running:
 1. **Roll the day.** If the date in the counter line above is not today, reset the line to
-   "5 remaining for <today's date>" — the new day starts with a fresh budget of 5.
+   "10 remaining for <today's date>" — the new day starts with a fresh budget of 10 (of which at
+   most 3 Opus-tier).
 2. **Respect the cap.** If the counter reads **0** remaining for today, do not run the pipeline:
-   end the session with a one-line note that today's 5-report budget is exhausted (it resets
+   end the session with a one-line note that today's 10-report budget is exhausted (it resets
    tomorrow automatically — no pause block needed, no user action required).
 3. **Decrement on publish.** Each time the session publishes a finished report (brief), reduce the
    counter by the number of reports published and commit that edit together with the run.
+4. **Stop gracefully on usage limits.** If a run hits a rate/usage limit mid-batch, finish or
+   cleanly abandon the in-flight company, publish what's QA-clean, and end with a note of what was
+   left undone — leftovers roll to the next night, never force through a degraded brief.
 
 Manual, user-initiated requests are unaffected and never count against the budget.
 
