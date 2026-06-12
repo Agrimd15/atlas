@@ -408,8 +408,8 @@ def build_quarterly_trend(ticker: str) -> str:
     return (
         f'<div class="qtrend-wrap">{chart_html}'
         f'<div class="chart-eyebrow">LAST {len(qs)} QUARTERS</div>'
-        f'<table class="qtrend-table"><thead><tr><th class="qtrend-rowlbl"></th>{heads}</tr></thead>'
-        f'<tbody>{rows}</tbody></table>{caption}</div>')
+        f'<div class="table-scroll"><table class="qtrend-table"><thead><tr><th class="qtrend-rowlbl"></th>{heads}</tr></thead>'
+        f'<tbody>{rows}</tbody></table></div>{caption}</div>')
 
 
 def build_biz_flow(profile: dict, b: dict) -> str:
@@ -1285,10 +1285,10 @@ def build_html(profile: dict) -> str:
                 f'{caption}</div>')
         scatter_html = build_comps_scatter(norm) if live_asof_dates else ""
         comps_html = f"""
-    <table class="comps-table">
+    <div class="table-scroll"><table class="comps-table">
       <thead><tr>{head}</tr></thead>
       <tbody>{comps_rows}</tbody>
-    </table>{scatter_html}{comps_source_html}""" if comps_rows else ""
+    </table></div>{scatter_html}{comps_source_html}""" if comps_rows else ""
 
     # ── Risks ──  Only bold a label when there's a genuine short "Label: body";
     # otherwise render the whole risk as plain text. (The old split(':') echoed the
@@ -1656,7 +1656,12 @@ def build_html(profile: dict) -> str:
   * {{ box-sizing: border-box; margin: 0; padding: 0; }}
   body {{ font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
          background: var(--ks-lacquer); color: var(--ks-body); font-size: 14px; line-height: 1.55;
-         font-variant-numeric: tabular-nums; }}
+         font-variant-numeric: tabular-nums;
+         -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }}
+  /* charts scale down proportionally on narrow screens instead of letterboxing */
+  .chart-wrap svg {{ max-width: 100%; height: auto; }}
+  /* wide tables scroll inside themselves — never pan the whole page sideways */
+  .table-scroll {{ overflow-x: auto; -webkit-overflow-scrolling: touch; }}
   a {{ color: inherit; text-decoration: none; }}
   p {{ color: var(--ks-body); line-height: 1.6; margin-bottom: 6px; }}
   strong {{ color: var(--ks-champagne); }}
@@ -2207,6 +2212,32 @@ def build_html(profile: dict) -> str:
   .meta-note {{ font-size: 12px; color: var(--ks-muted); margin-top: 8px; }}
   .meta-note strong {{ color: var(--ks-champagne); }}
 
+  /* ── Phone (≤520px) ──────────────────────────────────────────────────────────
+     Reading layout for a ~390px viewport. Kept at 520px so the print render
+     (Letter-width viewport) never triggers any of it — no print overrides needed. */
+  @media (max-width: 520px) {{
+    .header, .what-matters, .toc, .section, .footer {{ padding-left: 16px; padding-right: 16px; }}
+    /* sticky TOC: one scrollable row with finger-sized targets, not 4 stacked rows */
+    .toc {{ flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch;
+            padding-top: 6px; padding-bottom: 6px; }}
+    .toc-link {{ font-size: 11px; padding: 9px 13px; }}
+    .section {{ scroll-margin-top: 60px; }}
+    /* news: date stacks above the headline; the hanging indent goes away */
+    .news-row {{ flex-direction: column; gap: 3px; }}
+    .news-date {{ min-width: 0; padding-top: 0; font-size: 11px; }}
+    .news-why, .news-source-row {{ margin-left: 0; }}
+    .wm-row {{ flex-direction: column; gap: 2px; }}
+    .wm-label {{ flex-basis: auto; }}
+    .footer {{ flex-direction: column; align-items: flex-start; gap: 6px; }}
+    /* floor the micro-label scale — 8.5–10px is desktop-only territory */
+    .hero-label, .ctx-label, .metric-label {{ font-size: 10.5px; }}
+    .hero-sub, .ctx-sub, .metric-sub {{ font-size: 11px; }}
+    .metric-period, .tl-round, .tl-date, .tl-leads {{ font-size: 10px; }}
+    /* tappable micro-links and section meta read (and tap) better a notch bigger */
+    .news-source-link, .news-source-label, .chart-sources {{ font-size: 11px; }}
+    .sec-meta, .fin-meta {{ font-size: 11.5px; }}
+  }}
+
   @media (prefers-reduced-motion: reduce) {{
     * {{ animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }}
   }}
@@ -2222,6 +2253,7 @@ def build_html(profile: dict) -> str:
     a {{ color: inherit; }}
     .toc {{ display: none; }}                              /* interactive nav only */
     #slidekit {{ display: none; }}                         /* working artifact, not note content */
+    .table-scroll {{ overflow: visible; }}                 /* print can't scroll — never clip a table */
     .wrapper {{ max-width: none; border: none; }}
     .what-matters {{ break-inside: avoid; padding-left: 12px; }}
     .wm-row {{ break-inside: avoid; }}
@@ -2673,20 +2705,35 @@ _OVERFLOW_JS = r"""(function(){
 
 def _audit_layout(chrome, html_path):
     """Render the finished HTML in headless Chrome and report any element whose content
-    overflows its box. Returns a list of issue dicts ([] = clean). Best-effort: returns
-    [] if Chrome/DevTools is unavailable, so a flaky browser never blocks a render."""
+    overflows its box — at desktop width AND at a phone viewport (390×844), since the
+    brief is read on the deployed site from a phone and a wide table that pans the whole
+    page sideways is invisible at desktop width. Each issue dict carries a 'vp' tag.
+    Returns [] = clean. Best-effort: returns [] if Chrome/DevTools is unavailable, so a
+    flaky browser never blocks a render."""
+    def _evaluate(sock, msg_id):
+        _ws_send(sock, {"id": msg_id, "method": "Runtime.evaluate",
+                        "params": {"expression": _OVERFLOW_JS, "returnByValue": True}})
+        for _ in range(300):
+            msg = _ws_recv(sock)
+            if msg.get("id") == msg_id:
+                if "error" in msg:
+                    return []
+                val = (((msg.get("result") or {}).get("result") or {}).get("value")) or "[]"
+                return json.loads(val)
+        return []
+
     try:
         with _chrome_page(chrome, html_path) as sock:
-            _ws_send(sock, {"id": 3, "method": "Runtime.evaluate",
-                            "params": {"expression": _OVERFLOW_JS, "returnByValue": True}})
-            for _ in range(300):
-                msg = _ws_recv(sock)
-                if msg.get("id") == 3:
-                    if "error" in msg:
-                        return []
-                    val = (((msg.get("result") or {}).get("result") or {}).get("value")) or "[]"
-                    return json.loads(val)
-            return []
+            issues = [{**it, "vp": "desktop"} for it in _evaluate(sock, 3)]
+            _ws_send(sock, {"id": 4, "method": "Emulation.setDeviceMetricsOverride",
+                            "params": {"width": 390, "height": 844,
+                                       "deviceScaleFactor": 2, "mobile": True}})
+            for _ in range(100):                        # wait for the override ack
+                if _ws_recv(sock).get("id") == 4:
+                    break
+            time.sleep(0.4)                             # let the layout reflow
+            issues += [{**it, "vp": "mobile-390"} for it in _evaluate(sock, 5)]
+            return issues
     except Exception:
         return []
 
@@ -2863,10 +2910,11 @@ def audit_brief(html_path, profile, strict=False):
     else:
         print(f"❌  QA layout: {len(layout)} overflow issue(s):")
         for it in layout[:12]:
+            vp = it.get("vp", "desktop")
             if it.get("type") == "page-overflow-x":
-                print(f"      • page overflows horizontally ({it.get('sw')} > {it.get('cw')}px)")
+                print(f"      • [{vp}] page overflows horizontally ({it.get('sw')} > {it.get('cw')}px)")
             else:
-                print(f"      • {it.get('cls','?')}: \"{it.get('text','')}\" "
+                print(f"      • [{vp}] {it.get('cls','?')}: \"{it.get('text','')}\" "
                       f"overflows its box ({it.get('sw')} > {it.get('cw')}px)")
     print(f"🔗  QA sources: {src_summary}")
     print(f"🧮  QA metrics: {met_summary}")

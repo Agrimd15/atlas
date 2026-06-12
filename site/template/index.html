@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#13315c">
 <title>Atlas</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Alumni+Sans+Pinstripe&family=Albert+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -155,7 +156,10 @@
 
   .foot { font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; color: #9aa3b2;
           text-align: center; padding: 36px 0 0; }
-  @media (max-width: 600px) { .bar-name { display: none; } .newtab span { display: none; } }
+  /* phones: finger-sized bar controls (the overlay itself is skipped below 640px —
+     briefs open as a full page — but the bar still shows on small tablets) */
+  @media (max-width: 600px) { .bar-name { display: none; } .newtab span { display: none; }
+    .back, .newtab, select.run { padding: 11px 14px; } }
 </style>
 </head>
 <body>
@@ -211,6 +215,11 @@
     return p.replace(/[^/]*$/, '');
   })();
   let filtered = [];
+
+  // Phones get the brief as a full page (iOS Safari can't reliably scroll a
+  // height-constrained iframe), and no autofocus (it pops the keyboard on load).
+  const isPhone = () => matchMedia('(max-width: 640px)').matches;
+  const isTouch = matchMedia('(pointer: coarse)').matches || 'ontouchstart' in window;
 
   const norm = (s) => (s || '').toLowerCase();
   const fmtDate = (d) => d ? new Date(d + 'T00:00:00').toLocaleDateString('en-US',
@@ -325,6 +334,7 @@
     if (!c || !c.runs.length) return;
     current = c;
     const run = c.runs.find((r) => r.date === date) || c.runs[0];
+    if (isPhone()) { location.href = BASE + run.href; return; }
     $('#bar-name').textContent = c.name;
     const slot = $('#bar-logo-slot'); slot.innerHTML = ''; slot.appendChild(logoImg(c));
     runSel.innerHTML = '';
@@ -343,7 +353,7 @@
     overlay.classList.remove('open'); frame.src = 'about:blank'; current = null;
     document.documentElement.style.overflow = '';
     if (location.hash) history.pushState('', '', location.pathname + location.search);
-    qEl.focus({ preventScroll: true });
+    if (!isTouch) qEl.focus({ preventScroll: true });
   }
   runSel.addEventListener('change', () => current && open(current.id, runSel.value));
   $('#back').addEventListener('click', close);
@@ -377,7 +387,7 @@
         + ' compan' + (d.count === 1 ? 'y' : 'ies') + ' · data through ' + fmtDate(d.latestRunDate);
       render();
       if (location.hash) fromHash();
-      qEl.focus({ preventScroll: true });
+      if (!isTouch) qEl.focus({ preventScroll: true });
     })
     .catch(() => {
       emptyEl.style.display = 'block'; grid.style.display = 'none';
