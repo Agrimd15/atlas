@@ -3,7 +3,7 @@
 ## ▶️ Auto run routine UNPAUSED — daily budget: 10 reports per day (max 3 on Opus)
 
 Per the user's instruction on 2026-06-12, scheduled / automatic / routine-triggered Atlas runs are
-enabled with a budget that **resets every day**. Live counter: **0 remaining for 2026-06-12** (published 1 brief today: MU refresh; previous day 2026-06-11 published 5 briefs: CRWV, AVGO, APP, FIG, databricks). New 10/day tiered budget takes effect with the 2026-06-13 roll.
+enabled with a budget that **resets every day**. Live counter: **9 remaining for 2026-06-13** (new day rolled; published today: ZS. Previous day 2026-06-12 published 1 brief: MU refresh). New 10/day tiered budget (max 3 Opus-tier) now in effect.
 
 **Model tiering (usage-limit policy, set 2026-06-12 on Max 5x):** at most **3** briefs per day may be
 produced by the Opus-tier main loop — reserve those for complex/high-stakes names (semis, private
