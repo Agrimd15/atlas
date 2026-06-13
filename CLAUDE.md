@@ -1,23 +1,23 @@
 # Atlas - Company Research Tool
 
-## ▶️ Auto run routine UNPAUSED — daily budget: 10 reports per day (max 3 on Opus)
+## ▶️ Auto run routine UNPAUSED — daily budget: 5 reports per day (all Opus-tier)
 
 Per the user's instruction on 2026-06-12, scheduled / automatic / routine-triggered Atlas runs are
-enabled with a budget that **resets every day**. Live counter: **7 remaining for 2026-06-13** (new day rolled; published today: ZS, MRVL, NOW — Opus-tier daily cap of 3 now reached. Previous day 2026-06-12 published 1 brief: MU refresh). New 10/day tiered budget (max 3 Opus-tier) now in effect.
+enabled with a budget that **resets every day**. Live counter: **2 remaining for 2026-06-13** (published today: ZS, MRVL, NOW. Previous day 2026-06-12 published 1 brief: MU refresh). New 5/day all-Opus budget now in effect (set 2026-06-13, superseding the prior 10/day Opus+Sonnet tiering).
 
-**Model tiering (usage-limit policy, set 2026-06-12 on Max 5x):** at most **3** briefs per day may be
-produced by the Opus-tier main loop — reserve those for complex/high-stakes names (semis, private
-companies, anything mid-controversy). All other briefs MUST be delegated to **Sonnet subagents**
-(Agent tool, `model: "sonnet"`, one subagent per company running the full Execution Protocol).
-Refreshes of existing coverage are always Sonnet-tier. This keeps a 10-brief night inside the Max 5x
-weekly Opus allowance; quality-critical synthesis stays on Opus where it matters.
+**Model policy (set 2026-06-13 on Max 5x):** every brief — new coverage and refreshes alike — runs
+on the **Opus-tier main loop**. There is **no Sonnet-subagent tier**; the old tiering was removed
+because the Opus sub-cap acted as an early exit and the Sonnet delegation never reliably fired. The
+**5/day cap is a budget dial, not an observed limit** — it was chosen to keep weekly Opus usage
+comfortably inside the Max 5x allowance (~5/day ≈ 35/week), not because Claude hits a wall at 5. If a
+real rate/usage limit is ever hit mid-run, stop gracefully per bookkeeping item 4; that empirical
+signal — not this number — marks the true ceiling, and the cap can be retuned from there.
 
 Bookkeeping (mandatory for schedule/trigger-started sessions), in order, before running:
 1. **Roll the day.** If the date in the counter line above is not today, reset the line to
-   "10 remaining for <today's date>" — the new day starts with a fresh budget of 10 (of which at
-   most 3 Opus-tier).
+   "5 remaining for <today's date>" — the new day starts with a fresh budget of 5 (all Opus-tier).
 2. **Respect the cap.** If the counter reads **0** remaining for today, do not run the pipeline:
-   end the session with a one-line note that today's 10-report budget is exhausted (it resets
+   end the session with a one-line note that today's 5-report budget is exhausted (it resets
    tomorrow automatically — no pause block needed, no user action required).
 3. **Decrement on publish.** Each time the session publishes a finished report (brief), reduce the
    counter by the number of reports published and commit that edit together with the run.
